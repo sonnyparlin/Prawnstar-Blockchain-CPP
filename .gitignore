@@ -1,0 +1,6 @@
+.DS_Store
+cryptopp860/
+include/
+lib/
+main
+main.dSYM/
