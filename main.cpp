@@ -9,9 +9,10 @@ int main() {
     Transaction transaction(sender, receiver, 1, tx.exchange);
 
     Wallet sonny_wallet;    
-    CryptoPP::SecByteBlock sig = sonny_wallet.sign(transaction.to_json());
-    //std::cout << "Signature:\n" << sig << std::endl;
+    std::string sig = sonny_wallet.sign(transaction.to_json());
     //transaction.sign(sig);
+    std::cout << sig << std::endl;
+    
     std::cout << transaction.to_json() << std::endl;
     bool signatureValid = utils::verify_signature(transaction.to_json(), sig, sonny_wallet.public_key);
 

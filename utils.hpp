@@ -12,7 +12,7 @@
 
 namespace utils {
     std::string hash(std::string dataStr);
-    bool verify_signature(std::string dataStr, CryptoPP::SecByteBlock signature, std::string publicKey);
+    bool verify_signature(std::string dataStr, std::string signature, std::string publicKey);
 }
 
 #endif // _UTILS_H_

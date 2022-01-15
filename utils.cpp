@@ -15,10 +15,11 @@ namespace utils {
     }
 
     using namespace CryptoPP;
-    bool verify_signature(std::string dataStr, CryptoPP::SecByteBlock signature, std::string publicKey)
+    bool verify_signature(std::string dataStr, std::string encoded, std::string publicKey)
     {
         // Hash the data to be signed.
         std::string hashedData = utils::hash(dataStr);
+        //std::cout << hashedData << std::endl;
 
         //Read public key
         CryptoPP::ByteQueue bytes;
@@ -31,16 +32,24 @@ namespace utils {
         // Verifier object
         RSASSA_PKCS1v15_SHA_Verifier verifier(pubKey);
 
+        std::string decodedSignature;
+        HexDecoder decoder;
+        decoder.Put( (byte*)encoded.data(), encoded.size() );
+        decoder.MessageEnd();
+
+        word64 size = decoder.MaxRetrievable();
+        if(size && size <= SIZE_MAX)
+        {
+            decodedSignature.resize(size);		
+            decoder.Get((byte*)&decodedSignature[0], decodedSignature.size());
+        }
+
+        SecByteBlock sigbyte(reinterpret_cast<const byte*>(&decodedSignature[0]), decodedSignature.size());
+
         // Verify
-        bool result = verifier.VerifyMessage((const CryptoPP::byte*)hashedData.c_str(), hashedData.length(), signature, signature.size());
+        bool result = verifier.VerifyMessage((const CryptoPP::byte*)hashedData.c_str(), hashedData.length(), sigbyte, sigbyte.size());
 
         // Result
-        if(true == result) {
-            std::cout << "Signature on message verified" << std::endl;
-            return true;
-        } else {
-            std::cout << "Message verification failed" << std::endl;
-            return false;
-        }
+        return result;
     }
 }

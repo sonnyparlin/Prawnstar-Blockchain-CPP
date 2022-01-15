@@ -33,7 +33,7 @@ void Wallet::genKeyPair() {
     //std::cout << "pu: "<< public_key << std::endl;
 }
 
-CryptoPP::SecByteBlock Wallet::sign(std::string strContents)
+std::string Wallet::sign(std::string strContents)
 {	
 
     // Hash the data to be signed.
@@ -57,6 +57,24 @@ CryptoPP::SecByteBlock Wallet::sign(std::string strContents)
 
 	length = signer.SignMessage(rng, (const CryptoPP::byte*) hashedData.c_str(), hashedData.length(), signature);
     signature.resize(length);
+
+    std::string strsig;
+    std::string encoded;
+    strsig.resize(signature.size());  // Make room for elements
+    std::memcpy(&strsig[0], &signature[0], strsig.size());
+
+    HexEncoder encoder;
+    encoder.Put((CryptoPP::byte*)&strsig[0], strsig.size());
+    encoder.MessageEnd();
+
+    word64 size = encoder.MaxRetrievable();
+    if(size)
+    {
+        encoded.resize(size);		
+        encoder.Get((byte*)&encoded[0], encoded.size());
+    }
+
+    //std::cout << encoded << std::endl;
     
     // put decoded signature in variable and return it.
     // std::string sig;
@@ -64,5 +82,5 @@ CryptoPP::SecByteBlock Wallet::sign(std::string strContents)
 	// sigsink.Put(signature, signature.size());
     // privateKey.DEREncode(sigsink);
 
-    return signature;
+    return encoded;
 }
