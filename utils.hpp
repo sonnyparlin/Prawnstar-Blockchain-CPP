@@ -11,10 +11,16 @@
 #include <cryptopp/hex.h>
 #include <cryptopp/base32.h>
 #include <cryptopp/zdeflate.h>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <sstream>
+#include <random>
 
 namespace utils {
     std::string hash(std::string dataStr);
     bool verify_signature(std::string dataStr, std::string signature, std::string publicKey);
+    unsigned char random_char();
+    std::string generate_uuid_hex();
 }
 
 #endif // _UTILS_H_

@@ -1,21 +1,36 @@
 #include <iostream>
 #include "Blockchain.hpp"
 #include "Transaction.hpp"
+#include "TransactionPool.hpp"
 #include "Wallet.hpp"
+#include "Block.hpp"
 
 int main() {
-    std::string sender {"senderxxxx"};
     std::string receiver {"receiveryyyy"};
-    //Transaction transaction(sender, receiver, 1, tx.exchange);
 
     Wallet sonny_wallet;
-    Transaction transaction = sonny_wallet.create_transaction(receiver, 1, tx.transfer);
-    std::cout << transaction.to_json() << std::endl;
+    Wallet jane_wallet;
+    Transaction transaction = jane_wallet.create_transaction(receiver, 1, tx.transfer);
+    Transaction transaction2 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
+    
+    TransactionPool pool;
 
-    bool verified = utils::verify_signature(transaction.payload(), transaction.signature, sonny_wallet.public_key);
-    if (verified) {
-        std::cout << "transaction verified!" << std::endl;
+    if (pool.transaction_exists(transaction) == false) {
+        pool.add_transaction(transaction);
     }
+
+    if (pool.transaction_exists(transaction2) == false) {
+        pool.add_transaction(transaction2);
+    }
+
+    std::cout << "Block:\n" << std::endl;
+    Block block = sonny_wallet.create_block(pool.transactions, "lasthash", "hash", 1);
+    nlohmann::json data = block.jsonview();
+    std::cout << data.dump(4) << std::endl;
+
+    bool signatureValid = utils::verify_signature(
+        block.payload(), block.signature, sonny_wallet.public_key);
+    std::cout << boolalpha << signatureValid << std::endl;
     
 	return 0;
 }

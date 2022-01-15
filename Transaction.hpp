@@ -3,10 +3,6 @@
 #include "config.hpp"
 #include <string>
 
-#include <boost/uuid/uuid.hpp>            // uuid class
-#include <boost/uuid/uuid_generators.hpp> // generators
-#include <boost/uuid/uuid_io.hpp>         // streaming operators etc.
-
 using namespace std;
 
 class Transaction {
@@ -33,7 +29,7 @@ public:
     string payload();
     string generateUUID();
     void sign(std::string sig);
-    void display() const;
+    bool equals(Transaction transaction);
 };
 
 #endif // _TRANSACTION_H_

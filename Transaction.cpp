@@ -3,6 +3,8 @@
 #include <ctime>
 #include "config.hpp"
 #include "Transaction.hpp"
+#include <nlohmann/json.hpp>
+#include "utils.hpp"
 
 Transaction::Transaction(string sender_address, 
                          string receiver_address, 
@@ -13,54 +15,47 @@ Transaction::Transaction(string sender_address,
       amount(amount), 
       type(type)  {
     id = generateUUID();
-    timestamp = time(nullptr);
+    timestamp = time_since_epoch();
+;
 }
 
 Transaction::~Transaction() {}
 
 string Transaction::generateUUID() {
-    boost::uuids::random_generator generator;
-    boost::uuids::uuid uuid1 = generator();
-    return to_string(uuid1);
-}
-
-void Transaction::display() const {
-    char* dt = ctime(&timestamp);
-
-    cout << endl;
-    cout << "from: " << sender_address << " to: " << receiver_address << endl;
-    cout << "amount: " << amount << endl;
-    cout << "type: " << type << endl;
-    cout << "id: " << id << endl;
-    cout << "timestamp: " << dt;
-    cout << "signature: " << signature << endl;
-    cout << endl;
+    std::string uuid1 = utils::generate_uuid_hex();
+    return uuid1;
 }
 
 string Transaction::to_json() {
-    time_t seconds = time_since_epoch();
-
-    string j = "[{\"sender_address\":\"" + sender_address + "\"," +
-               "\"receiver_address\":\"" + receiver_address + "\"," + 
-               "\"amount\":" + to_string(amount) + "," +
-               "\"type\":\"" + type + "\"," +
-               "\"id\":\"" + id + "\"," +
-               "\"timestamp\":\"" + to_string(seconds) + "\"," +
-               "\"signature\":\"" + signature + "\"}]";
-    return j;
+    nlohmann::json j;
+    
+    j["sender_address"] = sender_address;
+    j["receiver_address"] = receiver_address;
+    j["amount"] = amount;
+    j["type"] = type;
+    j["id"] = id;
+    j["timestamp"] = timestamp;
+    j["signature"] = signature;
+    
+    return to_string(j);
 }
 
 string Transaction::payload() {
-    time_t seconds = time_since_epoch();
+    nlohmann::json j;
+    
+    j["sender_address"] = sender_address;
+    j["receiver_address"] = receiver_address;
+    j["amount"] = amount;
+    j["type"] = type;
+    j["id"] = id;
+    j["timestamp"] = timestamp;
+    j["signature"] = "";
+    
+    return to_string(j);
+}
 
-    string j = "[{\"sender_address\":\"" + sender_address + "\"," +
-               "\"receiver_address\":\"" + receiver_address + "\"," + 
-               "\"amount\":" + to_string(amount) + "," +
-               "\"type\":\"" + type + "\"," +
-               "\"id\":\"" + id + "\"," +
-               "\"timestamp\":\"" + to_string(seconds) + "\"," +
-               "\"signature\":\"\"}]";
-    return j;
+bool Transaction::equals(Transaction transaction) {
+    return this->id == transaction.id;
 }
 
 void Transaction::sign(std::string sig) {

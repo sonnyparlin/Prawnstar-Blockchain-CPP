@@ -1,4 +1,5 @@
 #include "Wallet.hpp"
+#include "Block.hpp"
 //#include <cryptopp/pem.h>
 
 using namespace CryptoPP;
@@ -11,31 +12,26 @@ Wallet::~Wallet() {
 }
 
 void Wallet::genKeyPair() {
-	// InvertibleRSAFunction is used directly only because the private key
-	// won't actually be used to perform any cryptographic operation;
-	// otherwise, an appropriate typedef'ed type from rsa.h would have been used.
+	// Generate keypair
 	AutoSeededRandomPool rng;
-	InvertibleRSAFunction privkey;
-	privkey.Initialize(rng, 2048);
+	InvertibleRSAFunction params;
+	params.Initialize(rng, 2048);
 
+    // Save private key to Wallet::private_key
     Base64Encoder privkeysink(new StringSink(private_key));
-	privkey.DEREncode(privkeysink);
+	params.DEREncode(privkeysink);
 	privkeysink.MessageEnd();
-    //std::cout << "pr: " << private_key << std::endl;
 	 
-	// Suppose we want to store the public key separately,
-	// possibly because we will be sending the public key to a third party.
-	RSAFunction pubkey(privkey);
-	
+	// Save public key to Wallet::public_key
+	RSAFunction pubkey(params);
 	Base64Encoder pubkeysink(new StringSink(public_key));
 	pubkey.DEREncode(pubkeysink);
 	pubkeysink.MessageEnd();
-    //std::cout << "pu: "<< public_key << std::endl;
+    address = "pv1" + public_key.substr(0,41);;
 }
 
 std::string Wallet::sign(std::string strContents)
 {	
-
     // Hash the data to be signed.
     std::string hashedData = utils::hash(strContents);
     //std::cout << hashedData << std::endl;
@@ -78,8 +74,16 @@ std::string Wallet::sign(std::string strContents)
 }
 
 Transaction Wallet::create_transaction(std::string receiver, double amount, std::string type) {
-    Transaction transaction(public_key, receiver, amount, type);
+    Transaction transaction(address, receiver, amount, type);
     std::string signature = sign(transaction.payload());
     transaction.sign(signature);
     return transaction;
+}
+
+Block Wallet::create_block(vector<Transaction> transactions, std::string last_hash, std::string hash, unsigned long long block_count) {
+    Block block(transactions, last_hash, hash, block_count);
+    block.forger_address = address;
+    std::string signature = sign(block.payload());
+    block.sign(signature);
+    return block;
 }

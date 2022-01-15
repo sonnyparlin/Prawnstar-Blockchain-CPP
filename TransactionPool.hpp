@@ -10,6 +10,9 @@ public:
 
     TransactionPool();           // Constructor
     ~TransactionPool();          // Destructor
+
+    void add_transaction(Transaction transaction);
+    bool transaction_exists(Transaction transaction);
 };
 
 #endif // _TRANSACTIONPOOL_H_
