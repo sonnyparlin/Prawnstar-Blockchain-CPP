@@ -1,4 +1,5 @@
 #include "Wallet.hpp"
+#include <cryptopp/pem.h>
 
 using namespace CryptoPP;
 
@@ -21,7 +22,6 @@ void Wallet::genKeyPair() {
 	privkey.DEREncode(privkeysink);
 	privkeysink.MessageEnd();
     //std::cout << "pr: " << private_key << std::endl;
-
 	 
 	// Suppose we want to store the public key separately,
 	// possibly because we will be sending the public key to a third party.
@@ -33,8 +33,13 @@ void Wallet::genKeyPair() {
     //std::cout << "pu: "<< public_key << std::endl;
 }
 
-std::string Wallet::sign(std::string strContents)
+CryptoPP::SecByteBlock Wallet::sign(std::string strContents)
 {	
+
+    // Hash the data to be signed.
+    std::string hashedData = utils::hash(strContents);
+    //std::cout << hashedData << std::endl;
+
 	//Read private key
 	CryptoPP::ByteQueue bytes;
 	StringSource str(private_key, true, new Base64Decoder);
@@ -45,19 +50,19 @@ std::string Wallet::sign(std::string strContents)
 
 	//Sign message
     AutoSeededRandomPool rng;
-	RSASSA_PKCS1v15_SHA_Signer privkey(privateKey);
-	SecByteBlock sbbSignature(privkey.SignatureLength());
-	privkey.SignMessage(
-		rng,
-		(CryptoPP::byte const*) strContents.data(),
-		strContents.size(),
-		sbbSignature);
+	RSASSA_PKCS1v15_SHA_Signer signer(privateKey);
+
+    size_t length = signer.MaxSignatureLength();
+    SecByteBlock signature(length);
+
+	length = signer.SignMessage(rng, (const CryptoPP::byte*) hashedData.c_str(), hashedData.length(), signature);
+    signature.resize(length);
     
     // put decoded signature in variable and return it.
-    std::string signature;
-    Base64Encoder sigsink(new StringSink(signature));
-	sigsink.Put(sbbSignature, sbbSignature.size());
-    privateKey.DEREncode(sigsink);
+    // std::string sig;
+    // Base64Encoder sigsink(new StringSink(sig));
+	// sigsink.Put(signature, signature.size());
+    // privateKey.DEREncode(sigsink);
 
     return signature;
 }

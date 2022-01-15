@@ -32,7 +32,7 @@ void Transaction::display() const {
     cout << "amount: " << amount << endl;
     cout << "type: " << type << endl;
     cout << "id: " << id << endl;
-    cout << "timestamp: " << dt << endl;
+    cout << "timestamp: " << dt;
     cout << "signature: " << signature << endl;
     cout << endl;
 }
@@ -48,4 +48,8 @@ string Transaction::to_json() {
                "\"timestamp\":\"" + to_string(seconds) + "\"," +
                "\"signature\":\"" + signature + "\"}]";
     return j;
+}
+
+void Transaction::sign(std::string sig) {
+    signature = sig;
 }

@@ -19,7 +19,7 @@ public:
     string type;
     string id;
     time_t timestamp;
-    string signature {""};
+    string signature;
 
     // Constructor
     Transaction(string sender_address, 
@@ -31,6 +31,7 @@ public:
 
     string to_json();
     string generateUUID();
+    void sign(std::string sig);
     void display() const;
 };
 

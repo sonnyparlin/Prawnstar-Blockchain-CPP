@@ -15,7 +15,7 @@ class Wallet {
     ~Wallet();
 
     void genKeyPair();
-    std::string sign(std::string data);
+    CryptoPP::SecByteBlock sign(std::string data);
 };
 
 #endif // _WALLET_H_
