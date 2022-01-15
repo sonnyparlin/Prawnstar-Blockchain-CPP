@@ -30,6 +30,7 @@ public:
     ~Transaction();          // Destructor
 
     string to_json();
+    string payload();
     string generateUUID();
     void sign(std::string sig);
     void display() const;

@@ -1,5 +1,5 @@
 #include "Wallet.hpp"
-#include <cryptopp/pem.h>
+//#include <cryptopp/pem.h>
 
 using namespace CryptoPP;
 
@@ -71,16 +71,15 @@ std::string Wallet::sign(std::string strContents)
     if(size)
     {
         encoded.resize(size);		
-        encoder.Get((byte*)&encoded[0], encoded.size());
+        encoder.Get((CryptoPP::byte*)&encoded[0], encoded.size());
     }
 
-    //std::cout << encoded << std::endl;
-    
-    // put decoded signature in variable and return it.
-    // std::string sig;
-    // Base64Encoder sigsink(new StringSink(sig));
-	// sigsink.Put(signature, signature.size());
-    // privateKey.DEREncode(sigsink);
-
     return encoded;
+}
+
+Transaction Wallet::create_transaction(std::string receiver, double amount, std::string type) {
+    Transaction transaction(public_key, receiver, amount, type);
+    std::string signature = sign(transaction.payload());
+    transaction.sign(signature);
+    return transaction;
 }

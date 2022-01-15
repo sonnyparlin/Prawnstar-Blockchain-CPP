@@ -2,6 +2,7 @@
 #define _WALLET_H_
 
 #include "utils.hpp"
+#include "Transaction.hpp"
 #include <vector>
 #include <string>
 
@@ -16,6 +17,8 @@ class Wallet {
 
     void genKeyPair();
     std::string sign(std::string data);
+    Transaction create_transaction(std::string receiver, double amount, std::string type);
+
 };
 
 #endif // _WALLET_H_

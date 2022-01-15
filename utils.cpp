@@ -15,7 +15,7 @@ namespace utils {
     }
 
     using namespace CryptoPP;
-    bool verify_signature(std::string dataStr, std::string encoded, std::string publicKey)
+    bool verify_signature(std::string dataStr, std::string encodedSignature, std::string publicKey)
     {
         // Hash the data to be signed.
         std::string hashedData = utils::hash(dataStr);
@@ -34,7 +34,7 @@ namespace utils {
 
         std::string decodedSignature;
         HexDecoder decoder;
-        decoder.Put( (byte*)encoded.data(), encoded.size() );
+        decoder.Put( (byte*)encodedSignature.data(), encodedSignature.size() );
         decoder.MessageEnd();
 
         word64 size = decoder.MaxRetrievable();

@@ -6,18 +6,16 @@
 int main() {
     std::string sender {"senderxxxx"};
     std::string receiver {"receiveryyyy"};
-    Transaction transaction(sender, receiver, 1, tx.exchange);
+    //Transaction transaction(sender, receiver, 1, tx.exchange);
 
-    Wallet sonny_wallet;    
-    std::string sig = sonny_wallet.sign(transaction.to_json());
-    //transaction.sign(sig);
-    std::cout << sig << std::endl;
-    
+    Wallet sonny_wallet;
+    Transaction transaction = sonny_wallet.create_transaction(receiver, 1, tx.transfer);
     std::cout << transaction.to_json() << std::endl;
-    bool signatureValid = utils::verify_signature(transaction.to_json(), sig, sonny_wallet.public_key);
 
-    std::cout << std::boolalpha;
-    std::cout << signatureValid << std::endl;
+    bool verified = utils::verify_signature(transaction.payload(), transaction.signature, sonny_wallet.public_key);
+    if (verified) {
+        std::cout << "transaction verified!" << std::endl;
+    }
     
 	return 0;
 }

@@ -50,6 +50,19 @@ string Transaction::to_json() {
     return j;
 }
 
+string Transaction::payload() {
+    time_t seconds = time_since_epoch();
+
+    string j = "[{\"sender_address\":\"" + sender_address + "\"," +
+               "\"receiver_address\":\"" + receiver_address + "\"," + 
+               "\"amount\":" + to_string(amount) + "," +
+               "\"type\":\"" + type + "\"," +
+               "\"id\":\"" + id + "\"," +
+               "\"timestamp\":\"" + to_string(seconds) + "\"," +
+               "\"signature\":\"\"}]";
+    return j;
+}
+
 void Transaction::sign(std::string sig) {
     signature = sig;
 }

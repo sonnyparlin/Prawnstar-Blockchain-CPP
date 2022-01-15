@@ -9,6 +9,8 @@
 #include <cryptopp/base64.h>
 #include <cryptopp/files.h>
 #include <cryptopp/hex.h>
+#include <cryptopp/base32.h>
+#include <cryptopp/zdeflate.h>
 
 namespace utils {
     std::string hash(std::string dataStr);
