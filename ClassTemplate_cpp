@@ -1,0 +1,7 @@
+#include "ClassTemplate.hpp"
+
+ClassTemplate::ClassTemplate() {
+}
+
+ClassTemplate::~ClassTemplate() {
+}

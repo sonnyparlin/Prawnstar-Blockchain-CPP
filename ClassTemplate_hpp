@@ -1,0 +1,12 @@
+#ifndef _CLASSTEMPLATE_H_
+#define _CLASSTEMPLATE_H_
+#include <vector>
+#include <string>
+
+class AccountModel {
+public:
+    AccountModel();           // Constructor
+    ~AccountModel();          // Destructor
+};
+
+#endif // _CLASSTEMPLATE_H_
