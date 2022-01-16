@@ -20,7 +20,7 @@ class Wallet {
     void genKeyPair();
     std::string sign(std::string data);
     Transaction create_transaction(std::string receiver, double amount, std::string type);
-    Block create_block(vector<Transaction> transactions, std::string last_hash, std::string hash, unsigned long long block_count);
+    Block create_block(vector<Transaction> transactions, std::string last_hash, unsigned long long block_count);
 
 };
 

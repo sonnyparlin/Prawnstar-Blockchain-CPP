@@ -60,9 +60,10 @@ namespace utils {
         return static_cast<unsigned char>(dis(gen));
     }
 
-    std::string generate_uuid_hex() {
+    // This is how we generate uuids and crypto addresses.
+    std::string generate_uuid_hex(int len) {
         std::stringstream ss;
-        for (auto i = 0; i < 40; i++) {
+        for (auto i = 0; i < len; i++) {
             const auto rc = random_char();
             std::stringstream hexstream;
             hexstream << std::hex << int(rc);

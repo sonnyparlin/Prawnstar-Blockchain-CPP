@@ -27,7 +27,7 @@ void Wallet::genKeyPair() {
 	Base64Encoder pubkeysink(new StringSink(public_key));
 	pubkey.DEREncode(pubkeysink);
 	pubkeysink.MessageEnd();
-    address = "pv1" + public_key.substr(0,41);;
+    address = "pv1" + utils::generate_uuid_hex(30);
 }
 
 std::string Wallet::sign(std::string strContents)
@@ -80,10 +80,11 @@ Transaction Wallet::create_transaction(std::string receiver, double amount, std:
     return transaction;
 }
 
-Block Wallet::create_block(vector<Transaction> transactions, std::string last_hash, std::string hash, unsigned long long block_count) {
-    Block block(transactions, last_hash, hash, block_count);
+Block Wallet::create_block(vector<Transaction> transactions, std::string last_hash, unsigned long long block_count) {
+    Block block(transactions, last_hash, block_count);
     block.forger_address = address;
     std::string signature = sign(block.payload());
     block.sign(signature);
+    block.hash = utils::hash(block.payload());
     return block;
 }

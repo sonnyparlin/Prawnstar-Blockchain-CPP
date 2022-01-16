@@ -6,12 +6,17 @@
 #include "Block.hpp"
 
 int main() {
-    std::string receiver {"receiveryyyy"};
+
+    Blockchain blockchain;
+
+    std::string receiver {"receiverlasdsa87a8sd78asd7"};
 
     Wallet sonny_wallet;
     Wallet jane_wallet;
     Transaction transaction = jane_wallet.create_transaction(receiver, 1, tx.transfer);
     Transaction transaction2 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
+    Transaction transaction3 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
+    Transaction transaction4 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
     
     TransactionPool pool;
 
@@ -23,14 +28,48 @@ int main() {
         pool.add_transaction(transaction2);
     }
 
-    std::cout << "Block:\n" << std::endl;
-    Block block = sonny_wallet.create_block(pool.transactions, "lasthash", "hash", 1);
-    nlohmann::json data = block.jsonview();
-    std::cout << data.dump(4) << std::endl;
+    std::cout << "Blockchain:\n" << std::endl;
+    Block last_block = blockchain.blocks[blockchain.blocks.size()-1];
+    std::string last_hash = last_block.hash;
+    int block_count = last_block.block_count + 1;
+    
+    Block block = sonny_wallet.create_block(pool.transactions, last_hash, block_count);
+    
+    if (!blockchain.last_block_hash_valid(block))
+        std::cout << "Last block hash is not valid" << last_block.hash << std::endl;
+    if (!blockchain.block_count_valid(block))
+        std::cout << "Last block count is not valid" << std::endl;
 
-    bool signatureValid = utils::verify_signature(
-        block.payload(), block.signature, sonny_wallet.public_key);
-    std::cout << boolalpha << signatureValid << std::endl;
+    if (blockchain.last_block_hash_valid(block) && blockchain.block_count_valid(block)) {    
+        blockchain.add_block(block);
+        pool.transactions.clear();
+    }
+
+    if (pool.transaction_exists(transaction3) == false) {
+        pool.add_transaction(transaction3);
+    }
+
+    if (pool.transaction_exists(transaction4) == false) {
+        pool.add_transaction(transaction4);
+    }
+
+    Block last_block2 = blockchain.blocks[blockchain.blocks.size()-1];
+    std::string last_hash2 = last_block2.hash;
+    unsigned long long block_count2 = last_block2.block_count + 1;
+    
+    Block block2 = sonny_wallet.create_block(pool.transactions, last_hash2, block_count2);
+
+    if (!blockchain.last_block_hash_valid(block2))
+        std::cout << "Last block hash is not valid" << std::endl;
+    if (!blockchain.block_count_valid(block2))
+        std::cout << "Last block count is not valid" << std::endl;
+
+    if (blockchain.last_block_hash_valid(block2) && blockchain.block_count_valid(block2)) {    
+        blockchain.add_block(block2);
+        pool.transactions.clear();
+    }
+    nlohmann::json j = blockchain.to_json();
+    std::cout << j.dump(4) << std::endl;
     
 	return 0;
 }

@@ -20,7 +20,7 @@ namespace utils {
     std::string hash(std::string dataStr);
     bool verify_signature(std::string dataStr, std::string signature, std::string publicKey);
     unsigned char random_char();
-    std::string generate_uuid_hex();
+    std::string generate_uuid_hex(int len);
 }
 
 #endif // _UTILS_H_

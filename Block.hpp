@@ -22,13 +22,11 @@ public:
     // Constructors
     Block(vector <Transaction> transactions,
           string last_hash, 
-          string hash, 
           string forger_address,
           unsigned long long block_count);
     
     Block(vector <Transaction> transactions,
           string last_hash, 
-          string hash,
           unsigned long long block_count);
         
     // Destructor

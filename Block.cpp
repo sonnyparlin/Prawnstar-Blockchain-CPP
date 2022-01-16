@@ -6,19 +6,17 @@
 // Implemention of the construcor
 
 Block::Block(vector <Transaction> transactions, string last_hash, 
-             string hash, string forger_address, 
+             string forger_address, 
              unsigned long long block_count)
     : transactions(transactions), 
       last_hash(last_hash),
-      hash(hash),
       forger_address(forger_address),
       block_count(block_count) {}
 
 Block::Block(vector <Transaction> transactions, string last_hash, 
-             string hash, unsigned long long block_count)
+            unsigned long long block_count)
     : transactions(transactions), 
       last_hash(last_hash),
-      hash(hash),
       block_count(block_count) {}
 
 // Implementation of the destructor
