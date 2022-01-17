@@ -18,7 +18,7 @@ int main(int argc, const char* argv[])
     size_t siglen = signer.MaxSignatureLength();
     std::string signature(siglen, 0x00);
 
-    siglen = signer.SignMessage( prng, (const byte*)&message[0], message.size(), (byte*)&signature[0] );
+    siglen = signer.SignMessage(prng, (const byte*)&message[0], message.size(), (byte*)&signature[0]);
     signature.resize(siglen);
 
     ECDSA<ECP, SHA256>::PublicKey publicKey;

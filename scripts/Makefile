@@ -4,3 +4,5 @@ all:
 	/usr/bin/g++ signaturetest.cpp -std=c++17 -lcryptopp -o signaturetest
 	/usr/bin/g++ ecctest.cpp -std=c++17 -lcryptopp -o ecctest
 	/usr/bin/g++ ecctest2.cpp -std=c++17 -lcryptopp -o ecctest2
+	/usr/bin/g++ maptest.cpp -std=c++17 -lcryptopp -o maptest
+

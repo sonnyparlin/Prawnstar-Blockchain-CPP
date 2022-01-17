@@ -27,7 +27,27 @@ void Wallet::genKeyPair() {
 	Base64Encoder pubkeysink(new StringSink(public_key));
 	pubkey.DEREncode(pubkeysink);
 	pubkeysink.MessageEnd();
-    address = "pv1" + utils::generate_uuid_hex(30);
+    address = "pv1" + generateAddress();
+}
+
+std::string Wallet::generateAddress() {
+
+    // The public crypto address is a SHA1 
+    // hex encoded string of the public_key.
+    // It will be stored in the AccountModel
+    // as a key in a C++ map. 
+    // map["address"] = instance_of_accountModel
+    // giving us the public key, which we can then 
+    // re-hash  and compare the resulting string to 
+    // the address as a way of verifying authenticity.
+
+    using namespace CryptoPP;
+    std::string hexdigest{""};
+    SHA1 hash;
+    StringSource s(public_key, true, 
+        new HashFilter(hash, new HexEncoder(new StringSink(hexdigest), false)));
+
+    return hexdigest;
 }
 
 std::string Wallet::sign(std::string strContents)
