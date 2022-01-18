@@ -15,42 +15,63 @@ namespace utils {
     }
 
     using namespace CryptoPP;
-    bool verify_signature(std::string dataStr, std::string encodedSignature, std::string publicKey)
+    bool verify_signature(std::string message, std::string encoded_signature, std::string public_key)
     {
+        // see encoded value
+        // std::cout << "Jane's public key: " << public_key << std::endl;
+        // std::cout << "verify_signature: " << encoded_signature << std::endl;
+
         // Hash the data to be signed.
-        std::string hashedData = utils::hash(dataStr);
-        //std::cout << hashedData << std::endl;
+        std::string hashedData = hash(message);
+        // std::cout << "hashedData: " << hashedData << std::endl;
 
-        //Read public key
-        CryptoPP::ByteQueue bytes;
-	    StringSource str(publicKey, true, new Base64Decoder);
-        str.TransferTo(bytes);
-        bytes.MessageEnd();
-        RSA::PublicKey pubKey;
-        pubKey.Load(bytes);
+        HexDecoder public_key_decoder;
+        public_key_decoder.Put((CryptoPP::byte*)&public_key[0], public_key.size());
+        public_key_decoder.MessageEnd();
 
-        // Verifier object
-        RSASSA_PKCS1v15_SHA_Verifier verifier(pubKey);
+        ECP::Point q;
+        size_t len = public_key_decoder.MaxRetrievable();
+        q.identity = false;
+        q.x.Decode(public_key_decoder, len/2);
+        q.y.Decode(public_key_decoder, len/2);
 
-        std::string decodedSignature;
-        HexDecoder decoder;
-        decoder.Put( (byte*)encodedSignature.data(), encodedSignature.size() );
-        decoder.MessageEnd();
-
-        word64 size = decoder.MaxRetrievable();
-        if(size && size <= SIZE_MAX)
-        {
-            decodedSignature.resize(size);		
-            decoder.Get((byte*)&decodedSignature[0], decodedSignature.size());
+        ECDSA<ECP, SHA256>::PublicKey publicKey;
+        publicKey.Initialize( ASN1::secp256r1(), q );
+        
+        // Decode hex message (the block in a json string format)
+        HexDecoder message_decoder;
+        message_decoder.Put((CryptoPP::byte*)&encoded_signature[0], encoded_signature.size() );
+        message_decoder.MessageEnd();
+        
+        // Set up a decoded variable to copy the bytes into
+        std::string decoded_signature;
+        word64 size = message_decoder.MaxRetrievable();
+        if(size && size <= SIZE_MAX) {
+            // set the size of the string to match the incoming bytes
+            decoded_signature.resize(size);
+            // Create a byte string by copying the incoming bytes
+            message_decoder.Get((CryptoPP::byte*)&decoded_signature[0], decoded_signature.size());
         }
 
-        SecByteBlock sigbyte(reinterpret_cast<const byte*>(&decodedSignature[0]), decodedSignature.size());
+        // Set up public key as verifier
+        ECDSA<ECP, SHA256>::Verifier verifier(publicKey);
+        // Now that we've decoded our public key and our message, 
+        // let's verify the message.
+        bool verifyResult = verifier.VerifyMessage( 
+            (const CryptoPP::byte*)&hashedData[0], 
+            hashedData.size(), 
+            (const CryptoPP::byte*)&decoded_signature[0],
+            decoded_signature.size() 
+        );
+        
+        // Verification failure?
+        if( !verifyResult ) {
+            std::cout << "Failed to verify signature on message" << std::endl;
+        } else {
+            //std::cout << "All good!" << std::endl;
+        }
 
-        // Verify
-        bool result = verifier.VerifyMessage((const CryptoPP::byte*)hashedData.c_str(), hashedData.length(), sigbyte, sigbyte.size());
-
-        // Result
-        return result;
+        return verifyResult;
     }
 
     unsigned char random_char() {

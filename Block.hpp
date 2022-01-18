@@ -34,7 +34,7 @@ public:
     
     void display() const;
     string to_json() const;
-    string payload() const;
+    string payload();
     void sign(string data);
     vector<nlohmann::json> transactionList(vector <Transaction> transactions) const;
     nlohmann::json jsonview() const;

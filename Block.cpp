@@ -57,7 +57,7 @@ std::string Block::to_json() const {
     return to_string(j);
 }
 
-std::string Block::payload() const {
+std::string Block::payload() {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);

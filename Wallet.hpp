@@ -15,9 +15,10 @@ class Wallet {
         std::string address;
 
     Wallet();
+    Wallet(const bool use_file);
     ~Wallet();
 
-    void genKeyPair();
+    void genKeyPair(const bool use_file);
     std::string sign(std::string data);
     Transaction create_transaction(std::string receiver, double amount, std::string type);
     Block create_block(vector<Transaction> transactions, std::string last_hash, unsigned long long block_count);

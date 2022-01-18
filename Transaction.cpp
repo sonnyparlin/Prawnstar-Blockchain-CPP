@@ -16,7 +16,6 @@ Transaction::Transaction(string sender_address,
       type(type)  {
     id = generateUUID();
     timestamp = time_since_epoch();
-;
 }
 
 Transaction::~Transaction() {}

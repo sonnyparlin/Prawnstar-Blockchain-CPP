@@ -6,6 +6,8 @@
 #include <cryptopp/rsa.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/osrng.h>
+#include <cryptopp/eccrypto.h>
+#include <cryptopp/oids.h>
 #include <cryptopp/base64.h>
 #include <cryptopp/files.h>
 #include <cryptopp/hex.h>
@@ -15,6 +17,7 @@
 #include <iostream>
 #include <sstream>
 #include <random>
+#include "Wallet.hpp"
 
 namespace utils {
     std::string hash(std::string dataStr);

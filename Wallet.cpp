@@ -4,29 +4,56 @@
 
 using namespace CryptoPP;
 
+Wallet::Wallet(const bool use_file) {
+    genKeyPair(true);
+}
+
 Wallet::Wallet() {
-    genKeyPair();
+    genKeyPair(false);
 }
 
 Wallet::~Wallet() {
 }
 
-void Wallet::genKeyPair() {
+void Wallet::genKeyPair(const bool use_file) {
 	// Generate keypair
-	AutoSeededRandomPool rng;
-	InvertibleRSAFunction params;
-	params.Initialize(rng, 2048);
+    ECDSA<ECP, SHA256>::PrivateKey privateKey;
+    ECDSA<ECP, SHA256>::PublicKey publicKey;
+    AutoSeededRandomPool prng;
 
-    // Save private key to Wallet::private_key
-    Base64Encoder privkeysink(new StringSink(private_key));
-	params.DEREncode(privkeysink);
-	privkeysink.MessageEnd();
-	 
-	// Save public key to Wallet::public_key
-	RSAFunction pubkey(params);
-	Base64Encoder pubkeysink(new StringSink(public_key));
-	pubkey.DEREncode(pubkeysink);
-	pubkeysink.MessageEnd();
+    if (use_file) {
+        FileSource fs( "private.ec.der", true /*binary*/ );
+        privateKey.Load( fs );
+        bool result = privateKey.Validate( prng, 3 );
+        if (!result)
+            std::cout << "***Private key invalid for signing***" << std::endl; // throw exception
+        
+        const Integer& x1 = privateKey.GetPrivateExponent();
+        std::stringstream key_p;
+        key_p << std::hex << x1 << endl;
+        private_key = key_p.str();
+    } else {
+        privateKey.Initialize( prng, ASN1::secp256r1());
+        const Integer& x1 = privateKey.GetPrivateExponent();
+        std::stringstream key_p;
+        key_p << std::hex << x1 << endl;
+        private_key = key_p.str();
+    } 
+    
+    privateKey.MakePublicKey( publicKey );
+    const ECP::Point& q = publicKey.GetPublicElement();
+    const Integer& qx = q.x;
+    const Integer& qy = q.y;
+
+    std::stringstream key_x;
+    std::stringstream key_y;
+    key_x << std::hex << qx;
+    key_y << std::hex << qy;
+    const std::string public_key_x = key_x.str();
+    const std::string public_key_y = key_y.str();
+    public_key = public_key_x + public_key_y;
+
+    //std::cout << "public: " + public_key << std::endl;
     address = "pv1" + generateAddress();
 }
 
@@ -53,34 +80,32 @@ std::string Wallet::generateAddress() {
 std::string Wallet::sign(std::string strContents)
 {	
     // Hash the data to be signed.
-    std::string hashedData = utils::hash(strContents);
-    //std::cout << hashedData << std::endl;
+    std::string message = utils::hash(strContents);
+    
+    AutoSeededRandomPool prng;
+    ECDSA<ECP, SHA256>::PrivateKey privateKey;
+    HexDecoder decoder;
+    decoder.Put((CryptoPP::byte*)&private_key[0], private_key.size());
+    decoder.MessageEnd();
+    Integer x;
+    x.Decode(decoder, decoder.MaxRetrievable());
+    privateKey.Initialize(ASN1::secp256r1(), x);
 
-	//Read private key
-	CryptoPP::ByteQueue bytes;
-	StringSource str(private_key, true, new Base64Decoder);
-	str.TransferTo(bytes);
-	bytes.MessageEnd();
-	RSA::PrivateKey privateKey;
-	privateKey.Load(bytes);
+            // FileSource fs( "private.ec.der", true /*binary*/ );
+            // privateKey.Load( fs );
+            // bool result = privateKey.Validate( prng, 3 );
+            // if (!result)
+            //     std::cout << "Private key invalud for signing" << std::endl; // throw exception
 
-	//Sign message
-    AutoSeededRandomPool rng;
-	RSASSA_PKCS1v15_SHA_Signer signer(privateKey);
+    ECDSA<ECP, SHA256>::Signer signer(privateKey);
+     size_t siglen = signer.MaxSignatureLength();
+    std::string signature(siglen, 0x00);
+    siglen = signer.SignMessage(prng, (const CryptoPP::byte*)&message[0], message.size(), (CryptoPP::byte*)&signature[0]);
+    signature.resize(siglen);
 
-    size_t length = signer.MaxSignatureLength();
-    SecByteBlock signature(length);
-
-	length = signer.SignMessage(rng, (const CryptoPP::byte*) hashedData.c_str(), hashedData.length(), signature);
-    signature.resize(length);
-
-    std::string strsig;
-    std::string encoded;
-    strsig.resize(signature.size());  // Make room for elements
-    std::memcpy(&strsig[0], &signature[0], strsig.size());
-
+    string encoded;
     HexEncoder encoder;
-    encoder.Put((CryptoPP::byte*)&strsig[0], strsig.size());
+    encoder.Put((CryptoPP::byte*)&signature[0], signature.size());
     encoder.MessageEnd();
 
     word64 size = encoder.MaxRetrievable();
@@ -103,8 +128,8 @@ Transaction Wallet::create_transaction(std::string receiver, double amount, std:
 Block Wallet::create_block(vector<Transaction> transactions, std::string last_hash, unsigned long long block_count) {
     Block block(transactions, last_hash, block_count);
     block.forger_address = address;
+    block.hash = utils::hash(block.payload());
     std::string signature = sign(block.payload());
     block.sign(signature);
-    block.hash = utils::hash(block.payload());
     return block;
 }
