@@ -7,10 +7,10 @@ using namespace std;
 
 class Transaction {
 public:
-    string sender_address;
-    string sender_public_key;
-    string receiver_address;
-    string receiver_public_key;
+    string senderAddress;
+    string senderPublicKey;
+    string receiverAddress;
+    string receiverPublicKey;
     long double amount;
     string type;
     string id;
@@ -18,14 +18,14 @@ public:
     string signature;
 
     // Constructor
-    Transaction(string sender_address, 
-                string receiver_address, 
+    Transaction(string senderAddress, 
+                string receiverAddress, 
                 double amount, 
                 string type);
 
     ~Transaction();          // Destructor
 
-    string to_json();
+    string toJson();
     string payload();
     string generateUUID();
     void sign(std::string sig);

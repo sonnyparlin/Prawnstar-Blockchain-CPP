@@ -9,19 +9,19 @@
 
 class Wallet {
     public:
-        std::vector<std::string> key_pair;
-        std::string private_key;
-        std::string public_key;
+        std::vector<std::string> walletKeyPair;
+        std::string walletPrivateKey;
+        std::string walletPublicKey;
         std::string address;
 
     Wallet();
-    Wallet(const bool use_file);
+    Wallet(const bool useFile);
     ~Wallet();
 
-    void genKeyPair(const bool use_file);
+    void genKeyPair(const bool useFile);
     std::string sign(std::string data);
-    Transaction create_transaction(std::string receiver, double amount, std::string type);
-    Block create_block(vector<Transaction> transactions, std::string last_hash, unsigned long long block_count);
+    Transaction createTransaction(std::string receiverAddress, double amount, std::string type);
+    Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount);
     std::string generateAddress();
 
 };

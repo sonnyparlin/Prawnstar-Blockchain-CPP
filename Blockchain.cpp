@@ -12,32 +12,66 @@ Blockchain::~Blockchain() {
 }
 
 Block Blockchain::genesis() {
-    vector<Transaction> zero_transactions;
+    vector<Transaction> zeroTransactions;
 
-    Block genesis_block(zero_transactions, "***no***last***hash***", 0);
-    genesis_block.timestamp = 0;
-    genesis_block.hash = "***genesis***hash***";
+    Block genesisBlock(zeroTransactions, "***no***last***hash***", 0);
+    genesisBlock.timestamp = 0;
+    genesisBlock.hash = "***genesis***hash***";
     
-    return genesis_block;
+    return genesisBlock;
 }
 
-bool Blockchain::add_block(Block block) {
+bool Blockchain::addBlock(Block block) {
+    executeTransactions(block.transactions);
     blocks.push_back(block);
     return true;
 }
 
-bool Blockchain::block_count_valid(Block block) {
+bool Blockchain::blockCountValid(Block block) {
     int n = blocks.size();
-    if (blocks[n-1].block_count == block.block_count - 1)
+    if (blocks[n-1].blockCount == block.blockCount - 1)
         return true;
     return false;
 }
 
-bool Blockchain::last_block_hash_valid(Block block) {
+bool Blockchain::lastBlockHashValid(Block block) {
     int n = blocks.size();
-    if (blocks[n-1].hash == block.last_hash)
+    if (blocks[n-1].hash == block.lastHash)
         return true;
     return false;
+}
+
+bool Blockchain::transactionCovered(Transaction transaction) {
+    if (transaction.type == tx.exchange)
+        return true;
+    double senderBalance = accountModel.getBalance(transaction.senderAddress);
+    return senderBalance >= transaction.amount;
+}
+
+std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction> transactions) {
+    std::vector<Transaction> coveredTransactions;
+    for (auto transaction : transactions) {
+        if (transactionCovered(transaction))
+            coveredTransactions.push_back(transaction);
+        else
+            std::cout << "Transaction is not covered by the sender" << std::endl;
+    }
+    return coveredTransactions;
+}
+
+void Blockchain::executeTransactions(std::vector<Transaction> transactions) {
+    for (auto transaction : transactions) {
+        executeTransaction(transaction);
+    }
+}
+
+void Blockchain::executeTransaction(Transaction transaction) {
+    std::string senderAddress = transaction.senderAddress;
+    std::string receiverAddress = transaction.receiverAddress;
+    double amount = transaction.amount;
+
+    accountModel.updateBalance(senderAddress, -amount);
+    accountModel.updateBalance(receiverAddress, amount);
 }
 
 vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
@@ -45,12 +79,12 @@ vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
     vector<nlohmann::json> blks;
 
     for (auto block: blocks) {
-        blks.push_back(block.jsonview());
+        blks.push_back(block.jsonView());
     }
     return blks;
 }
 
-nlohmann::json Blockchain::to_json() const {
+nlohmann::json Blockchain::toJson() const {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);

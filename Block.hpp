@@ -12,32 +12,32 @@ using namespace std;
 class Block {
 public:
     vector <Transaction> transactions;
-    string last_hash;
+    string lastHash;
     string hash;
-    string forger_address;
-    time_t timestamp = time_since_epoch();
-    unsigned long long block_count;
+    string forgerAddress;
+    time_t timestamp = timeSinceEpoch();
+    unsigned long long blockCount;
     string signature;
 
     // Constructors
     Block(vector <Transaction> transactions,
-          string last_hash, 
-          string forger_address,
-          unsigned long long block_count);
-    
+          string lastHash, 
+          string forgerAddress,
+          unsigned long long blockCount);
+
     Block(vector <Transaction> transactions,
-          string last_hash, 
-          unsigned long long block_count);
+          string lastHash,
+          unsigned long long blockCount);
         
     // Destructor
     ~Block();
     
     void display() const;
-    string to_json() const;
+    string toJson() const;
     string payload();
     void sign(string data);
     vector<nlohmann::json> transactionList(vector <Transaction> transactions) const;
-    nlohmann::json jsonview() const;
+    nlohmann::json jsonView() const;
 };
 
 #endif // _BLOCK_H_

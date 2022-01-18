@@ -8,7 +8,7 @@ struct TX_TYPE tx =
     .reward   = "REWARD"    
 };
 
-time_t time_since_epoch()
+time_t timeSinceEpoch()
 {
     auto now = std::chrono::system_clock::now();
     return std::chrono::system_clock::to_time_t( now );

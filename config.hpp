@@ -14,6 +14,6 @@ struct TX_TYPE {
 };
 
 extern struct TX_TYPE tx;
-time_t time_since_epoch();
+time_t timeSinceEpoch();
 
 #endif // _CONFIG_H_

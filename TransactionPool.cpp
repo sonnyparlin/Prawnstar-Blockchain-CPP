@@ -7,11 +7,11 @@ TransactionPool::TransactionPool() {
 TransactionPool::~TransactionPool() {
 }
 
-void TransactionPool::add_transaction(Transaction transaction) {
+void TransactionPool::addTransaction(Transaction transaction) {
     transactions.push_back(transaction);
 }
 
-bool TransactionPool::transaction_exists(Transaction transaction) {
+bool TransactionPool::transactionExists(Transaction transaction) {
     for (auto tx : transactions) {
         if (tx.equals(transaction)) {
             std::cout << "Transaction already exists in the pool" << std::endl;
@@ -19,4 +19,18 @@ bool TransactionPool::transaction_exists(Transaction transaction) {
         }
     }
     return false;
+}
+
+void TransactionPool::removeFromPool(vector<Transaction> txs) {
+    vector<Transaction> newPoolTransactions;
+    for (auto poolTransaction : this->transactions) {
+        bool insert = true;
+        for (auto transaction : txs) {
+            if (poolTransaction.equals(transaction))
+                insert = false;
+        }
+        if (insert == true)
+            newPoolTransactions.push_back(poolTransaction);
+    }
+    transactions = newPoolTransactions;
 }

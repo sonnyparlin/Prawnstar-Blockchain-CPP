@@ -6,16 +6,16 @@
 #include <nlohmann/json.hpp>
 #include "utils.hpp"
 
-Transaction::Transaction(string sender_address, 
-                         string receiver_address, 
+Transaction::Transaction(string senderAddress, 
+                         string receiverAddress, 
                          double amount, 
                          string type)
-    : sender_address(sender_address), 
-      receiver_address(receiver_address), 
+    : senderAddress(senderAddress), 
+      receiverAddress(receiverAddress), 
       amount(amount), 
       type(type)  {
     id = generateUUID();
-    timestamp = time_since_epoch();
+    timestamp = timeSinceEpoch();
 }
 
 Transaction::~Transaction() {}
@@ -25,11 +25,11 @@ string Transaction::generateUUID() {
     return uuid1;
 }
 
-string Transaction::to_json() {
+string Transaction::toJson() {
     nlohmann::json j;
     
-    j["sender_address"] = sender_address;
-    j["receiver_address"] = receiver_address;
+    j["senderAddress"] = senderAddress;
+    j["receiverAddress"] = receiverAddress;
     j["amount"] = amount;
     j["type"] = type;
     j["id"] = id;
@@ -42,8 +42,8 @@ string Transaction::to_json() {
 string Transaction::payload() {
     nlohmann::json j;
     
-    j["sender_address"] = sender_address;
-    j["receiver_address"] = receiver_address;
+    j["senderAddress"] = senderAddress;
+    j["receiverAddress"] = receiverAddress;
     j["amount"] = amount;
     j["type"] = type;
     j["id"] = id;

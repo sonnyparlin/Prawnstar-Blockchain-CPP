@@ -15,25 +15,25 @@ namespace utils {
     }
 
     using namespace CryptoPP;
-    bool verify_signature(std::string message, std::string encoded_signature, std::string public_key)
+    bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey)
     {
         // see encoded value
-        // std::cout << "Jane's public key: " << public_key << std::endl;
-        // std::cout << "verify_signature: " << encoded_signature << std::endl;
+        // std::cout << "Jane's public key: " << walletPublicKey << std::endl;
+        // std::cout << "verifySignature: " << encoded_signature << std::endl;
 
         // Hash the data to be signed.
         std::string hashedData = hash(message);
         // std::cout << "hashedData: " << hashedData << std::endl;
 
-        HexDecoder public_key_decoder;
-        public_key_decoder.Put((CryptoPP::byte*)&public_key[0], public_key.size());
-        public_key_decoder.MessageEnd();
+        HexDecoder publicKeyDecoder;
+        publicKeyDecoder.Put((CryptoPP::byte*)&walletPublicKey[0], walletPublicKey.size());
+        publicKeyDecoder.MessageEnd();
 
         ECP::Point q;
-        size_t len = public_key_decoder.MaxRetrievable();
+        size_t len = publicKeyDecoder.MaxRetrievable();
         q.identity = false;
-        q.x.Decode(public_key_decoder, len/2);
-        q.y.Decode(public_key_decoder, len/2);
+        q.x.Decode(publicKeyDecoder, len/2);
+        q.y.Decode(publicKeyDecoder, len/2);
 
         ECDSA<ECP, SHA256>::PublicKey publicKey;
         publicKey.Initialize( ASN1::secp256r1(), q );

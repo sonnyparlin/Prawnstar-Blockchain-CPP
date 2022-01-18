@@ -5,19 +5,19 @@
 
 // Implemention of the construcor
 
-Block::Block(vector <Transaction> transactions, string last_hash, 
-             string forger_address, 
-             unsigned long long block_count)
+Block::Block(vector <Transaction> transactions, string lastHash, 
+             string forgerAddress, 
+             unsigned long long blockCount)
     : transactions(transactions), 
-      last_hash(last_hash),
-      forger_address(forger_address),
-      block_count(block_count) {}
+      lastHash(lastHash),
+      forgerAddress(forgerAddress),
+      blockCount(blockCount) {}
 
-Block::Block(vector <Transaction> transactions, string last_hash, 
-            unsigned long long block_count)
+Block::Block(vector <Transaction> transactions, string lastHash,  
+             unsigned long long blockCount)
     : transactions(transactions), 
-      last_hash(last_hash),
-      block_count(block_count) {}
+      lastHash(lastHash),
+      blockCount(blockCount) {}
 
 // Implementation of the destructor
 Block::~Block() {}
@@ -31,8 +31,8 @@ vector<nlohmann::json> Block::transactionList(vector <Transaction> transactions)
     vector<nlohmann::json> txs;
 
     for (auto tx: transactions) {
-        j["sender_address"] = tx.sender_address;
-        j["receiver_address"] = tx.receiver_address;
+        j["senderAddress"] = tx.senderAddress;
+        j["receiverAddress"] = tx.receiverAddress;
         j["amount"] = tx.amount;
         j["type"] = tx.type;
         j["id"] = tx.id;
@@ -43,15 +43,15 @@ vector<nlohmann::json> Block::transactionList(vector <Transaction> transactions)
     return txs;
 }
 
-std::string Block::to_json() const {
+std::string Block::toJson() const {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);
-    j["last_hash"] = last_hash;
+    j["lastHash"] = lastHash;
     j["hash"] = hash;
-    j["forger_address"] = forger_address;
+    j["forgerAddress"] = forgerAddress;
     j["timestamp"] = timestamp;
-    j["block_count"] = block_count;
+    j["blockCount"] = blockCount;
     j["signature"] = signature;
 
     return to_string(j);
@@ -61,25 +61,25 @@ std::string Block::payload() {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);
-    j["last_hash"] = last_hash;
+    j["lastHash"] = lastHash;
     j["hash"] = hash;
-    j["forger_address"] = forger_address;
+    j["forgerAddress"] = forgerAddress;
     j["timestamp"] = timestamp;
-    j["block_count"] = block_count;
+    j["blockCount"] = blockCount;
     j["signature"] = "";
 
     return to_string(j);
 }
 
-nlohmann::json Block::jsonview() const {
+nlohmann::json Block::jsonView() const {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);
-    j["last_hash"] = last_hash;
+    j["lastHash"] = lastHash;
     j["hash"] = hash;
-    j["forger_address"] = forger_address;
+    j["forgerAddress"] = forgerAddress;
     j["timestamp"] = timestamp;
-    j["block_count"] = block_count;
+    j["blockCount"] = blockCount;
     j["signature"] = signature;
 
     return j;

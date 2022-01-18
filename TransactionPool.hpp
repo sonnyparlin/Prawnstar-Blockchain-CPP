@@ -11,8 +11,9 @@ public:
     TransactionPool();           // Constructor
     ~TransactionPool();          // Destructor
 
-    void add_transaction(Transaction transaction);
-    bool transaction_exists(Transaction transaction);
+    void addTransaction(Transaction transaction);
+    bool transactionExists(Transaction transaction);
+    void removeFromPool(vector<Transaction> txs);
 };
 
 #endif // _TRANSACTIONPOOL_H_

@@ -1,71 +1,71 @@
-// Transaction transaction2 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
-    // Transaction transaction3 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
-    // Transaction transaction4 = jane_wallet.create_transaction(receiver, 12, tx.transfer);
-    bool r = utils::verify_signature(transaction.payload(), transaction.signature, jane_wallet.public_key);
+// Transaction transaction2 = janeWallet.createTransaction(receiver, 12, tx.transfer);
+    // Transaction transaction3 = janeWallet.createTransaction(receiver, 12, tx.transfer);
+    // Transaction transaction4 = janeWallet.createTransaction(receiver, 12, tx.transfer);
+    bool r = utils::verifySignature(transaction.payload(), transaction.signature, janeWallet.walletPublicKey);
     if (!r)
         std::cout << "Transaction signature verification failed" << std::endl;
 
     // TransactionPool pool;
 
-    // if (pool.transaction_exists(transaction) == false && utils::verify_signature(transaction.payload(), transaction.signature, jane_wallet.public_key)) {
-    //     pool.add_transaction(transaction);
+    // if (pool.transactionExists(transaction) == false && utils::verifySignature(transaction.payload(), transaction.signature, janeWallet.walletPublicKey)) {
+    //     pool.addTransaction(transaction);
     // }
 
-    // if (pool.transaction_exists(transaction2) == false) {
-    //     pool.add_transaction(transaction2);
+    // if (pool.transactionExists(transaction2) == false) {
+    //     pool.addTransaction(transaction2);
     // }
 
     // std::cout << "Blockchain:\n" << std::endl;
     // Block last_block = blockchain.blocks[blockchain.blocks.size()-1];
-    // std::string last_hash = last_block.hash;
-    // int block_count = last_block.block_count + 1;
+    // std::string lastHash = last_block.hash;
+    // int blockCount = last_block.blockCount + 1;
     
-    // Block block = sonny_wallet.create_block(pool.transactions, last_hash, block_count);
+    // Block block = sonny_wallet.createBlock(pool.transactions, lastHash, blockCount);
     
     // bool signature_valid = false;
-    // if (!blockchain.last_block_hash_valid(block))
+    // if (!blockchain.lastBlockHashValid(block))
     //     std::cout << "Last block hash is not valid" << last_block.hash << std::endl;
-    // if (!blockchain.block_count_valid(block))
+    // if (!blockchain.blockCountValid(block))
     //     std::cout << "Last block count is not valid" << std::endl;
-    // if (!utils::verify_signature(block.payload(), block.signature, sonny_wallet.public_key))
+    // if (!utils::verifySignature(block.payload(), block.signature, sonny_wallet.walletPublicKey))
     //     std::cout << "Block signature is not valid " + block.signature << std::endl;
     // else
     //     signature_valid = true;
 
-    // if (blockchain.last_block_hash_valid(block) 
-    //         && blockchain.block_count_valid(block)
+    // if (blockchain.lastBlockHashValid(block) 
+    //         && blockchain.blockCountValid(block)
     //         && signature_valid) {    
-    //     blockchain.add_block(block);
+    //     blockchain.addBlock(block);
     //     pool.transactions.clear();
     // }
 
-    // if (pool.transaction_exists(transaction3) == false) {
-    //     pool.add_transaction(transaction3);
+    // if (pool.transactionExists(transaction3) == false) {
+    //     pool.addTransaction(transaction3);
     // }
 
-    // if (pool.transaction_exists(transaction4) == false) {
-    //     pool.add_transaction(transaction4);
+    // if (pool.transactionExists(transaction4) == false) {
+    //     pool.addTransaction(transaction4);
     // }
 
     // Block last_block2 = blockchain.blocks[blockchain.blocks.size()-1];
-    // std::string last_hash2 = last_block2.hash;
-    // unsigned long long block_count2 = last_block2.block_count + 1;
+    // std::string lastHash2 = last_block2.hash;
+    // unsigned long long blockCount2 = last_block2.blockCount + 1;
     
-    // Block block2 = sonny_wallet.create_block(pool.transactions, last_hash2, block_count2);
+    // Block block2 = sonny_wallet.createBlock(pool.transactions, lastHash2, blockCount2);
 
     // bool signature_valid2 = false;
-    // if (!blockchain.last_block_hash_valid(block2))
+    // if (!blockchain.lastBlockHashValid(block2))
     //     std::cout << "Last block hash is not valid" << std::endl;
-    // if (!blockchain.block_count_valid(block2))
+    // if (!blockchain.blockCountValid(block2))
     //     std::cout << "Last block count is not valid" << std::endl;
-    // if (!utils::verify_signature(block2.payload(), block2.signature, sonny_wallet.public_key))
+    // if (!utils::verifySignature(block2.payload(), block2.signature, sonny_wallet.walletPublicKey))
     //     std::cout << "Block signature is not valid: " + block2.signature << std::endl;
     // else
     //     signature_valid2 = true;
 
-    // if (blockchain.last_block_hash_valid(block) 
-    //         && blockchain.block_count_valid(block)
+    // if (blockchain.lastBlockHashValid(block) 
+    //         && blockchain.blockCountValid(block)
     //         && signature_valid2) {   
-    //     blockchain.add_block(block2);
+    //     blockchain.addBlock(block2);
     //     pool.transactions.clear();
     // }
