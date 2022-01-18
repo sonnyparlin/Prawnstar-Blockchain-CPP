@@ -3,7 +3,7 @@
 
 #include <string>
 #include <cryptopp/cryptlib.h>
-#include <cryptopp/rsa.h>
+//#include <cryptopp/rsa.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/osrng.h>
 #include <cryptopp/eccrypto.h>
