@@ -5,15 +5,20 @@
 #include "TransactionPool.hpp"
 #include "Wallet.hpp"
 #include "Blockchain.hpp"
+#include "SocketCommunication.hpp"
 
 class Node {
 public:
     TransactionPool transactionPool;
     Wallet wallet;
     Blockchain blockchain;
+    int argc;
+    char *argv[];
 
-    Node();           // Constructor
-    ~Node();          // Destructor
+    Node(int argc, char *argv[]); // Constructor
+    ~Node();                      // Destructor
+
+    void startP2P(int argc, char *argv[]);
 };
 
 #endif // _NODE_H_

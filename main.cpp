@@ -2,11 +2,9 @@
 #include <typeinfo>
 #include "Node.hpp"
 
-int main() {
-    Node node;
-    std::cout << typeid(node.blockchain).name() << std::endl;
-    std::cout << typeid(node.transactionPool).name() << std::endl;
-    std::cout << typeid(node.wallet).name() << std::endl;
+int main(int argc, char *argv[]) {
+    Node node(argc, argv);
+    node.startP2P(argc, argv);
     
 	return 0;
 }

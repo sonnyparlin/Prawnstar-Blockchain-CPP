@@ -11,6 +11,8 @@
                 "-lcryptopp",
                 "-I",
                 "${fileDirname}/include/",
+                "-I",
+                "/usr/local/include",
                 "-g",
                 "${fileDirname}/*.cpp",
                 "-o",

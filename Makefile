@@ -2,7 +2,7 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 flags := -Wall -std=c++17
 libs := -lcryptopp
-includes := $(PWD)/include/
+includes := $(PWD)/include/ -I/usr/local/include
 outfile := main
 compiler := /usr/bin/g++
 
