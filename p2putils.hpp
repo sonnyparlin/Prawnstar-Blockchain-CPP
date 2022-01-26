@@ -18,10 +18,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <future>
-
-#include <boost/uuid/uuid.hpp>            // uuid class
-#include <boost/uuid/uuid_generators.hpp> // generators
-#include <boost/uuid/uuid_io.hpp>
+#include <cryptopp/hex.h>
 
 namespace p2putils {
     void logit(std::string message);

@@ -60,7 +60,7 @@ int SocketCommunication::createServer ( int argc, char **argv )
     // Everything went well, set the port
     char *p;
     int PORT = strtol(argv[2], &p, 10);
-    std::string id = p2putils::uuid_gen();
+    std::string id = utils::uuid_gen();
     struct sockaddr_in address;
     int address_length = sizeof(address);
     address.sin_family = AF_INET;

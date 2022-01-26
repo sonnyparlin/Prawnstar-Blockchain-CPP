@@ -49,11 +49,6 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
     return 1;
 }
 
-std::string uuid_gen() {
-    boost::uuids::uuid uuid = boost::uuids::random_generator()();
-    return to_string(uuid);
-}
-
 int setOutgoingNodeConnection(const char *ipaddress) {
     int outgoingSocket;
 
@@ -87,6 +82,41 @@ int setOutgoingNodeConnection(const char *ipaddress) {
     }
     
     return outgoingSocket;
+}
+
+std::string encodeObject(std::string message) {
+    std::string encoded;
+    CryptoPP::HexEncoder encoder;
+    encoder.Put((CryptoPP::byte*)&message[0], message.size());
+    encoder.MessageEnd();
+
+    CryptoPP::word64 size = encoder.MaxRetrievable();
+    if(size)
+    {
+        encoded.resize(size);		
+        encoder.Get((CryptoPP::byte*)&encoded[0], encoded.size());
+    }
+
+    return encoded;
+}
+
+std::string decodeObject(std::string encodedMessage) {
+    // Decode hex message (the block in a json string format)
+    CryptoPP::HexDecoder messageDecoder;
+    messageDecoder.Put((CryptoPP::byte*)&encodedMessage[0], encodedMessage.size() );
+    messageDecoder.MessageEnd();
+    
+    // Set up a decoded variable to copy the bytes into
+    std::string decodedMessage;
+    CryptoPP::word64 size = messageDecoder.MaxRetrievable();
+    if(size && size <= SIZE_MAX) {
+        // set the size of the string to match the incoming bytes
+        decodedMessage.resize(size);
+        // Create a byte string by copying the incoming bytes
+        messageDecoder.Get((CryptoPP::byte*)&decodedMessage[0], decodedMessage.size());
+    }
+
+    return decodedMessage;
 }
 
 } // namespace

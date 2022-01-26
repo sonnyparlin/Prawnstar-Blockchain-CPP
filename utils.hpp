@@ -19,11 +19,15 @@
 #include <random>
 #include "Wallet.hpp"
 
+#include <boost/uuid/uuid.hpp>            // uuid class
+#include <boost/uuid/uuid_generators.hpp> // generators
+#include <boost/uuid/uuid_io.hpp>
+
 namespace utils {
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string signature, std::string publicKey);
     unsigned char random_char();
-    std::string generate_uuid_hex(int len);
+    std::string uuid_gen();
 }
 
 #endif // _UTILS_H_

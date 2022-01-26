@@ -21,7 +21,7 @@ Transaction::Transaction(string senderAddress,
 Transaction::~Transaction() {}
 
 string Transaction::generateUUID() {
-    std::string uuid1 = utils::generate_uuid_hex(50);
+    std::string uuid1 = utils::uuid_gen();
     return uuid1;
 }
 

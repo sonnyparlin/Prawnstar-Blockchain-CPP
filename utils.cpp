@@ -15,15 +15,10 @@ namespace utils {
     }
 
     using namespace CryptoPP;
-    bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey)
-    {
-        // see encoded value
-        // std::cout << "Jane's public key: " << walletPublicKey << std::endl;
-        // std::cout << "verifySignature: " << encoded_signature << std::endl;
+    bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey) {
 
         // Hash the data to be signed.
         std::string hashedData = hash(message);
-        // std::cout << "hashedData: " << hashedData << std::endl;
 
         HexDecoder publicKeyDecoder;
         publicKeyDecoder.Put((CryptoPP::byte*)&walletPublicKey[0], walletPublicKey.size());
@@ -81,16 +76,8 @@ namespace utils {
         return static_cast<unsigned char>(dis(gen));
     }
 
-    // This is how we generate uuids and crypto addresses.
-    std::string generate_uuid_hex(int len) {
-        std::stringstream ss;
-        for (auto i = 0; i < len; i++) {
-            const auto rc = random_char();
-            std::stringstream hexstream;
-            hexstream << std::hex << int(rc);
-            auto hex = hexstream.str();
-            ss << (hex.length() < 2 ? '0' + hex : hex);
-        }
-        return ss.str();
+    std::string uuid_gen() {
+        boost::uuids::uuid uuid = boost::uuids::random_generator()();
+        return to_string(uuid);
     }
 }
