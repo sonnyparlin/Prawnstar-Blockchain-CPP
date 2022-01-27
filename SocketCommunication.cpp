@@ -11,7 +11,7 @@ void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
     if (processArgs(argc, argv) != 0)
         exit (1);
 
-    createServer(argc, argv);
+    startP2POperations(argc, argv);
 }
 
 void SocketCommunication::inbound_node_connected(int sock) {
@@ -87,7 +87,23 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     return 0;
 }
 
-int SocketCommunication::createServer ( int argc, char **argv )
+void SocketCommunication::startP2POperations( int argc, char **argv ) {
+    std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
+    serverThread.detach();
+
+    std::thread statusThread (&SocketCommunication::peerDiscoveryStatus, this);
+    statusThread.detach();
+
+    std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
+    discoveryThread.detach();
+    
+    for(;;) {
+        std::cout << "main P2P Server" << std::endl;
+        sleep(10);
+    }
+}
+
+int SocketCommunication::startP2PServer ( int argc, char **argv )
 {
     // Everything went well, set the port
     char *p;
@@ -159,4 +175,26 @@ int SocketCommunication::createServer ( int argc, char **argv )
         //std::cout << i << std::endl;
     }
     return 0;
+}
+
+void SocketCommunication::startPeerDiscovery() {
+    std::thread statusThread (&SocketCommunication::peerDiscoveryStatus, this);
+    statusThread.detach();
+
+    std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
+    discoveryThread.detach();
+}
+
+void SocketCommunication::peerDiscoveryStatus() {
+    for(;;) {
+        std::cout << "status" << std::endl;
+        sleep(10);
+    }
+}
+
+void SocketCommunication::peerDiscovery() {
+    for(;;) {
+        std::cout << "discovery" << std::endl;
+        sleep(10);
+    }
 }
