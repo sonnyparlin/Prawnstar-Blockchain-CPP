@@ -105,6 +105,7 @@
         "source_location": "cpp",
         "rope": "cpp",
         "slist": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "classtemplate_hpp": "c"
     }
 }
