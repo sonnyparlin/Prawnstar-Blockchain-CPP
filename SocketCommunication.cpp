@@ -51,7 +51,7 @@ int SocketCommunication::initializeWithMasterNode(int sock) {
         p2putils::logit("Close problems");
         std::cout << "errno: " << errno << std::endl;
     }
-    sleep(1);
+    //sleep(1);
     return 0;
 }
 

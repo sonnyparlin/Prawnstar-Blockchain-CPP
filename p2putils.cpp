@@ -84,10 +84,10 @@ int setOutgoingNodeConnection(const char *ipaddress) {
     return outgoingSocket;
 }
 
-std::string encodeObject(std::string message) {
+std::string encodeObject(std::string objectToEnocde) {
     std::string encoded;
     CryptoPP::HexEncoder encoder;
-    encoder.Put((CryptoPP::byte*)&message[0], message.size());
+    encoder.Put((CryptoPP::byte*)&objectToEnocde[0], objectToEnocde.size());
     encoder.MessageEnd();
 
     CryptoPP::word64 size = encoder.MaxRetrievable();
@@ -100,23 +100,23 @@ std::string encodeObject(std::string message) {
     return encoded;
 }
 
-std::string decodeObject(std::string encodedMessage) {
+std::string decodeObject(std::string encodedObject) {
     // Decode hex message (the block in a json string format)
     CryptoPP::HexDecoder messageDecoder;
-    messageDecoder.Put((CryptoPP::byte*)&encodedMessage[0], encodedMessage.size() );
+    messageDecoder.Put((CryptoPP::byte*)&encodedObject[0], encodedObject.size() );
     messageDecoder.MessageEnd();
     
     // Set up a decoded variable to copy the bytes into
-    std::string decodedMessage;
+    std::string decodedObject;
     CryptoPP::word64 size = messageDecoder.MaxRetrievable();
     if(size && size <= SIZE_MAX) {
         // set the size of the string to match the incoming bytes
-        decodedMessage.resize(size);
+        decodedObject.resize(size);
         // Create a byte string by copying the incoming bytes
-        messageDecoder.Get((CryptoPP::byte*)&decodedMessage[0], decodedMessage.size());
+        messageDecoder.Get((CryptoPP::byte*)&decodedObject[0], decodedObject.size());
     }
 
-    return decodedMessage;
+    return decodedObject;
 }
 
 } // namespace

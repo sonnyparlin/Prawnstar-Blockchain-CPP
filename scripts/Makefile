@@ -5,4 +5,6 @@ all:
 	/usr/bin/g++ ecctest.cpp -std=c++17 -lcryptopp -o ecctest
 	/usr/bin/g++ ecctest2.cpp -std=c++17 -lcryptopp -o ecctest2
 	/usr/bin/g++ maptest.cpp -std=c++17 -lcryptopp -o maptest
+	/usr/bin/g++ -std=c++17 -O2 -Wall -pedantic -pthread jsonSerialization.cpp -o jsonSerialize
+
 
