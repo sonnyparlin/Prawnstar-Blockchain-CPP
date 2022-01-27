@@ -15,19 +15,16 @@ void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
 }
 
 void SocketCommunication::inbound_node_connected(int sock) {
-    std::cout << "inbound connection" << std::endl;
-    handle_incoming_node_message(sock, "Hi, I'm the node you connected to.");
+    handshake(sock);
 }
 
 void SocketCommunication::outbound_node_connected(int sock) {
-    std::cout << "outbound connection" << std::endl;
-    handle_incoming_node_message(sock, "Hi, I'm the node who initialized the connection.");
+    handshake(sock);
 }
 
-void SocketCommunication::handle_incoming_node_message(int sock, const char *message) {
+void SocketCommunication::sendToNode(int sock, const char *message) {
     char buffer[1024] = {0};
     int reader;
-    //char const* message = "Inbound connection";
     send(sock, message, strlen(message), 0);
     reader = read ( sock, buffer, 1024 );
     if (reader <= 0) {
@@ -39,20 +36,16 @@ void SocketCommunication::handle_incoming_node_message(int sock, const char *mes
         std::cout << buffer << std::endl;
 }
 
-int SocketCommunication::initializeWithMasterNode(int sock) {
-    char buffer[1024] = {0};
-    int reader;
-    char const* message = "I am an amazing client.";
-    send(sock, message, strlen(message) , 0 );
-    printf("Client : Message has been sent ! \n");
-    reader = read ( sock, buffer, 1024 );
-    printf ( "%s\n",buffer );
-    if (close(sock) == -1) {
-        p2putils::logit("Close problems");
-        std::cout << "errno: " << errno << std::endl;
+void SocketCommunication::handshake(int sock) {
+    sendToNode(sock, "Handshake...");
+    return;
+}
+
+void SocketCommunication::broadcast(const char *message) {
+    for (auto const peer : peers) {
+        int peerSock = p2putils::setOutgoingNodeConnection(peer.first);
+        sendToNode(peerSock, message);
     }
-    //sleep(1);
-    return 0;
 }
 
 int SocketCommunication::processArgs(int argc, char **argv) {
@@ -137,15 +130,15 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                p2putils::logit("Accept");
-                exit(EXIT_FAILURE);
+                    p2putils::logit("Accept");
+                    exit(EXIT_FAILURE);
             }
         } else if (PORT == 10001) {
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                p2putils::logit("Accept");
-                exit(EXIT_FAILURE);
+                    p2putils::logit("Accept");
+                    exit(EXIT_FAILURE);
             }
         }
 
@@ -154,8 +147,6 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         //=========================================================   
         if (PORT != 10001 && i==0 && argc == 4) {
             outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3]);
-            //initializeWithMasterNode(outgoingSocket);
-            //std::cout << "Shaking hands with master node" << std::endl;
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
