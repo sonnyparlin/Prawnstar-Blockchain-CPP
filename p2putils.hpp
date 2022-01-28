@@ -19,6 +19,8 @@
 #include <unordered_map>
 #include <future>
 #include <cryptopp/hex.h>
+#include "Message.hpp"
+#include <nlohmann/json.hpp>
 
 namespace p2putils {
     void logit(std::string message);

@@ -5,10 +5,12 @@
 #include "utils.hpp"
 #include "Node.hpp"
 #include "p2putils.hpp"
+#include "SocketConnector.hpp"
  
 class SocketCommunication {
 public:
     std::unordered_map<char *, int> peers;
+    SocketConnector sc;
 
     SocketCommunication();           // Constructor
     ~SocketCommunication();          // Destructor
@@ -25,6 +27,7 @@ public:
     void startPeerDiscovery(); // Start
     void peerDiscoveryStatus(); // Status
     void peerDiscovery(); // Discovery
+    std::string handshakeMessage();
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

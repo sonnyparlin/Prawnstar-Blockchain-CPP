@@ -1,4 +1,6 @@
 #include "SocketCommunication.hpp"
+#include "Message.hpp"
+#include <nlohmann/json.hpp>
 
 SocketCommunication::SocketCommunication() {
 }
@@ -37,8 +39,17 @@ void SocketCommunication::sendToNode(int sock, const char *message) {
 }
 
 void SocketCommunication::handshake(int sock) {
-    sendToNode(sock, "Handshake...");
+    std::string message = handshakeMessage();
+    sendToNode(sock, message.c_str());
     return;
+}
+
+std::string SocketCommunication::handshakeMessage() {
+    std::string objectAsString;
+    std::string messageType = "DISCOVERY";
+    Message handshakeMsg(&sc, messageType, &peers);
+    std::string jsonMessage = handshakeMsg.toJson();
+    return jsonMessage.c_str();
 }
 
 void SocketCommunication::broadcast(const char *message) {
@@ -81,6 +92,10 @@ int SocketCommunication::processArgs(int argc, char **argv) {
 }
 
 void SocketCommunication::startP2POperations( int argc, char **argv ) {
+    sc.ip = argv[1];
+    char *p;
+    sc.port = strtol(argv[2], &p, 10);
+
     std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
     serverThread.detach();
 
