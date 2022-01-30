@@ -8,6 +8,7 @@ public:
     std::string ip;
     int port;
 
+    SocketConnector(std::string, int);
     SocketConnector();
     ~SocketConnector();
 

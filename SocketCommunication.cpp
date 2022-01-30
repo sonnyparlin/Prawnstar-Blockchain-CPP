@@ -1,6 +1,8 @@
 #include "SocketCommunication.hpp"
 #include "Message.hpp"
 #include <nlohmann/json.hpp>
+#include <typeinfo>
+
 
 SocketCommunication::SocketCommunication() {
 }
@@ -24,39 +26,38 @@ void SocketCommunication::outbound_node_connected(int sock) {
     handshake(sock);
 }
 
-void SocketCommunication::sendToNode(int sock, const char *message) {
+void SocketCommunication::send_to_node(int sock, const char *message) {
+    send(sock, message, strlen(message), 0);
+    if (close(sock) == -1) {
+        p2putils::logit("Close problems");
+        std::cout << "errno: " << errno << std::endl;
+    }
+}
+
+void SocketCommunication::node_message(int sock, const char *message) {
     char buffer[1024] = {0};
     int reader;
     send(sock, message, strlen(message), 0);
+    
     reader = read ( sock, buffer, 1024 );
     if (reader <= 0) {
         if (close(sock) == -1) {
             p2putils::logit("Close problems");
             std::cout << "errno: " << errno << std::endl;
         }
-    } else
-        std::cout << buffer << std::endl;
-}
+    } else {
+        auto j = nlohmann::json::parse(buffer);
+        std::string messageType = j["Message"]["Type"];
 
-void SocketCommunication::handshake(int sock) {
-    std::string message = handshakeMessage();
-    sendToNode(sock, message.c_str());
-    return;
-}
-
-std::string SocketCommunication::handshakeMessage() {
-    std::string objectAsString;
-    std::string messageType = "DISCOVERY";
-    Message handshakeMsg(&sc, messageType, &peers);
-    std::string jsonMessage = handshakeMsg.toJson();
-    return jsonMessage.c_str();
-}
-
-void SocketCommunication::broadcast(const char *message) {
-    for (auto const peer : peers) {
-        int peerSock = p2putils::setOutgoingNodeConnection(peer.first);
-        sendToNode(peerSock, message);
+        //std::cout << "Incoming Msg: " << buffer << std::endl;
+        if (messageType == "DISCOVERY") {
+            // create peerDiscoveryHandleMessage method
+            peerDiscoveryHandleMessage(buffer);
+            //close(sock);
+        }
     }
+
+    
 }
 
 int SocketCommunication::processArgs(int argc, char **argv) {
@@ -85,7 +86,7 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     }
 
     if (!p2putils::isValidIpAddress(argv[1])) {
-        std::cout << "Invalid ip address" << std::endl;
+        std::cout << "Invalid ip address in process args" << std::endl;
         return 1;
     }
     return 0;
@@ -96,6 +97,8 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     char *p;
     sc.port = strtol(argv[2], &p, 10);
 
+    //peers[argv[1]]=sc.port;
+
     std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
     serverThread.detach();
 
@@ -103,12 +106,12 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     statusThread.detach();
 
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
-    discoveryThread.detach();
+    discoveryThread.join();
     
-    for(;;) {
-        std::cout << "main P2P Server" << std::endl;
-        sleep(10);
-    }
+    // for(;;) {
+    //     //std::cout << "main P2P Server" << std::endl;
+    //     sleep(10);
+    // }
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
@@ -127,7 +130,6 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     if (!p2putils::Bind(serverSocket, address, PORT))
         exit (1);
 
-
     int i=0;
     std::cout << "Server created with id: " << id << std::endl;
 
@@ -135,11 +137,11 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         int outgoingSocket;
         int incomingSocket;
 
-        std::cout << "P2P Server: " 
-            << argv[1] 
-            << " is listening on PORT: " 
-            << argv[2]
-            << std::endl;
+        // std::cout << "P2P Server: " 
+        //     << argv[1] 
+        //     << " is listening on PORT: " 
+        //     << argv[2]
+        //     << std::endl;
 
         if (PORT != 10001 && i !=0 ) {
             if ((incomingSocket = accept(serverSocket, 
@@ -161,7 +163,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         // Master node handshake
         //=========================================================   
         if (PORT != 10001 && i==0 && argc == 4) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3]);
+            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], 10001);
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
@@ -183,6 +185,11 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     return 0;
 }
 
+
+//==============================
+// Peer Discovery Methods
+//==============================
+
 void SocketCommunication::startPeerDiscovery() {
     std::thread statusThread (&SocketCommunication::peerDiscoveryStatus, this);
     statusThread.detach();
@@ -193,14 +200,146 @@ void SocketCommunication::startPeerDiscovery() {
 
 void SocketCommunication::peerDiscoveryStatus() {
     for(;;) {
-        std::cout << "status" << std::endl;
+        std::cout << "Current connections: " << std::endl;
+        if (!peers.empty()) {
+            for( auto const& peer : peers ) {
+                for( auto const& p : peer ) {
+                    std::cout << p.first << ":" << p.second << std::endl;
+                }
+            }
+        }
         sleep(10);
     }
 }
 
 void SocketCommunication::peerDiscovery() {
     for(;;) {
-        std::cout << "discovery" << std::endl;
+        std::string message = handshakeMessage();
+        std::cout << "Broadcasting: " << message << std::endl;
+        broadcast(message.c_str());
         sleep(10);
     }
+}
+
+void SocketCommunication::handshake(int sock) {
+    std::string message = handshakeMessage();
+    //send(sock, &message, message.length(), 0);
+    node_message(sock, message.c_str());
+    return;
+}
+
+std::string SocketCommunication::handshakeMessage() {
+    nlohmann::json j;
+    std::string objectAsString;
+    std::string messageType = "DISCOVERY";
+    Message handshakeMsg(&sc, messageType, &peers);
+    std::string jsonMessage = handshakeMsg.toJson();
+    return jsonMessage.c_str();
+}
+
+void SocketCommunication::broadcast(const char *message) {
+    std::cout << "broadcast " << std::endl;
+    auto j = nlohmann::json::parse(message);
+    if (j["Message"]["Peers"] != nullptr) {
+        
+        std::cout << " Checking list of peers to broadcast to " << std::endl;
+        std::vector<std::string> dest;
+        dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
+ 
+        std::vector<std::string> peersPeerList {dest};
+        for(auto &ipPortStr : peersPeerList) {
+            char *token = strtok(ipPortStr.data(), ":");
+
+            std::vector<std::string> ipPortStrV;
+            while (token != NULL)
+            {
+                ipPortStrV.push_back(token);
+                token = strtok(NULL, ":");
+            }
+            
+            int num = atoi(ipPortStrV.at(1).c_str());
+            std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
+
+
+            int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+            std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
+            peerThread.join();
+        }
+    }
+}
+
+void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
+
+    if (!message)
+        return;
+
+    std::cout << "peerDiscoveryHandleMessage message is " << message << std::endl;
+
+    auto j = nlohmann::json::parse(message);
+    // write this method.
+    SocketConnector peersSenderConnector(
+        j["Message"]["SocketConnector"]["ip"], 
+        int(j["Message"]["SocketConnector"]["port"])
+    );
+ 
+    bool newPeer = true;
+    if (!peers.empty()) {
+        for (auto v : peers) {
+            for (auto p : v) {
+                if (p.first == peersSenderConnector.ip 
+                    && p.second == peersSenderConnector.port) {
+                    newPeer = false;
+                    std::cout << " newPeer is false " << std::endl;
+                }
+            }
+        }
+    }
+
+    if (newPeer) {
+        std::unordered_map<std::string, int> newPeerToAdd; 
+        std::cout << "Adding peer: " << peersSenderConnector.ip << ":" << peersSenderConnector.port << std::endl;
+        newPeerToAdd.insert(
+            pair<std::string, int>(peersSenderConnector.ip, peersSenderConnector.port)
+        );
+        peers.push_back(newPeerToAdd);
+    }
+
+    if (j["Message"]["Peers"] != nullptr) {
+        
+        std::cout << " Checking list of peers for new peer to add " << std::endl;
+        std::vector<std::string> dest;
+        dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
+ 
+        std::vector<std::string> peersPeerList {dest};
+
+        for (auto peersPeer : peersPeerList) {
+            bool peerKnown = false;
+            for (auto v : peers) {
+                for (auto p : v) {
+                    std::string ipcheck = (std::string)p.first + ":" + std::to_string(p.second);
+                    if (peersPeer == ipcheck) {
+                        peerKnown = true;
+                        std::cout << " found peer and setting flag, no peers will be added " << std::endl;
+
+                    }
+                }
+            }
+            if (!peerKnown && peersPeer != sc.ip + ":" + std::to_string(sc.port)) {
+                std::cout << "adding: " << peersPeer << std::endl;
+                char *token = strtok(peersPeer.data(), ":");
+
+                std::vector<std::string> tcpPair;
+                while (token != NULL)
+                {
+                    tcpPair.push_back(token);
+                    token = strtok(NULL, ":");
+                }
+                
+                int num = atoi(tcpPair.at(1).c_str());
+                std::unordered_map<std::string,int> temp;
+                temp.insert(pair<std::string,int>(tcpPair.at(0),num));
+                peers.push_back(temp);
+            }
+        }
+    } 
 }

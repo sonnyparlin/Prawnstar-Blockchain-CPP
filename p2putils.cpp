@@ -6,10 +6,10 @@ void logit(std::string message) {
     std::cout << message << std::endl;
 }
 
-bool isValidIpAddress(const char *ipAddress)
+bool isValidIpAddress(std::string ipAddress)
 {
     struct sockaddr_in sa;
-    int result = inet_pton(AF_INET, ipAddress, &(sa.sin_addr));
+    int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
     return result != 0;
 }
 
@@ -49,27 +49,27 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
     return 1;
 }
 
-int setOutgoingNodeConnection(const char *ipaddress) {
+int setOutgoingNodeConnection(std::string ipaddress, int port) {
     int outgoingSocket;
 
     if (!p2putils::isValidIpAddress(ipaddress)) {
-        std::cout << "Invalid master ip address" << std::endl;
+        std::cout << "Invalid master ip address in set outgoing connection" << std::endl;
         return -1;
     }
 
     struct sockaddr_in cli_addr;
     cli_addr.sin_family = AF_INET;
     cli_addr.sin_addr.s_addr = INADDR_ANY;    
-    inet_pton(AF_INET, ipaddress, &(cli_addr));
+    inet_pton(AF_INET, ipaddress.c_str(), &(cli_addr));
     if (( outgoingSocket = socket (AF_INET, SOCK_STREAM, 0 )) < 0)
     {
         printf ( "Socket creation error !" );
         return -1;
     }
 
-    cli_addr.sin_port = htons(10001);
+    cli_addr.sin_port = htons(port);
     // Converting IPv4 and IPv6 addresses from text to binary form
-    if(inet_pton ( AF_INET, ipaddress, &cli_addr.sin_addr)<=0)
+    if(inet_pton ( AF_INET, ipaddress.c_str(), &cli_addr.sin_addr)<=0)
     {
         printf ( "\nInvalid address ! This IP Address is not supported !\n" );
         return -1;

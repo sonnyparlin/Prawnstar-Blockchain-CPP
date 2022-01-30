@@ -2,6 +2,7 @@
 #define _MESSAGE_H_
 #include "SocketConnector.hpp"
 #include <string>
+#include <vector>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
 
@@ -9,11 +10,11 @@ class Message {
 public:
     SocketConnector &sc;
     std::string messageType;
-    std::unordered_map<char *, int> &peers;
+    std::vector<std::unordered_map<std::string, int>> &peers;
     
     Message(SocketConnector *sc, 
             std::string messageType, 
-            std::unordered_map<char *, int> *peers);
+            std::vector<std::unordered_map<std::string, int>> *peers);
     ~Message();
 
     // Write a toJson method for this

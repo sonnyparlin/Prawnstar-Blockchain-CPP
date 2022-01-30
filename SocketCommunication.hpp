@@ -9,7 +9,7 @@
  
 class SocketCommunication {
 public:
-    std::unordered_map<char *, int> peers;
+    std::vector<unordered_map<std::string, int>> peers;
     SocketConnector sc;
 
     SocketCommunication();           // Constructor
@@ -23,11 +23,13 @@ public:
     void inbound_node_connected(int sock);
     void outbound_node_connected(int sock);
     int processArgs(int argc, char **argv);
-    void sendToNode(int sock, const char *message);
+    void node_message(int sock, const char *message);
     void startPeerDiscovery(); // Start
     void peerDiscoveryStatus(); // Status
     void peerDiscovery(); // Discovery
     std::string handshakeMessage();
+    void peerDiscoveryHandleMessage(const char *message);
+    void send_to_node(int sock, const char *message);
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

@@ -2,8 +2,8 @@
 
 Message::Message(SocketConnector *sc, 
                  std::string messageType,
-                 std::unordered_map<char *, int> *peers)
-                 :sc(*sc),messageType(messageType), peers(*peers){};
+                 std::vector<std::unordered_map<std::string, int>> *peers)
+                 :sc(*sc), messageType(messageType), peers(*peers){};
 Message::~Message(){};
 
 std::string Message::toJson() { 
@@ -11,12 +11,18 @@ std::string Message::toJson() {
     j["Message"]["SocketConnector"]["ip"] = sc.ip;
     j["Message"]["SocketConnector"]["port"] = sc.port;
     j["Message"]["Type"] = messageType;
-    for(auto peer : peers) {
-        j["Message"]["Peers"]["ip"]=peer.first;
-        j["Message"]["Peers"]["port"]=peer.second;
-    }
     if (peers.empty()) {
         j["Message"]["Peers"]=nullptr;
+    } else {
+        std::vector<std::string> peersToSerialize;
+        for(auto peer : peers) {
+            for (auto p : peer) {
+                peersToSerialize.push_back(
+                    p.first + ":" + std::to_string(p.second)
+                );
+            }
+        }
+        j["Message"]["Peers"] = peersToSerialize;
     }
     return to_string(j);
 }

@@ -7,5 +7,8 @@ all:
 	/usr/bin/g++ maptest.cpp -std=c++17 -lcryptopp -o maptest
 	/usr/bin/g++ -std=c++17 -O2 -Wall -pedantic -pthread jsonSerialization.cpp -o jsonSerialize
 	/usr/bin/g++ -std=c++17 -O2 -Wall -pedantic -pthread boostserial.cpp -o boostserial
+	/usr/bin/g++ jsontest.cpp -I ../include -std=c++17 -o jsontest
+	/usr/bin/g++ vector.cpp -std=c++17 -o vector
+
 
 
