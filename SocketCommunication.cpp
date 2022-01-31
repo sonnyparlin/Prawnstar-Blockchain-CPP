@@ -26,14 +26,6 @@ void SocketCommunication::outbound_node_connected(int sock) {
     handshake(sock);
 }
 
-// void SocketCommunication::send_to_node(int sock, const char *message) {
-//     send(sock, message, strlen(message), 0);
-//     if (close(sock) == -1) {
-//         p2putils::logit("Close problems");
-//         std::cout << "errno: " << errno << std::endl;
-//     }
-// }
-
 void SocketCommunication::node_message(int sock, const char *message) {
     const int BUFFER_SIZE = 2048;
     char buffer[BUFFER_SIZE] = {0};
@@ -133,12 +125,6 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     for (;;) {
         int outgoingSocket;
         int incomingSocket;
-
-        // std::cout << "P2P Server: " 
-        //     << argv[1] 
-        //     << " is listening on PORT: " 
-        //     << argv[2]
-        //     << std::endl;
 
         if (PORT != 10001 && i !=0 ) {
             if ((incomingSocket = accept(serverSocket, 
