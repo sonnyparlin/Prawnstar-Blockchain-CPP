@@ -31,23 +31,24 @@ void SocketCommunication::node_message(int sock, const char *message) {
     char buffer[BUFFER_SIZE] = {0};
     int reader;
     send(sock, message, strlen(message), 0);
+
+    // set up loop read for large data dumps
     
-    reader = read ( sock, buffer, BUFFER_SIZE );
+    reader = read ( sock, buffer, BUFFER_SIZE -1 );
     if (reader <= 0) {
         if (close(sock) == -1) {
             p2putils::logit("Close problems");
             std::cout << "errno: " << errno << std::endl;
         }
-    } else {
-        auto j = nlohmann::json::parse(buffer);
-        std::string messageType = j["Message"]["Type"];
+    }
+    auto j = nlohmann::json::parse(buffer);
+    std::string messageType = j["Message"]["Type"];
 
-        //std::cout << "Incoming Msg: " << buffer << std::endl;
-        if (messageType == "DISCOVERY") {
-            // create peerDiscoveryHandleMessage method
-            peerDiscoveryHandleMessage(buffer);
-            //close(sock);
-        }
+    //std::cout << "Incoming Msg: " << buffer << std::endl;
+    if (messageType == "DISCOVERY") {
+        // create peerDiscoveryHandleMessage method
+        peerDiscoveryHandleMessage(buffer);
+        //close(sock);
     }
 }
 
