@@ -97,8 +97,6 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     char *p;
     sc.port = strtol(argv[2], &p, 10);
 
-    //peers[argv[1]]=sc.port;
-
     std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
     serverThread.detach();
 
@@ -106,12 +104,12 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     statusThread.detach();
 
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
-    discoveryThread.join();
+    discoveryThread.detach();
     
-    // for(;;) {
-    //     //std::cout << "main P2P Server" << std::endl;
-    //     sleep(10);
-    // }
+    for(;;) {
+        // keep alive
+        sleep(10);
+    }
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
@@ -190,18 +188,11 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
 // Peer Discovery Methods
 //==============================
 
-void SocketCommunication::startPeerDiscovery() {
-    std::thread statusThread (&SocketCommunication::peerDiscoveryStatus, this);
-    statusThread.detach();
-
-    std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
-    discoveryThread.detach();
-}
-
 void SocketCommunication::peerDiscoveryStatus() {
     for(;;) {
-        std::cout << "Current connections: " << std::endl;
         if (!peers.empty()) {
+            std::cout << "Current connections: " << std::endl;
+            //std::cout << "There are " << peers.size() << " peers connected" << std::endl;
             for( auto const& peer : peers ) {
                 for( auto const& p : peer ) {
                     std::cout << p.first << ":" << p.second << std::endl;
@@ -215,7 +206,7 @@ void SocketCommunication::peerDiscoveryStatus() {
 void SocketCommunication::peerDiscovery() {
     for(;;) {
         std::string message = handshakeMessage();
-        std::cout << "Broadcasting: " << message << std::endl;
+        //std::cout << "Broadcasting: " << message << std::endl;
         broadcast(message.c_str());
         sleep(10);
     }
@@ -238,11 +229,11 @@ std::string SocketCommunication::handshakeMessage() {
 }
 
 void SocketCommunication::broadcast(const char *message) {
-    std::cout << "broadcast " << std::endl;
+    //std::cout << "broadcast " << std::endl;
     auto j = nlohmann::json::parse(message);
     if (j["Message"]["Peers"] != nullptr) {
         
-        std::cout << " Checking list of peers to broadcast to " << std::endl;
+        //std::cout << " Checking list of peers to broadcast to " << std::endl;
         std::vector<std::string> dest;
         dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
  
@@ -258,10 +249,12 @@ void SocketCommunication::broadcast(const char *message) {
             }
             
             int num = atoi(ipPortStrV.at(1).c_str());
-            std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
-
+            //std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
 
             int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+            if (outgoingSocket == -1) {
+                // remove peer from peers list
+            }
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
@@ -273,7 +266,7 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
     if (!message)
         return;
 
-    std::cout << "peerDiscoveryHandleMessage message is " << message << std::endl;
+    //std::cout << "peerDiscoveryHandleMessage message is " << message << std::endl;
 
     auto j = nlohmann::json::parse(message);
     // write this method.
@@ -289,7 +282,7 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                 if (p.first == peersSenderConnector.ip 
                     && p.second == peersSenderConnector.port) {
                     newPeer = false;
-                    std::cout << " newPeer is false " << std::endl;
+                    //std::cout << " newPeer is false " << std::endl;
                 }
             }
         }
@@ -302,11 +295,12 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
             pair<std::string, int>(peersSenderConnector.ip, peersSenderConnector.port)
         );
         peers.push_back(newPeerToAdd);
+        newPeerToAdd.clear();
     }
 
     if (j["Message"]["Peers"] != nullptr) {
         
-        std::cout << " Checking list of peers for new peer to add " << std::endl;
+        //std::cout << " Checking list of peers for new peer to add " << std::endl;
         std::vector<std::string> dest;
         dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
  
@@ -319,13 +313,12 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                     std::string ipcheck = (std::string)p.first + ":" + std::to_string(p.second);
                     if (peersPeer == ipcheck) {
                         peerKnown = true;
-                        std::cout << " found peer and setting flag, no peers will be added " << std::endl;
+                        //std::cout << " found peer and setting flag, no peers will be added " << std::endl;
 
                     }
                 }
             }
             if (!peerKnown && peersPeer != sc.ip + ":" + std::to_string(sc.port)) {
-                std::cout << "adding: " << peersPeer << std::endl;
                 char *token = strtok(peersPeer.data(), ":");
 
                 std::vector<std::string> tcpPair;
@@ -338,7 +331,13 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                 int num = atoi(tcpPair.at(1).c_str());
                 std::unordered_map<std::string,int> temp;
                 temp.insert(pair<std::string,int>(tcpPair.at(0),num));
+                std::cout << "Adding peer via peer discovery: " 
+                          << tcpPair.at(0)
+                          << ":"
+                          << std::to_string(num) 
+                          << std::endl;
                 peers.push_back(temp);
+                temp.clear();
             }
         }
     } 

@@ -9,6 +9,7 @@ all:
 	/usr/bin/g++ -std=c++17 -O2 -Wall -pedantic -pthread boostserial.cpp -o boostserial
 	/usr/bin/g++ jsontest.cpp -I ../include -std=c++17 -o jsontest
 	/usr/bin/g++ vector.cpp -std=c++17 -o vector
+	/usr/bin/g++ vectormap.cpp -std=c++17 -o vectormap
 
 
 
