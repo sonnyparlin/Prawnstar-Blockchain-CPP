@@ -106,6 +106,7 @@
         "rope": "cpp",
         "slist": "cpp",
         "ranges": "cpp",
-        "classtemplate_hpp": "c"
+        "classtemplate_hpp": "c",
+        "main_for_testing": "cpp"
     }
 }
