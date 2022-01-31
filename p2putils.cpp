@@ -77,7 +77,7 @@ int setOutgoingNodeConnection(std::string ipaddress, int port) {
     
     if ( connect( outgoingSocket, (struct sockaddr *)&cli_addr, sizeof(cli_addr )) < 0)
     {
-        printf ( "Connection Failed : Can't establish a connection over this socket !" );
+        std::cout << "Connection Failed : when connecting to " << ipaddress.c_str() << ":" << std::to_string(port) << std::endl;
         return -1;
     }
     

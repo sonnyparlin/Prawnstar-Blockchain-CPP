@@ -26,20 +26,21 @@ void SocketCommunication::outbound_node_connected(int sock) {
     handshake(sock);
 }
 
-void SocketCommunication::send_to_node(int sock, const char *message) {
-    send(sock, message, strlen(message), 0);
-    if (close(sock) == -1) {
-        p2putils::logit("Close problems");
-        std::cout << "errno: " << errno << std::endl;
-    }
-}
+// void SocketCommunication::send_to_node(int sock, const char *message) {
+//     send(sock, message, strlen(message), 0);
+//     if (close(sock) == -1) {
+//         p2putils::logit("Close problems");
+//         std::cout << "errno: " << errno << std::endl;
+//     }
+// }
 
 void SocketCommunication::node_message(int sock, const char *message) {
-    char buffer[1024] = {0};
+    const int BUFFER_SIZE = 2048;
+    char buffer[BUFFER_SIZE] = {0};
     int reader;
     send(sock, message, strlen(message), 0);
     
-    reader = read ( sock, buffer, 1024 );
+    reader = read ( sock, buffer, BUFFER_SIZE );
     if (reader <= 0) {
         if (close(sock) == -1) {
             p2putils::logit("Close problems");
@@ -56,8 +57,6 @@ void SocketCommunication::node_message(int sock, const char *message) {
             //close(sock);
         }
     }
-
-    
 }
 
 int SocketCommunication::processArgs(int argc, char **argv) {
@@ -254,6 +253,7 @@ void SocketCommunication::broadcast(const char *message) {
             int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
             if (outgoingSocket == -1) {
                 // remove peer from peers list
+                return;
             }
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
@@ -313,8 +313,6 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                     std::string ipcheck = (std::string)p.first + ":" + std::to_string(p.second);
                     if (peersPeer == ipcheck) {
                         peerKnown = true;
-                        //std::cout << " found peer and setting flag, no peers will be added " << std::endl;
-
                     }
                 }
             }
