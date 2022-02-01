@@ -1,8 +1,7 @@
 # Compile and run
 
 ## Download dependancies
-    * Install cryptopp 8.6.0 https://www.cryptopp.com/#download, unzip in your development directory 
-    and then run make;sudo make install, you will have to add the compiler flag -lcryptopp.
+    *  cd cryptopp860;make; sudo make install;cd ..
 
     * Install boost_1_78_0, https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install
 
