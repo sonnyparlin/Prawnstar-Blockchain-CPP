@@ -9,7 +9,9 @@
  
 class SocketCommunication {
 public:
-    std::vector<unordered_map<std::string, int>> peers;
+    std::vector<std::string> peers;
+    std::vector<std::string> inactivePeers;
+
     SocketConnector sc;
 
     SocketCommunication();           // Constructor

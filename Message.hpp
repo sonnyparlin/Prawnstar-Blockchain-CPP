@@ -10,11 +10,11 @@ class Message {
 public:
     SocketConnector &sc;
     std::string messageType;
-    std::vector<std::unordered_map<std::string, int>> &peers;
+    std::vector<std::string> &peers;
     
     Message(SocketConnector *sc, 
             std::string messageType, 
-            std::vector<std::unordered_map<std::string, int>> *peers);
+            std::vector<std::string> *peers);
     ~Message();
 
     // Write a toJson method for this

@@ -2,7 +2,7 @@
 
 Message::Message(SocketConnector *sc, 
                  std::string messageType,
-                 std::vector<std::unordered_map<std::string, int>> *peers)
+                 std::vector<std::string> *peers)
                  :sc(*sc), messageType(messageType), peers(*peers){};
 Message::~Message(){};
 
@@ -16,11 +16,7 @@ std::string Message::toJson() {
     } else {
         std::vector<std::string> peersToSerialize;
         for(auto peer : peers) {
-            for (auto p : peer) {
-                peersToSerialize.push_back(
-                    p.first + ":" + std::to_string(p.second)
-                );
-            }
+            peersToSerialize.push_back(peer);
         }
         j["Message"]["Peers"] = peersToSerialize;
     }

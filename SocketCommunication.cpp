@@ -2,6 +2,7 @@
 #include "Message.hpp"
 #include <nlohmann/json.hpp>
 #include <typeinfo>
+#include <algorithm>
 
 
 SocketCommunication::SocketCommunication() {
@@ -180,9 +181,7 @@ void SocketCommunication::peerDiscoveryStatus() {
             std::cout << "Current connections: " << std::endl;
             //std::cout << "There are " << peers.size() << " peers connected" << std::endl;
             for( auto const& peer : peers ) {
-                for( auto const& p : peer ) {
-                    std::cout << p.first << ":" << p.second << std::endl;
-                }
+                std::cout << peer << std::endl;
             }
         }
         sleep(10);
@@ -239,7 +238,13 @@ void SocketCommunication::broadcast(const char *message) {
 
             int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
             if (outgoingSocket == -1) {
-                // remove peer from peers list
+                // ======================================
+                // Socket connection to peer failed, 
+                // remove peer from peers list.
+                // ======================================
+                std::string elementToRemove = ipPortStrV.at(0) + ":" + std::to_string(num);
+                peers.erase(std::remove(peers.begin(), peers.end(), elementToRemove), peers.end());
+                inactivePeers.push_back(elementToRemove);
                 return;
             }
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
@@ -265,24 +270,20 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
     bool newPeer = true;
     if (!peers.empty()) {
         for (auto v : peers) {
-            for (auto p : v) {
-                if (p.first == peersSenderConnector.ip 
-                    && p.second == peersSenderConnector.port) {
-                    newPeer = false;
-                    //std::cout << " newPeer is false " << std::endl;
-                }
-            }
+            if (v == peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port)) {
+                newPeer = false;
+            } 
         }
     }
 
     if (newPeer) {
-        std::unordered_map<std::string, int> newPeerToAdd; 
-        std::cout << "Adding peer: " << peersSenderConnector.ip << ":" << peersSenderConnector.port << std::endl;
-        newPeerToAdd.insert(
-            pair<std::string, int>(peersSenderConnector.ip, peersSenderConnector.port)
-        );
+        std::string newPeerToAdd;
+        std::cout << "Adding peer via peer discovery: " 
+                  << peersSenderConnector.ip 
+                  << ":" 
+                  << peersSenderConnector.port << std::endl;
+        newPeerToAdd = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
         peers.push_back(newPeerToAdd);
-        newPeerToAdd.clear();
     }
 
     if (j["Message"]["Peers"] != nullptr) {
@@ -295,14 +296,12 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
 
         for (auto peersPeer : peersPeerList) {
             bool peerKnown = false;
-            for (auto v : peers) {
-                for (auto p : v) {
-                    std::string ipcheck = (std::string)p.first + ":" + std::to_string(p.second);
-                    if (peersPeer == ipcheck) {
-                        peerKnown = true;
-                    }
+            for (auto p : peers) {
+                if (peersPeer == p) {
+                    peerKnown = true;
                 }
             }
+
             if (!peerKnown && peersPeer != sc.ip + ":" + std::to_string(sc.port)) {
                 char *token = strtok(peersPeer.data(), ":");
 
@@ -314,15 +313,21 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                 }
                 
                 int num = atoi(tcpPair.at(1).c_str());
-                std::unordered_map<std::string,int> temp;
-                temp.insert(pair<std::string,int>(tcpPair.at(0),num));
-                std::cout << "Adding peer via peer discovery: " 
+
+                std::string peerToCheck = tcpPair.at(0) + ":" + std::to_string(num);
+
+                // make sure new peer isn't an inactive peer before adding
+                if (std::find(inactivePeers.begin(), 
+                                inactivePeers.end(), peerToCheck) == inactivePeers.end())
+                {    
+                    std::cout << "Adding peer via peer discovery: " 
                           << tcpPair.at(0)
                           << ":"
                           << std::to_string(num) 
                           << std::endl;
-                peers.push_back(temp);
-                temp.clear();
+                    peers.push_back(tcpPair.at(0) + ":" + std::to_string(num));
+                    inactivePeers.clear();
+                }
             }
         }
     } 
