@@ -177,13 +177,15 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
 
 void SocketCommunication::peerDiscoveryStatus() {
     for(;;) {
+        std::cout << "Current connections: " << std::endl;
         if (!peers.empty()) {
-            std::cout << "Current connections: " << std::endl;
             //std::cout << "There are " << peers.size() << " peers connected" << std::endl;
             for( auto const& peer : peers ) {
                 std::cout << peer << std::endl;
             }
-        }
+        } else
+            std::cout << "No peers connected" << std::endl;
+            
         sleep(10);
     }
 }
