@@ -25,13 +25,15 @@ public:
     void inbound_node_connected(int sock);
     void outbound_node_connected(int sock);
     int processArgs(int argc, char **argv);
-    void node_message(int sock, const char *message);
+    void send_node_message(int sock, const char *message);
+    void receive_node_message(int sock);
     void startPeerDiscovery(); // Start
     void peerDiscoveryStatus(); // Status
     void peerDiscovery(); // Discovery
     std::string handshakeMessage();
     void peerDiscoveryHandleMessage(const char *message);
     void send_to_node(int sock, const char *message);
+    void ReadXBytes(int socket, unsigned int x, char * buffer);
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

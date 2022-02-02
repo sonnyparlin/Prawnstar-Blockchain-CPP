@@ -20,37 +20,49 @@ void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
 }
 
 void SocketCommunication::inbound_node_connected(int sock) {
-    handshake(sock);
+    receive_node_message(sock);
 }
 
 void SocketCommunication::outbound_node_connected(int sock) {
     handshake(sock);
 }
 
-void SocketCommunication::node_message(int sock, const char *message) {
-    const int BUFFER_SIZE = 2048;
-    char buffer[BUFFER_SIZE] = {0};
-    int reader;
-    send(sock, message, strlen(message), 0);
+void SocketCommunication::send_node_message(int sock, const char *message) {
+    int sizetosend = strlen(message);
+    send(sock, (char*)&sizetosend, sizeof(int), 0); // send message length
+    send(sock, message, strlen(message), 0); // send message
+}
 
-    // set up loop read for large data dumps
-    
-    reader = read ( sock, buffer, BUFFER_SIZE -1 );
-    if (reader <= 0) {
-        if (close(sock) == -1) {
-            p2putils::logit("Close problems");
-            std::cout << "errno: " << errno << std::endl;
+void SocketCommunication::receive_node_message(int sock) {
+    const int BUFFER_SIZE = 55; // fix me
+    char buffer[BUFFER_SIZE] = {0};
+ 
+    int sizetoread = 0;
+    int reader = recv(sock,(char*)&sizetoread,sizeof(int),0); // get message length
+    if (reader < sizeof(int)) {
+        std::cout << "reader error" << std::endl;
+        return;
+    }    
+    ssize_t offset = 0;
+    while (offset < sizetoread) {
+        ssize_t reader = recv(sock, buffer+offset, sizetoread-offset, 0); // get message
+        if(reader == 0) {
+            break;
         }
+        offset+=reader;
     }
+
+    std::cout << buffer << std::endl;
+    
     auto j = nlohmann::json::parse(buffer);
     std::string messageType = j["Message"]["Type"];
 
-    //std::cout << "Incoming Msg: " << buffer << std::endl;
     if (messageType == "DISCOVERY") {
-        // create peerDiscoveryHandleMessage method
         peerDiscoveryHandleMessage(buffer);
-        //close(sock);
     }
+
+    if (close(sock) == -1)
+        std::cout << "Error closing socket " << errno << std::endl;
 }
 
 int SocketCommunication::processArgs(int argc, char **argv) {
@@ -201,8 +213,7 @@ void SocketCommunication::peerDiscovery() {
 
 void SocketCommunication::handshake(int sock) {
     std::string message = handshakeMessage();
-    //send(sock, &message, message.length(), 0);
-    node_message(sock, message.c_str());
+    send_node_message(sock, message.c_str());
     return;
 }
 
@@ -262,8 +273,7 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
 
     //std::cout << "peerDiscoveryHandleMessage message is " << message << std::endl;
 
-    auto j = nlohmann::json::parse(message);
-    // write this method.
+    auto j = nlohmann::json::parse(message);    
     SocketConnector peersSenderConnector(
         j["Message"]["SocketConnector"]["ip"], 
         int(j["Message"]["SocketConnector"]["port"])
@@ -290,10 +300,9 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
 
     if (j["Message"]["Peers"] != nullptr) {
         
-        //std::cout << " Checking list of peers for new peer to add " << std::endl;
         std::vector<std::string> dest;
         dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
- 
+        
         std::vector<std::string> peersPeerList {dest};
 
         for (auto peersPeer : peersPeerList) {
