@@ -33,7 +33,6 @@ public:
     std::string handshakeMessage();
     void peerDiscoveryHandleMessage(const char *message);
     void send_to_node(int sock, const char *message);
-    void ReadXBytes(int socket, unsigned int x, char * buffer);
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

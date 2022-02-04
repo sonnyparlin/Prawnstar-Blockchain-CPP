@@ -10,6 +10,4 @@ all:
 	/usr/bin/g++ jsontest.cpp -I ../include -std=c++17 -o jsontest
 	/usr/bin/g++ vector.cpp -std=c++17 -o vector
 	/usr/bin/g++ vectormap.cpp -std=c++17 -o vectormap
-
-
-
+	/usr/bin/g++ -Wall -std=c++17 template.cpp -o template
