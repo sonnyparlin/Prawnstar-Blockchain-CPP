@@ -20,5 +20,18 @@ std::string Message::toJson() {
         }
         j["Message"]["Peers"] = peersToSerialize;
     }
-    return to_string(j);
+    std::string strMsgBody = to_string(j);
+    
+    // append message header with length
+    std::string strMsgLength = std::to_string (strMsgBody.length());
+
+    // strict the header length to 4
+    if (strMsgLength.length() == 1) strMsgLength = "000" + strMsgLength;    
+    else if (strMsgLength.length() == 2) strMsgLength = "00" + strMsgLength;
+    else if (strMsgLength.length() == 3) strMsgLength = "0" + strMsgLength;
+    
+    // std::cout << "Message Header => " << strMsgLength << std::endl;
+    strMsgBody = strMsgLength + strMsgBody;    
+
+    return strMsgBody;
 }
