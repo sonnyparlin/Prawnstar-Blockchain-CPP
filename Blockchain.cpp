@@ -24,6 +24,7 @@ Block Blockchain::genesis() {
 bool Blockchain::addBlock(Block block) {
     executeTransactions(block.transactions);
     blocks.push_back(block);
+    blocks.shrink_to_fit();
     return true;
 }
 
