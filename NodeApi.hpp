@@ -11,6 +11,7 @@ public:
     ~NodeApi();
 
     void start(std::string);
+    int validateApiPort(const std::string po);
 };
 
 #endif // _NODEAPI_H_
