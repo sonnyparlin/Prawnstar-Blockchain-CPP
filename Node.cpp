@@ -1,12 +1,16 @@
 #include "Node.hpp"
+#include "NodeApi.hpp"
 
-Node::Node(int argc, char *argv[]) {
+Node::Node() {
+}
+
+Node::Node(int argc, char **argv) {
 }
 
 Node::~Node() {
 }
 
-void Node::startServers(int argc, char *argv[]) {
+void Node::startServers(int argc, char **argv) {
     SocketCommunication p2p;
     p2p.startSocketCommunication(argc, argv);
     

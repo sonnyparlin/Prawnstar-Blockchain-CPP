@@ -4,8 +4,9 @@
 #include <string>
 #include <iostream>
 #include <crow.h>
+#include "Node.hpp"
 
-class NodeApi {
+class NodeApi : public Node {
 public:
     NodeApi();
     ~NodeApi();

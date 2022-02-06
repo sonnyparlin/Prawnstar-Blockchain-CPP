@@ -1,5 +1,4 @@
 #include "NodeApi.hpp"
-#include "Node.hpp"
 
 NodeApi::NodeApi() {
 }
@@ -14,7 +13,7 @@ int NodeApi::validateApiPort(const std::string po) {
 
     if (*p != '\0' || errno != 0) {
         std::cout << "Invalid null or ernno not 0" << std::endl;
-        return -1; // In main(), returning non-zero means failure
+        return -1;
     }
 
     if (arg < INT_MIN || arg > INT_MAX) {
@@ -31,6 +30,10 @@ void NodeApi::start(std::string po) {
     crow::SimpleApp app;
 
     CROW_ROUTE(app, "/info")([](){
+        return "This is a communication interface to a node's blockchain.";
+    });
+
+    CROW_ROUTE(app, "/blockchain")([](){
         return "This is a communication interface to a node's blockchain.";
     });
 
