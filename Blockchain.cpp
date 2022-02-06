@@ -92,3 +92,10 @@ nlohmann::json Blockchain::toJson() const {
     j["blocks"] = blockList(blocks);
     return j;
 }
+
+std::string Blockchain::toJsonString() const {
+    nlohmann::json j;
+
+    j["blocks"] = blockList(blocks);
+    return j.dump();
+}

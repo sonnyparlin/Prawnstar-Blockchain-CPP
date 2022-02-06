@@ -33,8 +33,8 @@ void NodeApi::start(std::string po) {
         return "This is a communication interface to a node's blockchain.";
     });
 
-    CROW_ROUTE(app, "/blockchain")([](){
-        return "This is a communication interface to a node's blockchain.";
+    CROW_ROUTE(app, "/blockchain")([&](){
+        return blockchain.toJsonString();
     });
 
     app.port(port).run();
