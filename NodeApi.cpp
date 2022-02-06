@@ -1,4 +1,5 @@
 #include "NodeApi.hpp"
+#include "Node.hpp"
 
 NodeApi::NodeApi() {
 }
