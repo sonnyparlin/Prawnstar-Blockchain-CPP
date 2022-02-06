@@ -32,9 +32,6 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
 }
 
 void SocketCommunication::receive_node_message(int sock) {
-    // const int BUFFER_SIZE = 1024;
-    // char buffer[BUFFER_SIZE] = {0};
-
     int reader;
     
     // read message body length
@@ -43,16 +40,14 @@ void SocketCommunication::receive_node_message(int sock) {
     
     reader = read (sock, msgLengthBuffer, 4);
     if (reader <= 0) {
-        p2putils::logit("Read message length problems");
-        std::cout << "errno: " << errno << std::endl;
+        std::cout << "Read message length problems, errno: " << errno << std::endl;
         return;
     }
 
     msgLength = stoi (msgLengthBuffer);
-    std::cout << "Message Length => " << msgLength << std::endl;
+    //std::cout << "Message Length => " << msgLength << std::endl;
     if (msgLength <= 0) {
-        p2putils::logit("Message length is not valid");
-        std::cout << "errno: " << errno << std::endl;
+        std::cout << "Message length is not valid, errno: " << errno << std::endl;
         return;
     }
 
@@ -61,24 +56,17 @@ void SocketCommunication::receive_node_message(int sock) {
 
     // read socket data to the allocated buffer
     reader = read (sock, buffer, msgLength);    
-
-    // reader = read ( sock, buffer, BUFFER_SIZE -1 );    
-
     if (reader <= 0) {
         if (close(sock) == -1) {
-            p2putils::logit("Close problems");
-            std::cout << "errno: " << errno << std::endl;
+            std::cout << "Close problems, errno: " << errno << std::endl;
         }
     }
     
     auto j = nlohmann::json::parse(buffer);
     std::string messageType = j["Message"]["Type"];
 
-    // std::cout << "Incoming Msg: " << buffer << std::endl;
     if (messageType == "DISCOVERY") {
-        // create peerDiscoveryHandleMessage method
         peerDiscoveryHandleMessage(buffer);
-        //close(sock);
     }
 
     // delete allocated memory
