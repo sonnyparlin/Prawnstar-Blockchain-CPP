@@ -4,6 +4,6 @@
 
 int main(int argc, char *argv[]) {
     Node node(argc, argv);
-    node.startP2P(argc, argv);
+    node.startServers(argc, argv);
 	return 0;
 }

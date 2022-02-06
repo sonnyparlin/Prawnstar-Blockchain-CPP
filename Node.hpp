@@ -19,7 +19,7 @@ public:
     Node(int argc, char *argv[]); // Constructor
     ~Node();                      // Destructor
 
-    void startP2P(int argc, char *argv[]);
+    void startServers(int argc, char *argv[]);
 };
 
 #endif // _NODE_H_
