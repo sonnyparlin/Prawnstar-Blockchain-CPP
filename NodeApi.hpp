@@ -3,11 +3,14 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <crow.h>
 
 class NodeApi {
 public:
-    NodeApi();           // Constructor
-    ~NodeApi();          // Destructor
+    NodeApi();
+    ~NodeApi();
+
+    void start(std::string);
 };
 
 #endif // _NODEAPI_H_

@@ -6,6 +6,7 @@
 #include "Wallet.hpp"
 #include "Blockchain.hpp"
 #include "SocketCommunication.hpp"
+#include "NodeApi.hpp"
 
 class Node {
 public:

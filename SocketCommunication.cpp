@@ -92,7 +92,7 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     }
 
     if (argc < 4) {
-        std::cout << "Node usage for peers: ./server <ip> <port> <masternode>" << std::endl;
+        std::cout << "Node usage for peers: ./server <ip> <port> <masternode> <api_port>" << std::endl;
         std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
     }
     
@@ -131,10 +131,10 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
     discoveryThread.detach();
     
-    for(;;) {
-        // keep alive
-        sleep(10);
-    }
+    // for(;;) {
+    //     // keep alive
+    //     sleep(10);
+    // }
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
@@ -179,7 +179,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         //=========================================================
         // Master node handshake
         //=========================================================   
-        if (PORT != 10001 && i==0 && argc == 4) {
+        if (PORT != 10001 && i==0 && argc == 5) {
             outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], 10001);
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
@@ -258,7 +258,7 @@ void SocketCommunication::broadcast(const char *message) {
  
         std::vector<std::string> peersPeerList {dest};
         for(auto &ipPortStr : peersPeerList) {
-            char *token = strtok(ipPortStr.data(), ":");
+            char *token = strtok((char *)ipPortStr.c_str(), ":");
 
             std::vector<std::string> ipPortStrV;
             while (token != NULL)
@@ -337,7 +337,7 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
             }
 
             if (!peerKnown && peersPeer != sc.ip + ":" + std::to_string(sc.port)) {
-                char *token = strtok(peersPeer.data(), ":");
+                char *token = strtok((char *)peersPeer.c_str(), ":");
 
                 std::vector<std::string> tcpPair;
                 while (token != NULL)

@@ -1,6 +1,6 @@
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
-flags := -Wall -std=c++17
+flags := -Wall -std=c++14
 libs := -lcryptopp
 includes := $(PWD)/include/ -I/usr/local/include
 outfile := main
