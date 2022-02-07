@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TransactionPool.hpp"
+#include <nlohmann/json.hpp>
 
 TransactionPool::TransactionPool() {
 }
@@ -33,4 +34,14 @@ void TransactionPool::removeFromPool(vector<Transaction> txs) {
             newPoolTransactions.push_back(poolTransaction);
     }
     transactions = newPoolTransactions;
+}
+
+std::string TransactionPool::getPoolTransactionsJsonString() {
+   nlohmann::json j;
+
+    for (auto transaction : transactions) {
+        j.push_back(transaction.toJson());
+    }
+    
+    return j.dump();
 }

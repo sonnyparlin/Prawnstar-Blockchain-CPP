@@ -37,5 +37,9 @@ void NodeApi::start(std::string po) {
         return blockchain.toJsonString();
     });
 
+    CROW_ROUTE(app, "/transaction-pool")([&](){
+        return transactionPool.getPoolTransactionsJsonString();
+    });
+
     app.port(port).run();
 }
