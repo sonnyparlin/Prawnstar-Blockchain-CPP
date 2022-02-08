@@ -1,6 +1,7 @@
 #include "Wallet.hpp"
 #include "Block.hpp"
 //#include <cryptopp/pem.h>
+#include "AccountModel.hpp"
 
 using namespace CryptoPP;
 
@@ -12,7 +13,25 @@ Wallet::Wallet() {
     genKeyPair(false);
 }
 
+Wallet::Wallet(std::string address, AccountModel accountModel) {
+    loadWalletFromAddress(address, accountModel);
+}
+
 Wallet::~Wallet() {
+}
+
+void Wallet::loadWalletFromAddress(const std::string& addr, AccountModel accountModel) {
+    // Need to get this information from the AccountModel
+    // Maybe when someone creates an account we add it to the
+    // AccountModel immediately. Right now we generate a new wallet 
+    // and insert the address but the publickey and privatekey are
+    // generated on the fly, we want to load them instead.
+    //genKeyPair(false);
+    //address = addr;
+    address = addr;
+    walletPublicKey = accountModel.addressToPublicKey[addr];
+    walletPrivateKey = accountModel.addressToPrivateKey[addr];
+    //std::cout << "walletPublicKey: " << walletPublicKey << std::endl;
 }
 
 void Wallet::genKeyPair(const bool useFile) {
@@ -121,6 +140,7 @@ std::string Wallet::sign(std::string strContents)
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) {
     Transaction transaction(address, receiverAddress, amount, type);
     std::string signature = sign(transaction.payload());
+    transaction.senderPublicKey = walletPublicKey;
     transaction.sign(signature);
     return transaction;
 }

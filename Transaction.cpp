@@ -36,7 +36,7 @@ string Transaction::toJson() {
     j["timestamp"] = timestamp;
     j["signature"] = signature;
     
-    return to_string(j);
+    return j.dump();
 }
 
 string Transaction::payload() {

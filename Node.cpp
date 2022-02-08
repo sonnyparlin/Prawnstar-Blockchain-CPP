@@ -23,3 +23,13 @@ void Node::startServers(int argc, char **argv) {
         api.start(po);
     }
 }
+
+void Node::handleTransaction (Transaction transaction) {
+    std::string data = transaction.payload();
+    std::string signature = transaction.signature;
+    std::string signerPublicKey = transaction.senderPublicKey;
+    bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
+    bool transactionExists = transactionPool.transactionExists(transaction);
+    if (!transactionExists && signatureValid)
+        transactionPool.addTransaction(transaction);
+}

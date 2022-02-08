@@ -107,6 +107,7 @@
         "slist": "cpp",
         "ranges": "cpp",
         "classtemplate_hpp": "c",
-        "main_for_testing": "cpp"
+        "main_for_testing": "cpp",
+        "filesystem": "cpp"
     }
 }

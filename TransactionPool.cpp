@@ -37,11 +37,13 @@ void TransactionPool::removeFromPool(vector<Transaction> txs) {
 }
 
 std::string TransactionPool::getPoolTransactionsJsonString() {
-   nlohmann::json j;
+    nlohmann::json j;
+    nlohmann::json jContainer;
 
     for (auto transaction : transactions) {
-        j.push_back(transaction.toJson());
+        j = nlohmann::json::parse(transaction.toJson());
+        jContainer.push_back(j);
     }
     
-    return j.dump();
+    return jContainer.dump();
 }

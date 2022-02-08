@@ -6,12 +6,14 @@
 #include "Wallet.hpp"
 #include "Blockchain.hpp"
 #include "SocketCommunication.hpp"
+#include "AccountModel.hpp"
 
 class Node {
 public:
     TransactionPool transactionPool;
     Wallet wallet;
     Blockchain blockchain;
+    AccountModel accountModel;
     int argc;
     char **argv;
 
@@ -20,6 +22,7 @@ public:
     ~Node();                      // Destructor
 
     void startServers(int argc, char **argv);
+    void handleTransaction (Transaction);
 };
 
 #endif // _NODE_H_
