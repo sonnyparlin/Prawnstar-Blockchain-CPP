@@ -110,11 +110,11 @@ std::string Wallet::sign(std::string strContents)
     x.Decode(decoder, decoder.MaxRetrievable());
     privateKey.Initialize(ASN1::secp256r1(), x);
 
-            // FileSource fs( "private.ec.der", true /*binary*/ );
-            // privateKey.Load( fs );
-            // bool result = privateKey.Validate( prng, 3 );
-            // if (!result)
-            //     std::cout << "Private key invalud for signing" << std::endl; // throw exception
+    // FileSource fs( "private.ec.der", true /*binary*/ );
+    // privateKey.Load( fs );
+    // bool result = privateKey.Validate( prng, 3 );
+    // if (!result)
+    //     std::cout << "Private key invalud for signing" << std::endl; // throw exception
 
     ECDSA<ECP, SHA256>::Signer signer(privateKey);
      size_t siglen = signer.MaxSignatureLength();

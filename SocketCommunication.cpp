@@ -67,6 +67,8 @@ void SocketCommunication::receive_node_message(int sock) {
 
     if (messageType == "DISCOVERY") {
         peerDiscoveryHandleMessage(buffer);
+    } else if (messageType == "TRANSACTION") {
+        //
     }
 
     // delete allocated memory

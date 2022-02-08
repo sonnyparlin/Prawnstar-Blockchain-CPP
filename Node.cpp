@@ -1,5 +1,6 @@
 #include "Node.hpp"
 #include "NodeApi.hpp"
+#include "SocketCommunication.hpp"
 
 Node::Node() {
 }

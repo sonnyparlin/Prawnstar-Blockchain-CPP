@@ -5,7 +5,7 @@
 #include "TransactionPool.hpp"
 #include "Wallet.hpp"
 #include "Blockchain.hpp"
-#include "SocketCommunication.hpp"
+
 #include "AccountModel.hpp"
 
 class Node {

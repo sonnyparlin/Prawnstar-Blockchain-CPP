@@ -7,7 +7,7 @@
 #include "p2putils.hpp"
 #include "SocketConnector.hpp"
  
-class SocketCommunication {
+class SocketCommunication : public Node {
 public:
     std::vector<std::string> peers;
     std::vector<std::string> inactivePeers;
