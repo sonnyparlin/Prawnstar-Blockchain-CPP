@@ -40,9 +40,9 @@ void NodeApi::start(std::string po) {
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
-        std::cout << "This is a transaction pool" << std::endl;
+        //std::cout << "This is a transaction pool" << std::endl;
         std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();
-        std::cout << "transactionPool contents: " << node->transactionPool.getPoolTransactionsJsonString() << std::endl;
+        //std::cout << "transactionPool contents: " << node->transactionPool.getPoolTransactionsJsonString() << std::endl;
         return returnValue;
     });
 
@@ -161,7 +161,7 @@ void NodeApi::start(std::string po) {
         senderWallet.address = sender;
         node->accountModel.addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
         Transaction tx = senderWallet.createTransaction(receiver, amount, type);
-        std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
+        //std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
         node->handleTransaction(tx);
         // }
         return crow::response(201, "{\"message\":\"Received transaction\"}");

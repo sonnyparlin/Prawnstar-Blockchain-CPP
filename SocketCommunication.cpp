@@ -85,7 +85,7 @@ void SocketCommunication::receive_node_message(int sock) {
 
         // std::cout << tx.toJson() << std::endl;
 
-        std::cout << "calling handleTransaction(tx) from p2p" << std::endl;
+        //std::cout << "calling handleTransaction(tx) from p2p" << std::endl;
         node->handleTransaction(tx, false);
     }
 

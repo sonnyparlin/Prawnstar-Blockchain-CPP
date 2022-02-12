@@ -8,11 +8,10 @@ Node::Node() {
 }
 
 Node::Node(int argc, char **argv) {
-    std::cout << "Node address: " << this << std::endl;
-    std::cout << "transactionPool transactions address: " << &(this->transactionPool.transactions) << std::endl;
-    std::cout << "transactionPool address: " << &(this->transactionPool) << std::endl;
+    // std::cout << "Node address: " << this << std::endl;
+    // std::cout << "transactionPool transactions address: " << &(this->transactionPool.transactions) << std::endl;
+    // std::cout << "transactionPool address: " << &(this->transactionPool) << std::endl;
     p2p = new SocketCommunication(this);
-
 }
 
 Node::~Node() {
@@ -25,16 +24,6 @@ Node *Node::createNode(int argc, char **argv) {
     }
     return node;
 }
-
-// Node *Node::createNode() {
-//     if (node != nullptr)
-//         return node;
-//     else 
-//         std::cerr << "Node creation failed" << std::endl;
-
-//     return nullptr;
-// }
-
 
 void Node::startServers(int argc, char **argv) {
     p2p->startSocketCommunication(argc, argv);
@@ -51,7 +40,7 @@ void Node::startServers(int argc, char **argv) {
 
 void Node::handleTransaction (Transaction transaction, bool broadcast ) {
 
-    std::cout << "handleTransaction transactions address: " << &transactionPool.transactions << std::endl;
+    // std::cout << "handleTransaction transactions address: " << &transactionPool.transactions << std::endl;
 
     std::string data = transaction.payload();
     std::string signature = transaction.signature;
@@ -66,10 +55,10 @@ void Node::handleTransaction (Transaction transaction, bool broadcast ) {
                   << std::endl;
         transactionPool.addTransaction(transaction);
 
-        std::cout << "======================================" << std::endl;
-        for (auto tx : transactionPool.transactions)
-            std::cout << tx.toJson() << std::endl;
-        std::cout << "======================================" << std::endl;
+        // std::cout << "======================================" << std::endl;
+        // for (auto tx : transactionPool.transactions)
+        //     std::cout << tx.toJson() << std::endl;
+        // std::cout << "======================================" << std::endl;
 
         if (broadcast) {
             Message message("TRANSACTION", transaction.toJson());

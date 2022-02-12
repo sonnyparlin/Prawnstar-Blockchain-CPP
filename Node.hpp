@@ -31,7 +31,6 @@ public:
     ~Node();                      // Destructor
 
     static Node *createNode(int argc, char **argv);
-    //static Node *createNode();
     void startServers(int argc, char **argv);
     void handleTransaction (Transaction, bool broadcast=true);
 };
