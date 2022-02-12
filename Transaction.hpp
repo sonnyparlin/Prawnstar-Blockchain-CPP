@@ -1,6 +1,7 @@
 #ifndef _TRANSACTION_H_
 #define _TRANSACTION_H_
 #include "config.hpp"
+#include <nlohmann/json.hpp>
 #include <string>
 
 using namespace std;
@@ -22,7 +23,7 @@ public:
                 string receiverAddress, 
                 double amount, 
                 string type);
-
+    Transaction();
     ~Transaction();          // Destructor
 
     string toJson();

@@ -1,9 +1,14 @@
 #include "Message.hpp"
 
-Message::Message(SocketConnector *sc, 
+Message::Message(SocketConnector sc, 
                  std::string messageType,
-                 std::vector<std::string> *peers)
-                 :sc(*sc), messageType(messageType), peers(*peers){};
+                 std::vector<std::string> peers)
+                 :sc(sc), messageType(messageType), peers(peers){};
+
+Message::Message(std::string messageType,
+                 std::string data) // refactor to be a string
+                 :messageType(messageType), data(data){};
+
 Message::~Message(){};
 
 std::string Message::toJson() { 
@@ -11,8 +16,11 @@ std::string Message::toJson() {
     j["Message"]["SocketConnector"]["ip"] = sc.ip;
     j["Message"]["SocketConnector"]["port"] = sc.port;
     j["Message"]["Type"] = messageType;
+
+
     if (peers.empty()) {
         j["Message"]["Peers"]=nullptr;
+        j["Message"]["data"]=data;
     } else {
         std::vector<std::string> peersToSerialize;
         for(auto peer : peers) {
@@ -20,6 +28,7 @@ std::string Message::toJson() {
         }
         j["Message"]["Peers"] = peersToSerialize;
     }
+
     std::string strMsgBody = to_string(j);
     
     // append message header with length

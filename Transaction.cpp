@@ -18,6 +18,8 @@ Transaction::Transaction(string senderAddress,
     timestamp = timeSinceEpoch();
 }
 
+Transaction::Transaction() {}
+
 Transaction::~Transaction() {}
 
 string Transaction::generateUUID() {
@@ -29,6 +31,7 @@ string Transaction::toJson() {
     nlohmann::json j;
     
     j["senderAddress"] = senderAddress;
+    j["senderPublicKey"] = senderPublicKey;
     j["receiverAddress"] = receiverAddress;
     j["amount"] = amount;
     j["type"] = type;

@@ -1,15 +1,21 @@
 #include <iostream>
 #include "TransactionPool.hpp"
 #include <nlohmann/json.hpp>
+#include <thread>
 
 TransactionPool::TransactionPool() {
 }
 
 TransactionPool::~TransactionPool() {
+     std::cout << "Calling destructor of transactionPool" << std::endl;
 }
 
 void TransactionPool::addTransaction(Transaction transaction) {
+    std::cout << "Size before adding: " << transactions.size() << std::endl;
     transactions.push_back(transaction);
+    std::cout << "transactionPool address: " << this << std::endl;
+    std::cout << "transactions address: " << &transactions << std::endl;
+    std::cout << "Size after adding: " << transactions.size() << std::endl;
 }
 
 bool TransactionPool::transactionExists(Transaction transaction) {
@@ -40,10 +46,20 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
     nlohmann::json j;
     nlohmann::json jContainer;
 
+    std::cout << "inside getPoolTransactionsJsonString() txs size: " << transactions.size() << std::endl;
+
     for (auto transaction : transactions) {
         j = nlohmann::json::parse(transaction.toJson());
         jContainer.push_back(j);
     }
+
+    std::cout << "transactionPool address inside transaction-pool endpoint: " << this << std::endl;
+
+    std::cout << "transactions address inside transaction-pool endpoint: " << &transactions << std::endl;
+
+    std::string jsonDump = jContainer.dump();
+
+    std::cout << "after dump inside getPoolTransactionsJsonString() txs size: " << transactions.size() << std::endl;
     
-    return jContainer.dump();
+    return jsonDump;
 }

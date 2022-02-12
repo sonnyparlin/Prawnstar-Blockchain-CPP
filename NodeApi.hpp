@@ -6,11 +6,12 @@
 #include <crow.h>
 #include "Node.hpp"
 
-class NodeApi : public Node {
+class NodeApi {
 public:
-    NodeApi();
+    NodeApi(Node *node);
     ~NodeApi();
 
+    Node *node;
     void start(std::string);
     int validateApiPort(const std::string po);
 };

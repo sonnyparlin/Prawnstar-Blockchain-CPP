@@ -1,7 +1,8 @@
 #include "NodeApi.hpp"
 #include "Wallet.hpp"
 
-NodeApi::NodeApi() {
+NodeApi::NodeApi(Node *node) {
+    this->node = node;
 }
 
 NodeApi::~NodeApi() {
@@ -35,12 +36,89 @@ void NodeApi::start(std::string po) {
     });
 
     CROW_ROUTE(app, "/blockchain")([&](){
-        return blockchain.toJsonString();
+        return node->blockchain.toJsonString();
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
-        return transactionPool.getPoolTransactionsJsonString();
+        std::cout << "This is a transaction pool" << std::endl;
+        std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();
+        std::cout << "transactionPool contents: " << node->transactionPool.getPoolTransactionsJsonString() << std::endl;
+        return returnValue;
     });
+
+    CROW_ROUTE(app, "/clear-transaction-pool")([&](){
+        node->transactionPool.transactions.clear();
+        return crow::response(200, "{\"message\":\"cleared transaction pool\"}");
+    });
+
+    // CROW_ROUTE(app, "/transaction-broadcast")
+    // .methods("POST"_method)
+    // ([&](const crow::request& req) {
+    //     std::string str = req.body;
+    //     auto x = crow::json::load(req.body);
+    //     std::cout << "x: " << x << std::endl;
+    //     //
+    //     if (!x)
+    //         return crow::response(crow::status::BAD_REQUEST);
+    //     //
+    //     if (!x.has("transaction"))
+    //         return crow::response("Missing transaction value");
+    //     //
+    //     std::ostringstream req_stream; 
+    //     // osstringstream for copying json elements
+    //     //
+    //     req_stream << x["transaction"]["id"]; // extract sender
+    //     std::string id = req_stream.str(); // copy string
+    //     id.erase(remove( id.begin(), id.end(), '\"' ),id.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["senderAddress"]; // extract sender
+    //     std::string sender = req_stream.str(); // copy string
+    //     sender.erase(remove( sender.begin(), sender.end(), '\"' ),sender.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["senderPublicKey"]; // extract sender
+    //     std::string senderPublicKey = req_stream.str(); // copy string
+    //     senderPublicKey.erase(remove( senderPublicKey.begin(), senderPublicKey.end(), '\"' ),senderPublicKey.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["receiverAddress"]; // extract receiver
+    //     std::string receiver = req_stream.str(); // copy string
+    //     receiver.erase(remove( receiver.begin(), receiver.end(), '\"' ),receiver.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["signature"]; // extract receiver
+    //     std::string signature = req_stream.str(); // copy string
+    //     signature.erase(remove( signature.begin(), signature.end(), '\"' ),signature.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["timestamp"]; // extract receiver
+    //     std::string timestamp = req_stream.str(); // copy string
+    //     timestamp.erase(remove( timestamp.begin(), timestamp.end(), '\"' ),timestamp.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     req_stream << x["transaction"]["type"]; // extract type
+    //     std::string type = req_stream.str(); // copy string
+    //     type.erase(remove( type.begin(), type.end(), '\"' ),type.end());
+    //     req_stream.str(std::string()); // clear the osstringstream
+    //     //
+    //     double amount = x["transaction"]["amount"].d();
+    //     nlohmann::json j = nlohmann::json::parse(str);
+    //     //
+    //     Transaction tx;
+    //     tx.id = id;
+    //     tx.amount = amount;
+    //     tx.senderAddress = sender;
+    //     tx.senderPublicKey = senderPublicKey;
+    //     tx.receiverAddress = receiver;
+    //     tx.signature = signature;
+    //     tx.timestamp = atol(timestamp.c_str());
+    //     tx.type = type;
+    //     //
+    //     std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
+    //     handleTransaction(tx);
+    //     return crow::response(201, "{\"message\":\"Transaction Broadcast\"}");
+    // });
 
     CROW_ROUTE(app, "/transact")
     .methods("POST"_method)
@@ -74,19 +152,21 @@ void NodeApi::start(std::string po) {
 
         double amount = x["transaction"]["amount"].d();
 
-        if (accountModel.accountExists(sender)) {
-            Wallet senderWallet(sender, accountModel);
-            Transaction tx = senderWallet.createTransaction(receiver, amount, type);
-            handleTransaction(tx);
-        } else {
-            Wallet senderWallet;
-            senderWallet.address = sender;
-            accountModel.addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
-            Transaction tx = senderWallet.createTransaction(receiver, amount, type);
-            handleTransaction(tx);
-        }
-        return crow::response("{\"message\":\"Received transaction\"}");
+        // if (accountModel.accountExists(sender)) {
+        //     Wallet senderWallet(sender, accountModel);
+        //     Transaction tx = senderWallet.createTransaction(receiver, amount, type);
+        //     handleTransaction(tx);
+        // } else {
+        Wallet senderWallet;
+        senderWallet.address = sender;
+        node->accountModel.addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
+        Transaction tx = senderWallet.createTransaction(receiver, amount, type);
+        std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
+        node->handleTransaction(tx);
+        // }
+        return crow::response(201, "{\"message\":\"Received transaction\"}");
     });
 
+    //app.port(port).loglevel(crow::LogLevel::Warning).run();
     app.port(port).run();
 }

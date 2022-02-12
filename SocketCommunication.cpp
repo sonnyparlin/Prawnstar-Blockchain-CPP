@@ -1,11 +1,12 @@
 #include "SocketCommunication.hpp"
 #include "Message.hpp"
+#include "Transaction.hpp"
 #include <nlohmann/json.hpp>
 #include <typeinfo>
 #include <algorithm>
 
-
-SocketCommunication::SocketCommunication() {
+SocketCommunication::SocketCommunication(Node *node) {
+    this->node = node;
 }
 
 SocketCommunication::~SocketCommunication() {
@@ -62,13 +63,30 @@ void SocketCommunication::receive_node_message(int sock) {
         }
     }
     
-    auto j = nlohmann::json::parse(buffer);
+    //std::cout << "buffer: " << buffer << std::endl;
+    nlohmann::json j = nlohmann::json::parse(buffer);
     std::string messageType = j["Message"]["Type"];
 
     if (messageType == "DISCOVERY") {
         peerDiscoveryHandleMessage(buffer);
     } else if (messageType == "TRANSACTION") {
-        //
+        std::string transactionString = j["Message"]["data"];
+        auto j = nlohmann::json::parse(transactionString);
+        
+        Transaction tx;
+        tx.id = j["id"];
+        tx.amount = j["amount"];
+        tx.senderAddress = j["senderAddress"];
+        tx.senderPublicKey = j["senderPublicKey"];
+        tx.receiverAddress = j["receiverAddress"];
+        tx.signature = j["signature"];
+        tx.timestamp = j["timestamp"];
+        tx.type = j["type"];
+
+        // std::cout << tx.toJson() << std::endl;
+
+        std::cout << "calling handleTransaction(tx) from p2p" << std::endl;
+        node->handleTransaction(tx, false);
     }
 
     // delete allocated memory
@@ -216,7 +234,7 @@ void SocketCommunication::peerDiscovery() {
     for(;;) {
         std::string message = handshakeMessage();
         //std::cout << "Broadcasting: " << message << std::endl;
-        broadcast(message.c_str());
+        broadcastPeerDiscovery(message.c_str());
         sleep(10);
     }
 }
@@ -232,12 +250,12 @@ std::string SocketCommunication::handshakeMessage() {
     nlohmann::json j;
     std::string objectAsString;
     std::string messageType = "DISCOVERY";
-    Message handshakeMsg(&sc, messageType, &peers);
+    Message handshakeMsg(sc, messageType, peers);
     std::string jsonMessage = handshakeMsg.toJson();
     return jsonMessage.c_str();
 }
 
-void SocketCommunication::broadcast(const char *message) {
+void SocketCommunication::broadcastPeerDiscovery(const char *message) {
     //std::cout << "broadcast " << std::endl;
     auto j = nlohmann::json::parse(message + 4);
     if (j["Message"]["Peers"] != nullptr) {
@@ -274,6 +292,38 @@ void SocketCommunication::broadcast(const char *message) {
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
+    }
+}
+
+void SocketCommunication::broadcast(const char *message) {
+    if (peers.empty()) {return;}
+    auto fullJsonString = nlohmann::json::parse(message + 4);
+
+    std::cout << "Broacasting to the network..." << std::endl;
+
+    std::vector<std::string> tempPeers = peers;
+    for(auto &ipPortStr : tempPeers) {
+        char *token = strtok((char *)ipPortStr.c_str(), ":");
+
+        std::vector<std::string> ipPortStrV;
+        while (token != NULL)
+        {
+            ipPortStrV.push_back(token);
+            token = strtok(NULL, ":");
+        }
+        
+        int num = atoi(ipPortStrV.at(1).c_str());
+        //std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
+
+        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+        if (outgoingSocket == -1) {            
+            return;
+        }
+        
+        //send_node_message(outgoingSocket, message);
+
+        std::thread broadcastThread (&SocketCommunication::send_node_message, this, outgoingSocket, message);
+        broadcastThread.join();
     }
 }
 
