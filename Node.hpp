@@ -14,7 +14,6 @@ class SocketCommunication;
 
 class Node {
 private:
-    Node();
     Node(int argc, char **argv); // Constructor
     static Node *node;
 
