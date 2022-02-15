@@ -76,8 +76,68 @@ namespace utils {
         return static_cast<unsigned char>(dis(gen));
     }
 
+    char asciitolower(char in) {
+        if (in <= 'Z' && in >= 'A')
+            return in - ('Z' - 'z');
+        return in;
+    }
+
     std::string uuid_gen() {
         boost::uuids::uuid uuid = boost::uuids::random_generator()();
         return to_string(uuid);
+    }
+
+    std::string gen_random_str(const int len) {
+        static const char alphanum[] =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
+        std::string tmp_s;
+        tmp_s.reserve(len);
+
+        srand (time(NULL));
+        for (int i = 0; i < len; ++i) {
+            tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+        }
+        
+        //std::cout << tmp_s << std::endl;
+        return tmp_s;
+    }
+
+    static const long hextable[] = { 
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1, 0,1,2,3,4,5,6,7,8,9,-1,-1,-1,-1,-1,-1,-1,10,11,12,13,14,15,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,10,11,12,13,14,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+    };
+
+    /** 
+     * @brief convert a hexidecimal string to a signed long
+     * will not produce or process negative numbers except 
+     * to signal error.
+     * 
+     * @param hex without decoration, case insensitive. 
+     * 
+     * @return -1 on error, or result (max (sizeof(long)*8)-1 bits)
+     */
+    int hexToInt(const char *hex) {
+        int ret = 0; 
+        while (*hex && ret >= 0) {
+            ret = (ret << 4) | hextable[(unsigned char)*hex++];
+        }
+        if (ret < 0) ret *= -1;
+        return ret; 
+    }
+
+    int ABS(int z) {
+        if (z < 0) z *= -1;
+        return z;
     }
 }

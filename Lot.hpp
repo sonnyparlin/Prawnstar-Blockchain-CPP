@@ -10,6 +10,7 @@ public:
     int iteration;
     std::string lastBlockHash;
 
+    Lot();
     Lot(std::string pubString, int i, std::string lBH); // Constructor
     ~Lot(); // Destructor
 

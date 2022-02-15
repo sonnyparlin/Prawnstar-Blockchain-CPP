@@ -1,6 +1,10 @@
 #include "Lot.hpp"
 #include "utils.hpp"
 
+Lot::Lot(){
+    
+}
+
 Lot::Lot(std::string pubString, int i, std::string lBH) {
     publicKeyString = pubString;
     iteration = i;

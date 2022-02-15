@@ -28,6 +28,10 @@ namespace utils {
     bool verifySignature(std::string dataStr, std::string signature, std::string publicKey);
     unsigned char random_char();
     std::string uuid_gen();
+    char asciitolower(char in);
+    std::string gen_random_str(const int len);
+    int hexToInt(const char *hex);
+    int ABS(int x);
 }
 
 #endif // _UTILS_H_

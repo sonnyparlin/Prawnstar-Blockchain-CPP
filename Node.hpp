@@ -8,6 +8,7 @@
 #include "Message.hpp"
 #include "AccountModel.hpp"
 #include "SocketCommunication.hpp"
+#include "ProofOfStake.hpp"
 #include <mutex>
 
 class SocketCommunication;
@@ -23,6 +24,7 @@ public:
     Blockchain blockchain;
     AccountModel accountModel;
     SocketCommunication *p2p;
+    ProofOfStake proofOfStake;
 
     int argc;
     char **argv;

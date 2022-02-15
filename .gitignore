@@ -2,3 +2,4 @@
 lib/
 main
 main.dSYM/
+*.o
