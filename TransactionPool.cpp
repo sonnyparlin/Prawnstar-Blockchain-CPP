@@ -46,20 +46,15 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
     nlohmann::json j;
     nlohmann::json jContainer;
 
-    //std::cout << "inside getPoolTransactionsJsonString() txs size: " << transactions.size() << std::endl;
-
     for (auto transaction : transactions) {
         j = nlohmann::json::parse(transaction.toJson());
         jContainer.push_back(j);
     }
 
-    // std::cout << "transactionPool address inside transaction-pool endpoint: " << this << std::endl;
-
-    // std::cout << "transactions address inside transaction-pool endpoint: " << &transactions << std::endl;
-
-    std::string jsonDump = jContainer.dump();
-
-    // std::cout << "after dump inside getPoolTransactionsJsonString() txs size: " << transactions.size() << std::endl;
-    
+    std::string jsonDump = jContainer.dump();    
     return jsonDump;
+}
+
+bool TransactionPool::forgerRequired() {
+    return transactions.size() >= 1;
 }

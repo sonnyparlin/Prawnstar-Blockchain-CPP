@@ -1,14 +1,15 @@
 # Compile and run
 
 ## Download dependancies
+    * Install boost_1_78_0, 
+        * https://www.boost.org/users/download/
+        * https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install
+
     *  cd cryptopp860;make; sudo make install;cd ..
 
-    * Install boost_1_78_0, https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install
+    * Run `make all` to build and ./main to run.
 
-    * Alternativly, instead of compiling from vs code, you can run `make` to build 
-    and ./main to run.
-
-My vscode tasks.json file looks like this:
+If you want to compile from vscode, set your tasks.json file to look like this:
 
 ```json
 {
@@ -20,7 +21,7 @@ My vscode tasks.json file looks like this:
             "command": "/usr/bin/g++",
             "args": [
                 "-Wall",
-                "-std=c++17",
+                "-std=c++14",
                 "-lcryptopp",
                 "-I",
                 "${fileDirname}/include/",

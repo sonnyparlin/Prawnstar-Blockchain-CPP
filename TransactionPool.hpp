@@ -16,6 +16,7 @@ public:
     bool transactionExists(Transaction transaction);
     void removeFromPool(vector<Transaction> txs);
     std::string getPoolTransactionsJsonString();
+    bool forgerRequired();
 };
 
 #endif // _TRANSACTIONPOOL_H_
