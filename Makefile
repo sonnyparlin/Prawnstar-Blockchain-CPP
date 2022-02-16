@@ -6,7 +6,7 @@ includes := $(PWD)/include/ -I/usr/local/include
 outfile := main
 compiler := /usr/bin/g++
 
-all: AccountModel.o Message.o SocketCommunication.o Wallet.o utils.o \
+objs: AccountModel.o Message.o SocketCommunication.o Wallet.o utils.o \
 		Block.o Node.o SocketConnector.o config.o Blockchain.o NodeApi.o \
 		Transaction.o main.o Lot.o ProofOfStake.o TransactionPool.o \
 		p2putils.o
@@ -46,7 +46,7 @@ SocketConnector.o: SocketConnector.cpp SocketConnector.hpp
 main.o: main.cpp
 	$(compiler) $(flags) -I $(includes) -g -c $(PWD)/main.cpp
 
-prawnstar:
+all: objs
 	$(compiler) $(flags) $(libs) -I $(includes) -g $(PWD)/*.o -o $(PWD)/$(outfile)
 
 cryptopp: 

@@ -16,6 +16,7 @@ Node *Node::createNode(int argc, char **argv) {
     if (node == nullptr) {
         node = new Node(argc, argv);
     }
+    
     return node;
 }
 
