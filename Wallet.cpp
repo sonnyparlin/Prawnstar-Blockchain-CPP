@@ -1,11 +1,10 @@
 #include "Wallet.hpp"
 #include "Block.hpp"
-//#include <cryptopp/pem.h>
-#include "AccountModel.hpp"
 
 using namespace CryptoPP;
 
-Wallet::Wallet(const bool useFile) {
+Wallet::Wallet(const bool useFile, Node *node) {
+    this->node = node;
     genKeyPair(true);
 }
 
@@ -13,14 +12,19 @@ Wallet::Wallet() {
     genKeyPair(false);
 }
 
-Wallet::Wallet(std::string address, AccountModel accountModel) {
-    loadWalletFromAddress(address, accountModel);
+Wallet::Wallet(Node *node) {
+    genKeyPair(false);
+    node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
+}
+
+Wallet::Wallet(std::string address) {
+    loadWalletFromAddress(address);
 }
 
 Wallet::~Wallet() {
 }
 
-void Wallet::loadWalletFromAddress(const std::string& addr, AccountModel accountModel) {
+void Wallet::loadWalletFromAddress(const std::string& addr) {
     // Need to get this information from the AccountModel
     // Maybe when someone creates an account we add it to the
     // AccountModel immediately. Right now we generate a new wallet 
@@ -28,9 +32,9 @@ void Wallet::loadWalletFromAddress(const std::string& addr, AccountModel account
     // generated on the fly, we want to load them instead.
     //genKeyPair(false);
     //address = addr;
-    address = addr;
-    walletPublicKey = accountModel.addressToPublicKey[addr];
-    walletPrivateKey = accountModel.addressToPrivateKey[addr];
+    address = addr; // fix after we set up wallet creation via web
+    walletPublicKey = node->accountModel->addressToPublicKey[addr];
+    walletPrivateKey = node->accountModel->addressToPrivateKey[addr];
     //std::cout << "walletPublicKey: " << walletPublicKey << std::endl;
 }
 

@@ -3,15 +3,20 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include "Node.hpp"
+
+class Node;
 
 class AccountModel {
+private:
+    Node *node;
 public:
     std::vector<std::string> accounts;
     std::unordered_map<std::string, std::string> addressToPublicKey;
     std::unordered_map<std::string, std::string> addressToPrivateKey;
     std::unordered_map<std::string, double> balances;
 
-    AccountModel();           // Constructor
+    AccountModel(Node *node);           // Constructor
     AccountModel(std::string address);
     ~AccountModel();          // Destructor
 

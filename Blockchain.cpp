@@ -3,7 +3,8 @@
 #include "Block.hpp"
 #include "utils.hpp"
 
-Blockchain::Blockchain() {
+Blockchain::Blockchain(Node *node) {
+    this->node = node;
     blocks.push_back(genesis());
 }
 
@@ -46,7 +47,7 @@ bool Blockchain::lastBlockHashValid(Block block) {
 bool Blockchain::transactionCovered(Transaction transaction) {
     if (transaction.type == tx.exchange)
         return true;
-    double senderBalance = accountModel.getBalance(transaction.senderAddress);
+    double senderBalance = node->accountModel->getBalance(transaction.senderAddress);
     return senderBalance >= transaction.amount;
 }
 
@@ -68,12 +69,23 @@ void Blockchain::executeTransactions(std::vector<Transaction> transactions) {
 }
 
 void Blockchain::executeTransaction(Transaction transaction) {
-    std::string senderAddress = transaction.senderAddress;
-    std::string receiverAddress = transaction.receiverAddress;
-    double amount = transaction.amount;
+    if (transaction.type == "STAKE") {
+        std::string sender = transaction.senderAddress;
+        std::string receiver = transaction.receiverAddress;
 
-    accountModel.updateBalance(senderAddress, -amount);
-    accountModel.updateBalance(receiverAddress, amount);
+        if (sender == receiver) {
+            double amount = transaction.amount;
+            node->proofOfStake->update(sender, amount);
+            node->accountModel->updateBalance(sender, -amount);
+        }
+    } else {
+        std::string senderAddress = transaction.senderAddress;
+        std::string receiverAddress = transaction.receiverAddress;
+        double amount = transaction.amount;
+
+        node->accountModel->updateBalance(senderAddress, -amount);
+        node->accountModel->updateBalance(receiverAddress, amount);
+    }
 }
 
 vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
@@ -84,6 +96,12 @@ vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
         blks.push_back(block.jsonView());
     }
     return blks;
+}
+
+std::string Blockchain::nextForger() {
+    std::string lastBlockHash = blocks[blocks.size()-1].lastHash;
+    std::string nextForger = node->proofOfStake->forger(lastBlockHash);
+    return nextForger;
 }
 
 nlohmann::json Blockchain::toJson() const {

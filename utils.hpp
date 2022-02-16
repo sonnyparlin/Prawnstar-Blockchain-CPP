@@ -24,6 +24,8 @@
 #include <boost/uuid/uuid_io.hpp>
 
 namespace utils {
+    static int MASTER_NODE_PORT=10001;
+
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string signature, std::string publicKey);
     unsigned char random_char();
@@ -32,6 +34,7 @@ namespace utils {
     std::string gen_random_str(const int len);
     int hexToInt(const char *hex);
     int ABS(int x);
+    int getPort(char *portString);
 }
 
 #endif // _UTILS_H_

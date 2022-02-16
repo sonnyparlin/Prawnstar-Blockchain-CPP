@@ -1,6 +1,7 @@
 #include "AccountModel.hpp"
 
-AccountModel::AccountModel() {
+AccountModel::AccountModel(Node *node) {
+    this->node = node;
 }
 
 AccountModel::AccountModel(std::string address) {

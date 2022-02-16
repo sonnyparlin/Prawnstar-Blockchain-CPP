@@ -140,4 +140,22 @@ namespace utils {
         if (z < 0) z *= -1;
         return z;
     }
+
+    int getPort(char *portString) {
+        char* p;
+        errno = 0; // not 'int errno', because the '#include' already defined it
+        long port = strtol(portString, &p, 10);
+
+        if (*p != '\0' || errno != 0) {
+            std::cout << "Invalid null or ernno not 0" << std::endl;
+            return -1; // In main(), returning non-zero means failure
+        }
+
+        if (port < INT_MIN || port > INT_MAX) {
+            std::cout << "Invalid port" << std::endl;
+            return -1;
+        }
+
+        return port;
+    }
 }

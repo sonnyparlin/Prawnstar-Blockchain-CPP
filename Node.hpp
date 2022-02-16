@@ -12,6 +12,10 @@
 #include <mutex>
 
 class SocketCommunication;
+class Blockchain;
+class Wallet;
+class ProofOfStake;
+class AccountModel;
 
 class Node {
 private:
@@ -20,11 +24,11 @@ private:
 
 public:
     TransactionPool transactionPool;
-    Wallet wallet;
-    Blockchain blockchain;
-    AccountModel accountModel;
+    Wallet *wallet;
+    Blockchain *blockchain;
+    AccountModel *accountModel;
     SocketCommunication *p2p;
-    ProofOfStake proofOfStake;
+    ProofOfStake *proofOfStake;
 
     int argc;
     char **argv;
@@ -34,6 +38,7 @@ public:
     static Node *createNode(int argc, char **argv);
     void startServers(int argc, char **argv);
     void handleTransaction (Transaction, bool broadcast=true);
+    void forge();
 };
 
 #endif // _NODE_H_

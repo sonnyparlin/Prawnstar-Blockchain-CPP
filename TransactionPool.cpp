@@ -7,7 +7,6 @@ TransactionPool::TransactionPool() {
 }
 
 TransactionPool::~TransactionPool() {
-     std::cout << "Calling destructor of transactionPool" << std::endl;
 }
 
 void TransactionPool::addTransaction(Transaction transaction) {

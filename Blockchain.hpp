@@ -5,13 +5,18 @@
 #include "Block.hpp"
 #include "AccountModel.hpp"
 #include "config.hpp"
+#include "Node.hpp"
+
+class Node;
 
 class Blockchain {
+private:
+    Node *node;
+
 public:
     std::vector<Block> blocks;
-    AccountModel accountModel;
 
-    Blockchain();           // Constructor
+    Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor
     
     bool addBlock(Block block);
@@ -25,6 +30,7 @@ public:
     std::vector<Transaction> getCoveredTransactionSet(std::vector<Transaction> transactions);
     void executeTransaction(Transaction transaction);
     void executeTransactions(std::vector<Transaction> transactions);
+    std::string nextForger();
 };
 
 #endif // _BLOCKCHAIN_H_

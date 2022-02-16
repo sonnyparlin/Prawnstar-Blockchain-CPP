@@ -36,7 +36,7 @@ void NodeApi::start(std::string po) {
     });
 
     CROW_ROUTE(app, "/blockchain")([&](){
-        return node->blockchain.toJsonString();
+        return node->blockchain->toJsonString();
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
@@ -85,7 +85,7 @@ void NodeApi::start(std::string po) {
         // } else {
         Wallet senderWallet;
         senderWallet.address = sender;
-        node->accountModel.addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
+        node->accountModel->addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
         Transaction tx = senderWallet.createTransaction(receiver, amount, type);
         //std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
         node->handleTransaction(tx);

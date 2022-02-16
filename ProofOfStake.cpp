@@ -4,10 +4,19 @@
 #include <stdlib.h>
 #include <limits.h>
 
-ProofOfStake::ProofOfStake() {
+ProofOfStake::ProofOfStake(Node *node, int port) {
+    this->node = node;
+
+    if (port == utils::MASTER_NODE_PORT)
+        setGenesisNodeStake();
 }
 
 ProofOfStake::~ProofOfStake() {
+}
+
+void ProofOfStake::setGenesisNodeStake() {
+    std::string genesisPublicKey = node->wallet->walletPublicKey;
+    stakers[genesisPublicKey] = 1;
 }
 
 void ProofOfStake::update(std::string publicKeyString, double stake) {

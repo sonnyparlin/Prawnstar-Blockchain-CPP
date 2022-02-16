@@ -6,17 +6,33 @@ Node * Node::node=nullptr;
 
 Node::Node(int argc, char **argv) {
     p2p = new SocketCommunication(this);
+    accountModel = new AccountModel(this);
+    blockchain = new Blockchain(this);
+
+    int port = utils::getPort(argv[2]);
+    std::cout << "port is: " << port << std::endl;
+
+    if (port == utils::MASTER_NODE_PORT)
+        wallet = new Wallet(true, this);
+    else
+        wallet = new Wallet(this);
+
+    proofOfStake = new ProofOfStake(this, port);
 }
 
 Node::~Node() {
     delete p2p;
+    delete blockchain;
+    delete wallet;
+    delete proofOfStake;
+    delete accountModel;
 }
 
 Node *Node::createNode(int argc, char **argv) {
     if (node == nullptr) {
         node = new Node(argc, argv);
     }
-    
+
     return node;
 }
 
@@ -51,5 +67,16 @@ void Node::handleTransaction (Transaction transaction, bool broadcast ) {
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
         }
+        bool forgingRequired = transactionPool.forgerRequired();
+        if (forgingRequired)
+            forge();
     }
+}
+
+void Node::forge() {
+    std::string forger = blockchain->nextForger();
+    if (forger == wallet->walletPublicKey)
+        std::cout << "i am the next forger" << std::endl;
+    else
+        std::cout << "i am not the next forger" << std::endl;
 }

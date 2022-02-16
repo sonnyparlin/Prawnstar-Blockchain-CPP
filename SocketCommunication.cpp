@@ -168,14 +168,14 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         int outgoingSocket;
         int incomingSocket;
 
-        if (PORT != 10001 && i !=0 ) {
+        if (PORT != utils::MASTER_NODE_PORT && i !=0 ) {
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
                     p2putils::logit("Accept");
                     exit(EXIT_FAILURE);
             }
-        } else if (PORT == 10001) {
+        } else if (PORT == utils::MASTER_NODE_PORT) {
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
@@ -187,8 +187,8 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         //=========================================================
         // Master node handshake
         //=========================================================   
-        if (PORT != 10001 && i==0 && argc == 5) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], 10001);
+        if (PORT != utils::MASTER_NODE_PORT && i==0 && argc == 5) {
+            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], utils::MASTER_NODE_PORT);
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
@@ -196,11 +196,11 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         //================================================================
         // Server operations
         //================================================================
-        if (PORT != 10001 && i > 0) {
+        if (PORT != utils::MASTER_NODE_PORT && i > 0) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected, this, incomingSocket);
             peerThread.join();
 
-        } else if (PORT == 10001) {
+        } else if (PORT == utils::MASTER_NODE_PORT) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected,this, incomingSocket);
             peerThread.join();
         }
