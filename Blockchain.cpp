@@ -56,8 +56,11 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction
     for (auto transaction : transactions) {
         if (transactionCovered(transaction))
             coveredTransactions.push_back(transaction);
-        else
+        else {
             std::cout << "Transaction is not covered by the sender" << std::endl;
+            std::runtime_error notCovered("Transaction is not covered by the sender");
+            throw notCovered;
+        }
     }
     return coveredTransactions;
 }
@@ -86,6 +89,38 @@ void Blockchain::executeTransaction(Transaction transaction) {
         node->accountModel->updateBalance(senderAddress, -amount);
         node->accountModel->updateBalance(receiverAddress, amount);
     }
+}
+
+Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std::string forgerAddress) {
+    std::vector<Transaction> coveredTransactions = getCoveredTransactionSet(
+        transactionsFromPool
+    );
+
+    std::string transactionListAsString;
+    for (auto tx : coveredTransactions) {
+        transactionListAsString += tx.toJson();
+    }
+
+    std::string hash = utils::hash(transactionListAsString);
+    std::string lastHash = blocks[blocks.size()-1].hash;
+
+    Wallet forgerWallet(forgerAddress.c_str(), node);
+    executeTransactions(coveredTransactions);
+    Block newBlock = forgerWallet.createBlock(coveredTransactions, 
+                                              lastHash,
+                                              blocks.size());
+    blocks.push_back(newBlock);
+    return newBlock;
+}
+
+bool Blockchain::transactionExists(Transaction transaction) {
+    for(auto block : blocks) {
+        for(auto tx : block.transactions) {
+            if (transaction.equals(tx))
+                return true;
+        }
+    }
+    return false;
 }
 
 vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {

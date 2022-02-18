@@ -25,6 +25,9 @@ private:
 public:
     TransactionPool transactionPool;
     Wallet *wallet;
+    Wallet *exchangeWallet;
+    Wallet *bobWallet;
+    Wallet *aliceWallet;
     Blockchain *blockchain;
     AccountModel *accountModel;
     SocketCommunication *p2p;
@@ -37,7 +40,7 @@ public:
 
     static Node *createNode(int argc, char **argv);
     void startServers(int argc, char **argv);
-    void handleTransaction (Transaction, bool broadcast=true);
+    bool handleTransaction (Transaction, bool broadcast=true);
     void forge();
 };
 

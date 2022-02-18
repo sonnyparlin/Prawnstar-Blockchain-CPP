@@ -1,51 +1,48 @@
 #include "Wallet.hpp"
 #include "Block.hpp"
+#include <nlohmann/json.hpp>
 
 using namespace CryptoPP;
 
-Wallet::Wallet(const bool useFile, Node *node) {
+Wallet::Wallet(bool forgerWallet, const char *filename, Node *node) {
     this->node = node;
-    genKeyPair(true);
-}
-
-Wallet::Wallet() {
-    genKeyPair(false);
-}
-
-Wallet::Wallet(Node *node) {
-    genKeyPair(false);
+    genKeyPair(filename);
+    //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
     node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
 }
 
-Wallet::Wallet(std::string address) {
-    loadWalletFromAddress(address);
+Wallet::Wallet(const char *filename, Node *node) {
+    const char *p;
+    p = strstr(filename, ".der");
+    if (p) {
+        genKeyPair(filename);
+        //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
+        node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
+    } else {
+        std::cout << "getting wallet from accountModel" << std::endl;
+        address = filename;
+        walletPublicKey = node->accountModel->addressToPublicKey[address];
+        walletPrivateKey = node->accountModel->addressToPrivateKey[address];
+    }
 }
 
-Wallet::~Wallet() {
+Wallet::Wallet(Node *node) {
+    const char *filename = "none";
+    genKeyPair(filename);
+    //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
+    node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
 }
 
-void Wallet::loadWalletFromAddress(const std::string& addr) {
-    // Need to get this information from the AccountModel
-    // Maybe when someone creates an account we add it to the
-    // AccountModel immediately. Right now we generate a new wallet 
-    // and insert the address but the publickey and privatekey are
-    // generated on the fly, we want to load them instead.
-    //genKeyPair(false);
-    //address = addr;
-    address = addr; // fix after we set up wallet creation via web
-    walletPublicKey = node->accountModel->addressToPublicKey[addr];
-    walletPrivateKey = node->accountModel->addressToPrivateKey[addr];
-    //std::cout << "walletPublicKey: " << walletPublicKey << std::endl;
-}
+Wallet::~Wallet(){}
 
-void Wallet::genKeyPair(const bool useFile) {
+void Wallet::genKeyPair(const char *filename) {
 	// Generate keypair
     ECDSA<ECP, SHA256>::PrivateKey privateKey;
     ECDSA<ECP, SHA256>::PublicKey publicKey;
     AutoSeededRandomPool prng;
 
-    if (useFile) {
-        FileSource fs( "private.ec.der", true /*binary*/ );
+    if (strcmp(filename, "none") != 0) {
+        FileSource fs( filename, true /*binary*/ );
         privateKey.Load( fs );
         bool result = privateKey.Validate( prng, 3 );
         if (!result)
@@ -76,7 +73,7 @@ void Wallet::genKeyPair(const bool useFile) {
     const std::string walletPublicKey_y = key_y.str();
     walletPublicKey = walletPublicKey_x + walletPublicKey_y;
 
-    //std::cout << "public: " + walletPublicKey << std::endl;
+    // std::cout << "public: " + walletPublicKey << std::endl;
     address = "pv1" + generateAddress();
 }
 
@@ -104,6 +101,10 @@ std::string Wallet::sign(std::string strContents)
 {	
     // Hash the data to be signed.
     std::string message = utils::hash(strContents);
+
+    std::cout << "message to sign: " << message << std::endl;
+    std::cout << "address of signer: " << address << std::endl;
+    std::cout << "pubkey of signer: " << walletPublicKey << std::endl;
     
     AutoSeededRandomPool prng;
     ECDSA<ECP, SHA256>::PrivateKey privateKey;
@@ -114,14 +115,8 @@ std::string Wallet::sign(std::string strContents)
     x.Decode(decoder, decoder.MaxRetrievable());
     privateKey.Initialize(ASN1::secp256r1(), x);
 
-    // FileSource fs( "private.ec.der", true /*binary*/ );
-    // privateKey.Load( fs );
-    // bool result = privateKey.Validate( prng, 3 );
-    // if (!result)
-    //     std::cout << "Private key invalud for signing" << std::endl; // throw exception
-
     ECDSA<ECP, SHA256>::Signer signer(privateKey);
-     size_t siglen = signer.MaxSignatureLength();
+    size_t siglen = signer.MaxSignatureLength();
     std::string signature(siglen, 0x00);
     siglen = signer.SignMessage(prng, (const CryptoPP::byte*)&message[0], message.size(), (CryptoPP::byte*)&signature[0]);
     signature.resize(siglen);
@@ -143,6 +138,8 @@ std::string Wallet::sign(std::string strContents)
 
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) {
     Transaction transaction(address, receiverAddress, amount, type);
+    // std::cout << "signing data: " << transaction.payload() << std::endl;
+    std::cout << "transaction is being signed by: " << toJson() << std::endl;
     std::string signature = sign(transaction.payload());
     transaction.senderPublicKey = walletPublicKey;
     transaction.sign(signature);
@@ -156,4 +153,14 @@ Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash
     std::string signature = sign(block.payload());
     block.sign(signature);
     return block;
+}
+
+std::string Wallet::toJson() {
+    nlohmann::json j;
+
+    j["wallet"]["address"] = address;
+    j["wallet"]["publickey"] = walletPublicKey;
+    j["wallet"]["privatekey"] = walletPrivateKey;
+
+    return j.dump();
 }

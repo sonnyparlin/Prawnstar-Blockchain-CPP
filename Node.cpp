@@ -13,9 +13,18 @@ Node::Node(int argc, char **argv) {
     std::cout << "port is: " << port << std::endl;
 
     if (port == utils::MASTER_NODE_PORT)
-        wallet = new Wallet(true, this);
+        wallet = new Wallet(true, "private.ec.der", this);
     else
         wallet = new Wallet(this);
+
+    exchangeWallet = new Wallet("exchangePrivate.ec.der", this);
+    aliceWallet = new Wallet("aliceWalletPrivate.ec.der", this);
+    bobWallet = new Wallet("bobWalletPrivate.ec.der", this);
+
+    std::cout << "walletAddress: " << wallet->toJson() << std::endl;
+    std::cout << "exchangeAddress: " << exchangeWallet->toJson() << std::endl;
+    std::cout << "aliceAddress: " << aliceWallet->toJson() << std::endl;
+    std::cout << "bobAddress: " << bobWallet->toJson() << std::endl;
 
     proofOfStake = new ProofOfStake(this, port);
 }
@@ -26,6 +35,7 @@ Node::~Node() {
     delete wallet;
     delete proofOfStake;
     delete accountModel;
+    delete exchangeWallet;
 }
 
 Node *Node::createNode(int argc, char **argv) {
@@ -49,13 +59,14 @@ void Node::startServers(int argc, char **argv) {
     }
 }
 
-void Node::handleTransaction (Transaction transaction, bool broadcast ) {
+bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     std::string data = transaction.payload();
     std::string signature = transaction.signature;
     std::string signerPublicKey = transaction.senderPublicKey;
     bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
     bool transactionExists = transactionPool.transactionExists(transaction);
-    if (!transactionExists && signatureValid) {
+    bool transactionInBlock = blockchain->transactionExists(transaction);
+    if (!transactionExists && signatureValid && !transactionInBlock) {
         std::cout << "Adding transaction " 
                   << transaction.id 
                   << " to the pool on " 
@@ -70,13 +81,23 @@ void Node::handleTransaction (Transaction transaction, bool broadcast ) {
         bool forgingRequired = transactionPool.forgerRequired();
         if (forgingRequired)
             forge();
+        
+        return true;
     }
+    return false;
 }
 
 void Node::forge() {
     std::string forger = blockchain->nextForger();
-    if (forger == wallet->walletPublicKey)
+    if (forger == wallet->walletPublicKey) {
         std::cout << "i am the next forger" << std::endl;
-    else
+        try {
+            Block block = blockchain->createBlock(transactionPool.transactions, wallet->address); 
+            transactionPool.removeFromPool(block.transactions);
+            Message message("BLOCK", block.toJson());
+            std::string msgJson = message.toJson();
+            p2p->broadcast(msgJson.c_str());
+        } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
+    } else
         std::cout << "i am not the next forger" << std::endl;
 }

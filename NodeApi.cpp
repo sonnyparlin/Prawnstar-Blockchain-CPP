@@ -78,18 +78,16 @@ void NodeApi::start(std::string po) {
 
         double amount = x["transaction"]["amount"].d();
 
-        // if (accountModel.accountExists(sender)) {
-        //     Wallet senderWallet(sender, accountModel);
-        //     Transaction tx = senderWallet.createTransaction(receiver, amount, type);
-        //     handleTransaction(tx);
-        // } else {
-        Wallet senderWallet;
-        senderWallet.address = sender;
-        node->accountModel->addAccount(sender, senderWallet.walletPublicKey, senderWallet.walletPrivateKey);
-        Transaction tx = senderWallet.createTransaction(receiver, amount, type);
-        //std::cout << "Calling handleTransaction(tx) from POST" << std::endl;
-        node->handleTransaction(tx);
-        // }
+        if (node->accountModel->accountExists(sender)) {
+            Wallet senderWallet(sender.c_str(), node);
+            std::cout << "sender wallet on nodeapi: " << senderWallet.toJson() << std::endl;
+            Transaction tx = senderWallet.createTransaction(receiver, amount, type);
+            bool success = node->handleTransaction(tx);
+            if (!success)
+                return crow::response(500, "{\"message\":\"Failed to handle transaction\"}");
+        } else {
+            return crow::response(201, "{\"message\":\"Wallet not found\"}");
+        }
         return crow::response(201, "{\"message\":\"Received transaction\"}");
     });
 

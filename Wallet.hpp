@@ -19,18 +19,19 @@ public:
     std::string walletPublicKey;
     std::string address;
 
-    Wallet();
     Wallet(Node *node);
-    Wallet(std::string address);
-    Wallet(const bool useFile, Node *node);
+    //Wallet(std::string address, Node *node);
+    Wallet(const char *filename, Node *node);
+    Wallet(bool, const char *filename, Node *node);
     ~Wallet();
 
-    void genKeyPair(const bool useFile);
+    void genKeyPair(const char * filename);
     std::string sign(std::string data);
     Transaction createTransaction(std::string receiverAddress, double amount, std::string type);
     Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount);
     std::string generateAddress();
-    void loadWalletFromAddress(const std::string& address);
+    void loadWalletFromAddress(const std::string& address, Node *node);
+    std::string toJson();
 };
 
 #endif // _WALLET_H_

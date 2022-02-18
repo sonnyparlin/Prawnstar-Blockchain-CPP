@@ -17,8 +17,14 @@ namespace utils {
     using namespace CryptoPP;
     bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey) {
 
+        std::cout << "verifying with public key: " << walletPublicKey << std::endl;
+
         // Hash the data to be signed.
         std::string hashedData = hash(message);
+
+        std::cout << "message to verify: " << hashedData << std::endl;
+
+
 
         HexDecoder publicKeyDecoder;
         publicKeyDecoder.Put((CryptoPP::byte*)&walletPublicKey[0], walletPublicKey.size());
@@ -34,6 +40,7 @@ namespace utils {
         publicKey.Initialize( ASN1::secp256r1(), q );
         
         // Decode hex message (the block in a json string format)
+        // std::cout << "hex sig: " << encoded_signature << std::endl;
         HexDecoder message_decoder;
         message_decoder.Put((CryptoPP::byte*)&encoded_signature[0], encoded_signature.size() );
         message_decoder.MessageEnd();
@@ -52,21 +59,29 @@ namespace utils {
         ECDSA<ECP, SHA256>::Verifier verifier(publicKey);
         // Now that we've decoded our public key and our message, 
         // let's verify the message.
-        bool verifyResult = verifier.VerifyMessage( 
-            (const CryptoPP::byte*)&hashedData[0], 
-            hashedData.size(), 
-            (const CryptoPP::byte*)&decoded_signature[0],
-            decoded_signature.size() 
-        );
-        
-        // Verification failure?
-        if( !verifyResult ) {
-            std::cout << "Failed to verify signature on message" << std::endl;
-        } else {
-            //std::cout << "All good!" << std::endl;
-        }
 
-        return verifyResult;
+        std::cout << "encoded signature: " << encoded_signature << std::endl;
+        //std::cout << "decoded_signature: " << decoded_signature << std::endl;
+        std::cout << "hashedData: " << hashedData << std::endl;
+
+        try {
+            bool verifyResult = verifier.VerifyMessage( 
+                (const CryptoPP::byte*)&hashedData[0], 
+                hashedData.size(), 
+                (const CryptoPP::byte*)&encoded_signature[0],
+                encoded_signature.size()
+            );
+
+            // Verification failure?
+            if( !verifyResult ) {
+                std::cout << "Failed to verify signature on message" << std::endl;
+            } else {
+                //std::cout << "All good!" << std::endl;
+            }
+        } catch(CryptoMaterial::InvalidMaterial &e) {
+            std::cout << "Exception thrown by CryptoPP when verifying message: " << e.what() << std::endl;
+        }
+        return false;
     }
 
     unsigned char random_char() {
