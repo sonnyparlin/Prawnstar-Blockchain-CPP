@@ -17,17 +17,24 @@
 using namespace std;
 using namespace CryptoPP;
 
-int main() {
+int main(int argc, char *argv[]) {
     AutoSeededRandomPool prng;
     ECDSA<ECP, SHA256>::PrivateKey privateKey;
     ECDSA<ECP, SHA256>::PublicKey publicKey;
-    privateKey.Initialize( prng, ASN1::secp256r1());
+    privateKey.Initialize( prng, ASN1::secp256k1());
     const Integer& x1 = privateKey.GetPrivateExponent();
-    FileSink fs( "private.ec.der", true /*binary*/ );
+    char *argument = argv[1];
+    std::string privateName = argument;
+    privateName += "Private.ec.der";
+    FileSink fs(privateName.c_str(), true /*binary*/ );
+    std::cout << privateName.c_str() << std::endl;
     privateKey.Save( fs );
     
     privateKey.MakePublicKey( publicKey );
     const ECP::Point& q = publicKey.GetPublicElement();
-    FileSink fspublic( "public.ec.der", true /*binary*/ );
+    std::string pubName = argv[1];
+    pubName += "Public.ec.der";
+    std::cout << pubName.c_str() << std::endl;
+    FileSink fspublic(pubName.c_str(), true /*binary*/ );
     publicKey.Save( fspublic );
 }

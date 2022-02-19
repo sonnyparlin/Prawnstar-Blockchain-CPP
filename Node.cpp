@@ -21,10 +21,10 @@ Node::Node(int argc, char **argv) {
     aliceWallet = new Wallet("aliceWalletPrivate.ec.der", this);
     bobWallet = new Wallet("bobWalletPrivate.ec.der", this);
 
-    std::cout << "walletAddress: " << wallet->toJson() << std::endl;
-    std::cout << "exchangeAddress: " << exchangeWallet->toJson() << std::endl;
-    std::cout << "aliceAddress: " << aliceWallet->toJson() << std::endl;
-    std::cout << "bobAddress: " << bobWallet->toJson() << std::endl;
+    std::cout << "walletAddress: " << wallet->address << std::endl;
+    std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
+    std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
+    std::cout << "bobAddress: " << bobWallet->address << std::endl;
 
     proofOfStake = new ProofOfStake(this, port);
 }

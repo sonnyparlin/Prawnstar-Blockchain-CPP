@@ -16,15 +16,8 @@ namespace utils {
 
     using namespace CryptoPP;
     bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey) {
-
-        std::cout << "verifying with public key: " << walletPublicKey << std::endl;
-
         // Hash the data to be signed.
         std::string hashedData = hash(message);
-
-        std::cout << "message to verify: " << hashedData << std::endl;
-
-
 
         HexDecoder publicKeyDecoder;
         publicKeyDecoder.Put((CryptoPP::byte*)&walletPublicKey[0], walletPublicKey.size());
@@ -37,8 +30,8 @@ namespace utils {
         q.y.Decode(publicKeyDecoder, len/2);
 
         ECDSA<ECP, SHA256>::PublicKey publicKey;
-        publicKey.Initialize( ASN1::secp256r1(), q );
-        
+        publicKey.Initialize( ASN1::secp256k1(), q );
+
         // Decode hex message (the block in a json string format)
         // std::cout << "hex sig: " << encoded_signature << std::endl;
         HexDecoder message_decoder;
@@ -59,10 +52,6 @@ namespace utils {
         ECDSA<ECP, SHA256>::Verifier verifier(publicKey);
         // Now that we've decoded our public key and our message, 
         // let's verify the message.
-
-        std::cout << "encoded signature: " << encoded_signature << std::endl;
-        //std::cout << "decoded_signature: " << decoded_signature << std::endl;
-        std::cout << "hashedData: " << hashedData << std::endl;
 
         try {
             bool verifyResult = verifier.VerifyMessage( 

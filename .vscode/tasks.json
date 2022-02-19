@@ -8,13 +8,15 @@
             "args": [
                 "-Wall",
                 "-std=c++14",
-                "-lcryptopp",
+                "-lcrypto",
                 "-I",
-                "${fileDirname}/include/",
+                "/usr/local/opt/openssl@3/include",
                 "-I",
                 "/usr/local/include",
+                "-L/usr/local/opt/openssl@3/lib",
+                "-lcrypto",
                 "-g",
-                "${fileDirname}/*.cpp",
+                "${fileDirname}/eccossl.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

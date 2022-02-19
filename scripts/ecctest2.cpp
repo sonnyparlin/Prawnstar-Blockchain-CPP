@@ -37,7 +37,7 @@ void genKeyPair(const bool useFile) {
     AutoSeededRandomPool prng;
 
     if (useFile) {
-        FileSource fs( "private.ec.der", true /*binary*/ );
+        FileSource fs( "ecprivatekey.pem", true /*binary*/ );
         privateKey.Load( fs );
         bool result = privateKey.Validate( prng, 3 );
         if (!result)
@@ -48,7 +48,9 @@ void genKeyPair(const bool useFile) {
         key_p << std::hex << x1 << std::endl;
         walletPrivateKey = key_p.str();
     } else {
-        privateKey.Initialize( prng, ASN1::secp256r1());
+        privateKey.Initialize( prng, ASN1::secp256k1());
+        bool result = privateKey.Validate( prng, 3 );
+        if( !result ) { std::cout << "validation failed" << std::endl; }
         const Integer& x1 = privateKey.GetPrivateExponent();
         std::stringstream key_p;
         key_p << std::hex << x1 << std::endl;
@@ -67,6 +69,7 @@ void genKeyPair(const bool useFile) {
     const std::string walletPublicKey_x = key_x.str();
     const std::string walletPublicKey_y = key_y.str();
     walletPublicKey = walletPublicKey_x + walletPublicKey_y;
+    walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
 }
 
 bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey) {
@@ -85,7 +88,7 @@ bool verifySignature(std::string message, std::string encoded_signature, std::st
     q.y.Decode(publicKeyDecoder, len/2);
 
     ECDSA<ECP, SHA256>::PublicKey publicKey;
-    publicKey.Initialize( ASN1::secp256r1(), q );
+    publicKey.Initialize( ASN1::secp256k1(), q );
     
     // Decode hex message (the block in a json string format)
     HexDecoder message_decoder;
@@ -135,13 +138,7 @@ std::string sign(std::string strContents)
     decoder.MessageEnd();
     Integer x;
     x.Decode(decoder, decoder.MaxRetrievable());
-    privateKey.Initialize(ASN1::secp256r1(), x);
-
-    // FileSource fs( "private.ec.der", true /*binary*/ );
-    // privateKey.Load( fs );
-    // bool result = privateKey.Validate( prng, 3 );
-    // if (!result)
-    //     std::cout << "Private key invalud for signing" << std::endl; // throw exception
+    privateKey.Initialize(ASN1::secp256k1(), x);
 
     ECDSA<ECP, SHA256>::Signer signer(privateKey);
      size_t siglen = signer.MaxSignatureLength();
@@ -155,12 +152,10 @@ std::string sign(std::string strContents)
     encoder.MessageEnd();
 
     word64 size = encoder.MaxRetrievable();
-    if(size)
-    {
+    if(size) {
         encoded.resize(size);		
         encoder.Get((CryptoPP::byte*)&encoded[0], encoded.size());
     }
-
     return encoded;
 }
 
@@ -170,8 +165,8 @@ int main(int argc, const char* argv[])
     
     std::string message = "This is my message to verify";
     genKeyPair(false);
-    std::cout << walletPrivateKey << std::endl;
-    std::cout << walletPublicKey << std::endl;
+    // std::cout << walletPrivateKey << std::endl;
+    // std::cout << walletPublicKey << std::endl;
     std::string encodedSignature = sign(message);
     verifySignature(message, encodedSignature, walletPublicKey);
     

@@ -7,7 +7,6 @@ using namespace CryptoPP;
 Wallet::Wallet(bool forgerWallet, const char *filename, Node *node) {
     this->node = node;
     genKeyPair(filename);
-    //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
     node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
 }
 
@@ -16,10 +15,8 @@ Wallet::Wallet(const char *filename, Node *node) {
     p = strstr(filename, ".der");
     if (p) {
         genKeyPair(filename);
-        //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
-        node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
+        node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
     } else {
-        std::cout << "getting wallet from accountModel" << std::endl;
         address = filename;
         walletPublicKey = node->accountModel->addressToPublicKey[address];
         walletPrivateKey = node->accountModel->addressToPrivateKey[address];
@@ -29,7 +26,6 @@ Wallet::Wallet(const char *filename, Node *node) {
 Wallet::Wallet(Node *node) {
     const char *filename = "none";
     genKeyPair(filename);
-    //walletPrivateKey.erase(std::remove(walletPrivateKey.begin(), walletPrivateKey.end(), '\n'), walletPrivateKey.end());
     node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
 }
 
@@ -53,7 +49,7 @@ void Wallet::genKeyPair(const char *filename) {
         key_p << std::hex << x1 << endl;
         walletPrivateKey = key_p.str();
     } else {
-        privateKey.Initialize( prng, ASN1::secp256r1());
+        privateKey.Initialize( prng, ASN1::secp256k1());
         const Integer& x1 = privateKey.GetPrivateExponent();
         std::stringstream key_p;
         key_p << std::hex << x1 << endl;
@@ -73,7 +69,6 @@ void Wallet::genKeyPair(const char *filename) {
     const std::string walletPublicKey_y = key_y.str();
     walletPublicKey = walletPublicKey_x + walletPublicKey_y;
 
-    // std::cout << "public: " + walletPublicKey << std::endl;
     address = "pv1" + generateAddress();
 }
 
@@ -101,10 +96,6 @@ std::string Wallet::sign(std::string strContents)
 {	
     // Hash the data to be signed.
     std::string message = utils::hash(strContents);
-
-    std::cout << "message to sign: " << message << std::endl;
-    std::cout << "address of signer: " << address << std::endl;
-    std::cout << "pubkey of signer: " << walletPublicKey << std::endl;
     
     AutoSeededRandomPool prng;
     ECDSA<ECP, SHA256>::PrivateKey privateKey;
@@ -113,7 +104,11 @@ std::string Wallet::sign(std::string strContents)
     decoder.MessageEnd();
     Integer x;
     x.Decode(decoder, decoder.MaxRetrievable());
-    privateKey.Initialize(ASN1::secp256r1(), x);
+    privateKey.Initialize(ASN1::secp256k1(), x);
+
+    bool result = privateKey.Validate( prng, 3 );
+    if (!result)
+        std::cout << "***Private key invalid for signing***" << std::endl; // throw exception
 
     ECDSA<ECP, SHA256>::Signer signer(privateKey);
     size_t siglen = signer.MaxSignatureLength();
@@ -138,8 +133,6 @@ std::string Wallet::sign(std::string strContents)
 
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) {
     Transaction transaction(address, receiverAddress, amount, type);
-    // std::cout << "signing data: " << transaction.payload() << std::endl;
-    std::cout << "transaction is being signed by: " << toJson() << std::endl;
     std::string signature = sign(transaction.payload());
     transaction.senderPublicKey = walletPublicKey;
     transaction.sign(signature);
