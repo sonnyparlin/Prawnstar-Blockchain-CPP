@@ -12,6 +12,8 @@
                 "-I",
                 "/usr/local/opt/openssl@3/include",
                 "-I",
+                "/usr/local/Cellar/llvm/13.0.1/lib/clang/13.0.1/include",
+                "-I",
                 "/usr/local/include",
                 "-L/usr/local/opt/openssl@3/lib",
                 "-lcrypto",

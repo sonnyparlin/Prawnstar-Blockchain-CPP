@@ -64,33 +64,23 @@ const char * Wallet::sign(std::string str) {
     unsigned char *md = (unsigned char *)str.c_str();
 
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
-    if (!ctx) {
+    if (!ctx)
         std::cerr << "error creating ctx " << std::endl;
-        return nullptr;
-    }
 
-    if (EVP_PKEY_sign_init(ctx) <= 0) {
+    if (EVP_PKEY_sign_init(ctx) <= 0)
         std::cerr << "error initializing sig ctx" << std::endl;
-        return nullptr;
-    }
 
-    if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0) {
+    if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
         std::cerr << "error setting signature md" << std::endl;
-        return nullptr;
-    }
 
     /* Determine buffer length */
-    if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0) {
+    if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;
-        return nullptr;
-    }
 
     sig = (unsigned char *)OPENSSL_malloc(siglen);
 
-    if (!sig) {
+    if (!sig)
         std::cerr << "malloc failure" << std::endl;
-        return nullptr;
-    }
 
     if (EVP_PKEY_sign(ctx, sig, &siglen, md, mdlen) <= 0) {
         std::cerr << "error creating signature" << std::endl;
@@ -135,10 +125,7 @@ std::string sha256(const std::string str)
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256((unsigned char *)str.c_str(), str.length(), hash);
     std::stringstream ss;
-    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
-    {
-        ss << std::hex << (int)hash[i];
-    }
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
     return ss.str();
 }
 

@@ -2,7 +2,7 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 flags := -Wall -std=c++14
 libs := -lcryptopp
-includes := $(PWD)/include/ -I/usr/local/include
+includes := $(PWD)/include/ -I /usr/local/include
 outfile := main
 compiler := /usr/bin/g++
 
@@ -48,6 +48,9 @@ main.o: main.cpp
 
 all: objs
 	$(compiler) $(flags) $(libs) -I $(includes) -g $(PWD)/*.o -o $(PWD)/$(outfile)
+
+clean:
+	rm *.o
 
 cryptopp: 
 	$(MAKE) -C cryptopp860 all ; /usr/bin/sudo $(MAKE) -C cryptopp860 install
