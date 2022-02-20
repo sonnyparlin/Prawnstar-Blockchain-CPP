@@ -14,6 +14,7 @@ class Wallet {
 public:
     std::string publicKey;
     std::string privateKey;
+    std::string address;
 
     Wallet();
     ~Wallet();
@@ -27,6 +28,24 @@ Wallet::Wallet() {
     genKeyPair();
 }
 Wallet::~Wallet(){}
+
+std::string sha256(const std::string str)
+{
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256((unsigned char *)str.c_str(), str.length(), hash);
+    std::stringstream ss;
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
+    return ss.str();
+}
+
+std::string sha1(const std::string str)
+{
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA1((unsigned char *)str.c_str(), str.length(), hash);
+    std::stringstream ss;
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
+    return ss.str();
+}
 
 void Wallet::genKeyPair() {
     char *bp;
@@ -52,6 +71,9 @@ void Wallet::genKeyPair() {
     privateKey = bp;
     fclose (stream);
 
+    EVP_PKEY_free(pkey);
+
+    address = "pv1" + sha1(publicKey);
 }
 
 const char * Wallet::sign(std::string str) {
@@ -95,10 +117,10 @@ const char * Wallet::sign(std::string str) {
 
     EVP_PKEY_free(pkey);
 
-    static char out[64];
+    static char out[66];
     size_t hexlen;
     //return OPENSSL_buf2hexstr(sig, sizeof(sig));
-    OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig), '\0');
+    OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig)+24, '\0');
     return out;
 }
 
@@ -138,21 +160,14 @@ bool Wallet::verify(std::string str, const char *signature, std::string publicKe
     }
 }
 
-std::string sha256(const std::string str)
-{
-    unsigned char hash[SHA256_DIGEST_LENGTH];
-    SHA256((unsigned char *)str.c_str(), str.length(), hash);
-    std::stringstream ss;
-    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
-    return ss.str();
-}
-
 int main() {
     Wallet wallet;
     std::cout << wallet.publicKey << std::endl;
     std::cout << wallet.privateKey << std::endl;
+    std::cout << wallet.address << std::endl;
+    std::cout << "=======================================" << std::endl;
 
-    const std::string data = "message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.";
+    const std::string data = "message to sign";
 
     std::string hash = sha256(data);
     const char * signature = wallet.sign(hash);
