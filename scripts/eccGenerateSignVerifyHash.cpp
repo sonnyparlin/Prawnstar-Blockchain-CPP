@@ -51,9 +51,10 @@ void Wallet::genKeyPair() {
     char *bp;
     size_t size;
     FILE *stream;
+    const char *curve = "secp256k1";
 
-    const EVP_CIPHER *cipher = EVP_get_cipherbyname("secp256k1");
-    EVP_PKEY *pkey = EVP_EC_gen("secp256k1");
+    const EVP_CIPHER *cipher = EVP_get_cipherbyname(curve);
+    EVP_PKEY *pkey = EVP_EC_gen(curve);
     if (pkey == NULL) {
         std::cerr << "Error generating the ECC key." << std::endl;
         return;
