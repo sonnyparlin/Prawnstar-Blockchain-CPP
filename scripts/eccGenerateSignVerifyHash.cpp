@@ -165,18 +165,18 @@ bool Wallet::verify(std::string str, const char *signature, std::string publicKe
 
 int main() {
     Wallet wallet;
-    std::cout << wallet.publicKey << std::endl;
-    std::cout << wallet.privateKey << std::endl;
-    std::cout << wallet.address << std::endl;
-    std::cout << "=======================================" << std::endl;
+    // std::cout << wallet.publicKey << std::endl;
+    // std::cout << wallet.privateKey << std::endl;
+    // std::cout << wallet.address << std::endl;
+    // std::cout << "=======================================" << std::endl;
 
     const std::string data = "message to sign";
 
     std::string hash = sha256(data);
-    std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
+    // std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
     const char * signature = wallet.sign(hash);
 
-    std::cout << "using signature: " << std::endl << signature << "\n" << std::endl;
+    // std::cout << "verifying signature: " << std::endl << signature << "\n" << std::endl;
     bool ret = wallet.verify(hash, signature, wallet.publicKey);
 
     if (ret)

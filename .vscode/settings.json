@@ -108,6 +108,7 @@
         "ranges": "cpp",
         "classtemplate_hpp": "c",
         "main_for_testing": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__bits": "cpp"
     }
 }
