@@ -14,14 +14,13 @@ class Wallet {
 public:
     std::string publicKey;
     std::string privateKey;
-    EVP_PKEY *pkey;
 
     Wallet();
     ~Wallet();
 
     void genKeyPair();
     const char * sign(std::string);
-    bool verify(std::string, const char *);
+    bool verify(std::string, const char *, std::string);
 };
 
 Wallet::Wallet() {
@@ -35,7 +34,7 @@ void Wallet::genKeyPair() {
     FILE *stream;
 
     const EVP_CIPHER *cipher = EVP_get_cipherbyname("secp256k1");
-    pkey = EVP_EC_gen("secp256k1");
+    EVP_PKEY *pkey = EVP_EC_gen("secp256k1");
     if (pkey == NULL) {
         std::cerr << "Error generating the ECC key." << std::endl;
         return;
@@ -62,6 +61,13 @@ const char * Wallet::sign(std::string str) {
     size_t siglen;
     size_t mdlen = 32;
     unsigned char *md = (unsigned char *)str.c_str();
+    const char *mKey = privateKey.c_str();
+    BIO* bo = BIO_new( BIO_s_mem() );
+    BIO_write( bo, mKey,strlen(mKey));
+
+    EVP_PKEY* pkey = 0;
+    PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
+    BIO_free(bo);
 
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
     if (!ctx)
@@ -87,6 +93,8 @@ const char * Wallet::sign(std::string str) {
         return nullptr;
     }
 
+    EVP_PKEY_free(pkey);
+
     static char out[64];
     size_t hexlen;
     //return OPENSSL_buf2hexstr(sig, sizeof(sig));
@@ -94,12 +102,20 @@ const char * Wallet::sign(std::string str) {
     return out;
 }
 
-bool Wallet::verify(std::string str, const char *signature) {
+bool Wallet::verify(std::string str, const char *signature, std::string publicKeyString) {
     EVP_PKEY_CTX *ctx;
     size_t mdlen = 32;
     size_t siglen = sizeof(signature);
     unsigned char *sig = (unsigned char *)signature;
     unsigned char *md = (unsigned char *)str.c_str();
+
+    const char *mKey = publicKeyString.c_str();
+    BIO* bo = BIO_new( BIO_s_mem() );
+    BIO_write( bo, mKey,strlen(mKey));
+
+    EVP_PKEY* pkey = 0;
+    PEM_read_bio_PUBKEY( bo, &pkey, 0, 0 );
+    BIO_free(bo);
 
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
     if (!ctx)
@@ -110,6 +126,8 @@ bool Wallet::verify(std::string str, const char *signature) {
 
     if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
         std::cerr << "verify signature error" << std::endl;
+
+    EVP_PKEY_free(pkey);    
 
     /* Perform operation */
     int ret = EVP_PKEY_verify(ctx, sig, siglen, md, mdlen);
@@ -134,19 +152,19 @@ int main() {
     std::cout << wallet.publicKey << std::endl;
     std::cout << wallet.privateKey << std::endl;
 
-    const std::string data = "message to sign is a very long message that might have lots and lots of characters in it.";
+    const std::string data = "message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it. message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.message to sign is a very long message that might have lots and lots of characters in it.";
+
     std::string hash = sha256(data);
     const char * signature = wallet.sign(hash);
 
     std::cout << "signature: " << signature << std::endl;
-    bool ret = wallet.verify(hash, signature);
+    bool ret = wallet.verify(hash, signature, wallet.publicKey);
     std::cout << "hash: " << hash << " ";
 
     if (ret)
         std::cout << "Verified!" << std::endl;
     else
         std::cout << "Not verified." << hash << std::endl;
-
 
     return 0;
 }
