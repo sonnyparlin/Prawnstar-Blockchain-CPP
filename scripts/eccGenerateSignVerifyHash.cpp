@@ -117,6 +117,9 @@ const char * Wallet::sign(std::string str) {
 
     EVP_PKEY_free(pkey);
 
+    // had to trick OPENSSL_buf2hexstr_ex into creating 64 byte long strings
+    // by changing the out buffer to out[66] and adding +24 to the sizeof(sig).
+    // This seems to create consistent 64 byte hex strings. 
     static char out[66];
     size_t hexlen;
     //return OPENSSL_buf2hexstr(sig, sizeof(sig));
@@ -170,16 +173,16 @@ int main() {
     const std::string data = "message to sign";
 
     std::string hash = sha256(data);
+    std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
     const char * signature = wallet.sign(hash);
 
-    std::cout << "signature: " << signature << std::endl;
+    std::cout << "using signature: " << std::endl << signature << "\n" << std::endl;
     bool ret = wallet.verify(hash, signature, wallet.publicKey);
-    std::cout << "hash: " << hash << " ";
 
     if (ret)
-        std::cout << "Verified!" << std::endl;
+        std::cout << "Result: Verified!" << std::endl;
     else
-        std::cout << "Not verified." << hash << std::endl;
+        std::cout << "Result: Not verified." << hash << std::endl;
 
     return 0;
 }
