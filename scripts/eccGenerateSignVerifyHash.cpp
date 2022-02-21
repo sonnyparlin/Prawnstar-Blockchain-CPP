@@ -1,9 +1,6 @@
 #include <openssl/evp.h>
 #include <openssl/bio.h>
-#include <openssl/evp.h>
 #include <openssl/pem.h>
-#include <openssl/err.h>
-#include <openssl/ec.h>
 #include <iostream>
 #include <string>
 #include <sstream>
