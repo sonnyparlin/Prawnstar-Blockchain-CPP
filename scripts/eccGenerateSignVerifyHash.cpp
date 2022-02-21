@@ -118,7 +118,7 @@ const char * Wallet::sign(std::string str) {
     // had to trick OPENSSL_buf2hexstr_ex into creating 64 byte long strings
     // by changing the out buffer to out[66] and adding +24 to the sizeof(sig).
     // This seems to create consistent 64 byte hex strings. 
-    static char out[66];
+    static char out[66]; // had to make this static to avoid memory issue
     size_t hexlen;
     //return OPENSSL_buf2hexstr(sig, sizeof(sig));
     OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig)+24, '\0');
