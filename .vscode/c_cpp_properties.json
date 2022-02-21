@@ -3,7 +3,8 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/local/opt/openssl@3/include"
             ],
             "defines": [],
             "macFrameworkPath": [],
