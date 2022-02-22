@@ -16,7 +16,7 @@
                 "-L/usr/local/opt/openssl@3/lib",
                 "-lcrypto",
                 "-g",
-                "${fileDirname}/eccGenerateSignVerifyHash.cpp",
+                "${fileDirname}/sundeep_test.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

@@ -8,7 +8,7 @@
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/eccGenerateSignVerifyHash",
+            "program": "${fileDirname}/sundeep_test",
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

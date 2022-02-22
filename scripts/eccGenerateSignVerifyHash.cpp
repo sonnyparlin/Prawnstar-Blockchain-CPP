@@ -29,7 +29,7 @@ Wallet::~Wallet(){}
 
 struct Signature {
     size_t _size;
-    char *hexsig;
+    std::string hexsig;
 };
 
 std::string sha256(const std::string str)
@@ -121,7 +121,13 @@ struct Signature Wallet::sign(std::string str) {
     EVP_PKEY_free(pkey);
 
     Signature mysig;
-    mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+    // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+    char st[256];
+    size_t strlen;
+    OPENSSL_buf2hexstr_ex(st, 256, &strlen,
+                           sig, siglen, '\0');
+    std::string tmpString = st;
+    mysig.hexsig = (char *)tmpString.c_str();
     mysig._size = siglen;
     std::cout << "Signature converted to hex: " << std::endl;
     std::cout << mysig.hexsig << "\n" << std::endl;
@@ -131,10 +137,17 @@ struct Signature Wallet::sign(std::string str) {
 int Wallet::verify(std::string str, Signature signature, std::string publicKeyString) {
     EVP_PKEY_CTX *ctx;
     size_t mdlen = 32;
+
     size_t siglen = signature._size;
-    long len;
-    unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
+    // long len;
+    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
+    unsigned char buf[256];
     unsigned char *md = (unsigned char *)str.c_str();
+
+    const char *st = signature.hexsig.c_str();
+    size_t buflen;
+    OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
+    //OPENSSL_hexstr2buf_ex(buf, buflen, &buflen, st, '\0');
 
     const char *mKey = publicKeyString.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
@@ -157,7 +170,7 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
     EVP_PKEY_free(pkey);    
 
     /* Perform operation */
-    int ret = EVP_PKEY_verify(ctx, sig, siglen, md, mdlen);
+    int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
     return ret;
 }
 

@@ -1,6 +1,7 @@
 #include <openssl/evp.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -28,9 +29,8 @@ Wallet::~Wallet(){}
 
 struct Signature {
     size_t _size;
-    unsigned char * sig;
+    std::string hexsig;
 };
-
 
 std::string sha256(const std::string str)
 {
@@ -85,8 +85,8 @@ struct Signature Wallet::sign(std::string str) {
     unsigned char *sig;
     size_t siglen {0};
     size_t mdlen = 32;
+
     unsigned char *md = (unsigned char *)str.c_str();
-    
     const char *mKey = privateKey.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
@@ -108,8 +108,6 @@ struct Signature Wallet::sign(std::string str) {
     /* Determine buffer length */
     if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;
-        
-    std::cout << "siglen: " << siglen << std::endl;
 
     sig = (unsigned char *)OPENSSL_malloc(siglen);
 
@@ -119,28 +117,41 @@ struct Signature Wallet::sign(std::string str) {
     if (EVP_PKEY_sign(ctx, sig, &siglen, md, mdlen) <= 0) {
         std::cerr << "error creating signature" << std::endl;
     }
-    std::cout << "sig: " << sig << std::endl;
 
     EVP_PKEY_free(pkey);
 
-    // OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig), '\0');
-    std::cout << "sig size " << siglen << std::endl;
-    // std::cout << "size " << sizeof(out) << " length: " << strlen(out) << " " << out << std::endl;
-    // std::string mystring = (char *)sig;
     Signature mysig;
-
-    mysig.sig = sig;
+    // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+    char st[256];
+    size_t strlen;
+    OPENSSL_buf2hexstr_ex(st, 256, &strlen,
+                           sig, siglen, '\0');
+    std::string tmpString = st;
+    mysig.hexsig = (char *)tmpString.c_str();
     mysig._size = siglen;
+    std::cout << "Signature converted to hex: " << std::endl;
+    std::cout << mysig.hexsig << "\n" << std::endl;
     return mysig;
 }
 
 int Wallet::verify(std::string str, Signature signature, std::string publicKeyString) {
     EVP_PKEY_CTX *ctx;
     size_t mdlen = 32;
+
+    std::cout << "signature: " << signature.hexsig << std::endl;
+    std::cout << "signature size: " << signature._size << std::endl;
+
     size_t siglen = signature._size;
-    unsigned char *sig = signature.sig;
+    // long len;
+    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
+    unsigned char buf[256];
     unsigned char *md = (unsigned char *)str.c_str();
-    
+
+    const char *st = signature.hexsig.c_str();
+    size_t buflen;
+    OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
+    //OPENSSL_hexstr2buf_ex(buf, buflen, &buflen, st, '\0');
+
     const char *mKey = publicKeyString.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
@@ -162,7 +173,10 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
     EVP_PKEY_free(pkey);    
 
     /* Perform operation */
-    int ret = EVP_PKEY_verify(ctx, sig, siglen, md, mdlen);
+    std::cout << "before" << std::endl;
+    int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
+    std::cout << "after" << std::endl;
+
     return ret;
 }
 
@@ -173,19 +187,24 @@ int main() {
     // std::cout << wallet.address << std::endl;
     // std::cout << "=======================================" << std::endl;
 
-    const std::string data = "message to sign";
+    const std::string data = "This is my wonderful message.";
 
     std::string hash = sha256(data);
-    std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
+    std::cout << "\n\n\ndata to be hashed: " << data << std::endl;
+    std::cout << "hashed data to be signed: " << hash << "\n" << std::endl;
     Signature signature = wallet.sign(hash);
 
-    std::cout << "verifying signature: " << std::endl << signature.sig << "\n" << std::endl;
+    std::cout << "after sign signature.hexsig: " << signature.hexsig << std::endl;
+
+    std::cout << "Attempting to decode and verify signature: " << std::endl;
     int ret = wallet.verify(hash, signature, wallet.publicKey);
 
     if (ret == 1)
         std::cout << "Result: Verified!" << std::endl;
     else
         std::cout << "Result: Not verified: " << ret << std::endl;
+
+    std::cout << "\n" << std::endl;
 
     return 0;
 }
