@@ -1,6 +1,10 @@
 objs: eccGenerateSignVerifyHash.o eccGenKeyToDisk.o ecGenKeyPair.o jsontest.o signaturetest.o \
 		vectormap.o eccCryptoPPTest.o hashtest.o maptest.o template.o jsonSerialization.o \
-		rsatest.o vector.o
+		rsatest.o vector.o sundeep_test.o
+
+sundeep_test.o: sundeep_test.cpp
+	/usr/bin/g++ -Wall -std=c++14 -I/usr/local/opt/openssl@3/include sundeep_test.cpp -c 
+	/usr/bin/g++ -Wall -std=c++14 -I/usr/local/opt/openssl@3/include -L/usr/local/opt/openssl@3/lib sundeep_test.o -lcrypto -o sundeep_test
 
 eccGenerateSignVerifyHash.o: eccGenerateSignVerifyHash.cpp
 	/usr/bin/g++ -Wall -std=c++14 -I/usr/local/opt/openssl@3/include eccGenerateSignVerifyHash.cpp -c 

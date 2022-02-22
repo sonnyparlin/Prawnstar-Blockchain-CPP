@@ -12,7 +12,6 @@ public:
     std::string publicKey;
     std::string privateKey;
     std::string address;
-    //EVP_PKEY *pkey;
 
     Wallet();
     ~Wallet();
@@ -29,8 +28,9 @@ Wallet::~Wallet(){}
 
 struct Signature {
     size_t _size;
-    unsigned char *un_signed_char;
+    unsigned char * sig;
 };
+
 
 std::string sha256(const std::string str)
 {
@@ -82,12 +82,11 @@ void Wallet::genKeyPair() {
 
 struct Signature Wallet::sign(std::string str) {
     EVP_PKEY_CTX *ctx;
-    /* md is a SHA-256 digest in this example. */
     unsigned char *sig;
     size_t siglen {0};
     size_t mdlen = 32;
     unsigned char *md = (unsigned char *)str.c_str();
-    Signature mysig;
+    
     const char *mKey = privateKey.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
@@ -109,6 +108,8 @@ struct Signature Wallet::sign(std::string str) {
     /* Determine buffer length */
     if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;
+        
+    std::cout << "siglen: " << siglen << std::endl;
 
     sig = (unsigned char *)OPENSSL_malloc(siglen);
 
@@ -118,17 +119,17 @@ struct Signature Wallet::sign(std::string str) {
     if (EVP_PKEY_sign(ctx, sig, &siglen, md, mdlen) <= 0) {
         std::cerr << "error creating signature" << std::endl;
     }
+    std::cout << "sig: " << sig << std::endl;
 
     EVP_PKEY_free(pkey);
 
-    // had to trick OPENSSL_buf2hexstr_ex into creating 64 byte long strings
-    // by changing the out buffer to out[66] and adding +24 to the sizeof(sig).
-    // This seems to create consistent 64 byte hex strings. 
-    // static char out[64]; // had to make this static to avoid memory issue
-    // size_t hexlen;
-    //return OPENSSL_buf2hexstr(sig, sizeof(sig));
-    //OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig), '\0');
-    mysig.un_signed_char = sig;
+    // OPENSSL_buf2hexstr_ex(out, sizeof(out), &hexlen, sig, sizeof(sig), '\0');
+    std::cout << "sig size " << siglen << std::endl;
+    // std::cout << "size " << sizeof(out) << " length: " << strlen(out) << " " << out << std::endl;
+    // std::string mystring = (char *)sig;
+    Signature mysig;
+
+    mysig.sig = sig;
     mysig._size = siglen;
     return mysig;
 }
@@ -137,9 +138,9 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
     EVP_PKEY_CTX *ctx;
     size_t mdlen = 32;
     size_t siglen = signature._size;
-    unsigned char *sig = signature.un_signed_char;
+    unsigned char *sig = signature.sig;
     unsigned char *md = (unsigned char *)str.c_str();
-
+    
     const char *mKey = publicKeyString.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
@@ -167,10 +168,10 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
 
 int main() {
     Wallet wallet;
-    std::cout << wallet.publicKey << std::endl;
-    std::cout << wallet.privateKey << std::endl;
-    std::cout << wallet.address << std::endl;
-    std::cout << "=======================================" << std::endl;
+    // std::cout << wallet.publicKey << std::endl;
+    // std::cout << wallet.privateKey << std::endl;
+    // std::cout << wallet.address << std::endl;
+    // std::cout << "=======================================" << std::endl;
 
     const std::string data = "message to sign";
 
@@ -178,7 +179,7 @@ int main() {
     std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
     Signature signature = wallet.sign(hash);
 
-    std::cout << "verifying signature: " << std::endl << signature.un_signed_char << "\n" << std::endl;
+    std::cout << "verifying signature: " << std::endl << signature.sig << "\n" << std::endl;
     int ret = wallet.verify(hash, signature, wallet.publicKey);
 
     if (ret == 1)
