@@ -81,20 +81,19 @@ void Wallet::genKeyPair() {
 }
 
 struct Signature Wallet::sign(std::string str) {
-    EVP_PKEY_CTX *ctx;
-    unsigned char *sig;
-    size_t siglen {0};
-    size_t mdlen = 32;
-
+    /* str should be a sha256 hash */
     unsigned char *md = (unsigned char *)str.c_str();
+   
+    /* create private key from private key string */
     const char *mKey = privateKey.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
-
     EVP_PKEY* pkey = 0;
     PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
     BIO_free(bo);
 
+    /* initialize our signature context object */
+    EVP_PKEY_CTX *ctx;
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
     if (!ctx)
         std::cerr << "error creating ctx" << std::endl;
@@ -102,13 +101,23 @@ struct Signature Wallet::sign(std::string str) {
     if (EVP_PKEY_sign_init(ctx) <= 0)
         std::cerr << "error initializing sig ctx" << std::endl;
 
+    /* set the context digest type to sha256 */
     if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
         std::cerr << "error setting signature md" << std::endl;
 
+    /* 
+    mdlen is always 32, I don't know why, 
+    see https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_sign.html
+    */
+    size_t mdlen = 32;
+
     /* Determine buffer length */
+    size_t siglen {0};
     if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;
 
+    /* allocate memory for the signature */
+    unsigned char *sig;
     sig = (unsigned char *)OPENSSL_malloc(siglen);
 
     if (!sig)
@@ -118,59 +127,74 @@ struct Signature Wallet::sign(std::string str) {
         std::cerr << "error creating signature" << std::endl;
     }
 
-    EVP_PKEY_free(pkey);
-
     Signature mysig;
+    /* the easy way to translate your signature to a hex string */
     // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+
+    /* the not so easy way */
     char st[256];
     size_t strlen;
     OPENSSL_buf2hexstr_ex(st, 256, &strlen,
                            sig, siglen, '\0');
-    std::string tmpString = st;
-    mysig.hexsig = (char *)tmpString.c_str();
+    
+    /* assign the result to signature structure */
+    mysig.hexsig = st;
     mysig._size = siglen;
     std::cout << "Signature converted to hex: " << std::endl;
     std::cout << mysig.hexsig << "\n" << std::endl;
+
+    /* free memory */
+    EVP_PKEY_free(pkey);
+    EVP_PKEY_CTX_free(ctx);
+
+    /* return signature struct */
     return mysig;
 }
 
 int Wallet::verify(std::string str, Signature signature, std::string publicKeyString) {
-    EVP_PKEY_CTX *ctx;
-    size_t mdlen = 32;
 
-    size_t siglen = signature._size;
+    /* the easy way to translate your hex string back into your buffer */
     // long len;
     // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
-    unsigned char buf[256];
-    unsigned char *md = (unsigned char *)str.c_str();
 
+    /* the not so easy way */
+    unsigned char buf[256];
     const char *st = signature.hexsig.c_str();
     size_t buflen;
     OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
-    //OPENSSL_hexstr2buf_ex(buf, buflen, &buflen, st, '\0');
 
+    /* generate the pubic key using the public key string */
     const char *mKey = publicKeyString.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
-
     EVP_PKEY* pkey = 0;
     PEM_read_bio_PUBKEY( bo, &pkey, 0, 0 );
+    /* free memory */
     BIO_free(bo);
 
+    /* create the key context */
+    EVP_PKEY_CTX *ctx;
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
     if (!ctx)
         std::cerr << "ctx error" << std::endl;
 
+    /* initialize the context */
     if (EVP_PKEY_verify_init(ctx) <= 0)
         std::cerr << "ctx verify error" << std::endl;
 
+    /* set the message digest type to sha256 */
     if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
-        std::cerr << "verify signature error" << std::endl;
-
-    EVP_PKEY_free(pkey);    
+        std::cerr << "verify signature error" << std::endl; 
 
     /* Perform operation */
+    unsigned char *md = (unsigned char *)str.c_str();
+    size_t mdlen = 32;
+    size_t siglen = signature._size;
     int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
+
+    /* free memory and return the result */
+    EVP_PKEY_free(pkey);
+    EVP_PKEY_CTX_free(ctx);
     return ret;
 }
 
