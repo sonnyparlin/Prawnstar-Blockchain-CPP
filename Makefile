@@ -1,8 +1,8 @@
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 flags := -Wall -std=c++14
-libs := -lcryptopp
-includes := $(PWD)/include/ -I /usr/local/include
+libs := -lcrypto -L/usr/local/opt/openssl@3/lib
+includes := $(PWD)/include/ -I /usr/local/include -I /usr/local/opt/openssl@3/include
 outfile := main
 compiler := /usr/bin/g++
 

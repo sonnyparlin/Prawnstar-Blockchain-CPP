@@ -24,7 +24,7 @@ private:
 
 public:
     TransactionPool transactionPool;
-    Wallet *wallet;
+    Wallet *nodeWallet;
     Wallet *exchangeWallet;
     Wallet *bobWallet;
     Wallet *aliceWallet;

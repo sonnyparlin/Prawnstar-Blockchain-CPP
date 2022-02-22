@@ -15,7 +15,7 @@ ProofOfStake::~ProofOfStake() {
 }
 
 void ProofOfStake::setGenesisNodeStake() {
-    std::string genesisPublicKey = node->wallet->walletPublicKey;
+    std::string genesisPublicKey = node->nodeWallet->walletPublicKey;
     stakers[genesisPublicKey] = 1;
 }
 

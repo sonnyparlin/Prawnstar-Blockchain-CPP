@@ -12,16 +12,12 @@ Node::Node(int argc, char **argv) {
     int port = utils::getPort(argv[2]);
     std::cout << "port is: " << port << std::endl;
 
-    if (port == utils::MASTER_NODE_PORT)
-        wallet = new Wallet(true, "private.ec.der", this);
-    else
-        wallet = new Wallet(this);
+    nodeWallet = new Wallet(this);
+    exchangeWallet = new Wallet(this);
+    aliceWallet = new Wallet(this);
+    bobWallet = new Wallet(this);
 
-    exchangeWallet = new Wallet("exchangePrivate.ec.der", this);
-    aliceWallet = new Wallet("aliceWalletPrivate.ec.der", this);
-    bobWallet = new Wallet("bobWalletPrivate.ec.der", this);
-
-    std::cout << "walletAddress: " << wallet->address << std::endl;
+    std::cout << "walletAddress: " << nodeWallet->address << std::endl;
     std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
     std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
     std::cout << "bobAddress: " << bobWallet->address << std::endl;
@@ -32,7 +28,7 @@ Node::Node(int argc, char **argv) {
 Node::~Node() {
     delete p2p;
     delete blockchain;
-    delete wallet;
+    delete nodeWallet;
     delete proofOfStake;
     delete accountModel;
     delete exchangeWallet;
@@ -89,10 +85,10 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 
 void Node::forge() {
     std::string forger = blockchain->nextForger();
-    if (forger == wallet->walletPublicKey) {
+    if (forger == nodeWallet->walletPublicKey) {
         std::cout << "i am the next forger" << std::endl;
         try {
-            Block block = blockchain->createBlock(transactionPool.transactions, wallet->address); 
+            Block block = blockchain->createBlock(transactionPool.transactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();

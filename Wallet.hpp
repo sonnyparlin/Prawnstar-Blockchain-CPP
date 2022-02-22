@@ -21,15 +21,14 @@ public:
 
     Wallet(Node *node);
     //Wallet(std::string address, Node *node);
-    Wallet(const char *filename, Node *node);
-    Wallet(bool, const char *filename, Node *node);
+    Wallet(const char *address, Node *node);
     ~Wallet();
 
-    void genKeyPair(const char * filename);
-    std::string sign(std::string data);
+    void genKeyPair();
+    utils::Signature sign(std::string data);
     Transaction createTransaction(std::string receiverAddress, double amount, std::string type);
     Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount);
-    std::string generateAddress();
+    std::string generateAddress(const std::string str);
     void loadWalletFromAddress(const std::string& address, Node *node);
     std::string toJson();
 };

@@ -2,77 +2,61 @@
 #include "Block.hpp"
 #include <nlohmann/json.hpp>
 
-using namespace CryptoPP;
-
-Wallet::Wallet(bool forgerWallet, const char *filename, Node *node) {
-    this->node = node;
-    genKeyPair(filename);
-    node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
-}
-
-Wallet::Wallet(const char *filename, Node *node) {
-    const char *p;
-    p = strstr(filename, ".der");
-    if (p) {
-        genKeyPair(filename);
-        node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
-    } else {
-        address = filename;
-        walletPublicKey = node->accountModel->addressToPublicKey[address];
-        walletPrivateKey = node->accountModel->addressToPrivateKey[address];
-    }
+Wallet::Wallet(const char *_address, Node *node) {
+    address = _address;
+    walletPublicKey = node->accountModel->addressToPublicKey[address];
+    walletPrivateKey = node->accountModel->addressToPrivateKey[address];
 }
 
 Wallet::Wallet(Node *node) {
-    const char *filename = "none";
-    genKeyPair(filename);
+    genKeyPair();
     node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
 }
 
 Wallet::~Wallet(){}
 
-void Wallet::genKeyPair(const char *filename) {
-	// Generate keypair
-    ECDSA<ECP, SHA256>::PrivateKey privateKey;
-    ECDSA<ECP, SHA256>::PublicKey publicKey;
-    AutoSeededRandomPool prng;
-
-    if (strcmp(filename, "none") != 0) {
-        FileSource fs( filename, true /*binary*/ );
-        privateKey.Load( fs );
-        bool result = privateKey.Validate( prng, 3 );
-        if (!result)
-            std::cout << "***Private key invalid for signing***" << std::endl; // throw exception
-        
-        const Integer& x1 = privateKey.GetPrivateExponent();
-        std::stringstream key_p;
-        key_p << std::hex << x1 << endl;
-        walletPrivateKey = key_p.str();
-    } else {
-        privateKey.Initialize( prng, ASN1::secp256k1());
-        const Integer& x1 = privateKey.GetPrivateExponent();
-        std::stringstream key_p;
-        key_p << std::hex << x1 << endl;
-        walletPrivateKey = key_p.str();
-    } 
+void Wallet::genKeyPair() {
+    /* set our curve name */
+    const char *curve = "secp256k1";
     
-    privateKey.MakePublicKey( publicKey );
-    const ECP::Point& q = publicKey.GetPublicElement();
-    const Integer& qx = q.x;
-    const Integer& qy = q.y;
+    /* Generate the key pair */
+    EVP_PKEY *pkey = EVP_EC_gen(curve);
+    if (pkey == NULL) {
+        std::cerr << "Error generating the ECC key." << std::endl;
+        return;
+    }
 
-    std::stringstream key_x;
-    std::stringstream key_y;
-    key_x << std::hex << qx;
-    key_y << std::hex << qy;
-    const std::string walletPublicKey_x = key_x.str();
-    const std::string walletPublicKey_y = key_y.str();
-    walletPublicKey = walletPublicKey_x + walletPublicKey_y;
+    /* 
+    Use some FILE stream magic to easily convert our 
+    public and private keys into strings 
+    */
+    char *bp;
+    size_t size;
+    FILE *stream;
+    
+    stream = open_memstream (&bp, &size);
+    PEM_write_PUBKEY(stream, pkey);
+    fflush (stream);
+    walletPublicKey = bp;
+    fclose (stream);
 
-    address = "pv1" + generateAddress();
+    stream = open_memstream (&bp, &size);
+    const EVP_CIPHER *cipher = EVP_get_cipherbyname(curve);
+    PEM_write_PrivateKey(stream, pkey, cipher, NULL, 0, NULL, NULL);
+    fflush (stream);
+    walletPrivateKey = bp;
+    fclose (stream);
+
+    /* 
+    The keys are stored in our wallet now so we can free the memory
+    used for the keys.
+    */
+    EVP_PKEY_free(pkey);
+
+    address = "pv1" + generateAddress(walletPublicKey);
 }
 
-std::string Wallet::generateAddress() {
+std::string Wallet::generateAddress(const std::string str) {
 
     // The public crypto address is a SHA1 
     // hex encoded string of the walletPublicKey.
@@ -83,59 +67,89 @@ std::string Wallet::generateAddress() {
     // re-hash  and compare the resulting string to 
     // the address as a way of verifying authenticity.
 
-    using namespace CryptoPP;
-    std::string hexdigest{""};
-    SHA1 hash;
-    StringSource s(walletPublicKey, true, 
-        new HashFilter(hash, new HexEncoder(new StringSink(hexdigest), false)));
-
-    return hexdigest;
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA1((unsigned char *)str.c_str(), str.length(), hash);
+    std::stringstream ss;
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
+    return ss.str();
 }
 
-std::string Wallet::sign(std::string strContents)
+utils::Signature Wallet::sign(std::string str)
 {	
-    // Hash the data to be signed.
-    std::string message = utils::hash(strContents);
-    
-    AutoSeededRandomPool prng;
-    ECDSA<ECP, SHA256>::PrivateKey privateKey;
-    HexDecoder decoder;
-    decoder.Put((CryptoPP::byte*)&walletPrivateKey[0], walletPrivateKey.size());
-    decoder.MessageEnd();
-    Integer x;
-    x.Decode(decoder, decoder.MaxRetrievable());
-    privateKey.Initialize(ASN1::secp256k1(), x);
+    /* str should be a sha256 hash */
+    unsigned char *md = (unsigned char *)str.c_str();
+   
+    /* create private key from private key string */
+    const char *mKey = walletPrivateKey.c_str();
+    BIO* bo = BIO_new( BIO_s_mem() );
+    BIO_write( bo, mKey,strlen(mKey));
+    EVP_PKEY* pkey = 0;
+    PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
+    BIO_free(bo);
 
-    bool result = privateKey.Validate( prng, 3 );
-    if (!result)
-        std::cout << "***Private key invalid for signing***" << std::endl; // throw exception
+    /* initialize our signature context object */
+    EVP_PKEY_CTX *ctx;
+    ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
+    if (!ctx)
+        std::cerr << "error creating ctx" << std::endl;
 
-    ECDSA<ECP, SHA256>::Signer signer(privateKey);
-    size_t siglen = signer.MaxSignatureLength();
-    std::string signature(siglen, 0x00);
-    siglen = signer.SignMessage(prng, (const CryptoPP::byte*)&message[0], message.size(), (CryptoPP::byte*)&signature[0]);
-    signature.resize(siglen);
+    if (EVP_PKEY_sign_init(ctx) <= 0)
+        std::cerr << "error initializing sig ctx" << std::endl;
 
-    string encoded;
-    HexEncoder encoder;
-    encoder.Put((CryptoPP::byte*)&signature[0], signature.size());
-    encoder.MessageEnd();
+    /* set the context digest type to sha256 */
+    if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
+        std::cerr << "error setting signature md" << std::endl;
 
-    word64 size = encoder.MaxRetrievable();
-    if(size)
-    {
-        encoded.resize(size);		
-        encoder.Get((CryptoPP::byte*)&encoded[0], encoded.size());
+    /* 
+    mdlen is always 32, I don't know why, 
+    see https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_sign.html
+    */
+    size_t mdlen = 32;
+
+    /* Determine buffer length */
+    size_t siglen {0};
+    if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
+        std::cerr << "error determining buffer length" << std::endl;
+
+    /* allocate memory for the signature */
+    unsigned char *sig;
+    sig = (unsigned char *)OPENSSL_malloc(siglen);
+
+    if (!sig)
+        std::cerr << "malloc failure" << std::endl;
+
+    if (EVP_PKEY_sign(ctx, sig, &siglen, md, mdlen) <= 0) {
+        std::cerr << "error creating signature" << std::endl;
     }
 
-    return encoded;
+    utils::Signature mysig;
+    /* the easy way to translate your signature to a hex string */
+    // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+
+    /* the not so easy way */
+    char st[256];
+    size_t strlen;
+    OPENSSL_buf2hexstr_ex(st, 256, &strlen,
+                           sig, siglen, '\0');
+    
+    /* assign the result to signature structure */
+    mysig.hexsig = st;
+    mysig._size = siglen;
+    // std::cout << mysig.hexsig << "\n" << std::endl;
+
+    /* free memory */
+    EVP_PKEY_free(pkey);
+    EVP_PKEY_CTX_free(ctx);
+
+    /* return signature struct */
+    return mysig;
 }
 
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) {
     Transaction transaction(address, receiverAddress, amount, type);
-    std::string signature = sign(transaction.payload());
+    utils::Signature signature = sign(transaction.payload());
     transaction.senderPublicKey = walletPublicKey;
-    transaction.sign(signature);
+    transaction.sign(signature.hexsig);
     return transaction;
 }
 
@@ -143,8 +157,8 @@ Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash
     Block block(transactions, lastHash, blockCount);
     block.hash = utils::hash(block.payload());
     block.forgerAddress = address;
-    std::string signature = sign(block.payload());
-    block.sign(signature);
+    utils::Signature signature = sign(block.payload());
+    block.sign(signature.hexsig);
     return block;
 }
 

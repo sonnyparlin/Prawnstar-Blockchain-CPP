@@ -2,75 +2,59 @@
 
 namespace utils {
 
-    std::string hash(std::string msg)
+    std::string hash(std::string str)
     {   
-        using namespace CryptoPP;
-        std::string digest{""};
-
-        SHA256 hash;
-        StringSource s(msg, true, 
-            new HashFilter(hash, new HexEncoder(new StringSink(digest))));
-
-        return digest; 
+        unsigned char hash[SHA256_DIGEST_LENGTH];
+        SHA256((unsigned char *)str.c_str(), str.length(), hash);
+        std::stringstream ss;
+        for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
+        return ss.str();
     }
 
-    using namespace CryptoPP;
-    bool verifySignature(std::string message, std::string encoded_signature, std::string walletPublicKey) {
-        // Hash the data to be signed.
-        std::string hashedData = hash(message);
+    bool verifySignature(std::string message, std::string signature, std::string publicKeyString) {
+        /* the easy way to translate your hex string back into your buffer */
+        // long len;
+        // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
 
-        HexDecoder publicKeyDecoder;
-        publicKeyDecoder.Put((CryptoPP::byte*)&walletPublicKey[0], walletPublicKey.size());
-        publicKeyDecoder.MessageEnd();
+        /* the not so easy way */
+        unsigned char buf[256];
+        const char *st = signature.c_str();
+        size_t buflen;
+        OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
 
-        ECP::Point q;
-        size_t len = publicKeyDecoder.MaxRetrievable();
-        q.identity = false;
-        q.x.Decode(publicKeyDecoder, len/2);
-        q.y.Decode(publicKeyDecoder, len/2);
+        /* generate the pubic key using the public key string */
+        const char *mKey = publicKeyString.c_str();
+        BIO* bo = BIO_new( BIO_s_mem() );
+        BIO_write( bo, mKey,strlen(mKey));
+        EVP_PKEY* pkey = 0;
+        PEM_read_bio_PUBKEY( bo, &pkey, 0, 0 );
+        /* free memory */
+        BIO_free(bo);
 
-        ECDSA<ECP, SHA256>::PublicKey publicKey;
-        publicKey.Initialize( ASN1::secp256k1(), q );
+        /* create the key context */
+        EVP_PKEY_CTX *ctx;
+        ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
+        if (!ctx)
+            std::cerr << "ctx error" << std::endl;
 
-        // Decode hex message (the block in a json string format)
-        // std::cout << "hex sig: " << encoded_signature << std::endl;
-        HexDecoder message_decoder;
-        message_decoder.Put((CryptoPP::byte*)&encoded_signature[0], encoded_signature.size() );
-        message_decoder.MessageEnd();
-        
-        // Set up a decoded variable to copy the bytes into
-        std::string decoded_signature;
-        word64 size = message_decoder.MaxRetrievable();
-        if(size && size <= SIZE_MAX) {
-            // set the size of the string to match the incoming bytes
-            decoded_signature.resize(size);
-            // Create a byte string by copying the incoming bytes
-            message_decoder.Get((CryptoPP::byte*)&decoded_signature[0], decoded_signature.size());
-        }
+        /* initialize the context */
+        if (EVP_PKEY_verify_init(ctx) <= 0)
+            std::cerr << "ctx verify error" << std::endl;
 
-        // Set up public key as verifier
-        ECDSA<ECP, SHA256>::Verifier verifier(publicKey);
-        // Now that we've decoded our public key and our message, 
-        // let's verify the message.
+        /* set the message digest type to sha256 */
+        if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
+            std::cerr << "verify signature error" << std::endl; 
 
-        try {
-            bool verifyResult = verifier.VerifyMessage( 
-                (const CryptoPP::byte*)&hashedData[0], 
-                hashedData.size(), 
-                (const CryptoPP::byte*)&encoded_signature[0],
-                encoded_signature.size()
-            );
+        /* Perform operation */
+        unsigned char *md = (unsigned char *)message.c_str();
+        size_t mdlen = 32;
+        size_t siglen = signature.length();
+        int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
 
-            // Verification failure?
-            if( !verifyResult ) {
-                std::cout << "Failed to verify signature on message" << std::endl;
-            } else {
-                //std::cout << "All good!" << std::endl;
-            }
-        } catch(CryptoMaterial::InvalidMaterial &e) {
-            std::cout << "Exception thrown by CryptoPP when verifying message: " << e.what() << std::endl;
-        }
-        return false;
+        /* free memory and return the result */
+        EVP_PKEY_free(pkey);
+        EVP_PKEY_CTX_free(ctx);
+        return ret;
     }
 
     unsigned char random_char() {
@@ -106,43 +90,6 @@ namespace utils {
         
         //std::cout << tmp_s << std::endl;
         return tmp_s;
-    }
-
-    static const long hextable[] = { 
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1, 0,1,2,3,4,5,6,7,8,9,-1,-1,-1,-1,-1,-1,-1,10,11,12,13,14,15,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,10,11,12,13,14,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
-    };
-
-    /** 
-     * @brief convert a hexidecimal string to a signed long
-     * will not produce or process negative numbers except 
-     * to signal error.
-     * 
-     * @param hex without decoration, case insensitive. 
-     * 
-     * @return -1 on error, or result (max (sizeof(long)*8)-1 bits)
-     */
-    int hexToInt(const char *hex) {
-        int ret = 0; 
-        while (*hex && ret >= 0) {
-            ret = (ret << 4) | hextable[(unsigned char)*hex++];
-        }
-        if (ret < 0) ret *= -1;
-        return ret; 
-    }
-
-    int ABS(int z) {
-        if (z < 0) z *= -1;
-        return z;
     }
 
     int getPort(char *portString) {
