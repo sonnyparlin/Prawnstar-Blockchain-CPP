@@ -51,18 +51,24 @@ std::string sha1(const std::string str)
 }
 
 void Wallet::genKeyPair() {
-    char *bp;
-    size_t size;
-    FILE *stream;
+    /* set our curve name */
     const char *curve = "secp256k1";
-
-    const EVP_CIPHER *cipher = EVP_get_cipherbyname(curve);
+    
+    /* Generate the key pair */
     EVP_PKEY *pkey = EVP_EC_gen(curve);
     if (pkey == NULL) {
         std::cerr << "Error generating the ECC key." << std::endl;
         return;
     }
 
+    /* 
+    Use some FILE stream magic to easily convert our 
+    public and private keys into strings 
+    */
+    char *bp;
+    size_t size;
+    FILE *stream;
+    
     stream = open_memstream (&bp, &size);
     PEM_write_PUBKEY(stream, pkey);
     fflush (stream);
@@ -70,11 +76,16 @@ void Wallet::genKeyPair() {
     fclose (stream);
 
     stream = open_memstream (&bp, &size);
+    const EVP_CIPHER *cipher = EVP_get_cipherbyname(curve);
     PEM_write_PrivateKey(stream, pkey, cipher, NULL, 0, NULL, NULL);
     fflush (stream);
     privateKey = bp;
     fclose (stream);
 
+    /* 
+    The keys are stored in our wallet now so we can free the memory
+    used for the keys.
+    */
     EVP_PKEY_free(pkey);
 
     address = "pv1" + sha1(publicKey);
