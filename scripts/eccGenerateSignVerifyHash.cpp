@@ -123,7 +123,8 @@ struct Signature Wallet::sign(std::string str) {
     Signature mysig;
     mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
     mysig._size = siglen;
-    std::cout << mysig.hexsig << std::endl;
+    std::cout << "Signature converted to hex: " << std::endl;
+    std::cout << mysig.hexsig << "\n" << std::endl;
     return mysig;
 }
 
@@ -162,24 +163,27 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
 
 int main() {
     Wallet wallet;
-    std::cout << wallet.publicKey << std::endl;
-    std::cout << wallet.privateKey << std::endl;
-    std::cout << wallet.address << std::endl;
-    std::cout << "=======================================" << std::endl;
+    // std::cout << wallet.publicKey << std::endl;
+    // std::cout << wallet.privateKey << std::endl;
+    // std::cout << wallet.address << std::endl;
+    // std::cout << "=======================================" << std::endl;
 
-    const std::string data = "message to sign";
+    const std::string data = "This is my wonderful message.";
 
     std::string hash = sha256(data);
-    std::cout << "signing hashed data with hash: " << std::endl << hash << "\n" << std::endl;
+    std::cout << "\n\n\ndata to be hashed: " << data << std::endl;
+    std::cout << "hashed data to be signed: " << hash << "\n" << std::endl;
     Signature signature = wallet.sign(hash);
 
-    std::cout << "verifying signature: " << std::endl << signature.hexsig << "\n" << std::endl;
+    std::cout << "Attempting to decode and verify signature: " << std::endl;
     int ret = wallet.verify(hash, signature, wallet.publicKey);
 
     if (ret == 1)
         std::cout << "Result: Verified!" << std::endl;
     else
         std::cout << "Result: Not verified: " << ret << std::endl;
+
+    std::cout << "\n" << std::endl;
 
     return 0;
 }
