@@ -17,30 +17,36 @@
 
 * Node 3: ./main 127.0.0.1 10003 127.0.0.1 8003
 
- ./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
+The format for the master node:
 
- Use [Postman](https://www.postman.com) to send a transaction
+./main ip_of_this_node p2p_port_of_this_node api_port_of_this_node
 
- ```json
- {"transaction":
-     {
-         "sender": "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac",
-         "receiver": "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7",
-         "amount": 500,
-         "type": "EXCHANGE"
-     }
- }
- ```
+The format of all client nodes:
 
- Send a second transaction:
+./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
 
- ```json
- {"transaction":
-     {
-         "sender": "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7",
-         "receiver": "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
-         "amount": 50,
-         "type": "TRANSFER"
-     }
- }
- ```
+Use [Postman](https://www.postman.com) to send a transaction
+
+```json
+{"transaction":
+    {
+        "sender": "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac",
+        "receiver": "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7",
+        "amount": 500,
+        "type": "EXCHANGE"
+    }
+}
+```
+
+Send a second transaction:
+
+```json
+{"transaction":
+    {
+        "sender": "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7",
+        "receiver": "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
+        "amount": 50,
+        "type": "TRANSFER"
+    }
+}
+```
