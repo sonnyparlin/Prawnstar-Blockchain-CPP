@@ -34,16 +34,20 @@ namespace utils {
         /* create the key context */
         EVP_PKEY_CTX *ctx;
         ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
-        if (!ctx)
+        if (!ctx) {
             std::cerr << "ctx error" << std::endl;
-
+            return false;
+        }
         /* initialize the context */
-        if (EVP_PKEY_verify_init(ctx) <= 0)
+        if (EVP_PKEY_verify_init(ctx) <= 0) {
             std::cerr << "ctx verify error" << std::endl;
-
+            return false;
+        }
         /* set the message digest type to sha256 */
-        if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
-            std::cerr << "verify signature error" << std::endl; 
+        if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0) {
+            std::cerr << "verify signature error" << std::endl;
+            return false;
+        }
 
         /* Perform operation */
         unsigned char *md = (unsigned char *)message.c_str();

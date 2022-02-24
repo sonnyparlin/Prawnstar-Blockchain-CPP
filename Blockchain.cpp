@@ -123,6 +123,18 @@ bool Blockchain::transactionExists(Transaction transaction) {
     return false;
 }
 
+bool Blockchain::forgerValid(Block block) {
+    Wallet proposedForger(block.forgerAddress.c_str(), this->node);
+
+    std::string forgerPublicKey = node->proofOfStake->forger(block.lastHash);
+    return forgerPublicKey == proposedForger.walletPublicKey;
+}
+
+bool Blockchain::transactionValid(std::vector<Transaction> transactions) {
+    std::vector<Transaction> coveredTransactions = this->node->blockchain->getCoveredTransactionSet(transactions);
+    return coveredTransactions.size() == transactions.size();
+}
+
 vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
     nlohmann::json j;
     vector<nlohmann::json> blks;

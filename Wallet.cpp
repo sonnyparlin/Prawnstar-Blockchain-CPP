@@ -2,6 +2,11 @@
 #include "Block.hpp"
 #include <nlohmann/json.hpp>
 
+Wallet::Wallet(Node *node, bool usefile, const char *filename) {
+    fromKey(filename);
+    node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
+}
+
 Wallet::Wallet(const char *_address, Node *node) {
     address = _address;
     walletPublicKey = node->accountModel->addressToPublicKey[address];
@@ -10,10 +15,41 @@ Wallet::Wallet(const char *_address, Node *node) {
 
 Wallet::Wallet(Node *node) {
     genKeyPair();
-    node->accountModel->addAccount(this->address, this->walletPublicKey, this->walletPrivateKey);
+    node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
 }
 
 Wallet::~Wallet(){}
+
+void Wallet::fromKey(const char *file) {
+    std::string key;
+    std::ifstream t(file);
+    std::stringstream buffer;
+    buffer << t.rdbuf();
+
+    walletPrivateKey = buffer.str();    
+    
+    const char *mKey = walletPrivateKey.c_str();
+    BIO* bo = BIO_new( BIO_s_mem() );
+    BIO_write( bo, mKey,strlen(mKey));
+    EVP_PKEY* pkey = 0;
+    PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
+    BIO_free(bo);
+
+    char *bp;
+    size_t size;
+    FILE *stream;
+    
+    stream = open_memstream (&bp, &size);
+    PEM_write_PUBKEY(stream, pkey);
+    fflush (stream);
+    walletPublicKey = bp;
+    fclose (stream);
+
+    EVP_PKEY_free(pkey);
+    delete bp;
+
+    address = "pv1" + generateAddress(walletPublicKey);
+}
 
 void Wallet::genKeyPair() {
     /* set our curve name */
@@ -60,17 +96,11 @@ std::string Wallet::generateAddress(const std::string str) {
 
     // The public crypto address is a SHA1 
     // hex encoded string of the walletPublicKey.
-    // It will be stored in the AccountModel
-    // as a key in a C++ map. 
-    // map["address"] = instance_of_accountModel
-    // giving us the public key, which we can then 
-    // re-hash  and compare the resulting string to 
-    // the address as a way of verifying authenticity.
 
-    unsigned char hash[SHA256_DIGEST_LENGTH];
+    unsigned char hash[20];
     SHA1((unsigned char *)str.c_str(), str.length(), hash);
     std::stringstream ss;
-    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {ss << std::hex << (int)hash[i];}
+    for(int i = 0; i < 20; i++) {ss << std::hex << (int)hash[i];}
     return ss.str();
 }
 
@@ -100,13 +130,8 @@ utils::Signature Wallet::sign(std::string str)
     if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
         std::cerr << "error setting signature md" << std::endl;
 
-    /* 
-    mdlen is always 32, I don't know why, 
-    see https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_sign.html
-    */
-    size_t mdlen = 32;
-
     /* Determine buffer length */
+    size_t mdlen = 32;
     size_t siglen {0};
     if (EVP_PKEY_sign(ctx, NULL, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;
@@ -158,6 +183,9 @@ Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash
     block.hash = utils::hash(block.payload());
     block.forgerAddress = address;
     utils::Signature signature = sign(block.payload());
+    std::cout << "signature: " << signature.hexsig << std::endl;
+    std::cout << "signing block payload: " << block.payload() << std::endl;
+    std::cout << "publickey: " << walletPublicKey << std::endl;
     block.sign(signature.hexsig);
     return block;
 }

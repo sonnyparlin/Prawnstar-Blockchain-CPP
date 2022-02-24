@@ -1,5 +1,6 @@
 #include "SocketCommunication.hpp"
 #include "Message.hpp"
+#include "Block.hpp"
 #include "Transaction.hpp"
 #include <nlohmann/json.hpp>
 #include <typeinfo>
@@ -87,6 +88,34 @@ void SocketCommunication::receive_node_message(int sock) {
 
         //std::cout << "calling handleTransaction(tx) from p2p" << std::endl;
         node->handleTransaction(tx, false);
+    } else if (messageType == "BLOCK") {
+        Block block;
+        std::string jsonBlock = j["Message"]["data"];
+        auto j = nlohmann::json::parse(jsonBlock);
+        for (auto tx : j["transactions"]) {
+            // std::cout << tx << std::endl;
+            
+            Transaction tr;
+            tr.id = tx["id"];
+            tr.amount = tx["amount"];
+            tr.senderAddress = tx["senderAddress"];
+            Wallet senderWallet(tr.senderAddress.c_str(), this->node);
+            tr.senderPublicKey = senderWallet.walletPublicKey;
+            tr.receiverAddress = tx["receiverAddress"];
+            tr.signature = tx["signature"];
+            tr.timestamp = tx["timestamp"];
+            tr.type = tx["type"];
+            block.transactions.push_back(tr);
+        }
+        block.lastHash = j["lastHash"];
+        block.hash = j["hash"];
+        block.forgerAddress = j["forgerAddress"];
+        block.timestamp = j["timestamp"];
+        block.blockCount = j["blockCount"];
+        block.signature = j["signature"];
+        // std::cout << "block signature: " << block.signature << std::endl;
+
+        node->handleBlock(block, false);
     }
 
     // delete allocated memory

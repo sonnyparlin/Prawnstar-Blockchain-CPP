@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 
 // Implemention of the construcor
+Block::Block(){}
 
 Block::Block(vector <Transaction> transactions, string lastHash, 
              string forgerAddress, 

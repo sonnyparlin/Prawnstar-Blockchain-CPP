@@ -5,6 +5,7 @@
 #include <openssl/evp.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>
+#include <openssl/sha.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <sstream>

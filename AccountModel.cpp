@@ -25,6 +25,14 @@ void AccountModel::addAccount(std::string walletAddress, std::string pubKey, std
     }
 }
 
+void AccountModel::addAccount(std::string walletAddress, std::string pubKey) {
+    if (!accountExists(walletAddress)) {
+        accounts.push_back(walletAddress);
+        balances[walletAddress] = 0;
+        addressToPublicKey.insert(std::pair<std::string,std::string>(walletAddress, pubKey));
+    }
+}
+
 double AccountModel::getBalance(const std::string walletAddress) {
     return balances[walletAddress];
 }

@@ -33,6 +33,8 @@ public:
     std::string nextForger();
     Block createBlock(std::vector<Transaction> transactionsFromPool, std::string forgerAddress);
     bool transactionExists(Transaction transaction);
+    bool forgerValid(Block block);
+    bool transactionValid(std::vector<Transaction> transactions);
 };
 
 #endif // _BLOCKCHAIN_H_

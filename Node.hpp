@@ -5,6 +5,7 @@
 #include "TransactionPool.hpp"
 #include "Wallet.hpp"
 #include "Blockchain.hpp"
+#include "Block.hpp"
 #include "Message.hpp"
 #include "AccountModel.hpp"
 #include "SocketCommunication.hpp"
@@ -41,6 +42,7 @@ public:
     static Node *createNode(int argc, char **argv);
     void startServers(int argc, char **argv);
     bool handleTransaction (Transaction, bool broadcast=true);
+    void handleBlock (Block block, bool broadcast);
     void forge();
 };
 

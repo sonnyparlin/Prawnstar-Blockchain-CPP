@@ -12,10 +12,14 @@ Node::Node(int argc, char **argv) {
     int port = utils::getPort(argv[2]);
     std::cout << "port is: " << port << std::endl;
 
-    nodeWallet = new Wallet(this);
-    exchangeWallet = new Wallet(this);
-    aliceWallet = new Wallet(this);
-    bobWallet = new Wallet(this);
+    if (port == 10001)
+        nodeWallet = new Wallet(this, true, "genesisNode.pem");
+    else
+        nodeWallet = new Wallet(this);
+
+    exchangeWallet = new Wallet(this, true, "exchange.pem");
+    aliceWallet = new Wallet(this, true, "alice.pem");
+    bobWallet = new Wallet(this, true, "bob.pem"); 
 
     std::cout << "walletAddress: " << nodeWallet->address << std::endl;
     std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
@@ -59,15 +63,11 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     std::string data = transaction.payload();
     std::string signature = transaction.signature;
     std::string signerPublicKey = transaction.senderPublicKey;
+
     bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
     bool transactionExists = transactionPool.transactionExists(transaction);
     bool transactionInBlock = blockchain->transactionExists(transaction);
     if (!transactionExists && signatureValid && !transactionInBlock) {
-        std::cout << "Adding transaction " 
-                  << transaction.id 
-                  << " to the pool on " 
-                  << p2p->sc.ip << ":" << p2p->sc.port 
-                  << std::endl;
         transactionPool.addTransaction(transaction);
         if (broadcast) {
             Message message("TRANSACTION", transaction.toJson());
@@ -81,6 +81,39 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
         return true;
     }
     return false;
+}
+
+void Node::handleBlock (Block block, bool broadcast) {
+    Wallet forger(block.forgerAddress.c_str(), this);
+
+    // std::cout << "forger: " << forger.toJson() << std::endl;
+
+    std::string blockHash = block.hash;
+    std::string signature = block.signature;
+
+    bool blockCountValid = blockchain->blockCountValid(block);
+    bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
+    bool forgerValid = blockchain->forgerValid(block);
+    bool transactionValid = blockchain->transactionValid(block.transactions);
+    bool signatureValid = utils::verifySignature(block.payload(), block.signature, forger.walletPublicKey);
+
+    if (lastBlockHashValid && forgerValid && 
+        transactionValid && signatureValid && blockCountValid) {
+        blockchain->addBlock(block);
+        transactionPool.removeFromPool(block.transactions);
+        
+        if (broadcast) {
+            Message message("BLOCK", block.toJson());
+            std::string msgJson = message.toJson();
+            p2p->broadcast(msgJson.c_str());
+        }
+    } else {
+        std::cerr << "Block verification failed" << std::endl;
+        std::cerr << "lastBlockHashValid: " << std::boolalpha << lastBlockHashValid << std::endl;
+        std::cerr << "forgerValid: " << std::boolalpha << forgerValid << std::endl;
+        std::cerr << "transactionValid: " << std::boolalpha << transactionValid << std::endl;
+        std::cerr << "signatureValid: " << std::boolalpha << signatureValid << std::endl;
+    }
 }
 
 void Node::forge() {

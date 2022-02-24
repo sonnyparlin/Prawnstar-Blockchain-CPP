@@ -10,11 +10,7 @@ TransactionPool::~TransactionPool() {
 }
 
 void TransactionPool::addTransaction(Transaction transaction) {
-    //std::cout << "Size before adding: " << transactions.size() << std::endl;
     transactions.push_back(transaction);
-    // std::cout << "transactionPool address: " << this << std::endl;
-    // std::cout << "transactions address: " << &transactions << std::endl;
-    // std::cout << "Size after adding: " << transactions.size() << std::endl;
 }
 
 bool TransactionPool::transactionExists(Transaction transaction) {

@@ -19,8 +19,8 @@ public:
     std::string walletPublicKey;
     std::string address;
 
+    Wallet(Node *node, bool usefile, const char *filename);
     Wallet(Node *node);
-    //Wallet(std::string address, Node *node);
     Wallet(const char *address, Node *node);
     ~Wallet();
 
@@ -31,6 +31,7 @@ public:
     std::string generateAddress(const std::string str);
     void loadWalletFromAddress(const std::string& address, Node *node);
     std::string toJson();
+    void fromKey(const char *file);
 };
 
 #endif // _WALLET_H_

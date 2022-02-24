@@ -20,6 +20,7 @@ public:
     string signature;
 
     // Constructors
+    Block();
     Block(vector <Transaction> transactions,
           string lastHash, 
           string forgerAddress,

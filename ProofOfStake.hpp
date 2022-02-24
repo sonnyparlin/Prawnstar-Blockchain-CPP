@@ -24,7 +24,7 @@ public:
     std::vector<Lot> validatorLots(std::string seed);
     Lot winnerLot(std::vector<Lot> lots, std::string seed);
     std::string forger(std::string lastBlockHash);
-    void setGenesisNodeStake();
+    void setGenesisNodeStake(std::string);
 };
 
 #endif // _PROOFOFSTAKE_H_

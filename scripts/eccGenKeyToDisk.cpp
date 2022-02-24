@@ -20,7 +20,7 @@ void print_openssl_error(std::string const& function)
     std::cerr << "openssl function " << function << " failed with " << buffer << "\n";
 }
 
-bool create_ec_private_key()
+bool create_ec_private_key(char *filename)
 {
     // Create the context for the key generation
     auto kctx = make_handle(EVP_PKEY_CTX_new_id(EVP_PKEY_EC, nullptr), EVP_PKEY_CTX_free);
@@ -54,7 +54,7 @@ bool create_ec_private_key()
     // write out to pem file
     auto pkey = make_handle(pkey_temp, EVP_PKEY_free);
 
-    auto file = make_handle(BIO_new_file("ecprivatekey.pem", "w"), BIO_free);
+    auto file = make_handle(BIO_new_file(filename, "w"), BIO_free);
     if(!file)
     {
         print_openssl_error("BIO_new_file");
@@ -70,7 +70,7 @@ bool create_ec_private_key()
     return true;
 }
 
-int main() {
-    create_ec_private_key();
+int main(int argc, char *argv[]) {
+    create_ec_private_key(argv[1]);
     return 0;
 }

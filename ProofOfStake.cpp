@@ -1,5 +1,6 @@
 #include "ProofOfStake.hpp"
 #include "utils.hpp"
+#include "Wallet.hpp"
 #include <stdint.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -7,15 +8,18 @@
 ProofOfStake::ProofOfStake(Node *node, int port) {
     this->node = node;
 
-    if (port == utils::MASTER_NODE_PORT)
-        setGenesisNodeStake();
+    Wallet genesisNodeWallet(node);
+    genesisNodeWallet.fromKey("genesisNode.pem");
+    node->accountModel->addAccount(genesisNodeWallet.address, 
+                                   genesisNodeWallet.walletPublicKey, 
+                                   genesisNodeWallet.walletPrivateKey);
+    setGenesisNodeStake(genesisNodeWallet.walletPublicKey);
 }
 
 ProofOfStake::~ProofOfStake() {
 }
 
-void ProofOfStake::setGenesisNodeStake() {
-    std::string genesisPublicKey = node->nodeWallet->walletPublicKey;
+void ProofOfStake::setGenesisNodeStake(std::string genesisPublicKey) {
     stakers[genesisPublicKey] = 1;
 }
 
