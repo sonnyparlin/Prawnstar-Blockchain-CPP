@@ -7,7 +7,7 @@
    
    [Boost installation info](https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install)
 
-*  cd cryptopp860;make; sudo make install;cd ..
+*  Install [OpenSSL](https://www.openssl.org/). 
 
 * Run `make all` to build and ./main to run.
 
