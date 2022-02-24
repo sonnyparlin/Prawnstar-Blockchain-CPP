@@ -2,8 +2,8 @@
 
 ## Download dependancies
     * Install boost_1_78_0, 
-        * https://www.boost.org/users/download/
-        * https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install
+        * [Boost download](https://www.boost.org/users/download/)
+        * [Boost installation info](https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install)
 
     *  cd cryptopp860;make; sudo make install;cd ..
 
