@@ -17,7 +17,7 @@
 
     ./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
 
-    Use Postman to send a transaction: https://www.postman.com
+    Use [Postman](https://www.postman.com) to send a transaction
 
     ```json
     {"transaction":
