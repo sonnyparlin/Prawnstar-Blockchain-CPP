@@ -21,6 +21,7 @@ namespace utils {
         std::string hexsig;
     };
 
+    static const char * MASTER_NODE_IP = "127.0.0.1";
     static int MASTER_NODE_PORT=10001;
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
@@ -31,6 +32,7 @@ namespace utils {
     int hexToInt(const char *hex);
     int ABS(int x);
     int getPort(char *portString);
+    std::vector<std::string> split(std::string str, const char *seperator);
 }
 
 #endif // _UTILS_H_

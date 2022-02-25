@@ -183,9 +183,6 @@ Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash
     block.hash = utils::hash(block.payload());
     block.forgerAddress = address;
     utils::Signature signature = sign(block.payload());
-    std::cout << "signature: " << signature.hexsig << std::endl;
-    std::cout << "signing block payload: " << block.payload() << std::endl;
-    std::cout << "publickey: " << walletPublicKey << std::endl;
     block.sign(signature.hexsig);
     return block;
 }

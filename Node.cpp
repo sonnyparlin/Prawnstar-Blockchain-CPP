@@ -92,13 +92,19 @@ void Node::handleBlock (Block block, bool broadcast) {
     std::string signature = block.signature;
 
     bool blockCountValid = blockchain->blockCountValid(block);
+
+    if (!blockCountValid) {
+        // std::cout << "Calling requestChain()" << std::endl;
+        requestChain();
+        return;     
+    }
+
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
     bool transactionValid = blockchain->transactionValid(block.transactions);
     bool signatureValid = utils::verifySignature(block.payload(), block.signature, forger.walletPublicKey);
 
-    if (lastBlockHashValid && forgerValid && 
-        transactionValid && signatureValid && blockCountValid) {
+    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
         
@@ -113,6 +119,67 @@ void Node::handleBlock (Block block, bool broadcast) {
         std::cerr << "forgerValid: " << std::boolalpha << forgerValid << std::endl;
         std::cerr << "transactionValid: " << std::boolalpha << transactionValid << std::endl;
         std::cerr << "signatureValid: " << std::boolalpha << signatureValid << std::endl;
+    }
+}
+
+void Node::requestChain() {
+    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) };
+    Message message("BLOCKCHAINREQUEST", requestingNode);
+    std::string msgJson = message.toJson();
+
+    int outgoingSocket = p2putils::setOutgoingNodeConnection(utils::MASTER_NODE_IP, utils::MASTER_NODE_PORT);
+    if (outgoingSocket == -1) {
+        return;
+    }
+    p2p->send_node_message(outgoingSocket, msgJson.c_str());
+}
+
+void Node::handleBlockchainRequest(std::string requestingNode) {
+    Message message("BLOCKCHAIN", blockchain->toJsonString());
+    std::string msgJson = message.toJson();
+    // std::cout << "sending blockchain to requesting node..." << message.toJson() << std::endl;
+
+    std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
+    int num = atoi(receivingNode.at(1).c_str());
+    // std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
+
+    int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
+    if (outgoingSocket == -1) {
+        return;
+    }
+    p2p->send_node_message(outgoingSocket, msgJson.c_str());
+}
+
+void Node::handleBlockchain(std::string blockchainString) {
+    if (blockchainString.empty())
+        return;
+
+    auto j = nlohmann::json::parse(blockchainString);
+    
+    blockchain->blocks.clear();
+
+    for (auto& element : j["blocks"]) {
+        Block b;
+        b.blockCount = element["blockCount"];
+        b.forgerAddress = element["forgerAddress"];
+        b.hash = element["hash"];
+        b.lastHash = element["lastHash"];
+        b.signature = element["signature"];
+        b.timestamp = element["timestamp"];
+        std::vector<Transaction> transactions;
+        for (auto& tx : element["transactions"]) {
+            Transaction t;
+            t.id = tx["id"];
+            t.amount = tx["amount"];
+            t.receiverAddress = tx["receiverAddress"];
+            t.senderAddress = tx["senderAddress"];
+            t.signature = tx["signature"];
+            t.timestamp = tx["timestamp"];
+            t.type = tx["type"];
+            transactions.push_back(t);
+        }
+        b.transactions = transactions;
+        blockchain->blocks.push_back(b);
     }
 }
 

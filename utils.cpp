@@ -61,6 +61,20 @@ namespace utils {
         return ret;
     }
 
+    std::vector<std::string> split(std::string str, const char *seperator)  
+    {  
+        char *token = strtok((char *)str.c_str(), seperator);
+
+        std::vector<std::string> ipPortStrV;
+        while (token != NULL)
+        {
+            ipPortStrV.push_back(token);
+            token = strtok(NULL, ":");
+        }
+
+        return ipPortStrV;
+    }  
+
     unsigned char random_char() {
         std::random_device rd;
         std::mt19937 gen(rd());

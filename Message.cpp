@@ -34,10 +34,11 @@ std::string Message::toJson() {
     // append message header with length
     std::string strMsgLength = std::to_string (strMsgBody.length());
 
-    // strict the header length to 4
-    if (strMsgLength.length() == 1) strMsgLength = "000" + strMsgLength;    
-    else if (strMsgLength.length() == 2) strMsgLength = "00" + strMsgLength;
-    else if (strMsgLength.length() == 3) strMsgLength = "0" + strMsgLength;
+    // restrict the header length to 5
+    if (strMsgLength.length() == 1) strMsgLength = "0000" + strMsgLength;    
+    else if (strMsgLength.length() == 2) strMsgLength = "000" + strMsgLength;
+    else if (strMsgLength.length() == 3) strMsgLength = "00" + strMsgLength;
+    else if (strMsgLength.length() == 4) strMsgLength = "0" + strMsgLength;
     
     // std::cout << "Message Header => " << strMsgLength << std::endl;
     strMsgBody = strMsgLength + strMsgBody;    

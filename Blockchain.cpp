@@ -58,8 +58,7 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction
             coveredTransactions.push_back(transaction);
         else {
             std::cout << "Transaction is not covered by the sender" << std::endl;
-            std::runtime_error notCovered("Transaction is not covered by the sender");
-            throw notCovered;
+            return std::vector<Transaction>();
         }
     }
     return coveredTransactions;

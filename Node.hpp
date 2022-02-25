@@ -43,7 +43,10 @@ public:
     void startServers(int argc, char **argv);
     bool handleTransaction (Transaction, bool broadcast=true);
     void handleBlock (Block block, bool broadcast);
+    void requestChain();
     void forge();
+    void handleBlockchainRequest(std::string);
+    void handleBlockchain(std::string blockchainString);
 };
 
 #endif // _NODE_H_

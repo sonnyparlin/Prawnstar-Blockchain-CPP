@@ -38,9 +38,9 @@ void SocketCommunication::receive_node_message(int sock) {
     
     // read message body length
     int msgLength;
-    char msgLengthBuffer[4] = {0};
+    char msgLengthBuffer[MESSAGELENGTH];
     
-    reader = read (sock, msgLengthBuffer, 4);
+    reader = read (sock, msgLengthBuffer, MESSAGELENGTH);
     if (reader <= 0) {
         std::cout << "Read message length problems, errno: " << errno << std::endl;
         return;
@@ -64,9 +64,11 @@ void SocketCommunication::receive_node_message(int sock) {
         }
     }
     
-    //std::cout << "buffer: " << buffer << std::endl;
+    // std::cout << "buffer: " << buffer << std::endl;
     nlohmann::json j = nlohmann::json::parse(buffer);
     std::string messageType = j["Message"]["Type"];
+
+    // std::cout << "Message type: " << messageType << std::endl;
 
     if (messageType == "DISCOVERY") {
         peerDiscoveryHandleMessage(buffer);
@@ -84,17 +86,12 @@ void SocketCommunication::receive_node_message(int sock) {
         tx.timestamp = j["timestamp"];
         tx.type = j["type"];
 
-        // std::cout << tx.toJson() << std::endl;
-
-        //std::cout << "calling handleTransaction(tx) from p2p" << std::endl;
         node->handleTransaction(tx, false);
     } else if (messageType == "BLOCK") {
         Block block;
         std::string jsonBlock = j["Message"]["data"];
         auto j = nlohmann::json::parse(jsonBlock);
-        for (auto tx : j["transactions"]) {
-            // std::cout << tx << std::endl;
-            
+        for (auto tx : j["transactions"]) {            
             Transaction tr;
             tr.id = tx["id"];
             tr.amount = tx["amount"];
@@ -116,6 +113,12 @@ void SocketCommunication::receive_node_message(int sock) {
         // std::cout << "block signature: " << block.signature << std::endl;
 
         node->handleBlock(block, false);
+    } else if (messageType == "BLOCKCHAINREQUEST") {
+        std::string requestingNode = j["Message"]["data"];
+        node->handleBlockchainRequest(requestingNode);
+    } else if (messageType == "BLOCKCHAIN") {
+        std::string messageData = j["Message"]["data"];
+        node->handleBlockchain(messageData);
     }
 
     // delete allocated memory
@@ -262,7 +265,6 @@ void SocketCommunication::peerDiscoveryStatus() {
 void SocketCommunication::peerDiscovery() {
     for(;;) {
         std::string message = handshakeMessage();
-        //std::cout << "Broadcasting: " << message << std::endl;
         broadcastPeerDiscovery(message.c_str());
         sleep(10);
     }
@@ -270,7 +272,6 @@ void SocketCommunication::peerDiscovery() {
 
 void SocketCommunication::handshake(int sock) {
     std::string message = handshakeMessage();
-    //send(sock, &message, message.length(), 0);
     send_node_message(sock, message.c_str());
     return;
 }
@@ -286,7 +287,7 @@ std::string SocketCommunication::handshakeMessage() {
 
 void SocketCommunication::broadcastPeerDiscovery(const char *message) {
     //std::cout << "broadcast " << std::endl;
-    auto j = nlohmann::json::parse(message + 4);
+    auto j = nlohmann::json::parse(message + MESSAGELENGTH);
     if (j["Message"]["Peers"] != nullptr) {
         
         //std::cout << " Checking list of peers to broadcast to " << std::endl;
@@ -326,9 +327,9 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
 
 void SocketCommunication::broadcast(const char *message) {
     if (peers.empty()) {return;}
-    auto fullJsonString = nlohmann::json::parse(message + 4);
+    auto fullJsonString = nlohmann::json::parse(message + MESSAGELENGTH);
 
-    std::cout << "Broacasting to the network..." << std::endl;
+    // std::cout << "Broadcasting to the network..." << std::endl;
 
     std::vector<std::string> tempPeers = peers;
     for(auto &ipPortStr : tempPeers) {

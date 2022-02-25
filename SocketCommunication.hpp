@@ -16,6 +16,7 @@ private:
 public:
     std::vector<std::string> peers;
     std::vector<std::string> inactivePeers;
+    const int MESSAGELENGTH = 5;
 
     SocketConnector sc;
 
@@ -37,7 +38,6 @@ public:
     void peerDiscovery(); // Discovery
     std::string handshakeMessage();
     void peerDiscoveryHandleMessage(const char *message);
-    void send_to_node(int sock, const char *message);
 };
 
 #endif // _SOCKETCOMMUNICATION_H_
