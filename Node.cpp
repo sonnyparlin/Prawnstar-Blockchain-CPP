@@ -155,31 +155,42 @@ void Node::handleBlockchain(std::string blockchainString) {
         return;
 
     auto j = nlohmann::json::parse(blockchainString);
-    
-    blockchain->blocks.clear();
+    int localBlockCount = blockchain->blocks.size();
+    int receivedBlockCount = j["blocks"].size();
 
-    for (auto& element : j["blocks"]) {
-        Block b;
-        b.blockCount = element["blockCount"];
-        b.forgerAddress = element["forgerAddress"];
-        b.hash = element["hash"];
-        b.lastHash = element["lastHash"];
-        b.signature = element["signature"];
-        b.timestamp = element["timestamp"];
-        std::vector<Transaction> transactions;
-        for (auto& tx : element["transactions"]) {
-            Transaction t;
-            t.id = tx["id"];
-            t.amount = tx["amount"];
-            t.receiverAddress = tx["receiverAddress"];
-            t.senderAddress = tx["senderAddress"];
-            t.signature = tx["signature"];
-            t.timestamp = tx["timestamp"];
-            t.type = tx["type"];
-            transactions.push_back(t);
+    std::cout << "localBlockCount: " << localBlockCount << std::endl;
+    std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
+
+    if (localBlockCount < receivedBlockCount) {
+
+        int blockNumber {0};
+        std::vector<Block> localBlockchainCopy = blockchain->blocks;
+        for (auto& element : j["blocks"]) {
+            blockNumber++;
+            Block b;
+            b.blockCount = element["blockCount"];
+            b.forgerAddress = element["forgerAddress"];
+            b.hash = element["hash"];
+            b.lastHash = element["lastHash"];
+            b.signature = element["signature"];
+            b.timestamp = element["timestamp"];
+            std::vector<Transaction> transactions;
+            for (auto& tx : element["transactions"]) {
+                Transaction t;
+                t.id = tx["id"];
+                t.amount = tx["amount"];
+                t.receiverAddress = tx["receiverAddress"];
+                t.senderAddress = tx["senderAddress"];
+                t.signature = tx["signature"];
+                t.timestamp = tx["timestamp"];
+                t.type = tx["type"];
+                transactions.push_back(t);
+            }
+            b.transactions = transactions;
+            if (blockNumber > localBlockCount)
+                localBlockchainCopy.push_back(b);
         }
-        b.transactions = transactions;
-        blockchain->blocks.push_back(b);
+        blockchain->blocks = localBlockchainCopy;
     }
 }
 
