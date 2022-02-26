@@ -135,14 +135,15 @@ void Node::requestChain() {
 }
 
 void Node::handleBlockchainRequest(std::string requestingNode) {
+    /* 
+    Get the current copy of the blockchain and stringify it 
+    and create  Message object to send over the p2p network 
+    to the node requesting a fresh copy of the blockchain.
+    */
     Message message("BLOCKCHAIN", blockchain->toJsonString());
     std::string msgJson = message.toJson();
-    // std::cout << "sending blockchain to requesting node..." << message.toJson() << std::endl;
-
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     int num = atoi(receivingNode.at(1).c_str());
-    // std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
-
     int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {
         return;
