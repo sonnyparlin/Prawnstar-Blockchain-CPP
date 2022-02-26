@@ -186,6 +186,8 @@ void Node::handleBlockchain(std::string blockchainString) {
                 t.timestamp = tx["timestamp"];
                 t.type = tx["type"];
                 transactions.push_back(t);
+                accountModel->updateBalance(t.senderAddress, -t.amount);
+                accountModel->updateBalance(t.receiverAddress, t.amount);
             }
             b.transactions = transactions;
             if (blockNumber > localBlockCount)
