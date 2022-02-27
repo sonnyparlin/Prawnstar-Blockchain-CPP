@@ -47,7 +47,6 @@ void NodeApi::start(std::string po) {
     CROW_ROUTE(app, "/wallet/<string>")([&](std::string address){
         double returnValue = node->accountModel->getBalance(address);
         nlohmann::json j;
-        j["address"] = address;
         j["amount"] = std::to_string(returnValue);
         
         return crow::response(200, j.dump());
