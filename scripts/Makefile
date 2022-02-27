@@ -1,5 +1,5 @@
 objs: eccGenerateSignVerifyHash.o eccGenKeyToDisk.o ecGenKeyPair.o jsontest.o signaturetest.o \
-		vectormap.o eccCryptoPPTest.o hashtest.o maptest.o template.o jsonSerialization.o \
+		vectormap.o liquidity-test.o hashtest.o maptest.o template.o jsonSerialization.o \
 		rsatest.o vector.o sundeep_test.o
 
 sundeep_test.o: sundeep_test.cpp
@@ -30,10 +30,6 @@ vectormap.o: vectormap.cpp
 	/usr/bin/g++ vectormap.cpp -std=c++17 -c
 	/usr/bin/g++ vectormap.o -std=c++17 -o vectormap
 
-eccCryptoPPTest.o: eccCryptoPPTest.cpp
-	/usr/bin/g++ eccCryptoPPTest.cpp -std=c++14 -c
-	/usr/bin/g++ eccCryptoPPTest.o -std=c++14 -lcryptopp -o eccCryptoPPTest
-
 hashtest.o: hashtest.cpp
 	/usr/bin/g++ hashtest.cpp -std=c++17 -c
 	/usr/bin/g++ hashtest.o -std=c++17 -lcryptopp -o hashtest
@@ -57,6 +53,10 @@ rsatest.o: rsatest.cpp
 vector.o: vector.cpp
 	/usr/bin/g++ vector.cpp -std=c++17 -c
 	/usr/bin/g++ vector.o -std=c++17 -o vector
+
+liquidity-test.o: liquidity-test.cpp
+	/usr/bin/g++ liquidity-test.cpp -std=c++17 -c
+	/usr/bin/g++ liquidity-test.o -std=c++17 -o liquidity-test
 
 all: objs
 
