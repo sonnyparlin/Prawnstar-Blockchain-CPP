@@ -83,18 +83,18 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     return false;
 }
 
+/*
+Do checks to make sure the block is valid before adding it to the chain.
+Broadcast if necessary.
+*/
 void Node::handleBlock (Block block, bool broadcast) {
     Wallet forger(block.forgerAddress.c_str(), this);
-
-    // std::cout << "forger: " << forger.toJson() << std::endl;
-
     std::string blockHash = block.hash;
     std::string signature = block.signature;
-
     bool blockCountValid = blockchain->blockCountValid(block);
 
+    // Requesting node is not up to date, so let's give them the blocks they're missing.
     if (!blockCountValid) {
-        // std::cout << "Calling requestChain()" << std::endl;
         requestChain();
         return;     
     }
