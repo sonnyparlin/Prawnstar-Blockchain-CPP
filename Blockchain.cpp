@@ -64,6 +64,10 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction
     return coveredTransactions;
 }
 
+bool Blockchain::blockHasTransactions(Block block) {
+    return block.transactions.size() > 0 ? true : false;
+}
+
 void Blockchain::executeTransactions(std::vector<Transaction> transactions) {
     for (auto transaction : transactions) {
         executeTransaction(transaction);

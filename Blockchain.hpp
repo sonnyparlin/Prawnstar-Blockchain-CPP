@@ -35,6 +35,7 @@ public:
     bool transactionExists(Transaction transaction);
     bool forgerValid(Block block);
     bool transactionValid(std::vector<Transaction> transactions);
+    bool blockHasTransactions(Block block);
 };
 
 #endif // _BLOCKCHAIN_H_

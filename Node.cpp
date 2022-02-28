@@ -103,8 +103,9 @@ void Node::handleBlock (Block block, bool broadcast) {
     bool forgerValid = blockchain->forgerValid(block);
     bool transactionValid = blockchain->transactionValid(block.transactions);
     bool signatureValid = utils::verifySignature(block.payload(), block.signature, forger.walletPublicKey);
+    bool blockHasTransactions = blockchain->blockHasTransactions(block);
 
-    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid) {
+    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid && blockHasTransactions) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
         
@@ -119,6 +120,7 @@ void Node::handleBlock (Block block, bool broadcast) {
         std::cerr << "forgerValid: " << std::boolalpha << forgerValid << std::endl;
         std::cerr << "transactionValid: " << std::boolalpha << transactionValid << std::endl;
         std::cerr << "signatureValid: " << std::boolalpha << signatureValid << std::endl;
+        std::cerr << "blockHasTransactions: " << std::boolalpha << blockHasTransactions << std::endl;
     }
 }
 
