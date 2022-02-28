@@ -73,11 +73,12 @@ void Blockchain::executeTransactions(std::vector<Transaction> transactions) {
 void Blockchain::executeTransaction(Transaction transaction) {
     if (transaction.type == "STAKE") {
         std::string sender = transaction.senderAddress;
+        std::string publicKeyString = transaction.senderPublicKey;
         std::string receiver = transaction.receiverAddress;
 
         if (sender == receiver) {
             double amount = transaction.amount;
-            node->proofOfStake->update(sender, amount);
+            node->proofOfStake->update(publicKeyString, amount);
             node->accountModel->updateBalance(sender, -amount);
         }
     } else {
