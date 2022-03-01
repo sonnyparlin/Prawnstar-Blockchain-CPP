@@ -4,6 +4,11 @@
 #include "ProofOfStake.hpp"
 #include "Lot.hpp"
 
+
+/*
+Given a certain amount of time, create inverse relationship or at least figure out
+a way to make the staking reqards more fair.
+*/
 int main(int argc, char *argv[]) {
     ProofOfStake pos;
     pos.update("bob", 15);

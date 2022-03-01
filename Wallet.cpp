@@ -172,6 +172,9 @@ utils::Signature Wallet::sign(std::string str)
 
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) {
     Transaction transaction(address, receiverAddress, amount, type);
+
+    // AUTHENTICATE HERE
+
     utils::Signature signature = sign(transaction.payload());
     transaction.senderPublicKey = walletPublicKey;
     transaction.sign(signature.hexsig);

@@ -125,7 +125,7 @@ void Node::handleBlock (Block block, bool broadcast) {
 }
 
 void Node::requestChain() {
-    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) };
+    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
 
@@ -138,13 +138,15 @@ void Node::requestChain() {
 
 void Node::handleBlockchainRequest(std::string requestingNode) {
     /* 
-    Get the current copy of the blockchain and stringify it 
-    and create  Message object to send over the p2p network 
-    to the node requesting a fresh copy of the blockchain.
+    Only get the blocks I need. [X]
     */
-    Message message("BLOCKCHAIN", blockchain->toJsonString());
-    std::string msgJson = message.toJson();
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
+    int blockNumber = atoi(receivingNode.at(2).c_str());
+    vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};
+
+    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
+    std::string msgJson = message.toJson();
+    
     int num = atoi(receivingNode.at(1).c_str());
     int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {
@@ -211,6 +213,7 @@ void Node::forge() {
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
+            // provide forger reward
         } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
     } else
         std::cout << "i am not the next forger" << std::endl;

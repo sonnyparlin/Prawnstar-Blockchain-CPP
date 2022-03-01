@@ -18,7 +18,7 @@ void NodeApi::start(std::string po) {
     });
 
     CROW_ROUTE(app, "/blockchain")([&](){
-        return node->blockchain->toJsonString();
+        return node->blockchain->toJsonWebView();
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
@@ -33,6 +33,7 @@ void NodeApi::start(std::string po) {
         return crow::response(200, j.dump());
     });
 
+    // ONLY ALLOW REQUESTS FROM THIS MACHINE
     CROW_ROUTE(app, "/transact")
     .methods("POST"_method)
     ([&](const crow::request& req) {
