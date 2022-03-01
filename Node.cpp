@@ -157,6 +157,8 @@ void Node::handleBlockchain(std::string blockchainString) {
     if (blockchainString.empty())
         return;
 
+    // Find all instances of json::parse() and put them 
+    // in a try/catch block.
     auto j = nlohmann::json::parse(blockchainString);
     int localBlockCount = blockchain->blocks.size();
     int receivedBlockCount = j["blocks"].size();
