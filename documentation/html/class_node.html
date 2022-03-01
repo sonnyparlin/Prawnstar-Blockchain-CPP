@@ -77,21 +77,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a92ae2118238f692dee64f2dcb0406ec9"><td class="memItemLeft" align="right" valign="top"><a id="a92ae2118238f692dee64f2dcb0406ec9" name="a92ae2118238f692dee64f2dcb0406ec9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>startServers</b> (int argc, char **argv)</td></tr>
 <tr class="separator:a92ae2118238f692dee64f2dcb0406ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fd2928bbec56f5fcf96fca8b165c7ce"><td class="memItemLeft" align="right" valign="top"><a id="a2fd2928bbec56f5fcf96fca8b165c7ce" name="a2fd2928bbec56f5fcf96fca8b165c7ce"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleTransaction</b> (<a class="el" href="class_transaction.html">Transaction</a>, bool broadcast=true)</td></tr>
+<tr class="memitem:a2fd2928bbec56f5fcf96fca8b165c7ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a2fd2928bbec56f5fcf96fca8b165c7ce">handleTransaction</a> (<a class="el" href="class_transaction.html">Transaction</a>, bool broadcast=true)</td></tr>
 <tr class="separator:a2fd2928bbec56f5fcf96fca8b165c7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1918e440c28994f9fd8343d5bc0c429"><td class="memItemLeft" align="right" valign="top"><a id="ae1918e440c28994f9fd8343d5bc0c429" name="ae1918e440c28994f9fd8343d5bc0c429"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleBlock</b> (<a class="el" href="class_block.html">Block</a> block, bool broadcast)</td></tr>
 <tr class="separator:ae1918e440c28994f9fd8343d5bc0c429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063565fe59b1c9c9dff18776f5b689df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a063565fe59b1c9c9dff18776f5b689df">requestChain</a> ()</td></tr>
 <tr class="separator:a063565fe59b1c9c9dff18776f5b689df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac08fe080956d22ded0226fd3b47a4fdc"><td class="memItemLeft" align="right" valign="top"><a id="ac08fe080956d22ded0226fd3b47a4fdc" name="ac08fe080956d22ded0226fd3b47a4fdc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>forge</b> ()</td></tr>
+<tr class="memitem:ac08fe080956d22ded0226fd3b47a4fdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ac08fe080956d22ded0226fd3b47a4fdc">forge</a> ()</td></tr>
 <tr class="separator:ac08fe080956d22ded0226fd3b47a4fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a414ce08fd86e7490debcb0f56642f2fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a414ce08fd86e7490debcb0f56642f2fa">handleBlockchainRequest</a> (std::string)</td></tr>
 <tr class="separator:a414ce08fd86e7490debcb0f56642f2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbc4873aa5493cdea93bbc2a24354da2"><td class="memItemLeft" align="right" valign="top"><a id="adbc4873aa5493cdea93bbc2a24354da2" name="adbc4873aa5493cdea93bbc2a24354da2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleBlockchain</b> (std::string blockchainString)</td></tr>
+<tr class="memitem:adbc4873aa5493cdea93bbc2a24354da2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adbc4873aa5493cdea93bbc2a24354da2">handleBlockchain</a> (std::string blockchainString)</td></tr>
 <tr class="separator:adbc4873aa5493cdea93bbc2a24354da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -137,6 +134,43 @@ char **&#160;</td><td class="memItemRight" valign="bottom"><b>argv</b></td></tr>
 <tr class="separator:a19e6a44a294fee3a29b9d113ff9f26e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac08fe080956d22ded0226fd3b47a4fdc" name="ac08fe080956d22ded0226fd3b47a4fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08fe080956d22ded0226fd3b47a4fdc">&#9670;&nbsp;</a></span>forge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Node::forge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This is where new blocks are initiated for this forger. </p>
+
+</div>
+</div>
+<a id="adbc4873aa5493cdea93bbc2a24354da2" name="adbc4873aa5493cdea93bbc2a24354da2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbc4873aa5493cdea93bbc2a24354da2">&#9670;&nbsp;</a></span>handleBlockchain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Node::handleBlockchain </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>blockchainString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. </p>
+
+</div>
+</div>
 <a id="a414ce08fd86e7490debcb0f56642f2fa" name="a414ce08fd86e7490debcb0f56642f2fa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a414ce08fd86e7490debcb0f56642f2fa">&#9670;&nbsp;</a></span>handleBlockchainRequest()</h2>
 
@@ -153,6 +187,35 @@ char **&#160;</td><td class="memItemRight" valign="bottom"><b>argv</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p >Only send the blocks which are missing from the requesting node. </p>
+
+</div>
+</div>
+<a id="a2fd2928bbec56f5fcf96fca8b165c7ce" name="a2fd2928bbec56f5fcf96fca8b165c7ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fd2928bbec56f5fcf96fca8b165c7ce">&#9670;&nbsp;</a></span>handleTransaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Node::handleTransaction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_transaction.html">Transaction</a>&#160;</td>
+          <td class="paramname"><em>transaction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>broadcast</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This is where we handle transactions. Called from NodeAPI and <a class="el" href="class_socket_communication.html">SocketCommunication</a>. </p>
 
 </div>
 </div>

@@ -157,6 +157,12 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     return 0;
 }
 
+/*!
+This is where everything starts up in terms of a single node. We start with
+our p2p server, our peer discovery status thread as well as our actual peer discovery
+thread. We also check to see if this is a master node or not, if not, it will grab 
+the blocks it's missing (if any) from the blockchain on the master node.
+*/
 void SocketCommunication::startP2POperations( int argc, char **argv ) {
     sc.ip = argv[1];
     char *p;
@@ -170,6 +176,11 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
 
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
     discoveryThread.detach();
+
+    if (sc.port != 10001) {
+        std::cout << "Requesting blockchain from master node" << std::endl;
+        node->requestChain();
+    }
     
     // for(;;) {
     //     // keep alive

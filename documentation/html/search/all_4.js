@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handleblockchainrequest_0',['handleBlockchainRequest',['../class_node.html#a414ce08fd86e7490debcb0f56642f2fa',1,'Node']]]
+  ['forge_0',['forge',['../class_node.html#ac08fe080956d22ded0226fd3b47a4fdc',1,'Node']]]
 ];

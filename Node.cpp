@@ -59,6 +59,9 @@ void Node::startServers(int argc, char **argv) {
     }
 }
 
+/*!
+This is where we handle transactions. Called from NodeAPI and SocketCommunication.
+*/
 bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     std::string data = transaction.payload();
     std::string signature = transaction.signature;
@@ -162,6 +165,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
     p2p->send_node_message(outgoingSocket, msgJson.c_str());
 }
 
+/*!
+This is where we read and rebuild the blockchain or partial blockchain after requesting blocks
+from the master server. How many blocks we ad is based on how many we requested.
+*/
 void Node::handleBlockchain(std::string blockchainString) {
     if (blockchainString.empty())
         return;
@@ -208,6 +215,9 @@ void Node::handleBlockchain(std::string blockchainString) {
     }
 }
 
+/*!
+This is where new blocks are initiated for this forger.
+*/
 void Node::forge() {
     std::string forger = blockchain->nextForger();
     if (forger == nodeWallet->walletPublicKey) {

@@ -9,7 +9,6 @@ Blockchain::Blockchain(Node *node) {
 }
 
 Blockchain::~Blockchain() {
-    //blockchain.clear();
 }
 
 Block Blockchain::genesis() {
