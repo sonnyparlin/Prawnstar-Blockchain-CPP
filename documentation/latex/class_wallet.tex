@@ -1,0 +1,72 @@
+\hypertarget{class_wallet}{}\doxysection{Wallet Class Reference}
+\label{class_wallet}\index{Wallet@{Wallet}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_wallet_a7c4dca8b811cd720b6518a6e79bd7a0c}\label{class_wallet_a7c4dca8b811cd720b6518a6e79bd7a0c}} 
+{\bfseries Wallet} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, bool usefile, const char $\ast$filename)
+\item 
+\mbox{\Hypertarget{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}\label{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}} 
+{\bfseries Wallet} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}\label{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}} 
+{\bfseries Wallet} (const char $\ast$address, \mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_wallet_ab783113deae4bb8f811050f316623509}\label{class_wallet_ab783113deae4bb8f811050f316623509}} 
+void {\bfseries gen\+Key\+Pair} ()
+\item 
+\mbox{\Hypertarget{class_wallet_a17449d21250329064a2614cff4e7ad34}\label{class_wallet_a17449d21250329064a2614cff4e7ad34}} 
+\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}} {\bfseries sign} (std\+::string data)
+\item 
+\mbox{\hyperlink{class_transaction}{Transaction}} \mbox{\hyperlink{class_wallet_a4b3dd34d79245c9c17f9807ff0357558}{create\+Transaction}} (std\+::string receiver\+Address, double amount, std\+::string type)
+\item 
+\mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a3c5ecc5bfcd5ba049cd8d6ed98764f1f}{create\+Block}} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, std\+::string last\+Hash, unsigned long long block\+Count)
+\item 
+\mbox{\Hypertarget{class_wallet_a2a2e2739844070770ebe1cdef01046de}\label{class_wallet_a2a2e2739844070770ebe1cdef01046de}} 
+std\+::string {\bfseries generate\+Address} (const std\+::string str)
+\item 
+\mbox{\Hypertarget{class_wallet_a1b50696ebc2bf5b1a9958dc467187767}\label{class_wallet_a1b50696ebc2bf5b1a9958dc467187767}} 
+void {\bfseries load\+Wallet\+From\+Address} (const std\+::string \&address, \mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}\label{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}} 
+std\+::string {\bfseries to\+Json} ()
+\item 
+\mbox{\Hypertarget{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}\label{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}} 
+void {\bfseries from\+Key} (const char $\ast$file)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_wallet_ab74e1cf9908b046cab12c520343bc04b}\label{class_wallet_ab74e1cf9908b046cab12c520343bc04b}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries wallet\+Key\+Pair}
+\item 
+\mbox{\Hypertarget{class_wallet_abe298647e46a2b9872ccff4064dd94a2}\label{class_wallet_abe298647e46a2b9872ccff4064dd94a2}} 
+std\+::string {\bfseries wallet\+Private\+Key}
+\item 
+\mbox{\Hypertarget{class_wallet_ad6d6d9c660faca4623bea7873244e755}\label{class_wallet_ad6d6d9c660faca4623bea7873244e755}} 
+std\+::string {\bfseries wallet\+Public\+Key}
+\item 
+\mbox{\Hypertarget{class_wallet_acb84b316931574393a098f16bf79a19d}\label{class_wallet_acb84b316931574393a098f16bf79a19d}} 
+std\+::string {\bfseries address}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_wallet_a3c5ecc5bfcd5ba049cd8d6ed98764f1f}\label{class_wallet_a3c5ecc5bfcd5ba049cd8d6ed98764f1f}} 
+\index{Wallet@{Wallet}!createBlock@{createBlock}}
+\index{createBlock@{createBlock}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{createBlock()}{createBlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Wallet\+::create\+Block (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{unsigned long long}]{block\+Count }\end{DoxyParamCaption})}
+
+This is where blocks are generated for the entire blockchain. Since this is a proof of stake blockchain, transactions will always be the created by a forger determined by the prof of stake algorithm. Called from Blockchain\+::create\+Block() inside of Node.\+cpp. \mbox{\Hypertarget{class_wallet_a4b3dd34d79245c9c17f9807ff0357558}\label{class_wallet_a4b3dd34d79245c9c17f9807ff0357558}} 
+\index{Wallet@{Wallet}!createTransaction@{createTransaction}}
+\index{createTransaction@{createTransaction}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{createTransaction()}{createTransaction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_transaction}{Transaction}} Wallet\+::create\+Transaction (\begin{DoxyParamCaption}\item[{std\+::string}]{receiver\+Address,  }\item[{double}]{amount,  }\item[{std\+::string}]{type }\end{DoxyParamCaption})}
+
+This is where transactions originate. Right now there are no checks and balances to verify a user\textquotesingle{}s identity. This will change with the implementation of a user interface. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Wallet.\+hpp\item 
+Wallet.\+cpp\end{DoxyCompactItemize}

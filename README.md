@@ -1,6 +1,6 @@
-# Compile and run
+# Dependancies Needed and Startup Instructions
 
-## Download dependancies
+### Download dependancies
 * Install boost_1_78_0
 
    [Boost download](https://www.boost.org/users/download/)
@@ -9,7 +9,8 @@
 
 *  Install [OpenSSL](https://www.openssl.org/). 
 
-* Run `make all` to build and ./main to run.
+### Making and Running the App 
+Run `make all` to build and ./main to run. Important to use 10001 for the first node, it's hard coded at the moment.
 
 * Node 1 (master node): ./main 127.0.0.1 10001 8001
 
@@ -24,6 +25,10 @@ The format for the master node:
 The format of all client nodes:
 
 ./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
+
+### Testing it out
+
+You can use `python test.py` to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
 
 Use [Postman](https://www.postman.com) to send a transaction
 

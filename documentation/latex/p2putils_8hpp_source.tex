@@ -1,0 +1,39 @@
+\hypertarget{p2putils_8hpp_source}{}\doxysection{p2putils.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_P2PUTILS\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_P2PUTILS\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <netinet/in.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <sys/socket.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <pthread.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <limits.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <future>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cryptopp/hex.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }p2putils \{}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} logit(std::string message);}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} isValidIpAddress(std::string ipAddress);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} createSocket();}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} Bind(\textcolor{keywordtype}{int} server, \textcolor{keyword}{struct} sockaddr\_in address, \textcolor{keywordtype}{int} PORT);}
+\DoxyCodeLine{29     std::string uuid\_gen();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} setOutgoingNodeConnection(std::string ipaddress, \textcolor{keywordtype}{int} port);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{char} *sock\_ntop (\textcolor{keyword}{const} \textcolor{keyword}{struct} sockaddr *sa, socklen\_t salen);}
+\DoxyCodeLine{32 \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_P2PUTILS\_H\_}}
+
+\end{DoxyCode}

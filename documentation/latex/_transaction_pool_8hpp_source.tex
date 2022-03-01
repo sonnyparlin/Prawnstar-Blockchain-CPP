@@ -1,0 +1,27 @@
+\hypertarget{_transaction_pool_8hpp_source}{}\doxysection{Transaction\+Pool.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_TRANSACTIONPOOL\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_TRANSACTIONPOOL\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Transaction.hpp"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <crow.h>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_transaction_pool}{TransactionPool}} \{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{10     std::vector<Transaction> transactions;}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}}();           \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{13     \mbox{\hyperlink{class_transaction_pool}{\string~TransactionPool}}();          \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} addTransaction(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
+\DoxyCodeLine{16     \textcolor{keywordtype}{bool} transactionExists(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} removeFromPool(vector<Transaction> txs);}
+\DoxyCodeLine{18     std::string getPoolTransactionsJsonString();}
+\DoxyCodeLine{19     \textcolor{keywordtype}{bool} forgerRequired();}
+\DoxyCodeLine{20 \};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTIONPOOL\_H\_}}
+
+\end{DoxyCode}

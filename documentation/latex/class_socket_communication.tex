@@ -1,0 +1,74 @@
+\hypertarget{class_socket_communication}{}\doxysection{Socket\+Communication Class Reference}
+\label{class_socket_communication}\index{SocketCommunication@{SocketCommunication}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}\label{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}} 
+{\bfseries Socket\+Communication} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}\label{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}} 
+void {\bfseries start\+Socket\+Communication} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}\label{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}} 
+void {\bfseries start\+P2\+POperations} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}\label{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}} 
+int {\bfseries start\+P2\+PServer} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a5e89d704ca77450f4947346640be1621}\label{class_socket_communication_a5e89d704ca77450f4947346640be1621}} 
+void {\bfseries handshake} (int sock)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a556f923e6a6346454f8055400668ef27}\label{class_socket_communication_a556f923e6a6346454f8055400668ef27}} 
+void {\bfseries broadcast\+Peer\+Discovery} (const char $\ast$message)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a735ef3c71b6294c95a4941d582aec2f7}\label{class_socket_communication_a735ef3c71b6294c95a4941d582aec2f7}} 
+void {\bfseries broadcast} (const char $\ast$message)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}\label{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}} 
+void {\bfseries inbound\+\_\+node\+\_\+connected} (int sock)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a24d43029922a16e291e014ff8f6dd64c}\label{class_socket_communication_a24d43029922a16e291e014ff8f6dd64c}} 
+void {\bfseries outbound\+\_\+node\+\_\+connected} (int sock)
+\item 
+\mbox{\Hypertarget{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}\label{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}} 
+int {\bfseries process\+Args} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}\label{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}} 
+void {\bfseries send\+\_\+node\+\_\+message} (int sock, const char $\ast$message)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}\label{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}} 
+void {\bfseries receive\+\_\+node\+\_\+message} (int sock)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a853380083a5e1450551e3d238dc656b4}\label{class_socket_communication_a853380083a5e1450551e3d238dc656b4}} 
+void {\bfseries peer\+Discovery\+Status} ()
+\item 
+\mbox{\Hypertarget{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}\label{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}} 
+void {\bfseries peer\+Discovery} ()
+\item 
+\mbox{\Hypertarget{class_socket_communication_afd39f2ad483f11cb48094cdd42e962ac}\label{class_socket_communication_afd39f2ad483f11cb48094cdd42e962ac}} 
+std\+::string {\bfseries handshake\+Message} ()
+\item 
+\mbox{\Hypertarget{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}\label{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}} 
+void {\bfseries peer\+Discovery\+Handle\+Message} (const char $\ast$message)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}\label{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries peers}
+\item 
+\mbox{\Hypertarget{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}\label{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries inactive\+Peers}
+\item 
+\mbox{\Hypertarget{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}\label{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}} 
+const int {\bfseries MESSAGELENGTH} = 6
+\item 
+\mbox{\Hypertarget{class_socket_communication_a30f06d9bb957d12517468379feb5530a}\label{class_socket_communication_a30f06d9bb957d12517468379feb5530a}} 
+\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} {\bfseries sc}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Socket\+Communication.\+hpp\item 
+Socket\+Communication.\+cpp\end{DoxyCompactItemize}

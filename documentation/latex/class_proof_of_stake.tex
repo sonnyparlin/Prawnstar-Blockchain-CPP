@@ -1,0 +1,38 @@
+\hypertarget{class_proof_of_stake}{}\doxysection{Proof\+Of\+Stake Class Reference}
+\label{class_proof_of_stake}\index{ProofOfStake@{ProofOfStake}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a9cc649d6b7fb9ed01518cce47feedf13}\label{class_proof_of_stake_a9cc649d6b7fb9ed01518cce47feedf13}} 
+{\bfseries Proof\+Of\+Stake} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, int)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a76389e42035cb2df7d32fb8a2407d161}\label{class_proof_of_stake_a76389e42035cb2df7d32fb8a2407d161}} 
+void {\bfseries update} (std\+::string public\+Key\+String, double stake)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_af639d6f426d7338ddf9c5210a2aa2519}\label{class_proof_of_stake_af639d6f426d7338ddf9c5210a2aa2519}} 
+double {\bfseries get\+Stake} (std\+::string public\+Key\+String)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a5e8d8d22e80663daa866112132160a8a}\label{class_proof_of_stake_a5e8d8d22e80663daa866112132160a8a}} 
+std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ {\bfseries validator\+Lots} (std\+::string seed)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a7bdb18976ec3d8086a1c51cc1fd1cde2}\label{class_proof_of_stake_a7bdb18976ec3d8086a1c51cc1fd1cde2}} 
+\mbox{\hyperlink{class_lot}{Lot}} {\bfseries winner\+Lot} (std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ lots, std\+::string seed)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_afc88d0e2e35eb9eb0252fe7edcbcf4ab}\label{class_proof_of_stake_afc88d0e2e35eb9eb0252fe7edcbcf4ab}} 
+std\+::string {\bfseries forger} (std\+::string last\+Block\+Hash)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a62ad805df00e748ba527fb878a02c989}\label{class_proof_of_stake_a62ad805df00e748ba527fb878a02c989}} 
+void {\bfseries set\+Genesis\+Node\+Stake} (std\+::string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}\label{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}} 
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries stakers}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Proof\+Of\+Stake.\+hpp\item 
+Proof\+Of\+Stake.\+cpp\end{DoxyCompactItemize}

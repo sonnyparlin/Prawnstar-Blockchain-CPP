@@ -1,0 +1,87 @@
+\hypertarget{class_node}{}\doxysection{Node Class Reference}
+\label{class_node}\index{Node@{Node}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_node_a92ae2118238f692dee64f2dcb0406ec9}\label{class_node_a92ae2118238f692dee64f2dcb0406ec9}} 
+void {\bfseries start\+Servers} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{class_node_a2fd2928bbec56f5fcf96fca8b165c7ce}\label{class_node_a2fd2928bbec56f5fcf96fca8b165c7ce}} 
+bool {\bfseries handle\+Transaction} (\mbox{\hyperlink{class_transaction}{Transaction}}, bool broadcast=true)
+\item 
+\mbox{\Hypertarget{class_node_ae1918e440c28994f9fd8343d5bc0c429}\label{class_node_ae1918e440c28994f9fd8343d5bc0c429}} 
+void {\bfseries handle\+Block} (\mbox{\hyperlink{class_block}{Block}} block, bool broadcast)
+\item 
+void \mbox{\hyperlink{class_node_a063565fe59b1c9c9dff18776f5b689df}{request\+Chain}} ()
+\item 
+\mbox{\Hypertarget{class_node_ac08fe080956d22ded0226fd3b47a4fdc}\label{class_node_ac08fe080956d22ded0226fd3b47a4fdc}} 
+void {\bfseries forge} ()
+\item 
+void \mbox{\hyperlink{class_node_a414ce08fd86e7490debcb0f56642f2fa}{handle\+Blockchain\+Request}} (std\+::string)
+\item 
+\mbox{\Hypertarget{class_node_adbc4873aa5493cdea93bbc2a24354da2}\label{class_node_adbc4873aa5493cdea93bbc2a24354da2}} 
+void {\bfseries handle\+Blockchain} (std\+::string blockchain\+String)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_node_a2b4136f2297b9e71b18d6407c9508e07}\label{class_node_a2b4136f2297b9e71b18d6407c9508e07}} 
+static \mbox{\hyperlink{class_node}{Node}} $\ast$ {\bfseries create\+Node} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_node_a8a04184423202651a3b807c6a2d0a508}\label{class_node_a8a04184423202651a3b807c6a2d0a508}} 
+\mbox{\hyperlink{class_transaction_pool}{Transaction\+Pool}} {\bfseries transaction\+Pool}
+\item 
+\mbox{\Hypertarget{class_node_a4eb8eec73c312bdf2509e30e3e059424}\label{class_node_a4eb8eec73c312bdf2509e30e3e059424}} 
+\mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries node\+Wallet}
+\item 
+\mbox{\Hypertarget{class_node_a3c262e455d6332260f25a42b529b5906}\label{class_node_a3c262e455d6332260f25a42b529b5906}} 
+\mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries exchange\+Wallet}
+\item 
+\mbox{\Hypertarget{class_node_a14a9758819bd22fe4a32478a08b88bf5}\label{class_node_a14a9758819bd22fe4a32478a08b88bf5}} 
+\mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries bob\+Wallet}
+\item 
+\mbox{\Hypertarget{class_node_a15d9b97d824afee953bad4d38489afc5}\label{class_node_a15d9b97d824afee953bad4d38489afc5}} 
+\mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries alice\+Wallet}
+\item 
+\mbox{\Hypertarget{class_node_adf4848690854c7c8470804626a57cf78}\label{class_node_adf4848690854c7c8470804626a57cf78}} 
+\mbox{\hyperlink{class_blockchain}{Blockchain}} $\ast$ {\bfseries blockchain}
+\item 
+\mbox{\Hypertarget{class_node_ab9865ce71e40837c33c554aa3bb5260f}\label{class_node_ab9865ce71e40837c33c554aa3bb5260f}} 
+\mbox{\hyperlink{class_account_model}{Account\+Model}} $\ast$ {\bfseries account\+Model}
+\item 
+\mbox{\Hypertarget{class_node_a7094f5ca84e772165ce4ab369679853b}\label{class_node_a7094f5ca84e772165ce4ab369679853b}} 
+\mbox{\hyperlink{class_socket_communication}{Socket\+Communication}} $\ast$ {\bfseries p2p}
+\item 
+\mbox{\Hypertarget{class_node_a8924885855cec659830a99c46e0b190e}\label{class_node_a8924885855cec659830a99c46e0b190e}} 
+\mbox{\hyperlink{class_proof_of_stake}{Proof\+Of\+Stake}} $\ast$ {\bfseries proof\+Of\+Stake}
+\item 
+\mbox{\Hypertarget{class_node_a319a20024ef9ef36ba5b2385e14116f3}\label{class_node_a319a20024ef9ef36ba5b2385e14116f3}} 
+int {\bfseries argc}
+\item 
+\mbox{\Hypertarget{class_node_a19e6a44a294fee3a29b9d113ff9f26e3}\label{class_node_a19e6a44a294fee3a29b9d113ff9f26e3}} 
+char $\ast$$\ast$ {\bfseries argv}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node_a414ce08fd86e7490debcb0f56642f2fa}\label{class_node_a414ce08fd86e7490debcb0f56642f2fa}} 
+\index{Node@{Node}!handleBlockchainRequest@{handleBlockchainRequest}}
+\index{handleBlockchainRequest@{handleBlockchainRequest}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{handleBlockchainRequest()}{handleBlockchainRequest()}}
+{\footnotesize\ttfamily void Node\+::handle\+Blockchain\+Request (\begin{DoxyParamCaption}\item[{std\+::string}]{requesting\+Node }\end{DoxyParamCaption})}
+
+Only send the blocks which are missing from the requesting node. \mbox{\Hypertarget{class_node_a063565fe59b1c9c9dff18776f5b689df}\label{class_node_a063565fe59b1c9c9dff18776f5b689df}} 
+\index{Node@{Node}!requestChain@{requestChain}}
+\index{requestChain@{requestChain}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{requestChain()}{requestChain()}}
+{\footnotesize\ttfamily void Node\+::request\+Chain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Request complete or partial blockchain from the master node. Uses the local block count to determine how many blocks are needed from the master server. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Node.\+hpp\item 
+Node.\+cpp\end{DoxyCompactItemize}

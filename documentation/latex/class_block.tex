@@ -1,0 +1,59 @@
+\hypertarget{class_block}{}\doxysection{Block Class Reference}
+\label{class_block}\index{Block@{Block}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_block_a65dd5254935e15cf2d0c7e5e5429bb00}\label{class_block_a65dd5254935e15cf2d0c7e5e5429bb00}} 
+{\bfseries Block} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, string last\+Hash, string forger\+Address, unsigned long long block\+Count)
+\item 
+\mbox{\Hypertarget{class_block_a3969dc3e155a05ac654601e08737594d}\label{class_block_a3969dc3e155a05ac654601e08737594d}} 
+{\bfseries Block} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, string last\+Hash, unsigned long long block\+Count)
+\item 
+\mbox{\Hypertarget{class_block_a49eedff6109dc124a7deace493f06daf}\label{class_block_a49eedff6109dc124a7deace493f06daf}} 
+void {\bfseries display} () const
+\item 
+\mbox{\Hypertarget{class_block_a91bcc984ff850abcbb792ee77a6cb4c0}\label{class_block_a91bcc984ff850abcbb792ee77a6cb4c0}} 
+string {\bfseries to\+Json} () const
+\item 
+\mbox{\Hypertarget{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}\label{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}} 
+string {\bfseries payload} ()
+\item 
+\mbox{\Hypertarget{class_block_a105e655b2e4f8333f0860abb8eb6baee}\label{class_block_a105e655b2e4f8333f0860abb8eb6baee}} 
+void {\bfseries sign} (string data)
+\item 
+\mbox{\Hypertarget{class_block_a280e09084232f6994a20d03497051dfe}\label{class_block_a280e09084232f6994a20d03497051dfe}} 
+vector$<$ nlohmann\+::json $>$ {\bfseries transaction\+List} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions) const
+\item 
+\mbox{\Hypertarget{class_block_a483d1b75449615c04b2e04e2abb41f91}\label{class_block_a483d1b75449615c04b2e04e2abb41f91}} 
+nlohmann\+::json {\bfseries json\+View} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_block_af82f3ad5ea785c2b952c2aeb7813d891}\label{class_block_af82f3ad5ea785c2b952c2aeb7813d891}} 
+vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries transactions}
+\item 
+\mbox{\Hypertarget{class_block_a665cb7b97477cdc209d90de1d3ee6e95}\label{class_block_a665cb7b97477cdc209d90de1d3ee6e95}} 
+string {\bfseries last\+Hash}
+\item 
+\mbox{\Hypertarget{class_block_af27da86497ff461b22868a4cd585588c}\label{class_block_af27da86497ff461b22868a4cd585588c}} 
+string {\bfseries hash}
+\item 
+\mbox{\Hypertarget{class_block_aec2ccc1fba317ba55f1445549ea81b83}\label{class_block_aec2ccc1fba317ba55f1445549ea81b83}} 
+string {\bfseries forger\+Address}
+\item 
+\mbox{\Hypertarget{class_block_a6f48203d2b976b8857b22e5981c8f943}\label{class_block_a6f48203d2b976b8857b22e5981c8f943}} 
+time\+\_\+t {\bfseries timestamp} = time\+Since\+Epoch()
+\item 
+\mbox{\Hypertarget{class_block_a87f1c010ee0c9497ad69bf12f3db7c51}\label{class_block_a87f1c010ee0c9497ad69bf12f3db7c51}} 
+unsigned long long {\bfseries block\+Count}
+\item 
+\mbox{\Hypertarget{class_block_a3e5c39cb63b06630941c470683e6ed4a}\label{class_block_a3e5c39cb63b06630941c470683e6ed4a}} 
+string {\bfseries signature}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Block.\+hpp\item 
+Block.\+cpp\end{DoxyCompactItemize}

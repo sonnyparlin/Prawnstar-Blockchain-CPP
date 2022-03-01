@@ -1,0 +1,43 @@
+\hypertarget{utils_8hpp_source}{}\doxysection{utils.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_UTILS\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_UTILS\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <openssl/evp.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <openssl/bio.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <openssl/pem.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <openssl/sha.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <random>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <boost/uuid/uuid.hpp>}            \textcolor{comment}{// uuid class}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <boost/uuid/uuid\_generators.hpp>} \textcolor{comment}{// generators}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <boost/uuid/uuid\_io.hpp>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{namespace }utils \{}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structutils_1_1_signature}{Signature}} \{}
+\DoxyCodeLine{20         \textcolor{keywordtype}{size\_t} \_size;}
+\DoxyCodeLine{21         std::string hexsig;}
+\DoxyCodeLine{22     \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * MASTER\_NODE\_IP = \textcolor{stringliteral}{"{}127.0.0.1"{}};}
+\DoxyCodeLine{25     \textcolor{keyword}{static} \textcolor{keywordtype}{int} MASTER\_NODE\_PORT=10001;}
+\DoxyCodeLine{26     std::string hash(std::string dataStr);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} verifySignature(std::string dataStr, std::string, std::string publicKey);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} random\_char();}
+\DoxyCodeLine{29     std::string uuid\_gen();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{char} asciitolower(\textcolor{keywordtype}{char} in);}
+\DoxyCodeLine{31     std::string gen\_random\_str(\textcolor{keyword}{const} \textcolor{keywordtype}{int} len);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} hexToInt(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *hex);}
+\DoxyCodeLine{33     \textcolor{keywordtype}{int} ABS(\textcolor{keywordtype}{int} x);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} getPort(\textcolor{keywordtype}{char} *portString);}
+\DoxyCodeLine{35     std::vector<std::string> split(std::string str, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *seperator);}
+\DoxyCodeLine{36 \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_UTILS\_H\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,74 @@
+\hypertarget{class_blockchain}{}\doxysection{Blockchain Class Reference}
+\label{class_blockchain}\index{Blockchain@{Blockchain}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blockchain_a8b2d507929548019ed2c73b1956317b1}\label{class_blockchain_a8b2d507929548019ed2c73b1956317b1}} 
+{\bfseries Blockchain} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_blockchain_ac1778215eab706cdd7f1bd7d968c0304}\label{class_blockchain_ac1778215eab706cdd7f1bd7d968c0304}} 
+bool {\bfseries add\+Block} (\mbox{\hyperlink{class_block}{Block}} block)
+\item 
+\mbox{\Hypertarget{class_blockchain_ada877983b82acc5f31fb9dbdf29dc9cd}\label{class_blockchain_ada877983b82acc5f31fb9dbdf29dc9cd}} 
+vector$<$ nlohmann\+::json $>$ {\bfseries block\+List} (vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ blocks) const
+\item 
+\mbox{\Hypertarget{class_blockchain_abb0cd4f12e110b25b1504c2d2671bbb5}\label{class_blockchain_abb0cd4f12e110b25b1504c2d2671bbb5}} 
+nlohmann\+::json {\bfseries to\+Json} () const
+\item 
+\mbox{\Hypertarget{class_blockchain_a206f00351ece124280b7d382c16daab0}\label{class_blockchain_a206f00351ece124280b7d382c16daab0}} 
+std\+::string {\bfseries to\+Json\+String} (std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ blocks) const
+\item 
+\mbox{\Hypertarget{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}\label{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}} 
+\mbox{\hyperlink{class_block}{Block}} {\bfseries genesis} ()
+\item 
+\mbox{\Hypertarget{class_blockchain_a5aeb2c55234df412fef2f1a37f144ea1}\label{class_blockchain_a5aeb2c55234df412fef2f1a37f144ea1}} 
+bool {\bfseries block\+Count\+Valid} (\mbox{\hyperlink{class_block}{Block}} block)
+\item 
+\mbox{\Hypertarget{class_blockchain_a4bb018ff8afc932743be825096e3a5b9}\label{class_blockchain_a4bb018ff8afc932743be825096e3a5b9}} 
+bool {\bfseries last\+Block\+Hash\+Valid} (\mbox{\hyperlink{class_block}{Block}} block)
+\item 
+\mbox{\Hypertarget{class_blockchain_ab17e38815d7321be6309c03ce5de6d5b}\label{class_blockchain_ab17e38815d7321be6309c03ce5de6d5b}} 
+bool {\bfseries transaction\+Covered} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\item 
+\mbox{\Hypertarget{class_blockchain_a5ee2cd4f410691a161b37c0100b66b6e}\label{class_blockchain_a5ee2cd4f410691a161b37c0100b66b6e}} 
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries get\+Covered\+Transaction\+Set} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions)
+\item 
+\mbox{\Hypertarget{class_blockchain_aa52a594366e6d44b2c569f2e7e9fddd4}\label{class_blockchain_aa52a594366e6d44b2c569f2e7e9fddd4}} 
+void {\bfseries execute\+Transaction} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\item 
+\mbox{\Hypertarget{class_blockchain_a057aec528b1c41b4480bda2c7e4f646b}\label{class_blockchain_a057aec528b1c41b4480bda2c7e4f646b}} 
+void {\bfseries execute\+Transactions} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions)
+\item 
+\mbox{\Hypertarget{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}\label{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}} 
+std\+::string {\bfseries next\+Forger} ()
+\item 
+\mbox{\Hypertarget{class_blockchain_adb3e4edb5c26be1448a6253b0fbff51a}\label{class_blockchain_adb3e4edb5c26be1448a6253b0fbff51a}} 
+\mbox{\hyperlink{class_block}{Block}} {\bfseries create\+Block} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions\+From\+Pool, std\+::string forger\+Address)
+\item 
+\mbox{\Hypertarget{class_blockchain_a37a8b167436b54e330976767c4935efa}\label{class_blockchain_a37a8b167436b54e330976767c4935efa}} 
+bool {\bfseries transaction\+Exists} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\item 
+\mbox{\Hypertarget{class_blockchain_a8622c3dcc5575ca3d19ee3359d358979}\label{class_blockchain_a8622c3dcc5575ca3d19ee3359d358979}} 
+bool {\bfseries forger\+Valid} (\mbox{\hyperlink{class_block}{Block}} block)
+\item 
+\mbox{\Hypertarget{class_blockchain_a89eb3a9b8484ea643cff1436a499e4b8}\label{class_blockchain_a89eb3a9b8484ea643cff1436a499e4b8}} 
+bool {\bfseries transaction\+Valid} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions)
+\item 
+\mbox{\Hypertarget{class_blockchain_a51158d934cf6b186989f3d0e08d7ff5e}\label{class_blockchain_a51158d934cf6b186989f3d0e08d7ff5e}} 
+bool {\bfseries block\+Has\+Transactions} (\mbox{\hyperlink{class_block}{Block}} block)
+\item 
+\mbox{\Hypertarget{class_blockchain_ae790df2096b847c518655d0077203cf7}\label{class_blockchain_ae790df2096b847c518655d0077203cf7}} 
+std\+::string {\bfseries to\+Json\+Web\+View} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}\label{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}} 
+std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ {\bfseries blocks}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Blockchain.\+hpp\item 
+Blockchain.\+cpp\end{DoxyCompactItemize}

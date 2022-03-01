@@ -1,0 +1,59 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{Download dependancies}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Install boost\+\_\+1\+\_\+78\+\_\+0
+
+\href{https://www.boost.org/users/download/}{\texttt{ Boost download}}
+
+\href{https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html\#easy-build-and-install}{\texttt{ Boost installation info}}
+\item Install \href{https://www.openssl.org/}{\texttt{ Open\+SSL}}.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Making and Running the App}\label{md__r_e_a_d_m_e_autotoc_md2}
+Run {\ttfamily make all} to build and ./main to run. Important to use 10001 for the first node, it\textquotesingle{}s hard coded at the moment.
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./main 127.\+0.\+0.\+1 10001 8001
+\item \mbox{\hyperlink{class_node}{Node}} 2\+: ./main 127.\+0.\+0.\+1 10002 127.\+0.\+0.\+1 8002
+\item \mbox{\hyperlink{class_node}{Node}} 3\+: ./main 127.\+0.\+0.\+1 10003 127.\+0.\+0.\+1 8003
+\end{DoxyItemize}
+
+The format for the master node\+:
+
+./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node
+
+The format of all client nodes\+:
+
+./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md3}
+You can use {\ttfamily python test.\+py} to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
+
+Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}transaction"{}:}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        "{}sender"{}: "{}pv1403d478bfc4949c9c68af53bbaf8deb58c4eac"{},}
+\DoxyCodeLine{        "{}receiver"{}: "{}pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"{},}
+\DoxyCodeLine{        "{}amount"{}: 500,}
+\DoxyCodeLine{        "{}type"{}: "{}EXCHANGE"{}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Send a second transaction\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}transaction"{}:}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        "{}sender"{}: "{}pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"{},}
+\DoxyCodeLine{        "{}receiver"{}: "{}pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42"{},}
+\DoxyCodeLine{        "{}amount"{}: 50,}
+\DoxyCodeLine{        "{}type"{}: "{}TRANSFER"{}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

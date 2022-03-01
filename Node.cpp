@@ -124,6 +124,10 @@ void Node::handleBlock (Block block, bool broadcast) {
     }
 }
 
+/*!
+Request complete or partial blockchain from the master node. Uses the local block count to determine
+how many blocks are needed from the master server.
+*/
 void Node::requestChain() {
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
@@ -136,6 +140,9 @@ void Node::requestChain() {
     p2p->send_node_message(outgoingSocket, msgJson.c_str());
 }
 
+/*!
+Only send the blocks which are missing from the requesting node.
+*/
 void Node::handleBlockchainRequest(std::string requestingNode) {
     /* 
     Only get the blocks I need. [X]
@@ -159,8 +166,6 @@ void Node::handleBlockchain(std::string blockchainString) {
     if (blockchainString.empty())
         return;
 
-    // Find all instances of json::parse() and put them 
-    // in a try/catch block.
     auto j = nlohmann::json::parse(blockchainString);
     int localBlockCount = blockchain->blocks.size();
     int receivedBlockCount = j["blocks"].size();

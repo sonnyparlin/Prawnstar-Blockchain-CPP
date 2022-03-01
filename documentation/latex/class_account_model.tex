@@ -1,0 +1,47 @@
+\hypertarget{class_account_model}{}\doxysection{Account\+Model Class Reference}
+\label{class_account_model}\index{AccountModel@{AccountModel}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_account_model_a4d9056cf5b6b26d0a75989f25df5bc91}\label{class_account_model_a4d9056cf5b6b26d0a75989f25df5bc91}} 
+{\bfseries Account\+Model} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\item 
+\mbox{\Hypertarget{class_account_model_aca5c04da90a34b81f6123cb3439403ae}\label{class_account_model_aca5c04da90a34b81f6123cb3439403ae}} 
+{\bfseries Account\+Model} (std\+::string address)
+\item 
+\mbox{\Hypertarget{class_account_model_a82e6534130a61e9e56605e6657cd2269}\label{class_account_model_a82e6534130a61e9e56605e6657cd2269}} 
+bool {\bfseries account\+Exists} (const std\+::string wallet\+Address)
+\item 
+\mbox{\Hypertarget{class_account_model_a98c12120addcf8d69dae6c705ae48c10}\label{class_account_model_a98c12120addcf8d69dae6c705ae48c10}} 
+void {\bfseries add\+Account} (const std\+::string wallet\+Address, const std\+::string pub\+Key, const std\+::string priv\+Key)
+\item 
+\mbox{\Hypertarget{class_account_model_a0bd24798e9094a2c7bcf77c33798f427}\label{class_account_model_a0bd24798e9094a2c7bcf77c33798f427}} 
+void {\bfseries add\+Account} (std\+::string wallet\+Address, std\+::string pub\+Key)
+\item 
+\mbox{\Hypertarget{class_account_model_ac559b03d26a8c79742310a9b30ace332}\label{class_account_model_ac559b03d26a8c79742310a9b30ace332}} 
+double {\bfseries get\+Balance} (const std\+::string wallet\+Address)
+\item 
+\mbox{\Hypertarget{class_account_model_a2f49d315ba0b6f384007f72a0ac6d943}\label{class_account_model_a2f49d315ba0b6f384007f72a0ac6d943}} 
+void {\bfseries update\+Balance} (const std\+::string wallet\+Address, double amount)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}\label{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries accounts}
+\item 
+\mbox{\Hypertarget{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}\label{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries address\+To\+Public\+Key}
+\item 
+\mbox{\Hypertarget{class_account_model_a2589dcd424d7a700886527bc078a734b}\label{class_account_model_a2589dcd424d7a700886527bc078a734b}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries address\+To\+Private\+Key}
+\item 
+\mbox{\Hypertarget{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}\label{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}} 
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries balances}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Account\+Model.\+hpp\item 
+Account\+Model.\+cpp\end{DoxyCompactItemize}
