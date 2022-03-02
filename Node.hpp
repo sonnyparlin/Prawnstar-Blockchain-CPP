@@ -10,6 +10,8 @@
 #include "AccountModel.hpp"
 #include "SocketCommunication.hpp"
 #include "ProofOfStake.hpp"
+#include <iostream>
+#include <fstream>
 #include <mutex>
 
 class SocketCommunication;

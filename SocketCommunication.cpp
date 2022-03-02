@@ -193,11 +193,18 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     // Everything went well, set the port
     char *p;
     int PORT = strtol(argv[2], &p, 10);
-    std::string id = utils::uuid_gen();
+    id = utils::uuid_gen();
     struct sockaddr_in address;
     int address_length = sizeof(address);
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY; 
+
+    std::ofstream blockchainFile;
+    std::string filename = "blockchain-" + id + ".json";
+    blockchainFile.open(filename, std::ios::app);
+    Block g = node->blockchain->genesis();
+    blockchainFile << g.toJson() << std::endl;
+    blockchainFile.close();
 
     // Server initialization
     int serverSocket = p2putils::createSocket();    
