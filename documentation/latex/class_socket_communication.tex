@@ -9,8 +9,7 @@
 \mbox{\Hypertarget{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}\label{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}} 
 void {\bfseries start\+Socket\+Communication} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \item 
-\mbox{\Hypertarget{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}\label{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}} 
-void {\bfseries start\+P2\+POperations} (int argc, char $\ast$$\ast$argv)
+void \mbox{\hyperlink{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}{start\+P2\+POperations}} (int argc, char $\ast$$\ast$argv)
 \item 
 \mbox{\Hypertarget{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}\label{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}} 
 int {\bfseries start\+P2\+PServer} (int argc, char $\ast$$\ast$argv)
@@ -67,6 +66,15 @@ const int {\bfseries MESSAGELENGTH} = 6
 \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} {\bfseries sc}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}\label{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}} 
+\index{SocketCommunication@{SocketCommunication}!startP2POperations@{startP2POperations}}
+\index{startP2POperations@{startP2POperations}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{startP2POperations()}{startP2POperations()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+POperations (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

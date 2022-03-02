@@ -79,8 +79,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ada488d9ffe321ae2275c12e9b4656393"><td class="memItemLeft" align="right" valign="top"><a id="ada488d9ffe321ae2275c12e9b4656393" name="ada488d9ffe321ae2275c12e9b4656393"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>startSocketCommunication</b> (int argc, char *argv[])</td></tr>
 <tr class="separator:ada488d9ffe321ae2275c12e9b4656393"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memItemLeft" align="right" valign="top"><a id="a5d83e3c33eb5a109d2d3ddbd1e7b2813" name="a5d83e3c33eb5a109d2d3ddbd1e7b2813"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startP2POperations</b> (int argc, char **argv)</td></tr>
+<tr class="memitem:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813">startP2POperations</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d8cebb7b8a9fdc343d63de5e8b78162"><td class="memItemLeft" align="right" valign="top"><a id="a9d8cebb7b8a9fdc343d63de5e8b78162" name="a9d8cebb7b8a9fdc343d63de5e8b78162"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>startP2PServer</b> (int argc, char **argv)</td></tr>
@@ -137,6 +136,36 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>MESSAGELENGTH</b
 <a class="el" href="class_socket_connector.html">SocketConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sc</b></td></tr>
 <tr class="separator:a30f06d9bb957d12517468379feb5530a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5d83e3c33eb5a109d2d3ddbd1e7b2813" name="a5d83e3c33eb5a109d2d3ddbd1e7b2813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d83e3c33eb5a109d2d3ddbd1e7b2813">&#9670;&nbsp;</a></span>startP2POperations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::startP2POperations </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it's missing (if any) from the blockchain on the master node. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_socket_communication_8hpp_source.html">SocketCommunication.hpp</a></li>
 <li>SocketCommunication.cpp</li>
