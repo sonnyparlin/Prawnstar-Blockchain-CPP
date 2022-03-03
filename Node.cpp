@@ -112,8 +112,9 @@ void Node::handleBlock (Block block, bool broadcast) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
         
+        // Write the new block to our local file
         std::ofstream blockchainFile;
-        std::string filename = "blockchain-" + p2p->id + ".json";
+        std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
         std::cout << "filename: " << filename << std::endl;
         blockchainFile.open(filename, std::ios::app);
         blockchainFile << block.jsonView() << std::endl;
@@ -234,7 +235,7 @@ void Node::forge() {
             transactionPool.removeFromPool(block.transactions);
 
             std::ofstream blockchainFile;
-            std::string filename = "blockchain-" + p2p->id + ".json";
+            std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
             std::cout << "filename: " << filename << std::endl;
             blockchainFile.open(filename, std::ios::app);
             blockchainFile << block.jsonView() << std::endl;
