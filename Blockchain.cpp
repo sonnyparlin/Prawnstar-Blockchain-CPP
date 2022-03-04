@@ -17,6 +17,7 @@ Block Blockchain::genesis() {
     Block genesisBlock(zeroTransactions, "***no***last***hash***", 0);
     genesisBlock.timestamp = 0;
     genesisBlock.hash = "***genesis***hash***";
+    genesisBlock._id = genesisBlock.hash;
     
     return genesisBlock;
 }

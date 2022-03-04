@@ -106,6 +106,7 @@ void SocketCommunication::receive_node_message(int sock) {
         }
         block.lastHash = j["lastHash"];
         block.hash = j["hash"];
+        block._id = block.hash;
         block.forgerAddress = j["forgerAddress"];
         block.timestamp = j["timestamp"];
         block.blockCount = j["blockCount"];
@@ -195,12 +196,12 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     address.sin_addr.s_addr = INADDR_ANY; 
 
     // Write the genesis block to our blockchain json file
-    std::ofstream blockchainFile;
-    std::string filename = "blockchain-" + node->p2p->sc.ip + ":" + std::to_string(node->p2p->sc.port) + ".json";
-    blockchainFile.open(filename, std::ios::app);
-    Block g = node->blockchain->genesis();
-    blockchainFile << g.toJson() << std::endl;
-    blockchainFile.close();
+    // std::ofstream blockchainFile;
+    // std::string filename = "blockchain-" + node->p2p->sc.ip + ":" + std::to_string(node->p2p->sc.port) + ".json";
+    // blockchainFile.open(filename, std::ios::app);
+    // Block g = node->blockchain->genesis();
+    // blockchainFile << g.toJson() << std::endl;
+    // blockchainFile.close();
 
     // Server initialization
     int serverSocket = p2putils::createSocket();    

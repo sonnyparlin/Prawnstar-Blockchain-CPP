@@ -18,6 +18,7 @@ public:
     time_t timestamp = timeSinceEpoch();
     unsigned long long blockCount;
     string signature;
+    string _id;
 
     // Constructors
     Block();
@@ -33,7 +34,6 @@ public:
     // Destructor
     ~Block();
     
-    void display() const;
     string toJson() const;
     string payload();
     void sign(string data);

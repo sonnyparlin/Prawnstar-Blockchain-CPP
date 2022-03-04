@@ -190,6 +190,7 @@ This is where blocks are generated for the entire blockchain. Since this is a pr
 Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount) {
     Block block(transactions, lastHash, blockCount);
     block.hash = utils::hash(block.payload());
+    block._id = block.hash;
     block.forgerAddress = address;
     utils::Signature signature = sign(block.payload());
     block.sign(signature.hexsig);

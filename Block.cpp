@@ -54,6 +54,7 @@ std::string Block::toJson() const {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = signature;
+    j["_id"] = _id;
 
     return to_string(j);
 }
@@ -68,6 +69,7 @@ std::string Block::payload() {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = "";
+    j["_id"] = _id;
 
     return to_string(j);
 }
@@ -82,6 +84,7 @@ nlohmann::json Block::jsonView() const {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = signature;
-
+    j["_id"] = _id;
+    
     return j;
 }

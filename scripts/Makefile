@@ -1,6 +1,10 @@
 objs: eccGenerateSignVerifyHash.o eccGenKeyToDisk.o ecGenKeyPair.o jsontest.o signaturetest.o \
 		vectormap.o liquidity-test.o hashtest.o maptest.o template.o jsonSerialization.o \
-		rsatest.o vector.o sundeep_test.o
+		rsatest.o vector.o sundeep_test.o mongotest.o
+
+mongotest.o: mongotest.cpp
+	/usr/bin/g++ -std=c++14 -I/usr/local/include/mongocxx/v_noabi -I/usr/local/include/libmongoc-1.0 -I/usr/local/include/bsoncxx/v_noabi -I/usr/local/include/libbson-1.0 -I/usr/local/include/bsoncxx/third_party/mnmlstc/ mongotest.cpp -c
+	/usr/bin/g++ -std=c++14 -I/usr/local/include/mongocxx/v_noabi -I/usr/local/include/libmongoc-1.0 -I/usr/local/include/bsoncxx/v_noabi -I/usr/local/include/libbson-1.0 -I/usr/local/include/bsoncxx/third_party/mnmlstc/ -L/usr/local/lib -lmongocxx -lbsoncxx mongotest.o -o mongotest
 
 sundeep_test.o: sundeep_test.cpp
 	/usr/bin/g++ -Wall -std=c++14 -I/usr/local/opt/openssl@3/include sundeep_test.cpp -c 

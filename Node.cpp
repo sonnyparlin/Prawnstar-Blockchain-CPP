@@ -113,12 +113,12 @@ void Node::handleBlock (Block block, bool broadcast) {
         transactionPool.removeFromPool(block.transactions);
         
         // Write the new block to our local file
-        std::ofstream blockchainFile;
-        std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
-        std::cout << "filename: " << filename << std::endl;
-        blockchainFile.open(filename, std::ios::app);
-        blockchainFile << block.jsonView() << std::endl;
-        blockchainFile.close();
+        // std::ofstream blockchainFile;
+        // std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
+        // std::cout << "filename: " << filename << std::endl;
+        // blockchainFile.open(filename, std::ios::app);
+        // blockchainFile << block.jsonView() << std::endl;
+        // blockchainFile.close();
 
         if (broadcast) {
             Message message("BLOCK", block.toJson());
@@ -198,6 +198,7 @@ void Node::handleBlockchain(std::string blockchainString) {
             b.blockCount = element["blockCount"];
             b.forgerAddress = element["forgerAddress"];
             b.hash = element["hash"];
+            b._id = element["_id"];
             b.lastHash = element["lastHash"];
             b.signature = element["signature"];
             b.timestamp = element["timestamp"];
