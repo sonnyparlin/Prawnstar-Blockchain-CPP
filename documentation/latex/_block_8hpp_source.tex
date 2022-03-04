@@ -21,22 +21,22 @@
 \DoxyCodeLine{18     time\_t timestamp = timeSinceEpoch();}
 \DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount;}
 \DoxyCodeLine{20     \textcolor{keywordtype}{string} signature;}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22     \textcolor{comment}{// Constructors}}
-\DoxyCodeLine{23     \mbox{\hyperlink{class_block}{Block}}();}
-\DoxyCodeLine{24     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
-\DoxyCodeLine{25           \textcolor{keywordtype}{string} lastHash, }
-\DoxyCodeLine{26           \textcolor{keywordtype}{string} forgerAddress,}
-\DoxyCodeLine{27           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
-\DoxyCodeLine{30           \textcolor{keywordtype}{string} lastHash,}
-\DoxyCodeLine{31           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
-\DoxyCodeLine{32         }
-\DoxyCodeLine{33     \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{34     \mbox{\hyperlink{class_block}{\string~Block}}();}
-\DoxyCodeLine{35     }
-\DoxyCodeLine{36     \textcolor{keywordtype}{void} display() \textcolor{keyword}{const};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{string} \_id;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_block}{Block}}();}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
+\DoxyCodeLine{26           \textcolor{keywordtype}{string} lastHash, }
+\DoxyCodeLine{27           \textcolor{keywordtype}{string} forgerAddress,}
+\DoxyCodeLine{28           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
+\DoxyCodeLine{31           \textcolor{keywordtype}{string} lastHash,}
+\DoxyCodeLine{32           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
+\DoxyCodeLine{33         }
+\DoxyCodeLine{34     \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{35     \mbox{\hyperlink{class_block}{\string~Block}}();}
+\DoxyCodeLine{36     }
 \DoxyCodeLine{37     \textcolor{keywordtype}{string} toJson() \textcolor{keyword}{const};}
 \DoxyCodeLine{38     \textcolor{keywordtype}{string} payload();}
 \DoxyCodeLine{39     \textcolor{keywordtype}{void} sign(\textcolor{keywordtype}{string} data);}

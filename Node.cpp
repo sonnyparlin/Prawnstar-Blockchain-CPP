@@ -112,13 +112,9 @@ void Node::handleBlock (Block block, bool broadcast) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
         
-        // Write the new block to our local file
-        // std::ofstream blockchainFile;
-        // std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
-        // std::cout << "filename: " << filename << std::endl;
-        // blockchainFile.open(filename, std::ios::app);
-        // blockchainFile << block.jsonView() << std::endl;
-        // blockchainFile.close();
+        /*! 
+        \todo open db and write the new block to our mongodb instance
+        */
 
         if (broadcast) {
             Message message("BLOCK", block.toJson());

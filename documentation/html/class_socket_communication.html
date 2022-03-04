@@ -81,8 +81,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>startSocketCommunicat
 <tr class="separator:ada488d9ffe321ae2275c12e9b4656393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813">startP2POperations</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d8cebb7b8a9fdc343d63de5e8b78162"><td class="memItemLeft" align="right" valign="top"><a id="a9d8cebb7b8a9fdc343d63de5e8b78162" name="a9d8cebb7b8a9fdc343d63de5e8b78162"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>startP2PServer</b> (int argc, char **argv)</td></tr>
+<tr class="memitem:a9d8cebb7b8a9fdc343d63de5e8b78162"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a9d8cebb7b8a9fdc343d63de5e8b78162">startP2PServer</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a9d8cebb7b8a9fdc343d63de5e8b78162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e89d704ca77450f4947346640be1621"><td class="memItemLeft" align="right" valign="top"><a id="a5e89d704ca77450f4947346640be1621" name="a5e89d704ca77450f4947346640be1621"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handshake</b> (int sock)</td></tr>
@@ -166,6 +165,35 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></t
       </table>
 </div><div class="memdoc">
 <p >This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it's missing (if any) from the blockchain on the master node. </p>
+
+</div>
+</div>
+<a id="a9d8cebb7b8a9fdc343d63de5e8b78162" name="a9d8cebb7b8a9fdc343d63de5e8b78162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8cebb7b8a9fdc343d63de5e8b78162">&#9670;&nbsp;</a></span>startP2PServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SocketCommunication::startP2PServer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>open db and if it has no data, write the genesis block to our mongodb instance </dd></dl>
 
 </div>
 </div>

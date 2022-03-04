@@ -11,8 +11,7 @@ void {\bfseries start\+Socket\+Communication} (int argc, char $\ast$argv\mbox{[}
 \item 
 void \mbox{\hyperlink{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}{start\+P2\+POperations}} (int argc, char $\ast$$\ast$argv)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}\label{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}} 
-int {\bfseries start\+P2\+PServer} (int argc, char $\ast$$\ast$argv)
+int \mbox{\hyperlink{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}{start\+P2\+PServer}} (int argc, char $\ast$$\ast$argv)
 \item 
 \mbox{\Hypertarget{class_socket_communication_a5e89d704ca77450f4947346640be1621}\label{class_socket_communication_a5e89d704ca77450f4947346640be1621}} 
 void {\bfseries handshake} (int sock)
@@ -77,7 +76,15 @@ std\+::string {\bfseries id}
 \doxysubsubsection{\texorpdfstring{startP2POperations()}{startP2POperations()}}
 {\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+POperations (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
-This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. 
+This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. \mbox{\Hypertarget{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}\label{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}} 
+\index{SocketCommunication@{SocketCommunication}!startP2PServer@{startP2PServer}}
+\index{startP2PServer@{startP2PServer}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{startP2PServer()}{startP2PServer()}}
+{\footnotesize\ttfamily int Socket\+Communication\+::start\+P2\+PServer (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]open db and if it has no data, write the genesis block to our mongodb instance \end{DoxyRefDesc}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
