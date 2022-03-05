@@ -231,12 +231,12 @@ void Node::forge() {
             Block block = blockchain->createBlock(transactionPool.transactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
 
-            std::ofstream blockchainFile;
-            std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
-            std::cout << "filename: " << filename << std::endl;
-            blockchainFile.open(filename, std::ios::app);
-            blockchainFile << block.jsonView() << std::endl;
-            blockchainFile.close();
+            // std::ofstream blockchainFile;
+            // std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
+            // std::cout << "filename: " << filename << std::endl;
+            // blockchainFile.open(filename, std::ios::app);
+            // blockchainFile << block.jsonView() << std::endl;
+            // blockchainFile.close();
 
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
