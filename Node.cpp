@@ -116,7 +116,7 @@ void Node::handleBlock (Block block, bool broadcast) {
         transactionPool.removeFromPool(block.transactions);
         
         /*! 
-        \todo open db and write the new block to our mongodb instance
+        \todo write the new block to our mongodb instance
         */
 
         if (broadcast) {
@@ -216,8 +216,12 @@ void Node::handleBlockchain(std::string blockchainString) {
                 accountModel->updateBalance(t.receiverAddress, t.amount);
             }
             b.transactions = transactions;
-            if (blockNumber > localBlockCount)
+            if (blockNumber > localBlockCount) {
                 localBlockchainCopy.push_back(b);
+                /*! 
+                \todo write the new block to our mongodb instance
+                */
+            }
         }
         blockchain->blocks = localBlockchainCopy;
     }
@@ -235,12 +239,9 @@ void Node::forge() {
             Block block = blockchain->createBlock(transactionPool.transactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
 
-            // std::ofstream blockchainFile;
-            // std::string filename = "blockchain-" + p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ".json";
-            // std::cout << "filename: " << filename << std::endl;
-            // blockchainFile.open(filename, std::ios::app);
-            // blockchainFile << block.jsonView() << std::endl;
-            // blockchainFile.close();
+            /*! 
+            \todo write the new block to our mongodb instance
+            */
 
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
@@ -250,10 +251,6 @@ void Node::forge() {
     } else {
         std::cout << "i am not the next forger" << std::endl;
         std::string address = utils::generateAddress(forger);
-
-        // std::cout << "address: " << address << std::endl;
-        // std::cout << "pk: " << forger << std::endl;
-
         accountModel->addAccount(address, forger);
     }
 }
