@@ -16,6 +16,8 @@ namespace utils {
         // long len;
         // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
 
+        // std::cout << "Verifying signature public key: " << publicKeyString << std::endl;
+
         /* the not so easy way */
         unsigned char buf[256];
         const char *st = signature.c_str();
@@ -126,5 +128,17 @@ namespace utils {
         }
 
         return port;
+    }
+
+    std::string generateAddress(const std::string str) {
+
+        // The public crypto address is a SHA1 
+        // hex encoded string of the walletPublicKey.
+
+        unsigned char hash[20];
+        SHA1((unsigned char *)str.c_str(), str.length(), hash);
+        std::stringstream ss;
+        for(int i = 0; i < 20; i++) {ss << std::hex << (int)hash[i];}
+        return ss.str();
     }
 }

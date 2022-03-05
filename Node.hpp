@@ -31,6 +31,7 @@ public:
     Wallet *exchangeWallet;
     Wallet *bobWallet;
     Wallet *aliceWallet;
+    Wallet *node2Wallet;
     Blockchain *blockchain;
     AccountModel *accountModel;
     SocketCommunication *p2p;

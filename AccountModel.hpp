@@ -20,7 +20,7 @@ public:
     AccountModel(std::string address);
     ~AccountModel();          // Destructor
 
-    bool accountExists(const std::string walletAddress);
+    bool accountExists(const std::string &walletAddress);
     void addAccount(const std::string walletAddress, const std::string pubKey, const std::string privKey);
     void addAccount(std::string walletAddress, std::string pubKey);
     double getBalance(const std::string walletAddress);

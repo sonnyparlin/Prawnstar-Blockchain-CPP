@@ -44,6 +44,7 @@ void Wallet::fromKey(const char *file) {
     fflush (stream);
     walletPublicKey = bp;
     fclose (stream);
+    // t.close();
 
     EVP_PKEY_free(pkey);
     delete bp;

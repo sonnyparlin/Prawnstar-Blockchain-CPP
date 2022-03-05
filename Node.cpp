@@ -14,9 +14,12 @@ Node::Node(int argc, char **argv) {
 
     if (port == 10001)
         nodeWallet = new Wallet(this, true, "genesisNode.pem");
+    else if (port == 10002)
+        nodeWallet = new Wallet(this, true, "node2Wallet.pem");
     else
         nodeWallet = new Wallet(this);
 
+    node2Wallet = new Wallet(this, true, "node2Wallet.pem");
     exchangeWallet = new Wallet(this, true, "exchange.pem");
     aliceWallet = new Wallet(this, true, "alice.pem");
     bobWallet = new Wallet(this, true, "bob.pem"); 
@@ -97,10 +100,10 @@ void Node::handleBlock (Block block, bool broadcast) {
     bool blockCountValid = blockchain->blockCountValid(block);
 
     // Requesting node is not up to date, so let's give them the blocks they're missing.
-    if (!blockCountValid) {
-        requestChain();
-        return;     
-    }
+    // if (!blockCountValid) {
+    //     requestChain();
+    //     return;     
+    // }
 
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
@@ -225,6 +228,7 @@ This is where new blocks are initiated for this forger.
 */
 void Node::forge() {
     std::string forger = blockchain->nextForger();
+    // std::cout << "Forger: " << forger << std::endl;
     if (forger == nodeWallet->walletPublicKey) {
         std::cout << "i am the next forger" << std::endl;
         try {
@@ -243,6 +247,13 @@ void Node::forge() {
             p2p->broadcast(msgJson.c_str());
             // provide forger reward
         } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
-    } else
+    } else {
         std::cout << "i am not the next forger" << std::endl;
+        std::string address = utils::generateAddress(forger);
+
+        // std::cout << "address: " << address << std::endl;
+        // std::cout << "pk: " << forger << std::endl;
+
+        accountModel->addAccount(address, forger);
+    }
 }

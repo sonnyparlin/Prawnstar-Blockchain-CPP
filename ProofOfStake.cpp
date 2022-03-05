@@ -11,8 +11,8 @@ ProofOfStake::ProofOfStake(Node *node, int port) {
     Wallet genesisNodeWallet(node);
     genesisNodeWallet.fromKey("genesisNode.pem");
     node->accountModel->addAccount(genesisNodeWallet.address, 
-                                   genesisNodeWallet.walletPublicKey, 
-                                   genesisNodeWallet.walletPrivateKey);
+                                genesisNodeWallet.walletPublicKey, 
+                                genesisNodeWallet.walletPrivateKey);
     setGenesisNodeStake(genesisNodeWallet.walletPublicKey);
 }
 
@@ -79,5 +79,6 @@ std::string ProofOfStake::forger(std::string lastBlockHash) {
     std::vector<Lot> lots = validatorLots(lastBlockHash);
     Lot winner;
     winner = winnerLot(lots, lastBlockHash);
+    // std::cout << "winner: " << winner.publicKeyString << std::endl;
     return winner.publicKeyString;
 }

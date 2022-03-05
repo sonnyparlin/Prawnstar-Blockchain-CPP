@@ -66,6 +66,8 @@ void NodeApi::start(std::string po) {
 
         double amount = x["transaction"]["amount"].d();
 
+        std::cout << "sender: " << sender << std::endl;
+
         if (node->accountModel->accountExists(sender)) {
             Wallet senderWallet(sender.c_str(), node);
             Transaction tx = senderWallet.createTransaction(receiver, amount, type);

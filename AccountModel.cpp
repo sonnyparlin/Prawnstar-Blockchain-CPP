@@ -11,9 +11,8 @@ AccountModel::AccountModel(std::string address) {
 AccountModel::~AccountModel() {
 }
 
-bool AccountModel::accountExists(const std::string walletAddress) {
-    std::sort (accounts.begin(), accounts.end());
-    return std::binary_search (accounts.begin(), accounts.end(), walletAddress);
+bool AccountModel::accountExists(const std::string &walletAddress) {
+    return std::find(accounts.begin(), accounts.end(), walletAddress) != accounts.end();
 }
 
 void AccountModel::addAccount(std::string walletAddress, std::string pubKey, std::string privkey) {

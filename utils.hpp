@@ -33,6 +33,7 @@ namespace utils {
     int ABS(int x);
     int getPort(char *portString);
     std::vector<std::string> split(std::string str, const char *seperator);
+    std::string generateAddress(const std::string str);
 }
 
 #endif // _UTILS_H_
