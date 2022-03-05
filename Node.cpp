@@ -100,10 +100,10 @@ void Node::handleBlock (Block block, bool broadcast) {
     bool blockCountValid = blockchain->blockCountValid(block);
 
     // Requesting node is not up to date, so let's give them the blocks they're missing.
-    // if (!blockCountValid) {
-    //     requestChain();
-    //     return;     
-    // }
+    if (!blockCountValid) {
+        requestChain();
+        return;     
+    }
 
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
