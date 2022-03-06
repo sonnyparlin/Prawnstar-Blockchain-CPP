@@ -66,7 +66,7 @@ void NodeApi::start(std::string po) {
 
         double amount = x["transaction"]["amount"].d();
 
-        std::cout << "sender: " << sender << std::endl;
+        // std::cout << "sender: " << sender << std::endl;
 
         if (node->accountModel->accountExists(sender)) {
             std::cout << "found wallet " << sender << std::endl;

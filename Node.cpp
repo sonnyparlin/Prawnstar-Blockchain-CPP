@@ -241,7 +241,9 @@ void Node::forge() {
     if (forger == nodeWallet->walletPublicKey) {
         std::cout << "i am the next forger" << std::endl;
         try {
-            Block block = blockchain->createBlock(transactionPool.transactions, nodeWallet->address); 
+
+            std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
+            Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
 
             /*! 

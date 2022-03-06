@@ -30,6 +30,27 @@ bool Blockchain::addBlock(Block block) {
     return true;
 }
 
+std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transaction> &transactions) {
+    std::vector<Transaction> resultTransactions;
+    for (auto tx : transactions) {
+        double reward {0};
+
+        if (tx.type == "EXCHANGE" || tx.type == "TRANSFER") {
+            double reward = (tx.amount * 0.005);
+            node->accountModel->updateBalance(node->nodeWallet->address, reward);
+            tx.amount -= reward;
+        }
+
+        if (tx.type == "EXCHANGE")
+            node->accountModel->updateBalance(tx.receiverAddress, -reward); 
+        else if (tx.type == "TRANSFER" )
+            node->accountModel->updateBalance(tx.senderAddress, -reward);
+
+        resultTransactions.push_back(tx);
+    }
+    return resultTransactions;
+}
+
 bool Blockchain::blockCountValid(Block block) {
     int n = blocks.size();
     if (blocks[n-1].blockCount == block.blockCount - 1)
@@ -90,6 +111,8 @@ void Blockchain::executeTransaction(Transaction transaction) {
         std::string receiverAddress = transaction.receiverAddress;
         double amount = transaction.amount;
 
+        // std::cout << "sender: " << senderAddress << " amount: " << amount << std::endl;
+
         node->accountModel->updateBalance(senderAddress, -amount);
         node->accountModel->updateBalance(receiverAddress, amount);
     }
@@ -114,6 +137,7 @@ Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std
                                               lastHash,
                                               blocks.size());
     blocks.push_back(newBlock);
+
     return newBlock;
 }
 
