@@ -42,6 +42,9 @@ static \mbox{\hyperlink{class_node}{Node}} $\ast$ {\bfseries create\+Node} (int 
 \mbox{\Hypertarget{class_node_a15d9b97d824afee953bad4d38489afc5}\label{class_node_a15d9b97d824afee953bad4d38489afc5}} 
 \mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries alice\+Wallet}
 \item 
+\mbox{\Hypertarget{class_node_aa241ae759578553f9167bfa9dc8ec901}\label{class_node_aa241ae759578553f9167bfa9dc8ec901}} 
+\mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ {\bfseries node2\+Wallet}
+\item 
 \mbox{\Hypertarget{class_node_adf4848690854c7c8470804626a57cf78}\label{class_node_adf4848690854c7c8470804626a57cf78}} 
 \mbox{\hyperlink{class_blockchain}{Blockchain}} $\ast$ {\bfseries blockchain}
 \item 
@@ -69,21 +72,25 @@ char $\ast$$\ast$ {\bfseries argv}
 \doxysubsubsection{\texorpdfstring{forge()}{forge()}}
 {\footnotesize\ttfamily void Node\+::forge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-This is where new blocks are initiated for this forger. \mbox{\Hypertarget{class_node_ae1918e440c28994f9fd8343d5bc0c429}\label{class_node_ae1918e440c28994f9fd8343d5bc0c429}} 
+This is where new blocks are initiated for this forger. \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_node_ae1918e440c28994f9fd8343d5bc0c429}\label{class_node_ae1918e440c28994f9fd8343d5bc0c429}} 
 \index{Node@{Node}!handleBlock@{handleBlock}}
 \index{handleBlock@{handleBlock}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{handleBlock()}{handleBlock()}}
 {\footnotesize\ttfamily void Node\+::handle\+Block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_block}{Block}}}]{block,  }\item[{bool}]{broadcast }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]open db and write the new block to our mongodb instance \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
 \mbox{\Hypertarget{class_node_adbc4873aa5493cdea93bbc2a24354da2}\label{class_node_adbc4873aa5493cdea93bbc2a24354da2}} 
 \index{Node@{Node}!handleBlockchain@{handleBlockchain}}
 \index{handleBlockchain@{handleBlockchain}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{handleBlockchain()}{handleBlockchain()}}
 {\footnotesize\ttfamily void Node\+::handle\+Blockchain (\begin{DoxyParamCaption}\item[{std\+::string}]{blockchain\+String }\end{DoxyParamCaption})}
 
-This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. \mbox{\Hypertarget{class_node_a414ce08fd86e7490debcb0f56642f2fa}\label{class_node_a414ce08fd86e7490debcb0f56642f2fa}} 
+This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_node_a414ce08fd86e7490debcb0f56642f2fa}\label{class_node_a414ce08fd86e7490debcb0f56642f2fa}} 
 \index{Node@{Node}!handleBlockchainRequest@{handleBlockchainRequest}}
 \index{handleBlockchainRequest@{handleBlockchainRequest}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{handleBlockchainRequest()}{handleBlockchainRequest()}}
