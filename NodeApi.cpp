@@ -69,6 +69,8 @@ void NodeApi::start(std::string po) {
         std::cout << "sender: " << sender << std::endl;
 
         if (node->accountModel->accountExists(sender)) {
+            std::cout << "found wallet " << sender << std::endl;
+
             Wallet senderWallet(sender.c_str(), node);
             Transaction tx = senderWallet.createTransaction(receiver, amount, type);
             bool success = node->handleTransaction(tx);
