@@ -79,6 +79,5 @@ std::string ProofOfStake::forger(std::string lastBlockHash) {
     std::vector<Lot> lots = validatorLots(lastBlockHash);
     Lot winner;
     winner = winnerLot(lots, lastBlockHash);
-    // std::cout << "winner: " << winner.publicKeyString << std::endl;
     return winner.publicKeyString;
 }

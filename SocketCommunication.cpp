@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <typeinfo>
 #include <algorithm>
+#include <fstream>
 
 SocketCommunication::SocketCommunication(Node *node) {
     this->node = node;
@@ -35,7 +36,7 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
 
 void SocketCommunication::receive_node_message(int sock) {
     int reader;
-    
+
     // read message body length
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
@@ -178,10 +179,15 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
     discoveryThread.detach();
 
-    if (sc.port != 10001) {
-        std::cout << "Requesting blockchain from master node" << std::endl;
-        node->requestChain();
-    }
+    // std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
+    // std::string masterNode = utils::MASTER_NODE_IP;
+    // std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
+    // masterNode += masterNode2;
+
+    // if (thisNode != masterNode) {
+    //     std::cout << "Requesting blockchain from master node" << std::endl;
+    //     node->requestChain();
+    // }
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
@@ -326,8 +332,14 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
                 // remove peer from peers list.
                 // ======================================
                 std::string elementToRemove = ipPortStrV.at(0) + ":" + std::to_string(num);
-                peers.erase(std::remove(peers.begin(), peers.end(), elementToRemove), peers.end());
-                inactivePeers.push_back(elementToRemove);
+                std::string masterNode = utils::MASTER_NODE_IP;
+                std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
+                masterNode += masterNode2;
+
+                if (elementToRemove != masterNode) {
+                    peers.erase(std::remove(peers.begin(), peers.end(), elementToRemove), peers.end());
+                    inactivePeers.push_back(elementToRemove);
+                }
                 return;
             }
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
@@ -399,6 +411,16 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                   << peersSenderConnector.port << std::endl;
         newPeerToAdd = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
         peers.push_back(newPeerToAdd);
+        
+        // std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
+        // std::string masterNode = utils::MASTER_NODE_IP;
+        // std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
+        // masterNode += masterNode2;
+
+        // if (thisNode != masterNode) {
+        std::cout << "Requesting blockchain from network" << std::endl;
+        node->requestChain();
+        // }
     }
 
     if (j["Message"]["Peers"] != nullptr) {
@@ -440,8 +462,17 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                           << ":"
                           << std::to_string(num) 
                           << std::endl;
-                    peers.push_back(tcpPair.at(0) + ":" + std::to_string(num));
+                    std::string newPeerToAdd = tcpPair.at(0) + ":" + std::to_string(num);
+                    peers.push_back(newPeerToAdd);
                     inactivePeers.clear();
+                    
+                    // ###
+                    // std::string portString = std::to_string(node->p2p->sc.port);
+                    // ofstream peerFile;
+                    // std::string peerFileName = "known_peers_for_" + node->p2p->sc.ip + ":" + portString + ".txt";
+                    // peerFile.open (peerFileName, std::ios_base::app);
+                    // peerFile << newPeerToAdd << std::endl;
+                    // peerFile.close();
                 }
             }
         }

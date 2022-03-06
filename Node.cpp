@@ -18,7 +18,7 @@ Node::Node(int argc, char **argv) {
         nodeWallet = new Wallet(this, true, "node2Wallet.pem");
     else
         nodeWallet = new Wallet(this);
-
+    
     node2Wallet = new Wallet(this, true, "node2Wallet.pem");
     exchangeWallet = new Wallet(this, true, "exchange.pem");
     aliceWallet = new Wallet(this, true, "alice.pem");
@@ -139,15 +139,16 @@ Request complete or partial blockchain from the master node. Uses the local bloc
 how many blocks are needed from the master server.
 */
 void Node::requestChain() {
+    // std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
 
-    int outgoingSocket = p2putils::setOutgoingNodeConnection(utils::MASTER_NODE_IP, utils::MASTER_NODE_PORT);
-    if (outgoingSocket == -1) {
-        return;
-    }
-    p2p->send_node_message(outgoingSocket, msgJson.c_str());
+    // int outgoingSocket = p2putils::setOutgoingNodeConnection(utils::MASTER_NODE_IP, utils::MASTER_NODE_PORT);
+    // if (outgoingSocket == -1) {
+    //     return;
+    // }
+    p2p->broadcast(msgJson.c_str());
 }
 
 /*!
@@ -157,6 +158,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
     /* 
     Only get the blocks I need. [X]
     */
+   if (blockchain->blocks.size() == 1) {
+       return;
+   }
+
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     int blockNumber = atoi(receivingNode.at(2).c_str());
     vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};

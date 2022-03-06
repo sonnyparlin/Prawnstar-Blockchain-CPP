@@ -130,7 +130,13 @@ bool Blockchain::transactionExists(Transaction transaction) {
 bool Blockchain::forgerValid(Block block) {
     Wallet proposedForger(block.forgerAddress.c_str(), this->node);
 
-    std::string forgerPublicKey = node->proofOfStake->forger(block.lastHash);
+    std::string lastBlockHash = blocks[blocks.size()-1].lastHash;
+    std::string forgerPublicKey = node->proofOfStake->forger(lastBlockHash);
+
+    if (forgerPublicKey != proposedForger.walletPublicKey) {
+        std::cout << "proposedForger: " << proposedForger.walletPublicKey << std::endl;
+        std::cout << "actualForger  : " << forgerPublicKey << std::endl;
+    }
     return forgerPublicKey == proposedForger.walletPublicKey;
 }
 

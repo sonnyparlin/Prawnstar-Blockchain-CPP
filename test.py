@@ -14,7 +14,8 @@ alice = 'pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7'
 bob = 'pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42'
 node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 
-post_transaction(exchange, node2, '5000', 'EXCHANGE')
+post_transaction(exchange, nodeWallet, '500', 'EXCHANGE')
+post_transaction(exchange, node2, '500', 'EXCHANGE')
 post_transaction(node2, node2, '100', 'STAKE')
 
 post_transaction(exchange, alice, '500', 'EXCHANGE')
@@ -23,20 +24,20 @@ post_transaction(exchange, bob, '300', 'EXCHANGE')
 for i in range(6):
     post_transaction(alice, bob,'50', 'TRANSFER')
 
-# post_transaction(bob, nodeWallet,'50', 'TRANSFER')
-# post_transaction(alice, nodeWallet,'50', 'TRANSFER')
-# post_transaction(exchange, alice, '1000', 'EXCHANGE')
+post_transaction(nodeWallet, nodeWallet, '200', 'STAKE')
 
-# for i in range(14):
-#     post_transaction(alice, bob,'50', 'TRANSFER')
+post_transaction(exchange, alice, '1000', 'EXCHANGE')
 
-# post_transaction(exchange, alice, '5000', 'EXCHANGE')
+for i in range(14):
+    post_transaction(alice, bob,'50', 'TRANSFER')
 
-# for i in range(12):
-#     post_transaction(alice, bob,'50', 'TRANSFER')
+post_transaction(exchange, alice, '5000', 'EXCHANGE')
 
-# for i in range(58):
-#     post_transaction(alice, bob,'1', 'TRANSFER')
+for i in range(12):
+    post_transaction(alice, bob,'50', 'TRANSFER')
+
+for i in range(60):
+    post_transaction(alice, bob,'1', 'TRANSFER')
 
 
 print("Alice's wallet: ")
