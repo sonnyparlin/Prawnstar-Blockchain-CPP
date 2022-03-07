@@ -13,21 +13,23 @@
 \item cmake -\/B build -\/DOPENSSL\+\_\+\+ROOT\+\_\+\+DIR=/usr/local/opt/openssl@3
 \item cd build
 \item make
+\item cp Prawnstar ../
+\item cd ..
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyItemize}
-\item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./main 127.\+0.\+0.\+1 10001 8001
-\item \mbox{\hyperlink{class_node}{Node}} 2\+: ./main 127.\+0.\+0.\+1 10002 127.\+0.\+0.\+1 8002
-\item \mbox{\hyperlink{class_node}{Node}} 3\+: ./main 127.\+0.\+0.\+1 10003 127.\+0.\+0.\+1 8003
+\item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10001 8001
+\item \mbox{\hyperlink{class_node}{Node}} 2\+: ./\+Prawnstar 127.\+0.\+0.\+1 10002 127.\+0.\+0.\+1 8002
+\item \mbox{\hyperlink{class_node}{Node}} 3\+: ./\+Prawnstar 127.\+0.\+0.\+1 10003 127.\+0.\+0.\+1 8003
 \end{DoxyItemize}
 
 The format for the master node\+:
 
-./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node
+./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node
 
 The format of all client nodes\+:
 
-./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md4}
+./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md4}
 You can use {\ttfamily python test.\+py} to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
 
 Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction

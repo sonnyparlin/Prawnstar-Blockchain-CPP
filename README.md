@@ -13,22 +13,24 @@
 * cmake -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3
 * cd build
 * make
+* cp Prawnstar ../
+* cd ..
 
 ### Running the app
 
-* Node 1 (master node): ./main 127.0.0.1 10001 8001
+* Node 1 (master node): ./Prawnstar 127.0.0.1 10001 8001
 
-* Node 2: ./main 127.0.0.1 10002 127.0.0.1 8002
+* Node 2: ./Prawnstar 127.0.0.1 10002 127.0.0.1 8002
 
-* Node 3: ./main 127.0.0.1 10003 127.0.0.1 8003
+* Node 3: ./Prawnstar 127.0.0.1 10003 127.0.0.1 8003
 
 The format for the master node:
 
-./main ip_of_this_node p2p_port_of_this_node api_port_of_this_node
+./Prawnstar ip_of_this_node p2p_port_of_this_node api_port_of_this_node
 
 The format of all client nodes:
 
-./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
+./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
 
 ### Testing it out
 
