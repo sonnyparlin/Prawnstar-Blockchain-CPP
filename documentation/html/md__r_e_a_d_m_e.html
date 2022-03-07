@@ -77,7 +77,13 @@ Download dependancies</h2>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Making and Running the App</h2>
-<p >Run <code>make all</code> to build and ./main to run. Important to use 10001 for the first node, it's hard coded at the moment.</p>
+<ul>
+<li>cmake -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3</li>
+<li>cd build</li>
+<li>make</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Running the app</h2>
 <ul>
 <li><a class="el" href="class_node.html">Node</a> 1 (master node): ./main 127.0.0.1 10001 8001</li>
 <li><a class="el" href="class_node.html">Node</a> 2: ./main 127.0.0.1 10002 127.0.0.1 8002</li>
@@ -87,7 +93,7 @@ Making and Running the App</h2>
 <p >./main ip_of_this_node p2p_port_of_this_node api_port_of_this_node</p>
 <p >The format of all client nodes:</p>
 <p >./main ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 Testing it out</h2>
 <p >You can use <code>python test.py</code> to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.</p>
 <p >Use <a href="https://www.postman.com">Postman</a> to send a transaction</p>

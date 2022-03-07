@@ -8,8 +8,12 @@
 \href{https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html\#easy-build-and-install}{\texttt{ Boost installation info}}
 \item Install \href{https://www.openssl.org/}{\texttt{ Open\+SSL}}.
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Making and Running the App}\label{md__r_e_a_d_m_e_autotoc_md2}
-Run {\ttfamily make all} to build and ./main to run. Important to use 10001 for the first node, it\textquotesingle{}s hard coded at the moment.
 
+\begin{DoxyItemize}
+\item cmake -\/B build -\/DOPENSSL\+\_\+\+ROOT\+\_\+\+DIR=/usr/local/opt/openssl@3
+\item cd build
+\item make
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyItemize}
 \item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./main 127.\+0.\+0.\+1 10001 8001
@@ -23,7 +27,7 @@ The format for the master node\+:
 
 The format of all client nodes\+:
 
-./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md3}
+./main ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md4}
 You can use {\ttfamily python test.\+py} to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
 
 Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction
