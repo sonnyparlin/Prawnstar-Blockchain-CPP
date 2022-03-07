@@ -10,6 +10,7 @@ in a try/catch block. Anytime these fail, it kills the running node.
 * ~~set new nodes to imediately request the blockchain~~
 * Build or find block explorer
 * build candlestick chart
+* ~~Add forger reward system~~
 * Integrate the liquidity pool script into transactions to determine the price at time of purchase
 * Make this documentation suite better
 * create reward transactions for forgers
