@@ -10,7 +10,11 @@
 *  Install [OpenSSL](https://www.openssl.org/). 
 
 ### Making and Running the App 
-Run `make all` to build and ./main to run. Important to use 10001 for the first node, it's hard coded at the moment.
+* cmake -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3
+* cd build
+* make
+
+### Running the app
 
 * Node 1 (master node): ./main 127.0.0.1 10001 8001
 

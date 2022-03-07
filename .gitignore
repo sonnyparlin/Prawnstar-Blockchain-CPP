@@ -1,5 +1,4 @@
 .DS_Store
 lib/
-main
-main.dSYM/
+build/
 *.o
