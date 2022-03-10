@@ -21,6 +21,9 @@ Wallet::Wallet(Node *node) {
 Wallet::~Wallet(){}
 
 void Wallet::fromKey(const char *file) {
+    int PUBUFFSIZE=174;
+    int n;
+
     std::string key;
     std::ifstream t(file);
     std::stringstream buffer;
@@ -35,27 +38,31 @@ void Wallet::fromKey(const char *file) {
     PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
     BIO_free(bo);
 
-    char *bp;
-    size_t size;
-    FILE *stream;
+    // PUBLIC KEY
+    BIO *bpu = BIO_new(BIO_s_mem());
+    char publicKeyString[PUBUFFSIZE];
     
-    stream = open_memstream (&bp, &size);
-    PEM_write_PUBKEY(stream, pkey);
-    fflush (stream);
-    walletPublicKey = bp;
-    fclose (stream);
-    // t.close();
+    if (!PEM_write_bio_PUBKEY(bpu, pkey))
+        std::cerr << "error generating public key" << std::endl;
 
+    n=BIO_read(bpu, (void *)publicKeyString, sizeof(publicKeyString));
+    if (n < 0)
+        std::cerr << "Error generating keypair." << std::endl;
+    
+    walletPublicKey = publicKeyString;
+    
+    BIO_free(bpu);
     EVP_PKEY_free(pkey);
-    delete bp;
 
     address = "pv1" + generateAddress(walletPublicKey);
 }
 
 void Wallet::genKeyPair() {
-    /* set our curve name */
     const char *curve = "secp256k1";
-    
+    int PRBUFFSIZE=255;
+    int PUBUFFSIZE=174;
+    int n;
+
     /* Generate the key pair */
     EVP_PKEY *pkey = EVP_EC_gen(curve);
     if (pkey == NULL) {
@@ -63,31 +70,35 @@ void Wallet::genKeyPair() {
         return;
     }
 
-    /* 
-    Use some FILE stream magic to easily convert our 
-    public and private keys into strings 
-    */
-    char *bp;
-    size_t size;
-    FILE *stream;
-    
-    stream = open_memstream (&bp, &size);
-    PEM_write_PUBKEY(stream, pkey);
-    fflush (stream);
-    walletPublicKey = bp;
-    fclose (stream);
-
-    stream = open_memstream (&bp, &size);
+    // PRIVATE KEY
+    char privateKeyString[PRBUFFSIZE];
+    BIO *bp = BIO_new(BIO_s_mem());
     const EVP_CIPHER *cipher = EVP_get_cipherbyname(curve);
-    PEM_write_PrivateKey(stream, pkey, cipher, NULL, 0, NULL, NULL);
-    fflush (stream);
-    walletPrivateKey = bp;
-    fclose (stream);
 
-    /* 
-    The keys are stored in our wallet now so we can free the memory
-    used for the keys.
-    */
+    if (!PEM_write_bio_PrivateKey(bp, pkey, cipher, NULL, 0, 0, NULL))
+        std::cerr << "Error generating keypair." << std::endl;
+
+    n=BIO_read(bp, (void *)privateKeyString, sizeof(privateKeyString));
+    if (n < 0)
+        std::cerr << "Error generating keypair." << std::endl;
+    
+    walletPrivateKey = privateKeyString;
+    BIO_free(bp);
+
+    // PUBLIC KEY
+    BIO *bpu = BIO_new(BIO_s_mem());
+    char publicKeyString[PUBUFFSIZE];
+    
+    if (!PEM_write_bio_PUBKEY(bpu, pkey))
+        std::cerr << "error generating public key" << std::endl;
+
+    n=BIO_read(bpu, (void *)publicKeyString, sizeof(publicKeyString));
+    if (n < 0)
+        std::cerr << "Error generating keypair." << std::endl;
+    
+    walletPublicKey = publicKeyString;
+    
+    BIO_free(bpu);
     EVP_PKEY_free(pkey);
 
     address = "pv1" + generateAddress(walletPublicKey);
