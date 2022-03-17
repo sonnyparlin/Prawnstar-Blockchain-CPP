@@ -33,9 +33,11 @@ void AccountModel::addAccount(std::string walletAddress, std::string pubKey) {
 }
 
 double AccountModel::getBalance(const std::string walletAddress) {
+    std::lock_guard<std::mutex> guard(acMutex);
     return balances[walletAddress];
 }
 
 void AccountModel::updateBalance(const std::string walletAddress, double amount) {
+    std::lock_guard<std::mutex> guard(acMutex);
     balances[walletAddress] += amount;
 }

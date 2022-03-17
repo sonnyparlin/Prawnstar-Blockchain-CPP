@@ -7,6 +7,7 @@
 #include <cmath>
 #include "Lot.hpp"
 #include "Node.hpp"
+#include <mutex>
 
 class Node;
 
@@ -15,6 +16,7 @@ private:
     Node *node;
 public:
     std::unordered_map<std::string, double>stakers;
+    std::mutex posMutex;
 
     ProofOfStake(Node *node, int);           // Constructor
     ~ProofOfStake();          // Destructor

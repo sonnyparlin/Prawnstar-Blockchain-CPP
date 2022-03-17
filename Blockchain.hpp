@@ -6,6 +6,7 @@
 #include "AccountModel.hpp"
 #include "config.hpp"
 #include "Node.hpp"
+#include <mutex>
 
 class Node;
 
@@ -15,6 +16,7 @@ private:
 
 public:
     std::vector<Block> blocks;
+    std::mutex blockchainMutex;
 
     Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor

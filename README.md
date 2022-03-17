@@ -16,6 +16,9 @@
 * cp Prawnstar ../
 * cd ..
 
+### Windows
+* cmake .. -G "Unix Makefiles" -DOPENSSL_ROOT_DIR=C:\OpenSSL-Win64\ -DOPENSSL_LIBRARIES="C:\OpenSSL-Win64\bin\libssl-3-x64.dll;C:\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -DOPENSSL_INCLUDE_DIR=C:\OpenSSL-Win64\include\
+
 ### Running the app
 
 * Node 1 (master node): ./Prawnstar 127.0.0.1 10001 8001

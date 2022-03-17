@@ -15,6 +15,7 @@ public:
     std::unordered_map<std::string, std::string> addressToPublicKey;
     std::unordered_map<std::string, std::string> addressToPrivateKey;
     std::unordered_map<std::string, double> balances;
+    std::mutex acMutex;
 
     AccountModel(Node *node);           // Constructor
     AccountModel(std::string address);

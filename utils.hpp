@@ -6,6 +6,8 @@
 #include <openssl/bio.h>
 #include <openssl/pem.h>
 #include <openssl/sha.h>
+#include <openssl/ec.h>
+
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <sstream>
@@ -21,8 +23,8 @@ namespace utils {
         std::string hexsig;
     };
 
-    static const char * MASTER_NODE_IP = "127.0.0.1";
-    static int MASTER_NODE_PORT=10001;
+    static const char * const MASTER_NODE_IP = "127.0.0.1";
+    const static int MASTER_NODE_PORT=10001;
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
     unsigned char random_char();

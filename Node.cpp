@@ -39,6 +39,9 @@ Node::~Node() {
     delete proofOfStake;
     delete accountModel;
     delete exchangeWallet;
+    delete node2Wallet;
+    delete aliceWallet;
+    delete bobWallet;
 }
 
 Node *Node::createNode(int argc, char **argv) {
@@ -72,20 +75,37 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 
     bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
     bool transactionExists = transactionPool.transactionExists(transaction);
-    bool transactionInBlock = blockchain->transactionExists(transaction);
-    if (!transactionExists && signatureValid && !transactionInBlock) {
+    bool transactionInBlockChain = blockchain->transactionExists(transaction);
+    bool transactionCovered = false;
+    
+    if (transaction.type != "EXCHANGE") {
+        if (accountModel->getBalance(transaction.senderAddress) > transaction.amount)
+            transactionCovered = true;
+    } else
+        transactionCovered = true;
+
+    if (!transactionCovered)
+        std::cout << transaction.toJson() << std::endl;
+
+    if (!transactionExists && !transactionInBlockChain && signatureValid && transactionCovered) {
         transactionPool.addTransaction(transaction);
         if (broadcast) {
+            // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
             Message message("TRANSACTION", transaction.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
         }
         bool forgingRequired = transactionPool.forgerRequired();
-        if (forgingRequired)
+        if (forgingRequired)  {
             forge();
+        }
         
         return true;
     }
+    std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
+    std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
+    std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
+
     return false;
 }
 
@@ -96,7 +116,6 @@ Broadcast if necessary.
 void Node::handleBlock (Block block, bool broadcast) {
     Wallet forger(block.forgerAddress.c_str(), this);
     std::string blockHash = block.hash;
-    std::string signature = block.signature;
     bool blockCountValid = blockchain->blockCountValid(block);
 
     // Requesting node is not up to date, so let's give them the blocks they're missing.
@@ -237,7 +256,6 @@ This is where new blocks are initiated for this forger.
 */
 void Node::forge() {
     std::string forger = blockchain->nextForger();
-    // std::cout << "Forger: " << forger << std::endl;
     if (forger == nodeWallet->walletPublicKey) {
         std::cout << "i am the next forger" << std::endl;
         try {
@@ -253,10 +271,9 @@ void Node::forge() {
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
-            // provide forger reward
         } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
     } else {
-        std::cout << "i am not the next forger" << std::endl;
+        // std::cout << "i am not the next forger" << std::endl;
         std::string address = utils::generateAddress(forger);
         accountModel->addAccount(address, forger);
     }

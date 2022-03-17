@@ -22,6 +22,11 @@ Transaction::Transaction() {}
 
 Transaction::~Transaction() {}
 
+bool operator==(const Transaction &lhs, const Transaction &rhs){ 
+    /* do actual comparison */ 
+    return lhs.id == rhs.id;
+}
+
 string Transaction::generateUUID() {
     std::string uuid1 = utils::uuid_gen();
     return uuid1;

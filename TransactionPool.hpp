@@ -4,10 +4,12 @@
 #include <string>
 #include "Transaction.hpp"
 #include <crow.h>
+#include <mutex>
 
 class TransactionPool {
 public:
     std::vector<Transaction> transactions;
+    std::mutex tpoolMutex;
 
     TransactionPool();           // Constructor
     ~TransactionPool();          // Destructor

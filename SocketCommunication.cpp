@@ -41,9 +41,13 @@ void SocketCommunication::receive_node_message(int sock) {
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
-    reader = read (sock, msgLengthBuffer, MESSAGELENGTH);
-    if (reader <= 0) {
-        std::cout << "Read message length problems, errno: " << errno << std::endl;
+    reader = recv (sock, msgLengthBuffer, MESSAGELENGTH,0);
+    if (reader < 0) {
+        #ifndef _WIN32
+        std::cout << "read() error " << errno << std::endl;
+        #else
+        printf("\nread() error: %d\n", WSAGetLastError());
+        #endif
         return;
     }
 
@@ -55,10 +59,10 @@ void SocketCommunication::receive_node_message(int sock) {
     }
 
     // allocate memory with message's length
-    char* buffer = new char[msgLength + 1]();    
+    char* buffer = new char[msgLength + 1]();
 
     // read socket data to the allocated buffer
-    reader = read (sock, buffer, msgLength);    
+    reader = recv (sock, buffer, msgLength,0);    
     if (reader <= 0) {
         if (close(sock) == -1) {
             std::cout << "Close problems, errno: " << errno << std::endl;
@@ -75,24 +79,25 @@ void SocketCommunication::receive_node_message(int sock) {
         peerDiscoveryHandleMessage(buffer);
     } else if (messageType == "TRANSACTION") {
         std::string transactionString = j["Message"]["data"];
-        auto j = nlohmann::json::parse(transactionString);
+        auto jx = nlohmann::json::parse(transactionString);
         
         Transaction tx;
-        tx.id = j["id"];
-        tx.amount = j["amount"];
-        tx.senderAddress = j["senderAddress"];
-        tx.senderPublicKey = j["senderPublicKey"];
-        tx.receiverAddress = j["receiverAddress"];
-        tx.signature = j["signature"];
-        tx.timestamp = j["timestamp"];
-        tx.type = j["type"];
+        tx.id = jx["id"];
+        tx.amount = jx["amount"];
+        tx.senderAddress = jx["senderAddress"];
+        tx.senderPublicKey = jx["senderPublicKey"];
+        tx.receiverAddress = jx["receiverAddress"];
+        tx.signature = jx["signature"];
+        tx.timestamp = jx["timestamp"];
+        tx.type = jx["type"];
 
         node->handleTransaction(tx, false);
     } else if (messageType == "BLOCK") {
         Block block;
         std::string jsonBlock = j["Message"]["data"];
-        auto j = nlohmann::json::parse(jsonBlock);
-        for (auto tx : j["transactions"]) {            
+        
+        auto jx = nlohmann::json::parse(jsonBlock);
+        for (auto tx : jx["transactions"]) {            
             Transaction tr;
             tr.id = tx["id"];
             tr.amount = tx["amount"];
@@ -105,13 +110,13 @@ void SocketCommunication::receive_node_message(int sock) {
             tr.type = tx["type"];
             block.transactions.push_back(tr);
         }
-        block.lastHash = j["lastHash"];
-        block.hash = j["hash"];
+        block.lastHash = jx["lastHash"];
+        block.hash = jx["hash"];
         block._id = block.hash;
-        block.forgerAddress = j["forgerAddress"];
-        block.timestamp = j["timestamp"];
-        block.blockCount = j["blockCount"];
-        block.signature = j["signature"];
+        block.forgerAddress = jx["forgerAddress"];
+        block.timestamp = jx["timestamp"];
+        block.blockCount = jx["blockCount"];
+        block.signature = jx["signature"];
         // std::cout << "block signature: " << block.signature << std::endl;
 
         node->handleBlock(block, false);
@@ -221,14 +226,14 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                    p2putils::logit("Accept");
+                    p2putils::logit("Error setting up accept()");
                     exit(EXIT_FAILURE);
             }
         } else if (PORT == utils::MASTER_NODE_PORT) {
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                    p2putils::logit("Accept");
+                    p2putils::logit("Error setting up accept()");
                     exit(EXIT_FAILURE);
             }
         }
@@ -248,7 +253,6 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         if (PORT != utils::MASTER_NODE_PORT && i > 0) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected, this, incomingSocket);
             peerThread.join();
-
         } else if (PORT == utils::MASTER_NODE_PORT) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected,this, incomingSocket);
             peerThread.join();

@@ -36,6 +36,7 @@ public:
     AccountModel *accountModel;
     SocketCommunication *p2p;
     ProofOfStake *proofOfStake;
+    std::mutex nodeMutex;
 
     int argc;
     char **argv;

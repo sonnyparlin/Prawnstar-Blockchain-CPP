@@ -2,23 +2,31 @@
 #define _P2PUTILS_H_
 
 #include <stdio.h>
+
 #include <unistd.h>
+
+#ifndef _WIN32
 #include <netinet/in.h>
-#include <string>
 #include <sys/socket.h>
+#include <arpa/inet.h>
+#else
+#include <Ws2tcpip.h>
+#include <Winsock2.h>
+#endif
+
+#include <pthread.h>
+
+#include <string>
 #include <stdlib.h>
 #include <errno.h>
 #include <iostream>
 #include <cstring>
-#include <pthread.h>
 #include <limits.h>
-#include <arpa/inet.h>
 #include <errno.h>
 #include <thread>
 #include <sstream>
 #include <unordered_map>
 #include <future>
-#include <cryptopp/hex.h>
 #include <nlohmann/json.hpp>
 
 namespace p2putils {

@@ -10,10 +10,12 @@ TransactionPool::~TransactionPool() {
 }
 
 void TransactionPool::addTransaction(Transaction transaction) {
+    std::lock_guard<std::mutex> guard(tpoolMutex);
     transactions.push_back(transaction);
 }
 
 bool TransactionPool::transactionExists(Transaction transaction) {
+    std::lock_guard<std::mutex> guard(tpoolMutex);
     for (auto tx : transactions) {
         if (tx.equals(transaction)) {
             std::cout << "Transaction already exists in the pool" << std::endl;
@@ -24,6 +26,7 @@ bool TransactionPool::transactionExists(Transaction transaction) {
 }
 
 void TransactionPool::removeFromPool(vector<Transaction> txs) {
+    std::lock_guard<std::mutex> guard(tpoolMutex);
     vector<Transaction> newPoolTransactions;
     for (auto poolTransaction : this->transactions) {
         bool insert = true;
@@ -38,6 +41,7 @@ void TransactionPool::removeFromPool(vector<Transaction> txs) {
 }
 
 std::string TransactionPool::getPoolTransactionsJsonString() {
+    std::lock_guard<std::mutex> guard(tpoolMutex);
     nlohmann::json j;
     nlohmann::json jContainer;
 

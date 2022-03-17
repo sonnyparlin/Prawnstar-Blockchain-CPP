@@ -18,7 +18,9 @@ Wallet::Wallet(Node *node) {
     node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
 }
 
-Wallet::~Wallet(){}
+Wallet::~Wallet(){
+    // std::cout << "wallet destructor called " << std::endl;
+}
 
 void Wallet::fromKey(const char *file) {
     int PUBUFFSIZE=174;
@@ -34,7 +36,7 @@ void Wallet::fromKey(const char *file) {
     const char *mKey = walletPrivateKey.c_str();
     BIO* bo = BIO_new( BIO_s_mem() );
     BIO_write( bo, mKey,strlen(mKey));
-    EVP_PKEY* pkey = 0;
+    EVP_PKEY* pkey = nullptr;
     PEM_read_bio_PrivateKey( bo, &pkey, 0, 0 );
     BIO_free(bo);
 

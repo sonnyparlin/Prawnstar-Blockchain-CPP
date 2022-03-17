@@ -4,6 +4,10 @@
 #include <sstream>
 #include <string>
 
+#ifdef _WIN32
+#include <chrono>
+#endif
+
 using namespace std;
 
 struct TX_TYPE {

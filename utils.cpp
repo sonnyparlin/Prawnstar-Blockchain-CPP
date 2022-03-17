@@ -28,7 +28,7 @@ namespace utils {
         const char *mKey = publicKeyString.c_str();
         BIO* bo = BIO_new( BIO_s_mem() );
         BIO_write( bo, mKey,strlen(mKey));
-        EVP_PKEY* pkey = 0;
+        EVP_PKEY* pkey = nullptr;
         PEM_read_bio_PUBKEY( bo, &pkey, 0, 0 );
         /* free memory */
         BIO_free(bo);

@@ -23,6 +23,7 @@ public:
                 string receiverAddress, 
                 double amount, 
                 string type);
+     
     Transaction();
     ~Transaction();          // Destructor
 
@@ -31,6 +32,8 @@ public:
     string generateUUID();
     void sign(std::string sig);
     bool equals(Transaction transaction);
+
+    friend bool operator==(const Transaction &lhs, const Transaction &rhs); 
 };
 
 #endif // _TRANSACTION_H_

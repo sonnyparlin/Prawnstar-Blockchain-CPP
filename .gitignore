@@ -2,4 +2,5 @@ Prawnstar
 .DS_Store
 lib/
 build/
+.vscode/
 *.o

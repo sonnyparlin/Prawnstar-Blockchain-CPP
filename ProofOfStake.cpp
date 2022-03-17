@@ -24,6 +24,7 @@ void ProofOfStake::setGenesisNodeStake(std::string genesisPublicKey) {
 }
 
 void ProofOfStake::update(std::string publicKeyString, double stake) {
+    std::lock_guard<std::mutex> guard(posMutex);
     if (stakers.find(publicKeyString) != stakers.end())
         stakers[publicKeyString] += stake;
     else
@@ -31,6 +32,7 @@ void ProofOfStake::update(std::string publicKeyString, double stake) {
 }
 
 double ProofOfStake::getStake(std::string publicKeyString) {
+    std::lock_guard<std::mutex> guard(posMutex);
     if (stakers.find(publicKeyString) != stakers.end())
         return stakers[publicKeyString];
     else

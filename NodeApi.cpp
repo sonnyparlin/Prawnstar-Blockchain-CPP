@@ -40,37 +40,23 @@ void NodeApi::start(std::string po) {
         auto x = crow::json::load(req.body);
         if (!x)
             return crow::response(crow::status::BAD_REQUEST); 
-            // same as crow::response(400)
 
         std::string str = req.body;
         if (!x.has("transaction"))
             return crow::response("Missing transaction value");
         
-        std::ostringstream req_stream; 
-        // osstringstream for copying json elements
-
-        req_stream << x["transaction"]["sender"]; // extract sender
-        std::string sender = req_stream.str(); // copy string
+        std::string sender = x["transaction"]["sender"].s(); // extract sender
         sender.erase(remove( sender.begin(), sender.end(), '\"' ),sender.end());
-        req_stream.str(std::string()); // clear the osstringstream
-        
-        req_stream << x["transaction"]["receiver"]; // extract receiver
-        std::string receiver = req_stream.str(); // copy string
-        receiver.erase(remove( receiver.begin(), receiver.end(), '\"' ),receiver.end());
-        req_stream.str(std::string()); // clear the osstringstream
 
-        req_stream << x["transaction"]["type"]; // extract type
-        std::string type = req_stream.str(); // copy string
+        std::string receiver = x["transaction"]["receiver"].s(); // extract receiver
+        receiver.erase(remove( receiver.begin(), receiver.end(), '\"' ),receiver.end());
+
+        std::string type = x["transaction"]["type"].s(); // extract type
         type.erase(remove( type.begin(), type.end(), '\"' ),type.end());
-        req_stream.str(std::string()); // clear the osstringstream
 
         double amount = x["transaction"]["amount"].d();
 
-        // std::cout << "sender: " << sender << std::endl;
-
         if (node->accountModel->accountExists(sender)) {
-            std::cout << "found wallet " << sender << std::endl;
-
             Wallet senderWallet(sender.c_str(), node);
             Transaction tx = senderWallet.createTransaction(receiver, amount, type);
             bool success = node->handleTransaction(tx);
@@ -82,5 +68,6 @@ void NodeApi::start(std::string po) {
         return crow::response(201, "{\"message\":\"Received transaction\"}");
     });
 
-    app.port(port).run();
+    app.loglevel(crow::LogLevel::Warning);
+    app.port(port).multithreaded().run();
 }
