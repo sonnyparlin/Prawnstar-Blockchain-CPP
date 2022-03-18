@@ -22,7 +22,19 @@ ProofOfStake.cpp
 TransactionPool.cpp
 p2putils.cpp)
 
-if (WIN32)
+if(UNIX)
+    include_directories(include /usr/local/include /usr/local/opt/openssl@3/include)
+    set (OPENSSL_ROOT_DIR /usr/local/opt/openssl@3)
+    find_package(OpenSSL REQUIRED)
+    find_package(Boost REQUIRED)
+    add_executable(Prawnstar main.cpp)
+
+    SET(CMAKE_CXX_FLAGS "-Wall -std=c++14")
+
+    target_link_libraries(Prawnstar PUBLIC PrawnstarBlockchainLib OpenSSL::Crypto)
+endif(UNIX)
+
+if (MINGW)
     set(OPENSSL_ROOT_DIR "C:\\OpenSSL-Win64\\")
     include(FindOpenSSL)
 
@@ -53,21 +65,4 @@ if (WIN32)
     ws2_32
     wsock32
     bcrypt)
-else()
-    include_directories(include /usr/local/include /usr/local/opt/openssl@3/include)
-    find_package(OpenSSL REQUIRED)
-    find_package(Boost REQUIRED)
-    add_executable(Prawnstar main.cpp)
-
-    if (OPENSSL_FOUND)
-    message(STATUS "OpenSSL Found: ${OPENSSL_VERSION}")
-    message(STATUS "OpenSSL Include: ${OPENSSL_INCLUDE_DIR}")
-    message(STATUS "OpenSSL Libraries: ${OPENSSL_LIBRARIES}")
-    else() 
-    message (FATAL_ERROR "OpenSSL Not found.")
-    endif()
-
-    SET(CMAKE_CXX_FLAGS "-Wall -std=c++14")
-
-    target_link_libraries(Prawnstar PUBLIC PrawnstarBlockchainLib OpenSSL::Crypto)
-endif()
+endif(MINGW)
