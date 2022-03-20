@@ -2,11 +2,11 @@ import random
 import time
 
 def main():
-    SUPPLY=200000000
+    SUPPLY=20000000
     ORIGINAL_SUPPLY = SUPPLY
     LIQUIDITY = 20000
     TOKEN_PRICE = LIQUIDITY / SUPPLY
-    NUMBER_OF_TRANSACTIONS = 10000
+    NUMBER_OF_TRANSACTIONS = 1000000
     PRICE_RANGE_LOW=20
     PRICE_RANGE_HIGH=500
 
@@ -26,7 +26,8 @@ def main():
         TOKEN_PRICE = LIQUIDITY / SUPPLY
     end = time.time()
 
-    print(f'\n\nExecution time was {end-start}')
+    execution = "{:,.2f}".format(end-start)
+    print(f"\n\nExecution time was {execution} seconds.")
 
     formatted_remaining_supply = "{:,.0f}".format(ORIGINAL_SUPPLY-SUPPLY)
     formatted_supply = "{:,.0f}".format(SUPPLY)
