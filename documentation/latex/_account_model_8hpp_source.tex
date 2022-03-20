@@ -18,18 +18,19 @@
 \DoxyCodeLine{15     std::unordered\_map<std::string, std::string> addressToPublicKey;}
 \DoxyCodeLine{16     std::unordered\_map<std::string, std::string> addressToPrivateKey;}
 \DoxyCodeLine{17     std::unordered\_map<std::string, double> balances;}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19     \mbox{\hyperlink{class_account_model}{AccountModel}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
-\DoxyCodeLine{20     \mbox{\hyperlink{class_account_model}{AccountModel}}(std::string address);}
-\DoxyCodeLine{21     \mbox{\hyperlink{class_account_model}{\string~AccountModel}}();          \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23     \textcolor{keywordtype}{bool} accountExists(\textcolor{keyword}{const} std::string \&walletAddress);}
-\DoxyCodeLine{24     \textcolor{keywordtype}{void} addAccount(\textcolor{keyword}{const} std::string walletAddress, \textcolor{keyword}{const} std::string pubKey, \textcolor{keyword}{const} std::string privKey);}
-\DoxyCodeLine{25     \textcolor{keywordtype}{void} addAccount(std::string walletAddress, std::string pubKey);}
-\DoxyCodeLine{26     \textcolor{keywordtype}{double} getBalance(\textcolor{keyword}{const} std::string walletAddress);}
-\DoxyCodeLine{27     \textcolor{keywordtype}{void} updateBalance(\textcolor{keyword}{const} std::string walletAddress, \textcolor{keywordtype}{double} amount);}
-\DoxyCodeLine{28 \};}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_ACCOUNTMODEL\_H\_}}
+\DoxyCodeLine{18     std::mutex acMutex;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \mbox{\hyperlink{class_account_model}{AccountModel}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_account_model}{AccountModel}}(std::string address);}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_account_model}{\string~AccountModel}}();          \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} accountExists(\textcolor{keyword}{const} std::string \&walletAddress);}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} addAccount(\textcolor{keyword}{const} std::string walletAddress, \textcolor{keyword}{const} std::string pubKey, \textcolor{keyword}{const} std::string privKey);}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} addAccount(std::string walletAddress, std::string pubKey);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{double} getBalance(\textcolor{keyword}{const} std::string walletAddress);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} updateBalance(\textcolor{keyword}{const} std::string walletAddress, \textcolor{keywordtype}{double} amount);}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_ACCOUNTMODEL\_H\_}}
 
 \end{DoxyCode}

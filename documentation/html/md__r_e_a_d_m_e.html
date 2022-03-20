@@ -85,6 +85,11 @@ Making and Running the App</h2>
 <li>cd ..</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md3"></a>
+Windows</h2>
+<ul>
+<li>cmake .. -G "Unix Makefiles" -DOPENSSL_ROOT_DIR=C:\OpenSSL-Win64\ -DOPENSSL_LIBRARIES="C:\OpenSSL-Win64\bin\libssl-3-x64.dll;C:\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -DOPENSSL_INCLUDE_DIR=C:\OpenSSL-Win64</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
 Running the app</h2>
 <ul>
 <li><a class="el" href="class_node.html">Node</a> 1 (master node): ./Prawnstar 127.0.0.1 10001 8001</li>
@@ -95,7 +100,7 @@ Running the app</h2>
 <p >./Prawnstar ip_of_this_node p2p_port_of_this_node api_port_of_this_node</p>
 <p >The format of all client nodes:</p>
 <p >./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Testing it out</h2>
 <p >You can use <code>python test.py</code> to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.</p>
 <p >Use <a href="https://www.postman.com">Postman</a> to send a transaction</p>

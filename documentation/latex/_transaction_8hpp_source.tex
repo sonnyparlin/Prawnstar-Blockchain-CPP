@@ -26,16 +26,19 @@
 \DoxyCodeLine{23                 \textcolor{keywordtype}{string} receiverAddress, }
 \DoxyCodeLine{24                 \textcolor{keywordtype}{double} amount, }
 \DoxyCodeLine{25                 \textcolor{keywordtype}{string} type);}
-\DoxyCodeLine{26     \mbox{\hyperlink{class_transaction}{Transaction}}();}
-\DoxyCodeLine{27     \mbox{\hyperlink{class_transaction}{\string~Transaction}}();          \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29     \textcolor{keywordtype}{string} toJson();}
-\DoxyCodeLine{30     \textcolor{keywordtype}{string} payload();}
-\DoxyCodeLine{31     \textcolor{keywordtype}{string} generateUUID();}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} sign(std::string sig);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{bool} equals(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
-\DoxyCodeLine{34 \};}
+\DoxyCodeLine{26      }
+\DoxyCodeLine{27     \mbox{\hyperlink{class_transaction}{Transaction}}();}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_transaction}{\string~Transaction}}();          \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keywordtype}{string} toJson();}
+\DoxyCodeLine{31     \textcolor{keywordtype}{string} payload();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{string} generateUUID();}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} sign(std::string sig);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} equals(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
 \DoxyCodeLine{35 }
-\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
+\DoxyCodeLine{36     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&rhs); }
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
 
 \end{DoxyCode}

@@ -7,18 +7,22 @@
 \DoxyCodeLine{4 \textcolor{preprocessor}{\#include <sstream>}}
 \DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
 \DoxyCodeLine{6 }
-\DoxyCodeLine{7 \textcolor{keyword}{using namespace }std;}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t_x___t_y_p_e}{TX\_TYPE}} \{}
-\DoxyCodeLine{10     \textcolor{keywordtype}{string} transfer;}
-\DoxyCodeLine{11     \textcolor{keywordtype}{string} exchange;}
-\DoxyCodeLine{12     \textcolor{keywordtype}{string} stake;}
-\DoxyCodeLine{13     \textcolor{keywordtype}{string} reward;}
-\DoxyCodeLine{14 \};}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t_x___t_y_p_e}{TX\_TYPE}} tx;}
-\DoxyCodeLine{17 time\_t timeSinceEpoch();}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_CONFIG\_H\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t_x___t_y_p_e}{TX\_TYPE}} \{}
+\DoxyCodeLine{14     \textcolor{keywordtype}{string} transfer;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{string} exchange;}
+\DoxyCodeLine{16     \textcolor{keywordtype}{string} stake;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{string} reward;}
+\DoxyCodeLine{18 \};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t_x___t_y_p_e}{TX\_TYPE}} tx;}
+\DoxyCodeLine{21 time\_t timeSinceEpoch();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_CONFIG\_H\_}}
 
 \end{DoxyCode}

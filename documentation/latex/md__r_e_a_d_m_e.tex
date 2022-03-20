@@ -15,7 +15,11 @@
 \item make
 \item cp Prawnstar ../
 \item cd ..
-\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md3}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Windows}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item cmake .. -\/G \char`\"{}\+Unix Makefiles\char`\"{} -\/DOPENSSL\+\_\+\+ROOT\+\_\+\+DIR=C\+:\textbackslash{}\+Open\+SSL-\/Win64\textbackslash{} -\/DOPENSSL\+\_\+\+LIBRARIES=\char`\"{}\+C\+:\textbackslash{}\+Open\+SSL-\/\+Win64\textbackslash{}bin\textbackslash{}libssl-\/3-\/x64.\+dll;\+C\+:\textbackslash{}\+Open\+SSL-\/\+Win64\textbackslash{}bin\textbackslash{}libcrypto-\/3-\/x64.\+dll\char`\"{} -\/DOPENSSL\+\_\+\+INCLUDE\+\_\+\+DIR=C\+:\textbackslash{}\+Open\+SSL-\/Win64
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md4}
 
 \begin{DoxyItemize}
 \item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10001 8001
@@ -29,7 +33,7 @@ The format for the master node\+:
 
 The format of all client nodes\+:
 
-./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md4}
+./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md5}
 You can use {\ttfamily python test.\+py} to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
 
 Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction
