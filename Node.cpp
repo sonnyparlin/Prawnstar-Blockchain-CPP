@@ -201,7 +201,6 @@ This is where we read and rebuild the blockchain or partial blockchain after req
 from the master server. How many blocks we ad is based on how many we requested.
 */
 void Node::handleBlockchain(std::string blockchainString) {
-    std::lock_guard<std::mutex> guard(nodeMutex);
     if (blockchainString.empty())
         return;
 
@@ -248,6 +247,7 @@ void Node::handleBlockchain(std::string blockchainString) {
             }
             b.transactions = transactions;
             if (blockNumber > localBlockCount) {
+                std::lock_guard<std::mutex> guard(nodeMutex);
                 localBlockchainCopy.push_back(b);
                 /*! 
                 \todo write the new block to our mongodb instance

@@ -41,7 +41,6 @@ void SocketCommunication::receive_node_message(int sock) {
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
-    
     reader = recv (sock, msgLengthBuffer, MESSAGELENGTH,0);
     if (reader < 0) {
         #ifndef _WIN32
