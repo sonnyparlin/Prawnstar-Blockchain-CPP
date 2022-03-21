@@ -247,7 +247,6 @@ void Node::handleBlockchain(std::string blockchainString) {
             }
             b.transactions = transactions;
             if (blockNumber > localBlockCount) {
-                std::lock_guard<std::mutex> guard(nodeMutex);
                 localBlockchainCopy.push_back(b);
                 /*! 
                 \todo write the new block to our mongodb instance
