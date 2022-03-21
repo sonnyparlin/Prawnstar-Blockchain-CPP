@@ -205,7 +205,6 @@ void Node::handleBlockchain(std::string blockchainString) {
         return;
 
     nlohmann::json j;
-    
     try {
         j = nlohmann::json::parse(blockchainString);
     } catch(exception &e) {
