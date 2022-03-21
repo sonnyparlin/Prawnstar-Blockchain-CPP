@@ -41,6 +41,7 @@ void SocketCommunication::receive_node_message(int sock) {
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
+    
     reader = recv (sock, msgLengthBuffer, MESSAGELENGTH,0);
     if (reader < 0) {
         #ifndef _WIN32
@@ -101,8 +102,14 @@ void SocketCommunication::receive_node_message(int sock) {
     } else if (messageType == "BLOCK") {
         Block block;
         std::string jsonBlock = j["Message"]["data"];
+        nlohmann::json jx;
+
+        try {
+            jx = nlohmann::json::parse(jsonBlock);
+        } catch(exception &e) {
+            std::cerr << e.what() << std::endl;
+        }
         
-        auto jx = nlohmann::json::parse(jsonBlock);
         for (auto tx : jx["transactions"]) {            
             Transaction tr;
             tr.id = tx["id"];

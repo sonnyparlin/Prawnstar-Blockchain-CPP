@@ -44,5 +44,6 @@ std::string Message::toJson() {
     // std::cout << "Message Header => " << strMsgLength << std::endl;
     strMsgBody = strMsgLength + strMsgBody;    
 
+    // std::cout << strMsgLength << std::endl;
     return strMsgBody;
 }

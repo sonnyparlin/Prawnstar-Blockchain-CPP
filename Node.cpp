@@ -209,6 +209,7 @@ void Node::handleBlockchain(std::string blockchainString) {
     try {
         j = nlohmann::json::parse(blockchainString);
     } catch(exception &e) {
+        std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }
     int localBlockCount = blockchain->blocks.size();

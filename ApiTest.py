@@ -26,11 +26,11 @@ with requests.Session() as s:
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
-
+    time.sleep(2)
     for x in range(1000):
         print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
-
+        #time.sleep(0.5)
 # for x in range(2):
 #     post_transaction(alice, bob,'1', 'TRANSFER')
 
