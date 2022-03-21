@@ -183,7 +183,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     int blockNumber = atoi(receivingNode.at(2).c_str());
+    
+    std::cout "requesting from block: " << blockNumber << std::endl;
     vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};
+    std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
     Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
     std::string msgJson = message.toJson();
