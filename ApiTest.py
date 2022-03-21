@@ -3,14 +3,13 @@ import requests
 import time
 
 def post_transaction(session, sender, receiver, amount, type):
-    url = 'http://127.0.0.1:8001/transact'
+    url = 'http://192.168.1.145:8001/transact'
     json = '{"transaction": {"sender": "'+ sender +'","receiver": "'+ receiver +'", "amount": '+ amount +', "type": "'+ type +'"}}'
     r = session.post(url, data = json)
     if "Received" not in r.text:
         print(r.text)
     
-    if type == 'EXCHANGE':
-        time.sleep(0.001)
+    #time.sleep(2)
 
 start_time = time.time()
 
@@ -23,7 +22,7 @@ node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 with requests.Session() as s:
     post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
-    post_transaction(s, node2, node2, '3', 'STAKE')
+    #post_transaction(s, node2, node2, '3', 'STAKE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
@@ -54,17 +53,17 @@ print("getting final balances...")
 time.sleep(1)
 
 print("Alice's wallet: ")
-x = requests.get('http://127.0.0.1:8001/wallet/'+alice)
+x = requests.get('http://192.168.1.145:8001/wallet/'+alice)
 print(x.text)
 
 print("Bob's wallet: ")
-x = requests.get('http://127.0.0.1:8001/wallet/'+bob)
+x = requests.get('http://192.168.1.145:8001/wallet/'+bob)
 print(x.text)
 
 print("Node one wallet: ")
-x = requests.get('http://127.0.0.1:8001/wallet/'+nodeWallet)
+x = requests.get('http://192.168.1.145:8001/wallet/'+nodeWallet)
 print(x.text)
 
 print("Node two wallet: ")
-x = requests.get('http://127.0.0.1:8001/wallet/'+node2)
+x = requests.get('http://192.168.1.145:8001/wallet/'+node2)
 print(x.text)

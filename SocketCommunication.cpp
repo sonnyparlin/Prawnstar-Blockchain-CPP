@@ -70,7 +70,13 @@ void SocketCommunication::receive_node_message(int sock) {
     }
     
     // std::cout << "buffer: " << buffer << std::endl;
-    nlohmann::json j = nlohmann::json::parse(buffer);
+    nlohmann::json j;
+    
+    try {
+        j = nlohmann::json::parse(buffer);
+    } catch(exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
     std::string messageType = j["Message"]["Type"];
 
     // std::cout << "Message type: " << messageType << std::endl;
