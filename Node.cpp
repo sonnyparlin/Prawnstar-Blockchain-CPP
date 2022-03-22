@@ -188,7 +188,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
     std::cout << "requesting from block: " << blockNumber << std::endl;
     
     vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};
-    std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
+    // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
     Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
     std::string msgJson = message.toJson();
@@ -232,7 +232,7 @@ void Node::handleBlockchain(std::string blockchainString) {
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
         for (auto& element : j["blocks"]) {
-            std::cout << "\n\nelement: " << element << "\n" << std::endl;
+            // std::cout << "\n\nelement: " << element << "\n" << std::endl;
             blockNumber++;
             Block b;
             b.blockCount = element["blockCount"];

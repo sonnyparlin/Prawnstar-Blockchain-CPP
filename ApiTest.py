@@ -22,7 +22,7 @@ node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 with requests.Session() as s:
     post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
-    #post_transaction(s, node2, node2, '3', 'STAKE')
+    post_transaction(s, node2, node2, '3', 'STAKE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
