@@ -158,7 +158,7 @@ Request complete or partial blockchain from the master node. Uses the local bloc
 how many blocks are needed from the master server.
 */
 void Node::requestChain() {
-    // std::cout << "inside requestChain()" << std::endl;
+    std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
@@ -174,10 +174,11 @@ void Node::requestChain() {
 Only send the blocks which are missing from the requesting node.
 */
 void Node::handleBlockchainRequest(std::string requestingNode) {
-    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
+    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     /* 
     Only get the blocks I need. [X]
     */
+   std::cout << "Inside handleBlockchainRequest()" << std::endl;
    if (blockchain->blocks.size() == 1) {
        return;
    }
@@ -205,8 +206,13 @@ This is where we read and rebuild the blockchain or partial blockchain after req
 from the master server. How many blocks we ad is based on how many we requested.
 */
 void Node::handleBlockchain(std::string blockchainString) {
+    std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
+
+    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
         return;
+
+    std::cout << "blockchainString: " << blockchainString << std::endl;
 
     nlohmann::json j;
     try {
@@ -221,11 +227,12 @@ void Node::handleBlockchain(std::string blockchainString) {
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
 
-    if (localBlockCount < receivedBlockCount) {
+    if (receivedBlockCount > 0) {
 
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
         for (auto& element : j["blocks"]) {
+            std::cout << "\n\nelement: " << element << "\n" << std::endl;
             blockNumber++;
             Block b;
             b.blockCount = element["blockCount"];
