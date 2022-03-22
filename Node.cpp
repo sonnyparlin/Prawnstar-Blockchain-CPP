@@ -174,6 +174,7 @@ void Node::requestChain() {
 Only send the blocks which are missing from the requesting node.
 */
 void Node::handleBlockchainRequest(std::string requestingNode) {
+    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     /* 
     Only get the blocks I need. [X]
     */
@@ -183,8 +184,8 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     int blockNumber = atoi(receivingNode.at(2).c_str());
-    
     std::cout << "requesting from block: " << blockNumber << std::endl;
+    
     vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};
     std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 

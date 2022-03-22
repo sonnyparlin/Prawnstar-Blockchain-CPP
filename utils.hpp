@@ -23,7 +23,7 @@ namespace utils {
         std::string hexsig;
     };
 
-    static const char * const MASTER_NODE_IP = "127.0.0.1";
+    static const char * const MASTER_NODE_IP = "192.168.1.145";
     const static int MASTER_NODE_PORT=10001;
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
