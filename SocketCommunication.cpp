@@ -31,6 +31,7 @@ void SocketCommunication::outbound_node_connected(int sock) {
 }
 
 void SocketCommunication::send_node_message(int sock, const char *message) {
+    std::cout << "Sending message: " << message << std::endl;
     send(sock, message, strlen(message), 0);
 }
 
