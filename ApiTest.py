@@ -14,7 +14,7 @@ def post_transaction(session, sender, receiver, amount, type):
     json = '{"transaction": {"sender": "'+ sender +'","receiver": "'+ receiver +'", "amount": '+ amount +', "type": "'+ type +'"}}'
     r = session.post(url, data = json)
     #if "Received" not in r.text:
-    print(r.text)
+    #print(r.text)
     
     #time.sleep(2)
 
@@ -35,7 +35,7 @@ with requests.Session() as s:
 
     time.sleep(2)
     for x in range(int(sys.argv[1])):
-        print(x)            
+        #print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(3)
 
