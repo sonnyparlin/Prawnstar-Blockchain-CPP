@@ -31,7 +31,8 @@ void SocketCommunication::outbound_node_connected(int sock) {
 }
 
 void SocketCommunication::send_node_message(int sock, const char *message) {
-    std::cout << "Sending message: " << message << std::endl;
+    std::string substr = message;
+    std::cout << "Message length: " << substr.substr(0,20)  << std::endl;
     send(sock, message, strlen(message), 0);
 }
 
@@ -42,7 +43,7 @@ void SocketCommunication::receive_node_message(int sock) {
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
-    reader = recv (sock, msgLengthBuffer, MESSAGELENGTH,0);
+    reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, 0);
     if (reader < 0) {
         #ifndef _WIN32
         std::cout << "read() error " << errno << std::endl;
