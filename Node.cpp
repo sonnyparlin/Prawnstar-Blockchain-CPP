@@ -206,13 +206,13 @@ This is where we read and rebuild the blockchain or partial blockchain after req
 from the master server. How many blocks we ad is based on how many we requested.
 */
 void Node::handleBlockchain(std::string blockchainString) {
-    std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
+    // std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
 
     // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
         return;
 
-    std::cout << "blockchainString: " << blockchainString << std::endl;
+    // std::cout << "blockchainString: " << blockchainString << std::endl;
 
     nlohmann::json j;
     try {

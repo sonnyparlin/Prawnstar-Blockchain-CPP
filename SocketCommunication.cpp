@@ -53,7 +53,7 @@ void SocketCommunication::receive_node_message(int sock) {
     }
 
     msgLength = stoi (msgLengthBuffer);
-    std::cout << "Message Length => " << msgLength << std::endl;
+    // std::cout << "Message Length => " << msgLength << std::endl;
     if (msgLength <= 0) {
         std::cout << "Message length is not valid, errno: " << errno << std::endl;
         return;
@@ -64,7 +64,7 @@ void SocketCommunication::receive_node_message(int sock) {
 
     // read socket data to the allocated buffer
     reader = recv (sock, buffer, msgLength, MSG_WAITALL);
-    std::cout << "reader => " << reader << std::endl;
+    // std::cout << "reader => " << reader << std::endl;
     if (reader <= 0) {
         if (close(sock) == -1) {
             std::cout << "Close problems, errno: " << errno << std::endl;

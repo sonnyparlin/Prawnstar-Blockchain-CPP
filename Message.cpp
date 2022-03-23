@@ -34,12 +34,18 @@ std::string Message::toJson() {
     // append message header with length
     std::string strMsgLength = std::to_string (strMsgBody.length());
 
-    // restrict the header length to 6
-    if (strMsgLength.length() == 1) strMsgLength = "00000" + strMsgLength;    
-    else if (strMsgLength.length() == 2) strMsgLength = "0000" + strMsgLength;
-    else if (strMsgLength.length() == 3) strMsgLength = "000" + strMsgLength;
-    else if (strMsgLength.length() == 4) strMsgLength = "00" + strMsgLength;
-    else if (strMsgLength.length() == 5) strMsgLength = "0" + strMsgLength;
+    // restrict the header length to 12
+    if (strMsgLength.length() == 1) strMsgLength = "00000000000" + strMsgLength;    
+    else if (strMsgLength.length() == 2) strMsgLength = "0000000000" + strMsgLength;
+    else if (strMsgLength.length() == 3) strMsgLength = "000000000" + strMsgLength;
+    else if (strMsgLength.length() == 4) strMsgLength = "00000000" + strMsgLength;
+    else if (strMsgLength.length() == 5) strMsgLength = "0000000" + strMsgLength;
+    else if (strMsgLength.length() == 6) strMsgLength = "000000" + strMsgLength;
+    else if (strMsgLength.length() == 7) strMsgLength = "00000" + strMsgLength;
+    else if (strMsgLength.length() == 8) strMsgLength = "0000" + strMsgLength;
+    else if (strMsgLength.length() == 9) strMsgLength = "000" + strMsgLength;
+    else if (strMsgLength.length() == 10) strMsgLength = "00" + strMsgLength;
+    else if (strMsgLength.length() == 11) strMsgLength = "0" + strMsgLength;
     
     // std::cout << "Message Header => " << strMsgLength << std::endl;
     strMsgBody = strMsgLength + strMsgBody;    
