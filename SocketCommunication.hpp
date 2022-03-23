@@ -16,7 +16,7 @@ private:
 public:
     std::vector<std::string> peers;
     std::vector<std::string> inactivePeers;
-    const int MESSAGELENGTH = 14;
+    const int MESSAGELENGTH = 20;
     std::string id;
 
     SocketConnector sc;

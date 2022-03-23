@@ -34,20 +34,26 @@ std::string Message::toJson() {
     // append message header with length
     std::string strMsgLength = std::to_string (strMsgBody.length());
 
-    // restrict the header length to 14
-    if (strMsgLength.length() == 1) strMsgLength = "0000000000000" + strMsgLength;    
-    else if (strMsgLength.length() == 2) strMsgLength = "000000000000" + strMsgLength;
-    else if (strMsgLength.length() == 3) strMsgLength = "00000000000" + strMsgLength;
-    else if (strMsgLength.length() == 4) strMsgLength = "0000000000" + strMsgLength;
-    else if (strMsgLength.length() == 5) strMsgLength = "000000000" + strMsgLength;
-    else if (strMsgLength.length() == 6) strMsgLength = "00000000" + strMsgLength;
-    else if (strMsgLength.length() == 7) strMsgLength = "0000000" + strMsgLength;
-    else if (strMsgLength.length() == 8) strMsgLength = "000000" + strMsgLength;
-    else if (strMsgLength.length() == 9) strMsgLength = "00000" + strMsgLength;
-    else if (strMsgLength.length() == 10) strMsgLength = "0000" + strMsgLength;
-    else if (strMsgLength.length() == 11) strMsgLength = "000" + strMsgLength;
-    else if (strMsgLength.length() == 12) strMsgLength = "00" + strMsgLength;
-    else if (strMsgLength.length() == 13) strMsgLength = "0" + strMsgLength;
+    // restrict the header length to 20
+    if (strMsgLength.length() == 1) strMsgLength = "0000000000000000000" + strMsgLength;    
+    else if (strMsgLength.length() == 2) strMsgLength = "000000000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 3) strMsgLength = "00000000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 4) strMsgLength = "0000000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 5) strMsgLength = "000000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 6) strMsgLength = "00000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 7) strMsgLength = "0000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 8) strMsgLength = "000000000000" + strMsgLength;
+    else if (strMsgLength.length() == 9) strMsgLength = "00000000000" + strMsgLength;
+    else if (strMsgLength.length() == 10) strMsgLength = "0000000000" + strMsgLength;
+    else if (strMsgLength.length() == 11) strMsgLength = "000000000" + strMsgLength;
+    else if (strMsgLength.length() == 12) strMsgLength = "00000000" + strMsgLength;
+    else if (strMsgLength.length() == 13) strMsgLength = "0000000" + strMsgLength;
+    else if (strMsgLength.length() == 14) strMsgLength = "000000" + strMsgLength;
+    else if (strMsgLength.length() == 15) strMsgLength = "00000" + strMsgLength;
+    else if (strMsgLength.length() == 16) strMsgLength = "0000" + strMsgLength;
+    else if (strMsgLength.length() == 17) strMsgLength = "000" + strMsgLength;
+    else if (strMsgLength.length() == 18) strMsgLength = "00" + strMsgLength;
+    else if (strMsgLength.length() == 19) strMsgLength = "0" + strMsgLength;
     
     // std::cout << "Message Header => " << strMsgLength << std::endl;
     strMsgBody = strMsgLength + strMsgBody;    
