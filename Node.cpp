@@ -184,13 +184,13 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
    }
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
-    int blockNumber = atoi(receivingNode.at(2).c_str());
-    std::cout << "requesting from block: " << blockNumber << std::endl;
+    // int blockNumber = atoi(receivingNode.at(2).c_str());
+    // std::cout << "requesting from block: " << blockNumber << std::endl;
     
-    vector<Block> subvector = {blockchain->blocks.begin() + (blockNumber -1), blockchain->blocks.end()};
+    // vector<Block> subvector = {blockchain->blocks.begin(), blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
-    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
+    Message message("BLOCKCHAIN", blockchain->toJsonString());
     std::string msgJson = message.toJson();
     
     int num = atoi(receivingNode.at(1).c_str());
@@ -221,14 +221,15 @@ void Node::handleBlockchain(std::string blockchainString) {
         std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }
-    int localBlockCount = blockchain->blocks.size();
+    int localBlockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
     int receivedBlockCount = j["blocks"].size();
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
 
-    if (receivedBlockCount > 0) {
-
+    if (receivedBlockCount > localBlockCount) {
+        std::cout << "replacing chain" << std::endl;
+        
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
         for (auto& element : j["blocks"]) {
@@ -257,12 +258,10 @@ void Node::handleBlockchain(std::string blockchainString) {
                 accountModel->updateBalance(t.receiverAddress, t.amount);
             }
             b.transactions = transactions;
-            if (blockNumber > localBlockCount) {
-                localBlockchainCopy.push_back(b);
-                /*! 
-                \todo write the new block to our mongodb instance
-                */
-            }
+            localBlockchainCopy.push_back(b);
+            /*! 
+            \todo write the new block to our mongodb instance
+            */
         }
         blockchain->blocks = localBlockchainCopy;
     }
