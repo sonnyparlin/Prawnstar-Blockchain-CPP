@@ -11,6 +11,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <random>
 
 #include <boost/uuid/uuid.hpp>            // uuid class
@@ -23,8 +24,11 @@ namespace utils {
         std::string hexsig;
     };
 
-    static const char * const MASTER_NODE_IP = "192.168.1.145";
-    const static int MASTER_NODE_PORT=10001;
+    std::vector<std::string> get_ip_and_port_from_config();
+    static std::vector<std::string> ip_port_vec = get_ip_and_port_from_config();
+    static std::string master_ip = ip_port_vec.at(0);
+    static const char *MASTER_NODE_IP = master_ip.c_str();
+    const static int MASTER_NODE_PORT=stoi(ip_port_vec.at(1));
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
     unsigned char random_char();

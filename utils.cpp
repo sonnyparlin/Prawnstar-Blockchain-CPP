@@ -141,4 +141,22 @@ namespace utils {
         for(int i = 0; i < 20; i++) {ss << std::hex << (int)hash[i];}
         return ss.str();
     }
+
+    std::vector<std::string> get_ip_and_port_from_config() {
+        std::ifstream config_file("../config.json");
+        if (!config_file) // Check the state of the file
+        {
+            std::cerr << "Couldn't open config file\n";
+            return {};
+        }
+        nlohmann::json j;
+        config_file >> j;
+        config_file.close();
+
+        std::vector<std::string> config;
+        config.push_back(j["master_server_ip"]);
+        config.push_back(j["master_server_port"]);
+
+        return config;
+    }
 }

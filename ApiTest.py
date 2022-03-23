@@ -1,9 +1,16 @@
 from platform import node
 import requests
 import time
+import sys
+import json
+
+f = open('config.json')
+data = json.load(f)
+ip = data["master_server_ip"]
+f.close()
 
 def post_transaction(session, sender, receiver, amount, type):
-    url = 'http://192.168.1.145:8001/transact'
+    url = f"http://{ip}:8001/transact"
     json = '{"transaction": {"sender": "'+ sender +'","receiver": "'+ receiver +'", "amount": '+ amount +', "type": "'+ type +'"}}'
     r = session.post(url, data = json)
     #if "Received" not in r.text:
@@ -27,25 +34,10 @@ with requests.Session() as s:
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
     time.sleep(2)
-    for x in range(1000):
+    for x in range(int(sys.argv[1])):
         print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
-        #time.sleep(0.5)
-# for x in range(2):
-#     post_transaction(alice, bob,'1', 'TRANSFER')
-
-#post_transaction(nodeWallet, nodeWallet, '200', 'STAKE')
-
-# post_transaction(exchange, alice, '1000', 'EXCHANGE')
-
-# for x in range(10):
-#     post_transaction(alice, bob,'5', 'TRANSFER')
-
-# for x in range(10):
-#     post_transaction(alice, bob,'5', 'TRANSFER')
-
-# for x in range(20):
-#     post_transaction(alice, bob,'5', 'TRANSFER')
+        #time.sleep(3)
 
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 
@@ -53,17 +45,17 @@ print("getting final balances...")
 time.sleep(1)
 
 print("Alice's wallet: ")
-x = requests.get('http://192.168.1.145:8001/wallet/'+alice)
+x = requests.get(f"http://{ip}:8001/wallet/{alice}")
 print(x.text)
 
 print("Bob's wallet: ")
-x = requests.get('http://192.168.1.145:8001/wallet/'+bob)
+x = requests.get(f"http://{ip}:8001/wallet/{bob}")
 print(x.text)
 
 print("Node one wallet: ")
-x = requests.get('http://192.168.1.145:8001/wallet/'+nodeWallet)
+x = requests.get(f"http://{ip}:8001/wallet/{nodeWallet}")
 print(x.text)
 
 print("Node two wallet: ")
-x = requests.get('http://192.168.1.145:8001/wallet/'+node2)
+x = requests.get(f"http://{ip}:8001/wallet/{node2}")
 print(x.text)
