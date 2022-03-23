@@ -158,7 +158,7 @@ Request complete or partial blockchain from the master node. Uses the local bloc
 how many blocks are needed from the master server.
 */
 void Node::requestChain() {
-    std::cout << "inside requestChain()" << std::endl;
+    // std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
@@ -178,7 +178,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
     /* 
     Only get the blocks I need. [X]
     */
-   std::cout << "Inside handleBlockchainRequest()" << std::endl;
+   // std::cout << "Inside handleBlockchainRequest()" << std::endl;
    if (blockchain->blocks.size() == 1) {
        return;
    }
