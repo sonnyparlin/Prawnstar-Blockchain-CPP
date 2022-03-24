@@ -87,11 +87,7 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     if (!transactionCovered)
         std::cout << transaction.toJson() << std::endl;
 
-    if (transactionInBlockChain) { 
-        return true;
-    }
-
-    if (!transactionExists && signatureValid && transactionCovered) {
+    if (!transactionExists && !transactionInBlockChain && signatureValid && transactionCovered) {
         transactionPool.addTransaction(transaction);
         if (broadcast) {
             // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
@@ -106,12 +102,12 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
         
         return true;
     }
-    std::cout << "Transaction failed:" << std::endl;
-    std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
-    std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
-    std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
-    std::cout << "transactionInBlockChain: " << boolalpha << transactionInBlockChain << std::endl;
-    std::cout << transaction.toJson() << std::endl;
+    // std::cout << "Transaction failed:" << std::endl;
+    // std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
+    // std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
+    // std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
+    // std::cout << "transactionInBlockChain: " << boolalpha << transactionInBlockChain << std::endl;
+    // std::cout << transaction.toJson() << std::endl;
 
     return false;
 }
@@ -283,8 +279,13 @@ void Node::forge() {
         std::cout << "i am the next forger" << std::endl;
         try {
 
+            std::lock_guard<std::mutex> guard1(transactionPool.tpoolMutex);
             std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
-            Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address); 
+                        
+            std::lock_guard<std::mutex> guard2(blockchain->blockchainMutex);
+            Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address);
+
+            std::lock_guard<std::mutex> guard3(transactionPool.tpoolMutex);
             transactionPool.removeFromPool(block.transactions);
 
             /*! 
