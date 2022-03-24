@@ -87,7 +87,11 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     if (!transactionCovered)
         std::cout << transaction.toJson() << std::endl;
 
-    if (!transactionExists && !transactionInBlockChain && signatureValid && transactionCovered) {
+    if (transactionInBlockChain) { 
+        return true;
+    }
+
+    if (!transactionExists && signatureValid && transactionCovered) {
         transactionPool.addTransaction(transaction);
         if (broadcast) {
             // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
