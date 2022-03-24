@@ -27,7 +27,7 @@ bob = 'pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42'
 node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 
 with requests.Session() as s:
-    post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
+    #post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     #post_transaction(s, exchange, node2, '4', 'EXCHANGE')
     #post_transaction(s, node2, node2, '3', 'STAKE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
@@ -35,7 +35,7 @@ with requests.Session() as s:
 
     time.sleep(2)
     for x in range(int(sys.argv[1])):
-        #print(x)            
+        print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.05)
 

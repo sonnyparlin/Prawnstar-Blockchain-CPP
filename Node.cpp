@@ -93,11 +93,14 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
             Message message("TRANSACTION", transaction.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            
         }
         bool forgingRequired = transactionPool.forgerRequired();
-        if (forgingRequired)
+        if (forgingRequired) {
             forge();
+            // Restrict new block creation to 1 block every 100 milliseconds
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
 
         return true;
     }
