@@ -34,14 +34,22 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
     std::string substr = message;
     std::cout << "Message length: " << substr.substr(0,20)  << std::endl;
     // std::cout << message << std::endl;
-    send(sock, message, strlen(message), 0);
+    int result = send(sock, message, strlen(message), 0);
+    if (result < 0) {
+        #ifndef _WIN32
+        std::cout << "send() error " << errno << std::endl;
+        #else
+        printf("\nsend() error: %d\n", WSAGetLastError());
+        #endif
+        return;
+    }
 }
 
 void SocketCommunication::receive_node_message(int sock) {
     int reader;
 
     // read message body length
-    int msgLength;
+    unsigned long long msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
     reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, MSG_WAITALL);
@@ -393,7 +401,7 @@ void SocketCommunication::broadcast(const char *message) {
             return;
         }
         
-        //send_node_message(outgoingSocket, message);
+        // send_node_message(outgoingSocket, message);
 
         std::thread broadcastThread (&SocketCommunication::send_node_message, this, outgoingSocket, message);
         broadcastThread.join();

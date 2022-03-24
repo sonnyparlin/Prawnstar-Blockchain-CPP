@@ -1,6 +1,8 @@
 #include "Node.hpp"
 #include "NodeApi.hpp"
 #include <crow.h>
+#include <chrono>
+#include <thread>
 
 Node * Node::node=nullptr;
 
@@ -84,9 +86,6 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     } else
         transactionCovered = true;
 
-    if (!transactionCovered)
-        std::cout << transaction.toJson() << std::endl;
-
     if (!transactionExists && !transactionInBlockChain && signatureValid && transactionCovered) {
         transactionPool.addTransaction(transaction);
         if (broadcast) {
@@ -94,12 +93,12 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
             Message message("TRANSACTION", transaction.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         bool forgingRequired = transactionPool.forgerRequired();
-        if (forgingRequired)  {
+        if (forgingRequired)
             forge();
-        }
-        
+
         return true;
     }
     std::cout << "Transaction failed:" << std::endl;
