@@ -43,7 +43,7 @@ void SocketCommunication::receive_node_message(int sock) {
     int msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
     
-    reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, 0);
+    reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, MSG_WAITALL);
     if (reader < 0) {
         #ifndef _WIN32
         std::cout << "read() error " << errno << std::endl;
