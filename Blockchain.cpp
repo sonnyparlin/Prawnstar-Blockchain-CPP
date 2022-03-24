@@ -203,7 +203,7 @@ nlohmann::json Blockchain::toJson() const {
     return j;
 }
 
-std::string Blockchain::toJsonString() const {
+std::string Blockchain::toJsonString(std::vector<Block> blocks) const {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);

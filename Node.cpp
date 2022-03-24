@@ -102,12 +102,12 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
         
         return true;
     }
-    // std::cout << "Transaction failed:" << std::endl;
-    // std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
-    // std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
-    // std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
-    // std::cout << "transactionInBlockChain: " << boolalpha << transactionInBlockChain << std::endl;
-    // std::cout << transaction.toJson() << std::endl;
+    std::cout << "Transaction failed:" << std::endl;
+    std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
+    std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
+    std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
+    std::cout << "transactionInBlockChain: " << boolalpha << transactionInBlockChain << std::endl;
+    std::cout << transaction.toJson() << std::endl;
 
     return false;
 }
@@ -162,7 +162,8 @@ how many blocks are needed from the master server.
 */
 void Node::requestChain() {
     // std::cout << "inside requestChain()" << std::endl;
-    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
+    int blockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
+    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockCount) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
 
@@ -187,13 +188,13 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
    }
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
-    // int blockNumber = atoi(receivingNode.at(2).c_str());
-    // std::cout << "requesting from block: " << blockNumber << std::endl;
+    int blockNumber = atoi(receivingNode.at(2).c_str());
+    std::cout << "requesting from block: " << blockNumber << std::endl;
     
-    // vector<Block> subvector = {blockchain->blocks.begin(), blockchain->blocks.end()};
+    vector<Block> subvector = {blockchain->blocks.begin(), blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
-    Message message("BLOCKCHAIN", blockchain->toJsonString());
+    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
     std::string msgJson = message.toJson();
     
     int num = atoi(receivingNode.at(1).c_str());
@@ -225,7 +226,7 @@ void Node::handleBlockchain(std::string blockchainString) {
         std::cerr << e.what() << std::endl;
     }
     int localBlockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
-    int receivedBlockCount = j["blocks"].size();
+    int receivedBlockCount = j["blocks"].at(j["blocks"].size()-1);
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
