@@ -279,7 +279,6 @@ void Node::forge() {
         std::cout << "i am the next forger" << std::endl;
         try {
 
-            std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
             std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
             Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
