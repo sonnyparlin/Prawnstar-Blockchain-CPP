@@ -277,10 +277,13 @@ This is where new blocks are initiated for this forger.
 */
 void Node::forge() {
     std::string forger = blockchain->nextForger();
-    if (forger == nodeWallet->walletPublicKey) {
+    if (forger != nodeWallet->walletPublicKey) {
+        // std::cout << "i am not the next forger" << std::endl;
+        std::string address = utils::generateAddress(forger);
+        accountModel->addAccount(address, forger);
+    } else {
         std::cout << "i am the next forger" << std::endl;
         try {
-
             std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
             Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address); 
             transactionPool.removeFromPool(block.transactions);
@@ -293,9 +296,5 @@ void Node::forge() {
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
         } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
-    } else {
-        // std::cout << "i am not the next forger" << std::endl;
-        std::string address = utils::generateAddress(forger);
-        accountModel->addAccount(address, forger);
     }
 }
