@@ -32,7 +32,7 @@ void SocketCommunication::outbound_node_connected(int sock) {
 
 void SocketCommunication::send_node_message(int sock, const char *message) {
     std::string substr = message;
-    std::cout << "Message length: " << substr.substr(0,20)  << std::endl;
+    // std::cout << "Message length: " << substr.substr(0,20)  << std::endl;
     // std::cout << message << std::endl;
     int result = send(sock, message, strlen(message), 0);
     if (result < 0) {
