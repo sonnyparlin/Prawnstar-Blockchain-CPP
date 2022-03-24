@@ -162,8 +162,7 @@ how many blocks are needed from the master server.
 */
 void Node::requestChain() {
     // std::cout << "inside requestChain()" << std::endl;
-    int blockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
-    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockCount) };
+    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
 
@@ -188,13 +187,13 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
    }
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
-    int blockNumber = atoi(receivingNode.at(2).c_str());
-    std::cout << "requesting from block: " << blockNumber << std::endl;
+    // int blockNumber = atoi(receivingNode.at(2).c_str());
+    // std::cout << "requesting from block: " << blockNumber << std::endl;
     
-    vector<Block> subvector = {blockchain->blocks.begin() + blockNumber -1, blockchain->blocks.end()};
+    // vector<Block> subvector = {blockchain->blocks.begin(), blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
-    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
+    Message message("BLOCKCHAIN", blockchain->toJsonString());
     std::string msgJson = message.toJson();
     
     int num = atoi(receivingNode.at(1).c_str());
@@ -226,7 +225,7 @@ void Node::handleBlockchain(std::string blockchainString) {
         std::cerr << e.what() << std::endl;
     }
     int localBlockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
-    int receivedBlockCount = j["blocks"].at(j["blocks"].size()-1);
+    int receivedBlockCount = j["blocks"].size();
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;

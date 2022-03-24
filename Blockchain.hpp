@@ -24,7 +24,7 @@ public:
     bool addBlock(Block block);
     vector<nlohmann::json> blockList(vector <Block> blocks) const;
     nlohmann::json toJson() const;
-    std::string toJsonString(std::vector<Block>) const;
+    std::string toJsonString() const;
     Block genesis();
     bool blockCountValid(Block block);
     bool lastBlockHashValid(Block block);
