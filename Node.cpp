@@ -281,10 +281,7 @@ void Node::forge() {
 
             std::lock_guard<std::mutex> guard1(transactionPool.tpoolMutex);
             std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
-                        
-            std::lock_guard<std::mutex> guard2(blockchain->blockchainMutex);
             Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address);
-
             transactionPool.removeFromPool(block.transactions);
 
             /*! 
