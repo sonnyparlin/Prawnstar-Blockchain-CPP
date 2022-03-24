@@ -289,7 +289,6 @@ void Node::forge() {
             Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
     } else {
         // std::cout << "i am not the next forger" << std::endl;
