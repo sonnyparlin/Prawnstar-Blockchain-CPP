@@ -55,5 +55,5 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
 }
 
 bool TransactionPool::forgerRequired() {
-    return transactions.size() >= 2;
+    return transactions.size() >= 1;
 }
