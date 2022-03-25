@@ -55,12 +55,30 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
     return lots;
 }
 
+inline uint64_t fnv1a(std::string const & text) {
+    // 32 bit params
+    // uint32_t constexpr fnv_prime = 16777619U;
+    // uint32_t constexpr fnv_offset_basis = 2166136261U;
+
+    // 64 bit params
+    uint64_t constexpr fnv_prime = 1099511628211ULL;
+    uint64_t constexpr fnv_offset_basis = 14695981039346656037ULL;
+    
+    uint64_t hash = fnv_offset_basis;
+    
+    for(auto c: text) {
+        hash ^= c;
+        hash *= fnv_prime;
+    }
+
+    return hash;
+}
+
 Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
     int leastOffset = {0};
     // std::string hash = utils::hash(seed);
-    std::hash<std::string> hasher;
-    auto hashed = hasher(seed);
+    auto hashed = fnv1a(seed);
     
     std::cout << "hashInt: " << hashed << std::endl;
 
