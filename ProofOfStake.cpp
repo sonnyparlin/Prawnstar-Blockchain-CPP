@@ -58,9 +58,9 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
 Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
     int leastOffset = {0};
-    std::string hash = utils::hash(seed);
+    // std::string hash = utils::hash(seed);
     std::hash<std::string> hasher;
-    auto hashed = hasher(hash);
+    auto hashed = hasher(seed);
     
     std::cout << "hashInt: " << hashed << std::endl;
 
