@@ -89,6 +89,9 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     bool transactionExists = transactionPool.transactionExists(transaction);
     bool transactionInBlockChain = blockchain->transactionExists(transaction);
     bool transactionCovered = false;
+
+    if (transactionInBlockChain)
+        return false;
     
     if (transaction.type != "EXCHANGE") {
         if (accountModel->getBalance(transaction.senderAddress) > transaction.amount)
@@ -118,7 +121,6 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
     std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
     std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
-    std::cout << "transactionInBlockChain: " << boolalpha << transactionInBlockChain << std::endl;
     std::cout << transaction.toJson() << std::endl;
 
     return false;
