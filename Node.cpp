@@ -27,19 +27,10 @@ Node::Node(int argc, char **argv) {
     bobWallet = new Wallet(this, true, "bob.pem"); 
 
     std::cout << "node wallet: " << nodeWallet->address << std::endl;
-    std::cout << "node pubkey: " << nodeWallet->walletPublicKey << std::endl;
-
     std::cout << "node2 wallet: " << node2Wallet->address << std::endl;
-    std::cout << "node2 pubkey: " << node2Wallet->walletPublicKey << std::endl;
-
     std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
-    std::cout << "exchangeAddress pubkey: " << exchangeWallet->walletPublicKey << std::endl;
-
     std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
-    std::cout << "aliceAddress pubkey: " << aliceWallet->walletPublicKey << std::endl;
-
     std::cout << "bobAddress: " << bobWallet->address << std::endl;
-    std::cout << "bobAddress pubkey: " << bobWallet->walletPublicKey << std::endl;
 
     proofOfStake = new ProofOfStake(this, port);
 }
@@ -106,7 +97,6 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
             Message message("TRANSACTION", transaction.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
-            
         }
         bool forgingRequired = transactionPool.forgerRequired();
         if (forgingRequired) {
