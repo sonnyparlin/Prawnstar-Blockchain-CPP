@@ -56,7 +56,7 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
 
 Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
-    int leastOffset = {0};
+    unsigned long long leastOffset = {0};
     std::string hash = utils::hash(seed);
     hash.resize(3);
     unsigned long long hashInt = stoi(hash, 0, 16);
