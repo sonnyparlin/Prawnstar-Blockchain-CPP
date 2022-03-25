@@ -79,35 +79,39 @@ $(function() {
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;random&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;boost/uuid/uuid.hpp&gt;</span>            <span class="comment">// uuid class</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;boost/uuid/uuid_generators.hpp&gt;</span> <span class="comment">// generators</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;boost/uuid/uuid_io.hpp&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span>utils {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html">   21</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structutils_1_1_signature.html">Signature</a> {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">size_t</span> _size;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        std::string hexsig;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    };</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> MASTER_NODE_IP = <span class="stringliteral">&quot;127.0.0.1&quot;</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">int</span> MASTER_NODE_PORT=10001;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::string hash(std::string dataStr);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">bool</span> verifySignature(std::string dataStr, std::string, std::string publicKey);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> random_char();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string uuid_gen();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">char</span> asciitolower(<span class="keywordtype">char</span> in);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::string gen_random_str(<span class="keyword">const</span> <span class="keywordtype">int</span> len);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> hexToInt(<span class="keyword">const</span> <span class="keywordtype">char</span> *hex);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> ABS(<span class="keywordtype">int</span> x);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> getPort(<span class="keywordtype">char</span> *portString);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::vector&lt;std::string&gt; split(std::string str, <span class="keyword">const</span> <span class="keywordtype">char</span> *seperator);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::string generateAddress(<span class="keyword">const</span> std::string str);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// _UTILS_H_</span></div>
-<div class="ttc" id="astructutils_1_1_signature_html"><div class="ttname"><a href="structutils_1_1_signature.html">utils::Signature</a></div><div class="ttdef"><b>Definition:</b> utils.hpp:21</div></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;boost/uuid/uuid.hpp&gt;</span>            <span class="comment">// uuid class</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;boost/uuid/uuid_generators.hpp&gt;</span> <span class="comment">// generators</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;boost/uuid/uuid_io.hpp&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>utils {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html">   22</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structutils_1_1_signature.html">Signature</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordtype">size_t</span> _size;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::string hexsig;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    };</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::vector&lt;std::string&gt; get_ip_and_port_from_config();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; ip_port_vec = get_ip_and_port_from_config();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> std::string master_ip = ip_port_vec.at(0);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *MASTER_NODE_IP = master_ip.c_str();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">int</span> MASTER_NODE_PORT=stoi(ip_port_vec.at(1));</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::string hash(std::string dataStr);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> verifySignature(std::string dataStr, std::string, std::string publicKey);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> random_char();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::string uuid_gen();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">char</span> asciitolower(<span class="keywordtype">char</span> in);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::string gen_random_str(<span class="keyword">const</span> <span class="keywordtype">int</span> len);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> hexToInt(<span class="keyword">const</span> <span class="keywordtype">char</span> *hex);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> ABS(<span class="keywordtype">int</span> x);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> getPort(<span class="keywordtype">char</span> *portString);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::vector&lt;std::string&gt; split(std::string str, <span class="keyword">const</span> <span class="keywordtype">char</span> *seperator);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::string generateAddress(<span class="keyword">const</span> std::string str);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif </span><span class="comment">// _UTILS_H_</span></div>
+<div class="ttc" id="astructutils_1_1_signature_html"><div class="ttname"><a href="structutils_1_1_signature.html">utils::Signature</a></div><div class="ttdef"><b>Definition:</b> utils.hpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
