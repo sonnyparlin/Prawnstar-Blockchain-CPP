@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <functional>
 
 ProofOfStake::ProofOfStake(Node *node, int port) {
     this->node = node;
@@ -58,12 +59,12 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
     int leastOffset = {0};
     std::string hash = utils::hash(seed);
-    hash.resize(5);
-    int hashInt = stoi(hash, 0, 16);
+    std::hash<std::string> hasher;
+    auto hashed = hasher(hash);
     
-    // std::cout << "hashInt: " << hashInt << std::endl;
+    std::cout << "hashInt: " << hashed << std::endl;
 
-    srand (hashInt);
+    srand (hashed);
     int referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
 
     for (auto lot : lots) {
