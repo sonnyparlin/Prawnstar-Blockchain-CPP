@@ -58,7 +58,7 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
     int leastOffset = {0};
     std::string hash = utils::hash(seed);
-    hash.resize(8);
+    hash.resize(6);
     int hashInt = stoi(hash, 0, 16);
     
     // std::cout << "hashInt: " << hashInt << std::endl;
