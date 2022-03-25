@@ -61,7 +61,7 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     hash.resize(5);
     unsigned int hashInt = stoi(hash, 0, 16);
     
-    std::cout << "hashInt: " << hashInt << std::endl;
+    // std::cout << "hashInt: " << hashInt << std::endl;
 
     srand (hashInt);
     unsigned int referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
