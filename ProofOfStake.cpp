@@ -82,10 +82,10 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     
     std::cout << "hashInt: " << hashed << std::endl;
     srand (hashed);
-    int referenceHashIntValue = rand() % INT_MAX;
+    int referenceHashIntValue = fnv1a(std::to_string(hashed)) % INT_MAX;
     std::cout << "referenceHashIntValue: " << referenceHashIntValue << std::endl;
     for (auto lot : lots) {
-        int lotIntValue = rand() % INT_MAX;
+        int lotIntValue = fnv1a(lot.lotHash()) % INT_MAX;
         std::cout << "lotIntValue: " << lotIntValue << std::endl;
         int offset = abs(int(lotIntValue - referenceHashIntValue));
         std::cout << "offset: " << offset << std::endl;
