@@ -29,10 +29,16 @@ node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 with requests.Session() as s:
     post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
-    post_transaction(s, node2, node2, '3', 'STAKE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
+    post_transaction(s, node2, node2, '3', 'STAKE')
+
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
+    print(3)
+    time.sleep(1)
+    print(2)
+    time.sleep(1)
+    print(1)
     time.sleep(1)
     for x in range(int(sys.argv[1])):
         print(x)            
