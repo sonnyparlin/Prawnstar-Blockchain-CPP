@@ -64,7 +64,7 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     
     std::cout << "hashInt: " << hashed << std::endl;
 
-    srand (hashed);
+    srand (999);
     int referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
 
     for (auto lot : lots) {
