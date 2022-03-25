@@ -289,7 +289,7 @@ void Node::forge() {
     std::string forger = blockchain->nextForger();
     if (forger != nodeWallet->walletPublicKey) {
         std::cout << "i am not the next forger" << std::endl;
-        std::cout << forger << std::endl;
+        // std::cout << forger << std::endl;
         std::string address = utils::generateAddress(forger);
         accountModel->addAccount(address, forger);
     } else {

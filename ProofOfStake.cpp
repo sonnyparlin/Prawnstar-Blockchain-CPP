@@ -58,17 +58,17 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
     int leastOffset = {0};
     std::string hash = utils::hash(seed);
-    hash.resize(6);
-    int hashInt = stoi(hash, 0, 16);
+    hash.resize(3);
+    unsigned long long hashInt = stoi(hash, 0, 16);
     
     // std::cout << "hashInt: " << hashInt << std::endl;
 
     srand (hashInt);
-    int referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
+    unsigned long long referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
 
     for (auto lot : lots) {
-        int lotIntValue = rand() % (INT_MAX - 1) + 1;
-        int offset = abs(int(lotIntValue - referenceHashIntValue));
+        unsigned long long lotIntValue = rand() % (INT_MAX - 1) + 1;
+        unsigned long long offset = abs(int(lotIntValue - referenceHashIntValue));
         if (leastOffset == 0 || offset < leastOffset) {
             leastOffset = offset;
             winnerLot = lot;
