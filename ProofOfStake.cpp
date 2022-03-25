@@ -80,7 +80,7 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     // std::string hash = utils::hash(seed);
     auto hashed = fnv1a(seed);
     
-    // std::cout << "hashInt: " << hashed << std::endl;
+    std::cout << "hashInt: " << hashed << std::endl;
 
     srand (hashed);
     int referenceHashIntValue = rand() % hashed;
@@ -88,6 +88,7 @@ Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     for (auto lot : lots) {
         int lotIntValue = rand() % hashed;
         int offset = abs(int(lotIntValue - referenceHashIntValue));
+        std::cout << "offset: " << offset << std::endl;
         if (leastOffset == 0 || offset < leastOffset) {
             leastOffset = offset;
             winnerLot = lot;
