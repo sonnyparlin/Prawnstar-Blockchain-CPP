@@ -56,19 +56,19 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
 
 Lot ProofOfStake::winnerLot(std::vector<Lot> lots, std::string seed) {
     Lot winnerLot;
-    unsigned long long leastOffset = {0};
+    unsigned int leastOffset = {0};
     std::string hash = utils::hash(seed);
-    hash.resize(3);
-    unsigned long long hashInt = stoi(hash, 0, 16);
+    hash.resize(5);
+    unsigned int hashInt = stoi(hash, 0, 16);
     
-    // std::cout << "hashInt: " << hashInt << std::endl;
+    std::cout << "hashInt: " << hashInt << std::endl;
 
     srand (hashInt);
-    unsigned long long referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
+    unsigned int referenceHashIntValue = rand() % (INT_MAX - 1) + 1;
 
     for (auto lot : lots) {
-        unsigned long long lotIntValue = rand() % (INT_MAX - 1) + 1;
-        unsigned long long offset = abs(int(lotIntValue - referenceHashIntValue));
+        unsigned int lotIntValue = rand() % (INT_MAX - 1) + 1;
+        unsigned int offset = abs(int(lotIntValue - referenceHashIntValue));
         if (leastOffset == 0 || offset < leastOffset) {
             leastOffset = offset;
             winnerLot = lot;
