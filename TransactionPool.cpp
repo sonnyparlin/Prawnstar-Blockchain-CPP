@@ -17,7 +17,7 @@ void TransactionPool::addTransaction(Transaction transaction) {
 bool TransactionPool::transactionExists(Transaction transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     for (auto tx : transactions) {
-        if (tx.equals(transaction)) {
+        if (tx == transaction) {
             std::cout << "Transaction already exists in the pool" << std::endl;
             return true;
         }
@@ -31,7 +31,7 @@ void TransactionPool::removeFromPool(vector<Transaction> txs) {
     for (auto poolTransaction : this->transactions) {
         bool insert = true;
         for (auto transaction : txs) {
-            if (poolTransaction.equals(transaction))
+            if (poolTransaction == transaction)
                 insert = false;
         }
         if (insert == true)

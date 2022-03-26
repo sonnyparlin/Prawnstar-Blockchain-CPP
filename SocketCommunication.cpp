@@ -153,6 +153,13 @@ void SocketCommunication::receive_node_message(int sock) {
     }
 
     // delete allocated memory
+    if (close(sock) != 0) {
+        #ifndef _WIN32
+        std::cout << "close() error " << errno << std::endl;
+        #else
+        printf("\nclose() error: %d\n", WSAGetLastError());
+        #endif
+    }
     delete[] buffer;
 }
 
@@ -250,15 +257,23 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                    p2putils::logit("Error setting up accept()");
-                    exit(EXIT_FAILURE);
+                    #ifndef _WIN32
+                    std::cout << "accept() error " << errno << std::endl;
+                    #else
+                    printf("\nread() error: %d\n", WSAGetLastError());
+                    #endif
+                    continue;
             }
         } else if (PORT == utils::MASTER_NODE_PORT) {
             if ((incomingSocket = accept(serverSocket, 
                 (struct sockaddr *)&address, 
                 (socklen_t*)&address_length)) < 0) {
-                    p2putils::logit("Error setting up accept()");
-                    exit(EXIT_FAILURE);
+                    #ifndef _WIN32
+                    std::cout << "accept() error " << errno << std::endl;
+                    #else
+                    printf("\nread() error: %d\n", WSAGetLastError());
+                    #endif
+                    continue;
             }
         }
 

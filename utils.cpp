@@ -77,12 +77,12 @@ namespace utils {
         return ipPortStrV;
     }  
 
-    unsigned char random_char() {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, 255);
-        return static_cast<unsigned char>(dis(gen));
-    }
+    // unsigned char random_char() {
+    //     std::random_device rd;
+    //     std::mt19937 gen(rd());
+    //     std::uniform_int_distribution<> dis(0, 255);
+    //     return static_cast<unsigned char>(dis(gen));
+    // }
 
     char asciitolower(char in) {
         if (in <= 'Z' && in >= 'A')
@@ -95,22 +95,22 @@ namespace utils {
         return to_string(uuid);
     }
 
-    std::string gen_random_str(const int len) {
-        static const char alphanum[] =
-            "0123456789"
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            "abcdefghijklmnopqrstuvwxyz";
-        std::string tmp_s;
-        tmp_s.reserve(len);
+    // std::string gen_random_str(const int len) {
+    //     static const char alphanum[] =
+    //         "0123456789"
+    //         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    //         "abcdefghijklmnopqrstuvwxyz";
+    //     std::string tmp_s;
+    //     tmp_s.reserve(len);
 
-        srand (time(NULL));
-        for (int i = 0; i < len; ++i) {
-            tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
-        }
+    //     srand (time(NULL));
+    //     for (int i = 0; i < len; ++i) {
+    //         tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+    //     }
         
-        //std::cout << tmp_s << std::endl;
-        return tmp_s;
-    }
+    //     //std::cout << tmp_s << std::endl;
+    //     return tmp_s;
+    // }
 
     int getPort(char *portString) {
         char* p;

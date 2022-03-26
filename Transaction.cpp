@@ -61,10 +61,6 @@ string Transaction::payload() {
     return to_string(j);
 }
 
-bool Transaction::equals(Transaction transaction) {
-    return this->id == transaction.id;
-}
-
 void Transaction::sign(std::string sig) {
     signature = sig;
 }

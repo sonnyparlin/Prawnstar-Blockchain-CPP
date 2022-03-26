@@ -31,10 +31,10 @@ namespace utils {
     const static int MASTER_NODE_PORT=stoi(ip_port_vec.at(1));
     std::string hash(std::string dataStr);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
-    unsigned char random_char();
+    // unsigned char random_char();
     std::string uuid_gen();
     char asciitolower(char in);
-    std::string gen_random_str(const int len);
+    // std::string gen_random_str(const int len);
     int hexToInt(const char *hex);
     int ABS(int x);
     int getPort(char *portString);
