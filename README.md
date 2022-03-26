@@ -7,17 +7,24 @@
    
    [Boost installation info](https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install)
 
-*  Install [OpenSSL](https://www.openssl.org/). 
+*  Install [OpenSSL 3](https://www.openssl.org/). 
 
-### Making and Running the App 
-* cmake -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3
+### Making and Running the on UNIX style systems including OSX.
+* Check `CMakeLists.txt` and make sure the include and library paths are correct for your system.
+* mkdir build
 * cd build
+* cmake ..
 * make
-* cp Prawnstar ../
-* cd ..
+* cp ../*.pem .
+* ./Prawnstar <your_ip_address> 10001 8001
+* start second node: ./Prawnstar <your_ip_address> 10001 <ip_of_master_server> 8002
 
 ### Windows
-* cmake .. -G "Unix Makefiles" -DOPENSSL_ROOT_DIR=C:\OpenSSL-Win64\ -DOPENSSL_LIBRARIES="C:\OpenSSL-Win64\bin\libssl-3-x64.dll;C:\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -DOPENSSL_INCLUDE_DIR=C:\OpenSSL-Win64\include\
+* Install [mingw64](https://www.mingw-w64.org/)
+* install Boost 1.7.8
+* Install OpenSSL 3
+* Check `CMakeLists.txt` and make sure the include and library paths are correct for your system.
+* cmake .. -G "Unix Makefiles" 
 
 ### Running the app
 
@@ -35,9 +42,11 @@ The format of all client nodes:
 
 ./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
 
-### Testing it out
+### Testing
 
-You can use `python test.py` to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
+`python ApiTest.py <number_of_transactions>` (keep this to 500 or 1000 for testing purposes on a personal machine)
+
+### Using Postman
 
 Use [Postman](https://www.postman.com) to send a transaction
 
