@@ -110,6 +110,13 @@ void SocketCommunication::receive_node_message(int sock) {
         tx.type = jx["type"];
 
         node->handleTransaction(tx, false);
+        if (close(sock) != 0) {
+            #ifndef _WIN32
+            std::cout << "close() error " << errno << std::endl;
+            #else
+            printf("\nclose() error: %d\n", WSAGetLastError());
+            #endif
+        }
     } else if (messageType == "BLOCK") {
         Block block;
         std::string jsonBlock = j["Message"]["data"];
@@ -144,22 +151,36 @@ void SocketCommunication::receive_node_message(int sock) {
         // std::cout << "block signature: " << block.signature << std::endl;
 
         node->handleBlock(block, false);
+        if (close(sock) != 0) {
+            #ifndef _WIN32
+            std::cout << "close() error " << errno << std::endl;
+            #else
+            printf("\nclose() error: %d\n", WSAGetLastError());
+            #endif
+        }
     } else if (messageType == "BLOCKCHAINREQUEST") {
         std::string requestingNode = j["Message"]["data"];
         node->handleBlockchainRequest(requestingNode);
+        if (close(sock) != 0) {
+            #ifndef _WIN32
+            std::cout << "close() error " << errno << std::endl;
+            #else
+            printf("\nclose() error: %d\n", WSAGetLastError());
+            #endif
+        }
     } else if (messageType == "BLOCKCHAIN") {
         std::string messageData = j["Message"]["data"];
         node->handleBlockchain(messageData);
+        if (close(sock) != 0) {
+            #ifndef _WIN32
+            std::cout << "close() error " << errno << std::endl;
+            #else
+            printf("\nclose() error: %d\n", WSAGetLastError());
+            #endif
+        }
     }
 
     // delete allocated memory
-    if (close(sock) != 0) {
-        #ifndef _WIN32
-        std::cout << "close() error " << errno << std::endl;
-        #else
-        printf("\nclose() error: %d\n", WSAGetLastError());
-        #endif
-    }
     delete[] buffer;
 }
 
