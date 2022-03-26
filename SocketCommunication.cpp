@@ -219,16 +219,6 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
 
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
     discoveryThread.detach();
-
-    // std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
-    // std::string masterNode = utils::MASTER_NODE_IP;
-    // std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
-    // masterNode += masterNode2;
-
-    // if (thisNode != masterNode) {
-    //     std::cout << "Requesting blockchain from master node" << std::endl;
-    //     node->requestChain();
-    // }
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
