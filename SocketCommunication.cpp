@@ -265,7 +265,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
                     #ifndef _WIN32
                     std::cout << "accept() error " << errno << std::endl;
                     #else
-                    printf("\nread() error: %d\n", WSAGetLastError());
+                    printf("\naccept() error: %d\n", WSAGetLastError());
                     #endif
                     continue;
             }
@@ -276,7 +276,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
                     #ifndef _WIN32
                     std::cout << "accept() error " << errno << std::endl;
                     #else
-                    printf("\nread() error: %d\n", WSAGetLastError());
+                    printf("\naccept() error: %d\n", WSAGetLastError());
                     #endif
                     continue;
             }
