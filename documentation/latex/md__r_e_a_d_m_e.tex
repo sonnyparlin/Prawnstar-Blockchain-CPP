@@ -6,19 +6,26 @@
 \href{https://www.boost.org/users/download/}{\texttt{ Boost download}}
 
 \href{https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html\#easy-build-and-install}{\texttt{ Boost installation info}}
-\item Install \href{https://www.openssl.org/}{\texttt{ Open\+SSL}}.
-\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Making and Running the App}\label{md__r_e_a_d_m_e_autotoc_md2}
+\item Install \href{https://www.openssl.org/}{\texttt{ Open\+SSL 3}}.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Making and Running the on UNIX style systems including OSX.}\label{md__r_e_a_d_m_e_autotoc_md2}
 
 \begin{DoxyItemize}
-\item cmake -\/B build -\/DOPENSSL\+\_\+\+ROOT\+\_\+\+DIR=/usr/local/opt/openssl@3
+\item Check {\ttfamily CMake\+Lists.\+txt} and make sure the include and library paths are correct for your system.
+\item mkdir build
 \item cd build
+\item cmake ..
 \item make
-\item cp Prawnstar ../
-\item cd ..
+\item cp ../$\ast$.pem .
+\item ./\+Prawnstar $<$your\+\_\+ip\+\_\+address$>$ 10001 8001
+\item start second node\+: ./\+Prawnstar $<$your\+\_\+ip\+\_\+address$>$ 10001 $<$ip\+\_\+of\+\_\+master\+\_\+server$>$ 8002
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Windows}\label{md__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyItemize}
-\item cmake .. -\/G \char`\"{}\+Unix Makefiles\char`\"{} -\/DOPENSSL\+\_\+\+ROOT\+\_\+\+DIR=C\+:\textbackslash{}\+Open\+SSL-\/Win64\textbackslash{} -\/DOPENSSL\+\_\+\+LIBRARIES=\char`\"{}\+C\+:\textbackslash{}\+Open\+SSL-\/\+Win64\textbackslash{}bin\textbackslash{}libssl-\/3-\/x64.\+dll;\+C\+:\textbackslash{}\+Open\+SSL-\/\+Win64\textbackslash{}bin\textbackslash{}libcrypto-\/3-\/x64.\+dll\char`\"{} -\/DOPENSSL\+\_\+\+INCLUDE\+\_\+\+DIR=C\+:\textbackslash{}\+Open\+SSL-\/Win64
+\item Install \href{https://www.mingw-w64.org/}{\texttt{ mingw64}}
+\item install Boost 1.\+7.\+8
+\item Install Open\+SSL 3
+\item Check {\ttfamily CMake\+Lists.\+txt} and make sure the include and library paths are correct for your system.
+\item cmake .. -\/G \char`\"{}\+Unix Makefiles\char`\"{}
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md4}
 
 \begin{DoxyItemize}
@@ -33,9 +40,8 @@ The format for the master node\+:
 
 The format of all client nodes\+:
 
-./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing it out}\label{md__r_e_a_d_m_e_autotoc_md5}
-You can use {\ttfamily python test.\+py} to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.
-
+./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing}\label{md__r_e_a_d_m_e_autotoc_md5}
+{\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}} (keep this to 500 or 1000 for testing purposes on a personal machine)\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{Using Postman}\label{md__r_e_a_d_m_e_autotoc_md6}
 Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction
 
 

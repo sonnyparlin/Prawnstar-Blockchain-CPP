@@ -73,21 +73,28 @@ Download dependancies</h2>
 <p class="startli"><a href="https://www.boost.org/users/download/">Boost download</a></p>
 <p class="startli"><a href="https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html#easy-build-and-install">Boost installation info</a></p>
 </li>
-<li>Install <a href="https://www.openssl.org/">OpenSSL</a>.</li>
+<li>Install <a href="https://www.openssl.org/">OpenSSL 3</a>.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
-Making and Running the App</h2>
+Making and Running the on UNIX style systems including OSX.</h2>
 <ul>
-<li>cmake -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3</li>
+<li>Check <code>CMakeLists.txt</code> and make sure the include and library paths are correct for your system.</li>
+<li>mkdir build</li>
 <li>cd build</li>
+<li>cmake ..</li>
 <li>make</li>
-<li>cp Prawnstar ../</li>
-<li>cd ..</li>
+<li>cp ../*.pem .</li>
+<li>./Prawnstar &lt;your_ip_address&gt; 10001 8001</li>
+<li>start second node: ./Prawnstar &lt;your_ip_address&gt; 10001 &lt;ip_of_master_server&gt; 8002</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Windows</h2>
 <ul>
-<li>cmake .. -G "Unix Makefiles" -DOPENSSL_ROOT_DIR=C:\OpenSSL-Win64\ -DOPENSSL_LIBRARIES="C:\OpenSSL-Win64\bin\libssl-3-x64.dll;C:\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -DOPENSSL_INCLUDE_DIR=C:\OpenSSL-Win64</li>
+<li>Install <a href="https://www.mingw-w64.org/">mingw64</a></li>
+<li>install Boost 1.7.8</li>
+<li>Install OpenSSL 3</li>
+<li>Check <code>CMakeLists.txt</code> and make sure the include and library paths are correct for your system.</li>
+<li>cmake .. -G "Unix Makefiles"</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Running the app</h2>
@@ -101,8 +108,10 @@ Running the app</h2>
 <p >The format of all client nodes:</p>
 <p >./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
-Testing it out</h2>
-<p >You can use <code>python test.py</code> to get the first 99 blocks into the blockchain or you can use Postman to send transactions to the blockchain.</p>
+Testing</h2>
+<p ><code>python ApiTest.py &lt;number_of_transactions&gt;</code> (keep this to 500 or 1000 for testing purposes on a personal machine)</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Using Postman</h2>
 <p >Use <a href="https://www.postman.com">Postman</a> to send a transaction</p>
 <div class="fragment"><div class="line">{&quot;transaction&quot;:</div>
 <div class="line">    {</div>
