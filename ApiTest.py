@@ -30,7 +30,7 @@ with requests.Session() as s:
     post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
-    post_transaction(s, node2, node2, '3', 'STAKE')
+    #post_transaction(s, node2, node2, '3', 'STAKE')
 
 # post_transaction(exchange, bob, '300', 'EXCHANGE')
 
