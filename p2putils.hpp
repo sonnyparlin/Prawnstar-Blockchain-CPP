@@ -34,7 +34,6 @@ namespace p2putils {
     bool isValidIpAddress(std::string ipAddress);
     int createSocket();
     bool Bind(int server, struct sockaddr_in address, int PORT);
-    std::string uuid_gen();
     int setOutgoingNodeConnection(std::string ipaddress, int port);
     char *sock_ntop (const struct sockaddr *sa, socklen_t salen);
 }

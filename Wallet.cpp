@@ -192,9 +192,13 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
 
     // AUTHENTICATE HERE
 
-    utils::Signature signature = sign(transaction.payload());
-    transaction.senderPublicKey = walletPublicKey;
-    transaction.sign(signature.hexsig);
+    try {
+        utils::Signature signature = sign(transaction.payload());
+        transaction.senderPublicKey = walletPublicKey;
+        transaction.sign(signature.hexsig);
+    } catch(std::exception& e) {
+        std::cerr << "Error signing transaction: " << e.what() << std::endl;
+    }
     return transaction;
 }
 

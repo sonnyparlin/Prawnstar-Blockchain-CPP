@@ -226,7 +226,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
     // Everything went well, set the port
     char *p;
     int PORT = strtol(argv[2], &p, 10);
-    id = utils::uuid_gen();
+    id = utils::get_uuid();
     struct sockaddr_in address;
     int address_length = sizeof(address);
     address.sin_family = AF_INET;

@@ -39,8 +39,13 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
         if (tx.type == "EXCHANGE" || tx.type == "TRANSFER") {
             double reward = (tx.amount * 0.005);
             std::cout << "reward: " << reward << std::endl;
-            Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address, reward, "REWARD");
-            resultTransactions.push_back(rewardTx);
+
+            try {
+                Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address, reward, "REWARD");
+                resultTransactions.push_back(rewardTx);
+            } catch(std::exception& e) {
+                std::cerr << "Error with createTransaction: " << e.what() << std::endl;
+            }
             // node->accountModel->updateBalance(node->nodeWallet->address, reward);
             tx.amount -= reward;
         }
@@ -127,12 +132,12 @@ Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std
         transactionsFromPool
     );
 
-    std::string transactionListAsString;
-    for (auto tx : coveredTransactions) {
-        transactionListAsString += tx.toJson();
-    }
+    // std::string transactionListAsString;
+    // for (auto tx : coveredTransactions) {
+    //     transactionListAsString += tx.toJson();
+    // }
 
-    std::string hash = utils::hash(transactionListAsString);
+    // std::string hash = utils::hash(transactionListAsString);
     std::string lastHash = blocks[blocks.size()-1].hash;
 
     Wallet forgerWallet(forgerAddress.c_str(), node);

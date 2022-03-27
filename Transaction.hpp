@@ -29,7 +29,6 @@ public:
 
     string toJson();
     string payload();
-    string generateUUID();
     void sign(std::string sig);
     bool equals(Transaction transaction);
 

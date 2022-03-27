@@ -17,34 +17,28 @@
 \DoxyCodeLine{14 \textcolor{preprocessor}{\#include <fstream>}}
 \DoxyCodeLine{15 \textcolor{preprocessor}{\#include <random>}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <boost/uuid/uuid.hpp>}            \textcolor{comment}{// uuid class}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <boost/uuid/uuid\_generators.hpp>} \textcolor{comment}{// generators}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <boost/uuid/uuid\_io.hpp>}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }utils \{}
-\DoxyCodeLine{22     \textcolor{keyword}{struct }\mbox{\hyperlink{structutils_1_1_signature}{Signature}} \{}
-\DoxyCodeLine{23         \textcolor{keywordtype}{size\_t} \_size;}
-\DoxyCodeLine{24         std::string hexsig;}
-\DoxyCodeLine{25     \};}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     std::vector<std::string> get\_ip\_and\_port\_from\_config();}
-\DoxyCodeLine{28     \textcolor{keyword}{static} std::vector<std::string> ip\_port\_vec = get\_ip\_and\_port\_from\_config();}
-\DoxyCodeLine{29     \textcolor{keyword}{static} std::string master\_ip = ip\_port\_vec.at(0);}
-\DoxyCodeLine{30     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *MASTER\_NODE\_IP = master\_ip.c\_str();}
-\DoxyCodeLine{31     \textcolor{keyword}{const} \textcolor{keyword}{static} \textcolor{keywordtype}{int} MASTER\_NODE\_PORT=stoi(ip\_port\_vec.at(1));}
-\DoxyCodeLine{32     std::string hash(std::string dataStr);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{bool} verifySignature(std::string dataStr, std::string, std::string publicKey);}
-\DoxyCodeLine{34     \textcolor{comment}{// unsigned char random\_char();}}
-\DoxyCodeLine{35     std::string uuid\_gen();}
-\DoxyCodeLine{36     \textcolor{keywordtype}{char} asciitolower(\textcolor{keywordtype}{char} in);}
-\DoxyCodeLine{37     \textcolor{comment}{// std::string gen\_random\_str(const int len);}}
-\DoxyCodeLine{38     \textcolor{keywordtype}{int} hexToInt(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *hex);}
-\DoxyCodeLine{39     \textcolor{keywordtype}{int} ABS(\textcolor{keywordtype}{int} x);}
-\DoxyCodeLine{40     \textcolor{keywordtype}{int} getPort(\textcolor{keywordtype}{char} *portString);}
-\DoxyCodeLine{41     std::vector<std::string> split(std::string str, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *seperator);}
-\DoxyCodeLine{42     std::string generateAddress(\textcolor{keyword}{const} std::string str);}
-\DoxyCodeLine{43 \}}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_UTILS\_H\_}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }utils \{}
+\DoxyCodeLine{18     \textcolor{keyword}{struct }\mbox{\hyperlink{structutils_1_1_signature}{Signature}} \{}
+\DoxyCodeLine{19         \textcolor{keywordtype}{size\_t} \_size;}
+\DoxyCodeLine{20         std::string hexsig;}
+\DoxyCodeLine{21     \};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     std::vector<std::string> get\_ip\_and\_port\_from\_config();}
+\DoxyCodeLine{24     \textcolor{keyword}{static} std::vector<std::string> ip\_port\_vec = get\_ip\_and\_port\_from\_config();}
+\DoxyCodeLine{25     \textcolor{keyword}{static} std::string master\_ip = ip\_port\_vec.at(0);}
+\DoxyCodeLine{26     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *MASTER\_NODE\_IP = master\_ip.c\_str();}
+\DoxyCodeLine{27     \textcolor{keyword}{const} \textcolor{keyword}{static} \textcolor{keywordtype}{int} MASTER\_NODE\_PORT=stoi(ip\_port\_vec.at(1));}
+\DoxyCodeLine{28     std::string hash(std::string);}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} verifySignature(std::string dataStr, std::string, std::string publicKey);}
+\DoxyCodeLine{30     \textcolor{keywordtype}{char} asciitolower(\textcolor{keywordtype}{char} in);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} hexToInt(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *hex);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} ABS(\textcolor{keywordtype}{int} x);}
+\DoxyCodeLine{33     \textcolor{keywordtype}{int} getPort(\textcolor{keywordtype}{char} *portString);}
+\DoxyCodeLine{34     std::vector<std::string> split(std::string str, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *seperator);}
+\DoxyCodeLine{35     std::string generateAddress(\textcolor{keyword}{const} std::string str);}
+\DoxyCodeLine{36     std::string get\_uuid();}
+\DoxyCodeLine{37 \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_UTILS\_H\_}}
 
 \end{DoxyCode}

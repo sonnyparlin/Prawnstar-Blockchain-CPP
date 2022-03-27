@@ -286,18 +286,25 @@ void Node::forge() {
         accountModel->addAccount(address, forger);
     } else {
         std::cout << "i am the next forger" << std::endl;
+        Block block;
+        std::vector<Transaction> rewardedTransactions;
+        
         try {
-            std::vector<Transaction> rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
-            Block block = blockchain->createBlock(rewardedTransactions, nodeWallet->address); 
-            transactionPool.removeFromPool(block.transactions);
+            rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
+        } catch (std::exception &e) {std::cerr << "reward trnsaction exception: " << e.what() << std::endl; }
+        
+        try {
+            block = blockchain->createBlock(rewardedTransactions, nodeWallet->address);
+        } catch (std::exception &e) {std::cerr << "creaate block exception: " << e.what() << std::endl; } 
+        
+        transactionPool.removeFromPool(block.transactions);
+        
+        /*! 
+        \todo write the new block to our mongodb instance
+        */
 
-            /*! 
-            \todo write the new block to our mongodb instance
-            */
-
-            Message message("BLOCK", block.toJson());
-            std::string msgJson = message.toJson();
-            p2p->broadcast(msgJson.c_str());
-        } catch (std::exception &e) {std::cerr << "exception: " << e.what() << std::endl; }
+        Message message("BLOCK", block.toJson());
+        std::string msgJson = message.toJson();
+        p2p->broadcast(msgJson.c_str());
     }
 }

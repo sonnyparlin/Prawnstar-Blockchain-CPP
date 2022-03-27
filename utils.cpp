@@ -11,6 +11,24 @@ namespace utils {
         return ss.str();
     }
 
+    std::string get_uuid() {
+        static std::random_device dev;
+        static std::mt19937 rng(dev());
+
+        std::uniform_int_distribution<int> dist(0, 15);
+
+        const char *v = "0123456789abcdef";
+        const bool dash[] = { 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0 };
+
+        std::string res;
+        for (int i = 0; i < 16; i++) {
+            if (dash[i]) res += "-";
+            res += v[dist(rng)];
+            res += v[dist(rng)];
+        }
+        return res;
+    }
+
     bool verifySignature(std::string message, std::string signature, std::string publicKeyString) {
         /* the easy way to translate your hex string back into your buffer */
         // long len;
@@ -75,42 +93,13 @@ namespace utils {
         }
 
         return ipPortStrV;
-    }  
-
-    // unsigned char random_char() {
-    //     std::random_device rd;
-    //     std::mt19937 gen(rd());
-    //     std::uniform_int_distribution<> dis(0, 255);
-    //     return static_cast<unsigned char>(dis(gen));
-    // }
+    }
 
     char asciitolower(char in) {
         if (in <= 'Z' && in >= 'A')
             return in - ('Z' - 'z');
         return in;
     }
-
-    std::string uuid_gen() {
-        boost::uuids::uuid uuid = boost::uuids::random_generator()();
-        return to_string(uuid);
-    }
-
-    // std::string gen_random_str(const int len) {
-    //     static const char alphanum[] =
-    //         "0123456789"
-    //         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    //         "abcdefghijklmnopqrstuvwxyz";
-    //     std::string tmp_s;
-    //     tmp_s.reserve(len);
-
-    //     srand (time(NULL));
-    //     for (int i = 0; i < len; ++i) {
-    //         tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
-    //     }
-        
-    //     //std::cout << tmp_s << std::endl;
-    //     return tmp_s;
-    // }
 
     int getPort(char *portString) {
         char* p;
