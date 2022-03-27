@@ -46,7 +46,7 @@ with requests.Session() as s:
     #countdown()
     
     for x in range(int(sys.argv[1])):
-        #print(x)            
+        print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.05)
 
