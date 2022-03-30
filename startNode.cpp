@@ -8,7 +8,7 @@
  *
  * See the "Dependancies Needed and Startup Instructions" under the [Related Pages](pages.html) tab to get started.
  */
-int main(int argc, char *argv[]) {
+int startNode(int argc, char *argv[]) {
     Node *node = Node::createNode(argc, argv);
     node->startServers(argc, argv);
     delete node;
