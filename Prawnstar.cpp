@@ -57,78 +57,93 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
  
     SetMenuBar( menuBar );
 
-    wxColour color1, color2;
+    wxColour color1, color2, textColor;
     color1.Set(wxT("#ffffff"));
     color2.Set(wxT("#555555"));
+    textColor.Set(wxT("#000000"));
 
     wxFrame* wxFrame = this;
-    wxGridSizer* itemGridSizer1 = new wxGridSizer(0, 3, 0, 0);
-    SetSizer(itemGridSizer1);
+    wxGridSizer* mainGridSizer = new wxGridSizer(0, 3, 0, 0);
+    SetSizer(mainGridSizer);
 
     wxPanel* leftPanel = new wxPanel( wxFrame, -1, wxDefaultPosition, wxDefaultSize );
     leftPanel->SetBackgroundColour(color2);
-    leftPanel->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemGridSizer1->Add(leftPanel, 0, wxGROW|wxALL, 5);
+    leftPanel->SetForegroundColour( textColor );
+    mainGridSizer->Add(leftPanel, 0, wxGROW|wxALL, 5);
 
-    wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    leftPanel->SetSizer(itemBoxSizer3);
+    wxBoxSizer* leftPanelSizer = new wxBoxSizer(wxVERTICAL);
+    leftPanel->SetSizer(leftPanelSizer);
 
-    wxPanel* itemPanel4 = new wxPanel( leftPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel4->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel4->SetBackgroundColour(color1);
-    itemBoxSizer3->Add(itemPanel4, 3, wxGROW|wxALL, 5);
+    wxString msg("\n NODE STATUS:\n"
+                " ID: de28f2d9-ad6d-81af-1625-42da8394ed7c\n"
+                " Status: Up\n"
+                " Blocks forged by this node: 24\n"
+                " Node IP: 192.168.1.145\n"
+                " Node Port: 10001\n"
+                " Node API Port: 8001\n"
+                " Master Node: 192.168.1.15\n"
+                );
+    wxStaticText* m_text = new wxStaticText( leftPanel, wxID_ANY, msg );
+    m_text->SetBackgroundColour(color1);
+    wxFont font = m_text->GetFont();
+    font.SetPointSize(12);
+    font.SetWeight(wxFONTWEIGHT_BOLD);
+    m_text->SetFont(font);
+    leftPanelSizer->Add(m_text, 3, wxGROW|wxALL, 5);
 
-    wxPanel* itemPanel5 = new wxPanel( leftPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel5->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel5->SetBackgroundColour(color1);
-    itemBoxSizer3->Add(itemPanel5, 6, wxGROW|wxALL, 5);
+    // wxPanel* lTop = new wxPanel( leftPanel, -1, wxDefaultPosition, wxDefaultSize );
+    // lTop->SetBackgroundColour(color1);
+    wxButton* button = new wxButton(leftPanel, -1, L"Start Server");
+    wxButton* button2 = new wxButton(leftPanel, -1, L"Configure Server");
+    // button->SetBackgroundColour(color1);
+    // button->SetForegroundColour(textColor);
+    wxBoxSizer *hbox1 = new wxBoxSizer(wxHORIZONTAL);
+
+    hbox1->Add(button);
+    hbox1->Add(button2);
+    leftPanelSizer->Add(hbox1, 0, wxALIGN_CENTRE, 1);
+    // leftPanelSizer->Add(lTop, 3, wxGROW|wxALL, 5);
+
+    wxPanel* lBot = new wxPanel( leftPanel, -1, wxDefaultPosition, wxDefaultSize );
+    lBot->SetBackgroundColour(color1);
+    leftPanelSizer->Add(lBot, 6, wxGROW|wxALL, 5);
 
     wxPanel* centerPanel = new wxPanel( wxFrame, -1, wxDefaultPosition, wxDefaultSize);
-    centerPanel->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
     centerPanel->SetBackgroundColour(color2);
-    itemGridSizer1->Add(centerPanel, 0, wxGROW|wxALL, 5);
+    mainGridSizer->Add(centerPanel, 0, wxGROW|wxALL, 5);
 
-    wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxVERTICAL);
-    centerPanel->SetSizer(itemBoxSizer7);
+    wxBoxSizer* centerPanelSizer = new wxBoxSizer(wxVERTICAL);
+    centerPanel->SetSizer(centerPanelSizer);
 
-    wxPanel* itemPanel8 = new wxPanel( centerPanel, -1, wxDefaultPosition, wxDefaultSize);
-    itemPanel8->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel8->SetBackgroundColour(color1);
-    itemBoxSizer7->Add(itemPanel8, 6, wxGROW|wxALL, 5);
+    wxPanel* cTop = new wxPanel( centerPanel, -1, wxDefaultPosition, wxDefaultSize);
+    cTop->SetBackgroundColour(color1);
+    centerPanelSizer->Add(cTop, 6, wxGROW|wxALL, 5);
 
-    wxPanel* itemPanel9 = new wxPanel( centerPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel9->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel9->SetBackgroundColour(color1);
-    itemBoxSizer7->Add(itemPanel9, 3, wxGROW|wxALL, 5);
+    wxPanel* cBot = new wxPanel( centerPanel, -1, wxDefaultPosition, wxDefaultSize );
+    cBot->SetBackgroundColour(color1);
+    centerPanelSizer->Add(cBot, 3, wxGROW|wxALL, 5);
 
     wxPanel* rightPanel = new wxPanel( wxFrame, -1, wxDefaultPosition, wxDefaultSize );
-    rightPanel->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
     rightPanel->SetBackgroundColour(color2);
-    itemGridSizer1->Add(rightPanel, 0, wxGROW|wxALL, 5);
+    mainGridSizer->Add(rightPanel, 0, wxGROW|wxALL, 5);
 
-    wxBoxSizer* itemBoxSizer11 = new wxBoxSizer(wxVERTICAL);
-    rightPanel->SetSizer(itemBoxSizer11);
+    wxBoxSizer* rightPanelSizer = new wxBoxSizer(wxVERTICAL);
+    rightPanel->SetSizer(rightPanelSizer);
 
-    wxPanel* itemPanel12 = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel12->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel12->SetBackgroundColour(color1);
-    itemBoxSizer11->Add(itemPanel12, 3, wxGROW|wxALL, 5);
+    wxPanel* rTop = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
+    rTop->SetBackgroundColour(color1);
+    rightPanelSizer->Add(rTop, 3, wxGROW|wxALL, 5);
 
-    wxPanel* itemPanel13 = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel13->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel13->SetBackgroundColour(color1);
-    itemBoxSizer11->Add(itemPanel13, 3, wxGROW|wxALL, 5);
+    wxPanel* rMid = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
+    rMid->SetBackgroundColour(color1);
+    rightPanelSizer->Add(rMid, 3, wxGROW|wxALL, 5);
 
-    wxPanel* itemPanel14 = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
-    itemPanel14->SetExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
-    itemPanel14->SetBackgroundColour(color1);
-    itemBoxSizer11->Add(itemPanel14, 3, wxGROW|wxALL, 5);
+    wxPanel* rBot = new wxPanel( rightPanel, -1, wxDefaultPosition, wxDefaultSize );
+    rBot->SetBackgroundColour(color1);
+    rightPanelSizer->Add(rBot, 3, wxGROW|wxALL, 5);
     
     SetMinSize(wxSize(990, 640));
-
     Centre();
-
- 
     CreateStatusBar();
     SetStatusText("Welcome to wxWidgets!");
  
