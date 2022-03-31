@@ -15,11 +15,12 @@
 #include "crow/logging.h"
 #include "crow/websocket.h"
 #include "crow/mustache.h"
+#include "crow/middleware.h"
 
 namespace crow
 {
 
-    constexpr const uint16_t INVALID_BP_ID{0xFFFF};
+    constexpr const uint16_t INVALID_BP_ID{((uint16_t)-1)};
 
     /// A base class for all rules.
 
@@ -44,7 +45,7 @@ namespace crow
             return {};
         }
 
-        virtual void handle(const request&, response&, const routing_params&) = 0;
+        virtual void handle(request&, response&, const routing_params&) = 0;
         virtual void handle_upgrade(const request&, response& res, SocketAdaptor&&)
         {
             res = response(404);
@@ -109,7 +110,7 @@ namespace crow
             {
                 H1& handler;
                 const routing_params& params;
-                const request& req;
+                request& req;
                 response& res;
             };
 
@@ -251,7 +252,7 @@ namespace crow
 
                 typename handler_type_helper<ArgsWrapped...>::type handler_;
 
-                void operator()(const request& req, response& res, const routing_params& params)
+                void operator()(request& req, response& res, const routing_params& params)
                 {
                     detail::routing_handler_call_helper::call<
                       detail::routing_handler_call_helper::call_params<
@@ -271,6 +272,7 @@ namespace crow
     class CatchallRule
     {
     public:
+        /// @cond SKIP
         CatchallRule() {}
 
         template<typename Func>
@@ -348,7 +350,7 @@ namespace crow
 
             handler_ = std::move(f);
         }
-
+        /// @endcond
         bool has_handler()
         {
             return (handler_ != nullptr);
@@ -378,7 +380,7 @@ namespace crow
         void validate() override
         {}
 
-        void handle(const request&, response& res, const routing_params&) override
+        void handle(request&, response& res, const routing_params&) override
         {
             res = response(404);
             res.end();
@@ -490,7 +492,7 @@ namespace crow
             }
         }
 
-        void handle(const request& req, response& res, const routing_params& params) override
+        void handle(request& req, response& res, const routing_params& params) override
         {
             if (!custom_templates_base.empty())
                 mustache::set_base(custom_templates_base);
@@ -518,7 +520,7 @@ namespace crow
 #else
         template<typename Func, unsigned... Indices>
 #endif
-        std::function<void(const request&, response&, const routing_params&)>
+        std::function<void(request&, response&, const routing_params&)>
           wrap(Func f, black_magic::seq<Indices...>)
         {
 #ifdef CROW_MSVC_WORKAROUND
@@ -547,7 +549,7 @@ namespace crow
         }
 
     private:
-        std::function<void(const request&, response&, const routing_params&)> erased_handler_;
+        std::function<void(request&, response&, const routing_params&)> erased_handler_;
     };
 
     /// Default rule created when CROW_ROUTE is called.
@@ -570,92 +572,17 @@ namespace crow
         }
 
         template<typename Func>
-        typename std::enable_if<black_magic::CallHelper<Func, black_magic::S<Args...>>::value, void>::type
-          operator()(Func&& f)
+        void operator()(Func&& f)
         {
-            static_assert(black_magic::CallHelper<Func, black_magic::S<Args...>>::value ||
-                            black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value,
-                          "Handler type is mismatched with URL parameters");
-            static_assert(!std::is_same<void, decltype(f(std::declval<Args>()...))>::value,
-                          "Handler function cannot have void return type; valid return types: string, int, crow::response, crow::returnable");
-
             handler_ = (
 #ifdef CROW_CAN_USE_CPP14
               [f = std::move(f)]
 #else
               [f]
 #endif
-              (const request&, response& res, Args... args) {
-                  res = response(f(args...));
-                  res.end();
+              (crow::request& req, crow::response& res, Args... args) {
+                  detail::wrapped_handler_call(req, res, f, std::forward<Args>(args)...);
               });
-        }
-
-        template<typename Func>
-        typename std::enable_if<
-          !black_magic::CallHelper<Func, black_magic::S<Args...>>::value &&
-            black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value,
-          void>::type
-          operator()(Func&& f)
-        {
-            static_assert(black_magic::CallHelper<Func, black_magic::S<Args...>>::value ||
-                            black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value,
-                          "Handler type is mismatched with URL parameters");
-            static_assert(!std::is_same<void, decltype(f(std::declval<crow::request>(), std::declval<Args>()...))>::value,
-                          "Handler function cannot have void return type; valid return types: string, int, crow::response, crow::returnable");
-
-            handler_ = (
-#ifdef CROW_CAN_USE_CPP14
-              [f = std::move(f)]
-#else
-              [f]
-#endif
-              (const crow::request& req, crow::response& res, Args... args) {
-                  res = response(f(req, args...));
-                  res.end();
-              });
-        }
-
-        template<typename Func>
-        typename std::enable_if<
-          !black_magic::CallHelper<Func, black_magic::S<Args...>>::value &&
-            !black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value &&
-            black_magic::CallHelper<Func, black_magic::S<crow::response&, Args...>>::value,
-          void>::type
-          operator()(Func&& f)
-        {
-            static_assert(black_magic::CallHelper<Func, black_magic::S<Args...>>::value ||
-                            black_magic::CallHelper<Func, black_magic::S<crow::response&, Args...>>::value,
-                          "Handler type is mismatched with URL parameters");
-            static_assert(std::is_same<void, decltype(f(std::declval<crow::response&>(), std::declval<Args>()...))>::value,
-                          "Handler function with response argument should have void return type");
-            handler_ = (
-#ifdef CROW_CAN_USE_CPP14
-              [f = std::move(f)]
-#else
-              [f]
-#endif
-              (const crow::request&, crow::response& res, Args... args) {
-                  f(res, args...);
-              });
-        }
-
-        template<typename Func>
-        typename std::enable_if<
-          !black_magic::CallHelper<Func, black_magic::S<Args...>>::value &&
-            !black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value &&
-            !black_magic::CallHelper<Func, black_magic::S<crow::response&, Args...>>::value,
-          void>::type
-          operator()(Func&& f)
-        {
-            static_assert(black_magic::CallHelper<Func, black_magic::S<Args...>>::value ||
-                            black_magic::CallHelper<Func, black_magic::S<crow::request, Args...>>::value ||
-                            black_magic::CallHelper<Func, black_magic::S<crow::request, crow::response&, Args...>>::value,
-                          "Handler type is mismatched with URL parameters");
-            static_assert(std::is_same<void, decltype(f(std::declval<crow::request>(), std::declval<crow::response&>(), std::declval<Args>()...))>::value,
-                          "Handler function with response argument should have void return type");
-
-            handler_ = std::move(f);
         }
 
         template<typename Func>
@@ -665,25 +592,33 @@ namespace crow
             (*this).template operator()<Func>(std::forward(f));
         }
 
-        void handle(const request& req, response& res, const routing_params& params) override
+        void handle(request& req, response& res, const routing_params& params) override
         {
             if (!custom_templates_base.empty())
                 mustache::set_base(custom_templates_base);
-            else if (mustache::detail::get_template_base_directory_ref() != "templates")
-                mustache::set_base("templates");
+            else if (mustache::detail::get_template_base_directory_ref() != mustache::detail::get_global_template_base_directory_ref())
+                mustache::set_base(mustache::detail::get_global_template_base_directory_ref());
 
             detail::routing_handler_call_helper::call<
-              detail::routing_handler_call_helper::call_params<
-                decltype(handler_)>,
+              detail::routing_handler_call_helper::call_params<decltype(handler_)>,
               0, 0, 0, 0,
               black_magic::S<Args...>,
               black_magic::S<>>()(
-              detail::routing_handler_call_helper::call_params<
-                decltype(handler_)>{handler_, params, req, res});
+              detail::routing_handler_call_helper::call_params<decltype(handler_)>{handler_, params, req, res});
+        }
+
+        /// Enable local middleware for this handler
+        template<typename App, typename... Middlewares>
+        crow::detail::handler_call_bridge<TaggedRule<Args...>, App, Middlewares...>
+          middlewares()
+        {
+            // the handler_call_bridge allows the functor to be placed directly after this function
+            // instead of wrapping it with more parentheses
+            return {this};
         }
 
     private:
-        std::function<void(const crow::request&, crow::response&, Args...)> handler_;
+        std::function<void(crow::request&, crow::response&, Args...)> handler_;
     };
 
     const int RULE_SPECIAL_REDIRECT_SLASH = 1;
@@ -840,7 +775,7 @@ namespace crow
             if (pos == req_url.size())
             {
                 found_BP = std::move(*blueprints);
-                return {node->rule_index, *blueprints, *params};
+                return std::tuple<uint16_t, std::vector<uint16_t>, routing_params>{node->rule_index, *blueprints, *params};
             }
 
             bool found_fragment = false;
@@ -967,7 +902,7 @@ namespace crow
             if (!found_fragment)
                 found_BP = std::move(*blueprints);
 
-            return {found, found_BP, match_params}; //Called after all the recursions have been done
+            return std::tuple<uint16_t, std::vector<uint16_t>, routing_params>{found, found_BP, match_params}; //Called after all the recursions have been done
         }
 
         //This functions assumes any blueprint info passed is valid
@@ -1399,7 +1334,7 @@ namespace crow
                 CROW_LOG_INFO << "Redirecting to a url with trailing slash: " << req.url;
                 res = response(301);
 
-                // TODO absolute url building
+                // TODO(ipkn) absolute url building
                 if (req.get_header_value("Host").empty())
                 {
                     res.add_header("Location", req.url + "/");
@@ -1507,7 +1442,7 @@ namespace crow
             return std::string();
         }
 
-        void handle(const request& req, response& res)
+        void handle(request& req, response& res)
         {
             HTTPMethod method_actual = req.method;
             if (req.method >= HTTPMethod::InternalMethodCount)
@@ -1515,7 +1450,7 @@ namespace crow
             else if (req.method == HTTPMethod::Head)
             {
                 method_actual = HTTPMethod::Get;
-                res.is_head_response = true;
+                res.skip_body = true;
             }
             else if (req.method == HTTPMethod::Options)
             {
@@ -1601,7 +1536,7 @@ namespace crow
                 CROW_LOG_INFO << "Redirecting to a url with trailing slash: " << req.url;
                 res = response(301);
 
-                // TODO absolute url building
+                // TODO(ipkn) absolute url building
                 if (req.get_header_value("Host").empty())
                 {
                     res.add_header("Location", req.url + "/");

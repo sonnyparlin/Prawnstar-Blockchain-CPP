@@ -68,6 +68,6 @@ void NodeApi::start(std::string po) {
         return crow::response(201, "{\"message\":\"Received transaction\"}");
     });
 
-    app.loglevel(crow::LogLevel::Warning);
-    app.port(port).multithreaded().run();
+    app.loglevel(crow::LogLevel::Info);
+    app.port(port).multithreaded().run_async();
 }

@@ -11,8 +11,18 @@
 
 #include "crow/settings.h"
 
+// TODO(EDev): Adding C++20's [[likely]] and [[unlikely]] attributes might be useful
+#if defined(__GNUG__) || defined(__clang__)
+#define CROW_LIKELY(X) __builtin_expect(!!(X), 1)
+#define CROW_UNLIKELY(X) __builtin_expect(!!(X), 0)
+#else
+#define CROW_LIKELY(X) (X)
+#define CROW_UNLIKELY(X) (X)
+#endif
+
 namespace crow
 {
+    /// @cond SKIP
     namespace black_magic
     {
 #ifndef CROW_MSVC_WORKAROUND
@@ -237,6 +247,40 @@ namespace crow
             static constexpr bool value = sizeof(__test<F, Args...>(0)) == sizeof(char);
         };
 
+        // Check Tuple contains type T
+        template<typename T, typename Tuple>
+        struct has_type;
+
+        template<typename T>
+        struct has_type<T, std::tuple<>> : std::false_type
+        {};
+
+        template<typename T, typename U, typename... Ts>
+        struct has_type<T, std::tuple<U, Ts...>> : has_type<T, std::tuple<Ts...>>
+        {};
+
+        template<typename T, typename... Ts>
+        struct has_type<T, std::tuple<T, Ts...>> : std::true_type
+        {};
+
+        // Check F is callable with Args
+        template<typename F, typename... Args>
+        struct is_callable
+        {
+            template<typename F2, typename... Args2>
+            static std::true_type __test(decltype(std::declval<F2>()(std::declval<Args2>()...))*);
+
+            template<typename F2, typename... Args2>
+            static std::false_type __test(...);
+
+            static constexpr bool value = decltype(__test<F, Args...>(nullptr))::value;
+        };
+
+        // Kind of fold expressions in C++11
+        template<bool...>
+        struct bool_pack;
+        template<bool... bs>
+        using all_true = std::is_same<bool_pack<bs..., true>, bool_pack<true, bs...>>;
 
         template<int N>
         struct single_tag_to_type
@@ -485,6 +529,7 @@ namespace crow
             template<size_t i>
             using arg = typename std::tuple_element<i, std::tuple<Args...>>::type;
         };
+        /// @endcond
 
         inline static std::string base64encode(const unsigned char* data, size_t size, const char* key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")
         {
@@ -694,7 +739,14 @@ namespace crow
                 }
                 else if ((c == '/') || (c == '\\'))
                 {
-                    checkForSpecialEntries = true;
+                    if (CROW_UNLIKELY(i == 0)) //Prevent Unix Absolute Paths (Windows Absolute Paths are prevented with `(c == ':')`)
+                    {
+                        data[i] = replacement;
+                    }
+                    else
+                    {
+                        checkForSpecialEntries = true;
+                    }
                 }
             }
         }

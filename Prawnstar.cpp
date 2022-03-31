@@ -6,6 +6,17 @@
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
+
+#include <iostream>
+#include <typeinfo>
+#include "Node.hpp"
+#include "ProofOfStake.hpp"
+#include "Lot.hpp"
+
+/*! \mainpage Development documentation for the Prawnstar Blockchain.
+ *
+ * See the "Dependancies Needed and Startup Instructions" under the [Related Pages](pages.html) tab to get started.
+ */
  
 class Prawnstar : public wxApp
 {
@@ -17,11 +28,14 @@ class MainFrame : public wxFrame
 {
 public:
     MainFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
- 
+    void startNode(int argc, char **argv);
+    Node *node;
+
 private:
     void OnHello(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
+    void OnButton(wxCommandEvent& event);
 };
  
 enum
@@ -30,7 +44,23 @@ enum
 };
  
 wxIMPLEMENT_APP(Prawnstar);
- 
+
+void MainFrame::OnButton(wxCommandEvent& event)
+{
+    std::cout << "Starting Node" << std::endl;
+    const char* dummy_args[] = { NULL, "127.0.0.1", "10001", "8001", NULL };
+    char **args;
+    args = (char **)dummy_args;
+    startNode(4, args);
+}
+
+void MainFrame::startNode(int argc, char **argv) {
+    Node *node = Node::createNode(argc, argv);
+    node->startServers(argc, argv);
+    // delete node;
+	return;
+}
+
 bool Prawnstar::OnInit()
 {
     MainFrame *frame = new MainFrame("Prawnstar Blockchain", wxPoint(0, 0), wxSize(990, 640));
@@ -94,6 +124,8 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
     // wxPanel* lTop = new wxPanel( leftPanel, -1, wxDefaultPosition, wxDefaultSize );
     // lTop->SetBackgroundColour(color1);
     wxButton* button = new wxButton(leftPanel, -1, L"Start Server");
+    button->Bind( wxEVT_BUTTON, &MainFrame::OnButton, this );
+
     wxButton* button2 = new wxButton(leftPanel, -1, L"Configure Server");
     // button->SetBackgroundColour(color1);
     // button->SetForegroundColour(textColor);
@@ -101,6 +133,7 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 
     hbox1->Add(button);
     hbox1->Add(button2);
+
     leftPanelSizer->Add(hbox1, 0, wxALIGN_CENTRE, 1);
     // leftPanelSizer->Add(lTop, 3, wxGROW|wxALL, 5);
 
