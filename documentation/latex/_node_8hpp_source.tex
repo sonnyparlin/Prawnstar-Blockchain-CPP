@@ -40,22 +40,26 @@
 \DoxyCodeLine{37     \mbox{\hyperlink{class_socket_communication}{SocketCommunication}} *p2p;}
 \DoxyCodeLine{38     \mbox{\hyperlink{class_proof_of_stake}{ProofOfStake}} *proofOfStake;}
 \DoxyCodeLine{39     std::mutex nodeMutex;}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41     \textcolor{keywordtype}{int} argc;}
-\DoxyCodeLine{42     \textcolor{keywordtype}{char} **argv;}
-\DoxyCodeLine{43     }
-\DoxyCodeLine{44     \mbox{\hyperlink{class_node}{\string~Node}}();                      \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *createNode(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
-\DoxyCodeLine{47     \textcolor{keywordtype}{void} startServers(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
-\DoxyCodeLine{48     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_node_a2fd2928bbec56f5fcf96fca8b165c7ce}{handleTransaction}} (\mbox{\hyperlink{class_transaction}{Transaction}}, \textcolor{keywordtype}{bool} broadcast=\textcolor{keyword}{true});}
-\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ae1918e440c28994f9fd8343d5bc0c429}{handleBlock}} (\mbox{\hyperlink{class_block}{Block}} block, \textcolor{keywordtype}{bool} broadcast);}
-\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a063565fe59b1c9c9dff18776f5b689df}{requestChain}}();}
-\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
-\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a414ce08fd86e7490debcb0f56642f2fa}{handleBlockchainRequest}}(std::string);}
-\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_adbc4873aa5493cdea93bbc2a24354da2}{handleBlockchain}}(std::string blockchainString);}
-\DoxyCodeLine{54 \};}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODE\_H\_}}
+\DoxyCodeLine{40     std::mutex logMutex;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} argc;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{char} **argv;}
+\DoxyCodeLine{44     }
+\DoxyCodeLine{45     \mbox{\hyperlink{class_node}{\string~Node}}();                      \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *createNode(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} startServers(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{49     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_node_a2fd2928bbec56f5fcf96fca8b165c7ce}{handleTransaction}} (\mbox{\hyperlink{class_transaction}{Transaction}}, \textcolor{keywordtype}{bool} broadcast=\textcolor{keyword}{true});}
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ae1918e440c28994f9fd8343d5bc0c429}{handleBlock}} (\mbox{\hyperlink{class_block}{Block}} block, \textcolor{keywordtype}{bool} broadcast);}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a063565fe59b1c9c9dff18776f5b689df}{requestChain}}();}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a414ce08fd86e7490debcb0f56642f2fa}{handleBlockchainRequest}}(std::string);}
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_adbc4873aa5493cdea93bbc2a24354da2}{handleBlockchain}}(std::string blockchainString);}
+\DoxyCodeLine{55     std::string getNodeID();}
+\DoxyCodeLine{56     std::string getConsoleLog();}
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} log(std::string \textcolor{keyword}{const}\& msg);}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODE\_H\_}}
 
 \end{DoxyCode}
