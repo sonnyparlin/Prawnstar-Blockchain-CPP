@@ -28,7 +28,23 @@
     padding-left: 5px !important;
 }
 
+#address {
+    width:163px !important;
+}
+
 .buyForm {
+    padding-top:40px;
+}
+
+.sellForm {
+    padding-top:40px;
+}
+
+.transferForm {
+    padding-top:40px;
+}
+
+.stakeForm {
     padding-top:40px;
 }
 

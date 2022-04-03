@@ -41,7 +41,7 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::ostringstream oss;
-            oss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
             auto str = oss.str();
             node->log(str);
             std::string r = "reward: " + std::to_string(reward);
@@ -174,7 +174,7 @@ std::vector<std::string> Blockchain::txsByAddress(std::string address) {
     for(auto block : blocks) {
         for(auto tx : block.transactions) {
             if (tx.senderAddress == address || tx.receiverAddress == address)
-                txids.push_back(tx.id);    
+                txids.push_back(tx.id);
         }
     }
     // std::cout << "txids: " << txids.size() << std::endl;

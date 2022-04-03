@@ -36,6 +36,7 @@ class App extends React.Component {
     }
 
     render() { 
+        const nodeaddress = "pv171e654b041c51d978becc5cf65b0e2f48ff7";
         return (
             <div className="container-lg">
                 <div className="col-4">
@@ -64,7 +65,8 @@ class App extends React.Component {
 
                     <div className="p-2 border bg-white buysell">
                         <b>Buy / Sell</b>
-                        <BuySellTransfer/>
+                        
+                        <BuySellTransfer nodeaddress={nodeaddress}/>
                     </div>
                 </div>        
 
