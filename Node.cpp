@@ -3,6 +3,7 @@
 #include <crow.h>
 #include <chrono>
 #include <thread>
+#include <ctime>
 
 Node * Node::node=nullptr;
 
@@ -66,6 +67,50 @@ void Node::startServers(int argc, char **argv) {
         std::string po = std::string(argv[4]);
         api.start(po);
     }
+}
+
+std::string Node::getNodeID() {
+    return p2p->id;
+}
+
+std::string getLastLines( std::string const& filename, int lineCount )
+{
+    size_t const granularity = 100 * lineCount;
+    std::ifstream source( filename.c_str(), std::ios_base::binary );
+    source.seekg( 0, std::ios_base::end );
+    size_t size = static_cast<size_t>( source.tellg() );
+    std::vector<char> buffer;
+    int newlineCount = 0;
+    while ( source 
+            && buffer.size() != size
+            && newlineCount < lineCount ) {
+        buffer.resize( std::min( buffer.size() + granularity, size ) );
+        source.seekg( -static_cast<std::streamoff>( buffer.size() ),
+                      std::ios_base::end );
+        source.read( buffer.data(), buffer.size() );
+        newlineCount = std::count( buffer.begin(), buffer.end(), '\n');
+    }
+    std::vector<char>::iterator start = buffer.begin();
+    while ( newlineCount > lineCount ) {
+        start = std::find( start, buffer.end(), '\n' ) + 1;
+        -- newlineCount;
+    }
+    std::vector<char>::iterator end = remove( start, buffer.end(), '\r' );
+    return std::string( start, end );
+}
+
+void Node::log(std::string const& msg)
+{
+    std::lock_guard<std::mutex> guard(logMutex);
+    // std::cout << "Writing to log file " << std::endl;
+    ofstream myfile;
+    myfile.open ("console.log", std::ios_base::app);
+    myfile << msg << std::endl;
+    myfile.close();
+}
+
+std::string Node::getConsoleLog() {
+    return getLastLines("console.log", 100);
 }
 
 /*!
@@ -280,12 +325,24 @@ This is where new blocks are initiated for this forger.
 void Node::forge() {
     std::string forger = blockchain->nextForger();
     if (forger != nodeWallet->walletPublicKey) {
-        std::cout << "i am not the next forger" << std::endl;
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+        std::ostringstream oss;
+        oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
+        auto str = oss.str();
+        log(str);
+        log("i am not the next forger");
         // std::cout << forger << std::endl;
         std::string address = utils::generateAddress(forger);
         accountModel->addAccount(address, forger);
     } else {
-        std::cout << "i am the next forger" << std::endl;
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+        std::ostringstream oss;
+        oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
+        auto str = oss.str();
+        log(str);
+        log("i am the next forger");
         Block block;
         std::vector<Transaction> rewardedTransactions;
         

@@ -14,7 +14,23 @@ void NodeApi::start(std::string po) {
     crow::SimpleApp app;
 
     CROW_ROUTE(app, "/info")([](){
-        return "This is a communication interface to a node's blockchain.";
+        return crow::response(200, "Prawnstar Blockchain");
+    });
+
+    CROW_ROUTE(app, "/node")([&](){
+        nlohmann::json j;
+        j["message"] = node->getNodeID();
+        std::vector<std::string> ip_port = utils::get_ip_and_port_from_config();
+        j["ip"] = ip_port.at(0);
+        j["port"] = ip_port.at(1);
+        j["master"] = utils::MASTER_NODE_IP;
+        return crow::response(200, j.dump());
+    });
+
+    CROW_ROUTE(app, "/console")([&](){
+        nlohmann::json j;
+        j["console"] = node->getConsoleLog();
+        return crow::response(200, j.dump());
     });
 
     CROW_ROUTE(app, "/blockchain")([&](){
@@ -23,7 +39,7 @@ void NodeApi::start(std::string po) {
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
         std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();
-        return returnValue;
+        return crow::response(200, returnValue);
     });
 
     CROW_ROUTE(app, "/wallet/<string>")([&](std::string address){
@@ -31,6 +47,23 @@ void NodeApi::start(std::string po) {
         nlohmann::json j;
         j["amount"] = std::to_string(returnValue);
         return crow::response(200, j.dump());
+    });
+
+    CROW_ROUTE(app, "/nodewallet")([&](){
+        double returnValue = node->accountModel->getBalance(node->nodeWallet->address);
+        nlohmann::json j;
+        j["amount"] = std::to_string(returnValue);
+        j["address"] = node->nodeWallet->address;
+        j["publickey"] = node->nodeWallet->walletPublicKey;
+        j["nodestake"] = node->proofOfStake->getStake(node->nodeWallet->walletPublicKey);
+        return crow::response(200, j.dump());
+    });
+
+    CROW_ROUTE(app, "/nodetransactions")([&](){
+        std::vector<std::string> txids = node->blockchain->txsByAddress(node->nodeWallet->address);
+        nlohmann::json j;
+        j = nlohmann::json::array({txids});
+        return crow::response(200, j[0].dump());
     });
 
     // ONLY ALLOW REQUESTS FROM THIS MACHINE

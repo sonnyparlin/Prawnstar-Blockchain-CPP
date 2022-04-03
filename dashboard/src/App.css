@@ -1,0 +1,185 @@
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.container-lg {
+    background-color: #333333;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
+    padding-top:10px;
+}
+
+.form-control-plaintext {
+    width: 100px !important;
+    height: 30px;
+    border: 1px solid #333 !important;
+    border-radius: 5px;
+    margin-right:5px;
+    font-size:12px;
+    padding-left: 5px !important;
+}
+
+#address {
+    width:163px !important;
+}
+
+.buyForm {
+    padding-top:40px;
+}
+
+.sellForm {
+    padding-top:40px;
+}
+
+.transferForm {
+    padding-top:40px;
+}
+
+.stakeForm {
+    padding-top:40px;
+}
+
+.fleft { 
+    float:left;
+}
+
+.fright { 
+    float:right;
+}
+
+.clear {
+    clear:left;
+}
+
+.col-4 {
+    margin-bottom:10px;
+    float:left;
+}
+
+.consoleBox {
+    margin-right:10px;
+    margin-bottom:10px;
+}
+
+.info {
+    min-height:200px;
+    max-height:200px;
+    margin-bottom:10px;
+    margin-right:10px;
+}
+
+.news {
+    overflow-y: scroll;
+    min-height:420px;
+    max-height:420px;
+    margin-right:10px;
+}
+
+.console {
+    padding-top:3px;
+    max-height: 358px;
+    min-height: 358px;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+
+.buysell {
+    min-height: 220px;
+    margin-right:10px;
+}
+
+.wallet {
+    min-height:200px;
+    max-height:200px;
+    margin-bottom:10px;
+}
+.stake {
+    min-height:190px;
+    max-height:190px;
+    margin-bottom:10px;
+    width:100%;
+}
+.txhistory {
+    min-height:178px;
+    max-height:178px;
+    overflow-y: scroll;
+}
+
+.btn-primary {
+    height: 30px;
+    padding-top:0px;
+    font-size: 11px !important;
+}
+
+.transactionSpace {
+    max-height: 140px;
+    min-height: 140px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    body,html { 
+        background-color:#333333;
+    }
+    .col-4 {
+      width: 100% !important;
+      float:none!important;
+    }
+    .buysell {
+        margin-right:0px;
+    }
+    .container-lg {
+        transform: 0px;
+        margin-top:10px !important;
+        height:100%;
+    }
+    .info {
+        width:100%;
+    }
+    .news {
+        margin-right:0px;
+    }
+    .consoleBox {
+        width:100%;
+        height:100%;
+    }
+  }

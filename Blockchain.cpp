@@ -38,7 +38,14 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
 
         if (tx.type == "EXCHANGE" || tx.type == "TRANSFER") {
             double reward = (tx.amount * 0.005);
-            std::cout << "reward: " << reward << std::endl;
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);
+            std::ostringstream oss;
+            oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
+            auto str = oss.str();
+            node->log(str);
+            std::string r = "reward: " + std::to_string(reward);
+            node->log(r);
 
             try {
                 Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address, reward, "REWARD");
@@ -159,6 +166,19 @@ bool Blockchain::transactionExists(Transaction transaction) {
         }
     }
     return false;
+}
+
+std::vector<std::string> Blockchain::txsByAddress(std::string address) {
+    std::lock_guard<std::mutex> guard(blockchainMutex);
+    std::vector<std::string> txids;
+    for(auto block : blocks) {
+        for(auto tx : block.transactions) {
+            if (tx.senderAddress == address || tx.receiverAddress == address)
+                txids.push_back(tx.id);
+        }
+    }
+    // std::cout << "txids: " << txids.size() << std::endl;
+    return txids;
 }
 
 bool Blockchain::forgerValid(Block block) {
