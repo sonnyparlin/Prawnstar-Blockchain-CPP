@@ -38,24 +38,26 @@ alice = 'pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7'
 bob = 'pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42'
 node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 
+i=0
 with requests.Session() as s:
     post_transaction(s, exchange, nodeWallet, '1', 'EXCHANGE')
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
     post_transaction(s, node2, node2, '3', 'STAKE')
-    #countdown()
-    
-    for x in range(int(sys.argv[1])):
-        print(x)            
+    #countdown()    
+
+    for x in range(int(sys.argv[1])-1):
+        i += 1
+        print(i)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.05)
 
+print(i+1)
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 
 print("getting final balances...")
-post_transaction(s, alice, bob, '1', 'TRANSFER')
-
 time.sleep(1)
+post_transaction(s, alice, bob, '1', 'TRANSFER')
 
 print("Alice's wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")

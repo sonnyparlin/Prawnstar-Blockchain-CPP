@@ -40,6 +40,7 @@ public:
     bool blockHasTransactions(Block block);
     std::string toJsonWebView() const;
     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>&);
+    std::vector<std::string> txsByAddress(std::string address);
 };
 
 #endif // _BLOCKCHAIN_H_

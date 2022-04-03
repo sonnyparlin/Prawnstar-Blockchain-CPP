@@ -37,6 +37,7 @@ public:
     SocketCommunication *p2p;
     ProofOfStake *proofOfStake;
     std::mutex nodeMutex;
+    std::mutex logMutex;
 
     int argc;
     char **argv;
@@ -51,6 +52,9 @@ public:
     void forge();
     void handleBlockchainRequest(std::string);
     void handleBlockchain(std::string blockchainString);
+    std::string getNodeID();
+    std::string getConsoleLog();
+    void log(std::string const& msg);
 };
 
 #endif // _NODE_H_
