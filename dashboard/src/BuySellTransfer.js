@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function BuySellTransfer() {
+
+    const [hidden, setHidden] = useState(false);
 
     var jsonData = {
       "users": [
@@ -31,26 +33,36 @@ function BuySellTransfer() {
   
     return (
     <div>
+        <div className="transactionSpace">
+        
+            <div className="buyForm" hidden={!hidden}>
+                <div className="fleft">
+                <input type="text" className="form-control-plaintext" id="amount" placeholder="amount" />
+                </div>
+            <button type="submit" className="btn btn-primary mb-2">Buy</button>
+            </div>
+
+        </div>
         <table>
         <tbody>
         <tr>
         <td>
-        <button className="btn btn-primary" onClick={handleClick}>
+        <button className="btn btn-primary" onClick={() => setHidden(!hidden)}>
             Buy
         </button>
         </td>
         <td>
-        <button className="btn btn-primary" onClick={handleClick}>
+        <button className="btn btn-primary" onClick={() => setHidden(!hidden)}>
             Sell
         </button>
         </td>
         <td>
-        <button className="btn btn-primary" onClick={handleClick}>
+        <button className="btn btn-primary" onClick={() => setHidden(!hidden)}>
             Transfer
         </button>
         </td>
-        <td>
-        <button className="btn btn-primary" onClick={handleClick}>
+        <td width="240px" align="right">
+        <button className="btn btn-primary" onClick={() => setHidden(!hidden)}>
             Stake
         </button>
         </td>

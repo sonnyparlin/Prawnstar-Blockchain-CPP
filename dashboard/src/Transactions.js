@@ -31,9 +31,7 @@ class Transactions extends React.Component {
             <pre>
                 <small>
                     <ul>
-                    {
-                        this.state.transactions.map(item => <li key={item}>{item}</li>)
-                    }
+                        {this.state.transactions.map(item => <li key={item}>{item}</li>)}
                     </ul>
                 </small>
             </pre>

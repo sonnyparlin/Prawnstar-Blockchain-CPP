@@ -77,9 +77,11 @@ class App extends React.Component {
                         <b>Stake</b>
                         <Stake/>
                     </div>
-                    <div className="p-2 border bg-white txhistory">
+                    <div className="p-2 border bg-white">
                         <b>Transaction History</b>
-                        <Transactions/>
+                        <div className="txhistory">
+                            <Transactions/>
+                        </div>
                     </div>
                 </div>
 

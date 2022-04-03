@@ -18,6 +18,20 @@
     padding-top:10px;
 }
 
+.form-control-plaintext {
+    width: 100px !important;
+    height: 30px;
+    border: 1px solid #333 !important;
+    border-radius: 5px;
+    margin-right:5px;
+    font-size:12px;
+    padding-left: 5px !important;
+}
+
+.buyForm {
+    padding-top:40px;
+}
+
 .fleft { 
     float:left;
 }
@@ -79,8 +93,8 @@
     width:100%;
 }
 .txhistory {
-    min-height:220px;
-    max-height:220px;
+    min-height:178px;
+    max-height:178px;
     overflow-y: scroll;
 }
 
@@ -88,6 +102,11 @@
     height: 30px;
     padding-top:0px;
     font-size: 11px !important;
+}
+
+.transactionSpace {
+    max-height: 140px;
+    min-height: 140px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

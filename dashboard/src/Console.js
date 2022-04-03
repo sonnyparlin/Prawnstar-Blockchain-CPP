@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import News from './News.js';
 
 class App extends React.Component {
 
