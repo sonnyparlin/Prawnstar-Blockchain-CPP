@@ -42,6 +42,61 @@ const BuySellTransfer = (props) => {
         return response.json();
     }
 
+    const handleSellClick = async () => {
+
+        const receiver = props.nodeaddress;
+        const samount = document.getElementById('samount').value;
+
+        console.log("address is " + props.nodeaddress);
+        console.log(samount);
+        var jsonData = {
+            "transaction":
+            {
+                "sender": receiver,
+                "receiver": "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac",
+                "amount": parseInt(samount),
+                "type": "TRANSFER"
+            }
+        }
+      
+        // Send data to the backend via POST
+        const response = await fetch('http://127.0.0.1:8001/transact', {
+            method: 'POST', 
+            mode: 'cors', 
+            body: JSON.stringify(jsonData)
+        })
+
+        return response.json();
+    }
+
+    const handleTransferClick = async () => {
+
+        const receiver = props.nodeaddress;
+        const trsamount = document.getElementById('trsamount').value;
+        const sender = document.getElementById('toaddress').value;
+
+        console.log("address is " + props.nodeaddress);
+        console.log(trsamount);
+        var jsonData = {
+            "transaction":
+            {
+                "sender": receiver,
+                "receiver": sender,
+                "amount": parseInt(trsamount),
+                "type": "TRANSFER"
+            }
+        }
+      
+        // Send data to the backend via POST
+        const response = await fetch('http://127.0.0.1:8001/transact', {
+            method: 'POST', 
+            mode: 'cors', 
+            body: JSON.stringify(jsonData)
+        })
+
+        return response.json();
+    }
+
     const handleStakeClick = async () => {
 
         const receiver = props.nodeaddress;
@@ -89,17 +144,29 @@ const BuySellTransfer = (props) => {
 
             <div className="sellForm" hidden={!hiddenSell}>
                 <div className="fleft">
-                <input type="text" className="form-control-plaintext" id="amount" placeholder="amount" />
+                <input type="text" className="form-control-plaintext" id="samount" placeholder="amount" />
                 </div>
-            <button type="submit" className="btn btn-primary mb-2">Sell</button>
+            <button type="submit" className="btn btn-primary mb-2" onClick={() => 
+                {
+                    handleSellClick();
+                    window.location.reload(false);
+                }
+            }>
+                Sell</button>
             </div>
 
             <div className="transferForm" hidden={!hiddenTransfer}>
                 <div className="fleft">
-                <input type="text" className="form-control-plaintext fleft" id="address" placeholder="address" />
-                <input type="text" className="form-control-plaintext" id="amount" placeholder="amount" />
+                <input type="text" className="form-control-plaintext fleft" id="toaddress" placeholder="toaddress" />
+                <input type="text" className="form-control-plaintext" id="trsamount" placeholder="amount" />
                 </div>
-            <button type="submit" className="btn btn-primary mb-2">Transfer</button>
+            <button type="submit" className="btn btn-primary mb-2" onClick={() => 
+                {
+                    handleTransferClick();
+                    window.location.reload(false);
+                }
+            }>
+                Transfer</button>
             </div>
 
             <div className="stakeForm" hidden={!hiddenStake}>

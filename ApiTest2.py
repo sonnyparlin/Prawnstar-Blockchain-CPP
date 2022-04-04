@@ -30,7 +30,7 @@ with requests.Session() as s:
     for x in range(int(sys.argv[1])):
         print(x)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
-        #time.sleep(0.05)
+        time.sleep(0.5)
 
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 

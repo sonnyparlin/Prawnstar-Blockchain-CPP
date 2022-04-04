@@ -50,7 +50,7 @@ with requests.Session() as s:
         i += 1
         print(i)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
-        #time.sleep(0.05)
+        #time.sleep(0.5)
 
 print(i+1)
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
