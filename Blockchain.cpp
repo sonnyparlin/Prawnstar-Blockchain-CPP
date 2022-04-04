@@ -175,11 +175,12 @@ std::vector<std::string> Blockchain::txsByAddress(std::string address) {
     std::reverse(localChain.begin(),localChain.end());
     for(auto block : localChain) {
         for(auto tx : block.transactions) {
-            if (tx.senderAddress == address || tx.receiverAddress == address)
+            if (tx.senderAddress == address || tx.receiverAddress == address) {
                 txids.push_back(tx.id);
 
                 if (txids.size() > 99)
                     break;
+            }
         }
     }
     // std::cout << "txids: " << txids.size() << std::endl;
