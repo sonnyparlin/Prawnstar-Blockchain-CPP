@@ -42,15 +42,36 @@ double ProofOfStake::getStake(std::string publicKeyString) {
 
 std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
     std::vector<Lot> lots;
+    int stake;
 
     for ( const auto &validator : stakers ) {
         std::string validatorString = validator.first;
-        for ( int i = 0; i < getStake(validatorString); i++ ) {
-            int stake = getStake(validatorString);
             
-            Lot l(validatorString, stake+1, seed);
-            lots.push_back(l);
-        }
+        if (getStake(validatorString) >= 100000)
+            stake = 10;
+        else if (getStake(validatorString) >= 50000)
+            stake = 9;
+        else if (getStake(validatorString) >= 25000)
+            stake = 8;
+        else if (getStake(validatorString) >= 10000)
+            stake = 7;
+        else if (getStake(validatorString) >= 5000)
+            stake = 8;
+        else if (getStake(validatorString) >= 1000)
+            stake = 6;
+        else if (getStake(validatorString) >= 500)
+            stake = 5;
+        else if (getStake(validatorString) >= 250)
+            stake = 4;
+        else if (getStake(validatorString) >= 100)
+            stake = 3;
+        else if (getStake(validatorString) >= 10)
+            stake = 2;
+        else if (getStake(validatorString) >= 1)
+            stake = 1;
+
+        Lot l(validatorString, stake+1, seed);
+        lots.push_back(l);
     }
     return lots;
 }
