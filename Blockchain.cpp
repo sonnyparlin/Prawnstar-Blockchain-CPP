@@ -171,10 +171,15 @@ bool Blockchain::transactionExists(Transaction transaction) {
 std::vector<std::string> Blockchain::txsByAddress(std::string address) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<std::string> txids;
-    for(auto block : blocks) {
+    std::vector<Block> localChain = blocks;
+    std::reverse(localChain.begin(),localChain.end());
+    for(auto block : localChain) {
         for(auto tx : block.transactions) {
             if (tx.senderAddress == address || tx.receiverAddress == address)
                 txids.push_back(tx.id);
+
+                if (txids.size() > 99)
+                    break;
         }
     }
     // std::cout << "txids: " << txids.size() << std::endl;

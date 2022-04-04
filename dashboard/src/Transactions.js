@@ -18,7 +18,7 @@ class Transactions extends React.Component {
             .then((jsonData) => {
                 // jsonData is parsed json object received from url
                 this.state.transactions.push( jsonData );
-                this.state.transactions = this.state.transactions[0]
+                this.setState({transactions: this.state.transactions[0]})
             })
             .catch((error) => {
                 // handle your errors here

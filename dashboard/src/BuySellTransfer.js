@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Wallet from './Wallet';
 
 const BuySellTransfer = (props) => {
 
