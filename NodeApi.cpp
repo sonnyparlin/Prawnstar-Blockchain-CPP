@@ -33,13 +33,19 @@ void NodeApi::start(std::string po) {
         return crow::response(200, j.dump());
     });
 
-    CROW_ROUTE(app, "/blockchain")([&](){
-        return node->blockchain->toJsonWebView();
-    });
+    // CROW_ROUTE(app, "/blockchain")([&](){
+    //     return node->blockchain->toJsonWebView();
+    // });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
         std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();
         return crow::response(200, returnValue);
+    });
+
+    CROW_ROUTE(app, "/tx/<string>")([&](std::string txid){
+        std::string jsonValue = node->blockchain->getTransaction(txid);
+        nlohmann::json j = nlohmann::json::parse(jsonValue);
+        return crow::response(200, j.dump());
     });
 
     CROW_ROUTE(app, "/wallet/<string>")([&](std::string address){
@@ -61,6 +67,8 @@ void NodeApi::start(std::string po) {
 
     CROW_ROUTE(app, "/nodetransactions")([&](){
         std::vector<std::string> txids = node->blockchain->txsByAddress(node->nodeWallet->address);
+        std::reverse(txids.begin(), txids.end());
+        
         nlohmann::json j;
         j = nlohmann::json::array({txids});
         return crow::response(200, j[0].dump());

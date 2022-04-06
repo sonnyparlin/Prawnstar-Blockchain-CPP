@@ -56,16 +56,15 @@ class App extends React.Component {
                 </div>  
 
                 <div className="col-4">
-                    <div className="p-2 border bg-white consoleBox">
-                        <b>Node Console</b>
-                        <div className="console">
-                            <Console/>
+                    <div className="p-2 border bg-white txBox">
+                        <b>Transaction History</b>
+                        <div className="txhistory">
+                            <Transactions/>
                         </div>
                     </div>
 
                     <div className="p-2 border bg-white buysell">
                         <b>Buy / Sell</b>
-                        
                         <BuySellTransfer nodeaddress={nodeaddress}/>
                     </div>
                 </div>        
@@ -80,9 +79,9 @@ class App extends React.Component {
                         <Stake/>
                     </div>
                     <div className="p-2 border bg-white">
-                        <b>Transaction History</b>
-                        <div className="txhistory">
-                            <Transactions/>
+                        <b>Node Console</b>
+                        <div className="console">
+                            <Console/>
                         </div>
                     </div>
                 </div>

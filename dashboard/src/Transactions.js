@@ -26,15 +26,17 @@ class Transactions extends React.Component {
             });
     }
 
-    render() { 
+    render() {         
         return (
-            <pre>
-                <small>
-                    <ul>
-                        {this.state.transactions.map(item => <li key={item}>{item}</li>)}
-                    </ul>
-                </small>
-            </pre>
+            <small>
+                <ul className="txUL">
+                    {this.state.transactions.map(item => 
+                        <li className="noLI" key={item}>
+                            <a href={"http://127.0.0.1:8001/tx/" +item}>{item}</a>
+                        </li>)
+                    }
+                </ul>
+            </small>
         );
     }
 }

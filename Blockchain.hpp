@@ -41,6 +41,7 @@ public:
     std::string toJsonWebView() const;
     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>&);
     std::vector<std::string> txsByAddress(std::string address);
+    std::string getTransaction(std::string txid);
 };
 
 #endif // _BLOCKCHAIN_H_

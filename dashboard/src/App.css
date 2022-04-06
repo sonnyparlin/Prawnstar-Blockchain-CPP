@@ -65,7 +65,7 @@
     float:left;
 }
 
-.consoleBox {
+.txBox {
     margin-right:10px;
     margin-bottom:10px;
 }
@@ -84,12 +84,20 @@
     margin-right:10px;
 }
 
+.txUL {
+    padding:0px;
+}
+
+.noLI {
+    list-style-type: none;
+    margin-left: 0px;
+    padding: 0;
+}
+
 .console {
-    padding-top:3px;
-    max-height: 358px;
-    min-height: 358px;
+    min-height:178px;
+    max-height:178px;
     overflow-y: scroll;
-    overflow-wrap: break-word;
 }
 
 .buysell {
@@ -109,9 +117,11 @@
     width:100%;
 }
 .txhistory {
-    min-height:178px;
-    max-height:178px;
+    padding-top:3px;
+    max-height: 358px;
+    min-height: 358px;
     overflow-y: scroll;
+    overflow-wrap: break-word;
 }
 
 .btn-primary {

@@ -257,7 +257,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
                     #else
                     printf("\naccept() error: %d\n", WSAGetLastError());
                     #endif
-                    exit(0);
+                    continue;
             }
         } else if (PORT == utils::MASTER_NODE_PORT) {
             if ((incomingSocket = accept(serverSocket, 
@@ -268,7 +268,7 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
                     #else
                     printf("\naccept() error: %d\n", WSAGetLastError());
                     #endif
-                    exit(0);
+                    continue;
             }
         }
 
