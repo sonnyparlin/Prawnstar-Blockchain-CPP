@@ -130,7 +130,7 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
         return false;
     
     if (transaction.type != "EXCHANGE") {
-        if (accountModel->getBalance(transaction.senderAddress) > transaction.amount)
+        if (accountModel->getBalance(transaction.senderAddress) >= transaction.amount)
             transactionCovered = true;
     } else
         transactionCovered = true;
@@ -302,12 +302,19 @@ void Node::handleBlockchain(std::string blockchainString) {
                 t.amount = tx["amount"];
                 t.receiverAddress = tx["receiverAddress"];
                 t.senderAddress = tx["senderAddress"];
+                t.senderPublicKey = accountModel->addressToPublicKey[t.senderAddress];
                 t.signature = tx["signature"];
                 t.timestamp = tx["timestamp"];
                 t.type = tx["type"];
                 transactions.push_back(t);
-                accountModel->updateBalance(t.senderAddress, -t.amount);
-                accountModel->updateBalance(t.receiverAddress, t.amount);
+
+                if (t.type == "STAKE") {
+                    accountModel->updateBalance(t.senderAddress, -t.amount);
+                    proofOfStake->update(t.senderPublicKey, t.amount);
+                } else {
+                    accountModel->updateBalance(t.senderAddress, -t.amount);
+                    accountModel->updateBalance(t.receiverAddress, t.amount);
+                }
             }
             b.transactions = transactions;
             localBlockchainCopy.push_back(b);

@@ -287,9 +287,12 @@ int SocketCommunication::startP2PServer ( int argc, char **argv )
         if (PORT != utils::MASTER_NODE_PORT && i > 0) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected, this, incomingSocket);
             peerThread.join();
+
+            
         } else if (PORT == utils::MASTER_NODE_PORT) {
             std::thread peerThread (&SocketCommunication::inbound_node_connected,this, incomingSocket);
             peerThread.join();
+
         }
         i++;
         //std::cout << i << std::endl;
@@ -382,6 +385,18 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
             }
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
+            #ifndef _WIN32
+            int returnVal = close(outgoingSocket);
+            #else
+            int returnVal = closesocket(outgoingSocket);
+            #endif
+            if (returnVal != 0) {
+                #ifndef _WIN32
+                std::cout << "close() error " << errno << std::endl;
+                #else
+                printf("\nclose() error: %d\n", WSAGetLastError());
+                #endif
+            }
         }
     }
 }
@@ -415,6 +430,18 @@ void SocketCommunication::broadcast(const char *message) {
 
         std::thread broadcastThread (&SocketCommunication::send_node_message, this, outgoingSocket, message);
         broadcastThread.join();
+        #ifndef _WIN32
+        int returnVal = close(outgoingSocket);
+        #else
+        int returnVal = closesocket(outgoingSocket);
+        #endif
+        if (returnVal != 0) {
+            #ifndef _WIN32
+            std::cout << "close() error " << errno << std::endl;
+            #else
+            printf("\nclose() error: %d\n", WSAGetLastError());
+            #endif
+        }
     }
 }
 
