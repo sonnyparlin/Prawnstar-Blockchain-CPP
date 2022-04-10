@@ -43,7 +43,7 @@
 \DoxyCodeLine{40     \textcolor{keywordtype}{bool} blockHasTransactions(\mbox{\hyperlink{class_block}{Block}} block);}
 \DoxyCodeLine{41     std::string toJsonWebView() \textcolor{keyword}{const};}
 \DoxyCodeLine{42     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>\&);}
-\DoxyCodeLine{43     std::vector<std::string> txsByAddress(std::string address);}
+\DoxyCodeLine{43     std::vector<nlohmann::json> txsByAddress(std::string address);}
 \DoxyCodeLine{44     std::string getTransaction(std::string txid);}
 \DoxyCodeLine{45 \};}
 \DoxyCodeLine{46 }
