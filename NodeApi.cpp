@@ -33,9 +33,9 @@ void NodeApi::start(std::string po) {
         return crow::response(200, j.dump());
     });
 
-    // CROW_ROUTE(app, "/blockchain")([&](){
-    //     return node->blockchain->toJsonWebView();
-    // });
+    CROW_ROUTE(app, "/blockchain")([&](){
+        return node->blockchain->toJsonWebView();
+    });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
         std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();

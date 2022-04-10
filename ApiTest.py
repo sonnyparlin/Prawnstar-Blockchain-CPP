@@ -48,7 +48,8 @@ with requests.Session() as s:
 
     for x in range(int(sys.argv[1])-1):
         i += 1
-        print(i)            
+        if i % 100 == 0:
+            print(i)            
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.5)
 
@@ -58,6 +59,7 @@ print("--- %s seconds ---\n\n" % (time.time() - start_time))
 print("getting final balances...")
 time.sleep(1)
 post_transaction(s, alice, bob, '1', 'TRANSFER')
+time.sleep(4)
 
 print("Alice's wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")
