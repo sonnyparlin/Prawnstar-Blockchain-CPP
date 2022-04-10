@@ -56,17 +56,5 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
 }
 
 bool TransactionPool::forgerRequired() {
-    for (auto tx : transactions) {
-        if (tx.type == "EXCHANGE" || tx.type == "STAKE")
-            return true;
-        
-        auto now = std::chrono::system_clock::now();
-        time_t current_time = std::chrono::system_clock::to_time_t( now );
-        time_t start_time = tx.timestamp;
-        float difference = current_time - start_time;
-        
-        if ((difference / 60) > 1)
-            return true;
-    }
-    return transactions.size() >= 20;
+   return transactions.size() >= 1;
 }
