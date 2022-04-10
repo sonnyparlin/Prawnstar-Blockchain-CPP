@@ -16,6 +16,8 @@
     transform: translate(50%,50%);
     position: absolute;
     padding-top:10px;
+    padding-left:10px !important;
+    padding-right: 10px !important;
 }
 
 .form-control-plaintext {
@@ -24,8 +26,12 @@
     border: 1px solid #333 !important;
     border-radius: 5px;
     margin-right:5px;
-    font-size:12px;
+    font-size:12px !important;
     padding-left: 5px !important;
+}
+
+body {
+    background-color: #333333 !important;
 }
 
 #address {
@@ -63,25 +69,28 @@
 .col-4 {
     margin-bottom:10px;
     float:left;
+    padding-left:0px !important;
 }
 
 .txBox {
-    margin-right:10px;
     margin-bottom:10px;
+    border-radius:5px;
 }
 
 .info {
     min-height:200px;
     max-height:200px;
     margin-bottom:10px;
-    margin-right:10px;
+    width:100%;
+    border-radius:5px;
 }
 
 .news {
     overflow-y: scroll;
     min-height:420px;
     max-height:420px;
-    margin-right:10px;
+    width:100%;
+    border-radius:5px;
 }
 
 .txUL {
@@ -94,27 +103,36 @@
     padding: 0;
 }
 
+.consoleBox {
+    border-radius:5px;
+}
+
 .console {
     min-height:178px;
     max-height:178px;
     overflow-y: scroll;
+    width:100%;
 }
 
 .buysell {
     min-height: 220px;
-    margin-right:10px;
+    width:100%;
+    border-radius:5px;
 }
 
 .wallet {
     min-height:200px;
     max-height:200px;
     margin-bottom:10px;
+    width:100%;
+    border-radius:5px;
 }
 .stake {
     min-height:190px;
     max-height:190px;
     margin-bottom:10px;
     width:100%;
+    border-radius:5px;
 }
 .txhistory {
     padding-top:3px;
@@ -122,7 +140,10 @@
     min-height: 358px;
     overflow-y: scroll;
     overflow-wrap: break-word;
+    width:100% !important;
 }
+
+.ag-cell {}
 
 .btn-primary {
     height: 30px;

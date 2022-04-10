@@ -1,18 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import $ from 'jquery';
 
-class News extends React.Component {
+export default function News() {
 
-    constructor(props) { 
-        super(props);
-        this.state = { news: [{},{}] };
-    }
+    const [news, setNews] = useState([{},{}]);
 
-    componentDidMount() {
-        this.getNews();
-    }
+    useEffect(() => {
+        getNews();
+    });
 
-    getNews() {
+    const getNews = () => {
 
         $.get("https://cointelegraph.com/feed",function(data) {    
 
@@ -29,40 +26,36 @@ class News extends React.Component {
                 });
             });
 
-            this.setState({ news: items });
+            setNews(items);
 
-        }.bind(this),'xml');
+        });
     }
 
-    render() { 
-        return (
+    return (
         <div className="App-feeds">
             <div className="panel-list">
                 <small>
-                <a target="_new" href={this.state.news[0] ? this.state.news[0].link : null}>{this.state.news[0] ? this.state.news[0].title : null}</a><br/><small>{this.state.news[0] ? this.state.news[0].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[0] ? news[0].link : null}>{news[0] ? news[0].title : null}</a><br/><small>{news[0] ? news[0].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[1] ? this.state.news[1].link : null}>{this.state.news[1] ? this.state.news[1].title : null}</a><br/><small>{this.state.news[1] ? this.state.news[1].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[1] ? news[1].link : null}>{news[1] ? news[1].title : null}</a><br/><small>{news[1] ? news[1].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[2] ? this.state.news[2].link : null}>{this.state.news[2] ? this.state.news[2].title : null}</a><br/><small>{this.state.news[2] ? this.state.news[2].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[2] ? news[2].link : null}>{news[2] ? news[2].title : null}</a><br/><small>{news[2] ? news[2].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[3] ? this.state.news[3].link : null}>{this.state.news[3] ? this.state.news[3].title : null}</a><br/><small>{this.state.news[3] ? this.state.news[3].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[3] ? news[3].link : null}>{news[3] ? news[3].title : null}</a><br/><small>{news[3] ? news[3].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[4] ? this.state.news[4].link : null}>{this.state.news[4] ? this.state.news[4].title : null}</a><br/><small>{this.state.news[4] ? this.state.news[4].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[4] ? news[4].link : null}>{news[4] ? news[4].title : null}</a><br/><small>{news[4] ? news[4].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[5] ? this.state.news[5].link : null}>{this.state.news[5] ? this.state.news[5].title : null}</a><br/><small>{this.state.news[5] ? this.state.news[5].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[5] ? news[5].link : null}>{news[5] ? news[5].title : null}</a><br/><small>{news[5] ? news[5].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[6] ? this.state.news[6].link : null}>{this.state.news[6] ? this.state.news[6].title : null}</a><br/><small>{this.state.news[6] ? this.state.news[6].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[6] ? news[6].link : null}>{news[6] ? news[6].title : null}</a><br/><small>{news[6] ? news[6].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[7] ? this.state.news[7].link : null}>{this.state.news[7] ? this.state.news[7].title : null}</a><br/><small>{this.state.news[7] ? this.state.news[7].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[7] ? news[7].link : null}>{news[7] ? news[7].title : null}</a><br/><small>{news[7] ? news[7].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[8] ? this.state.news[8].link : null}>{this.state.news[8] ? this.state.news[8].title : null}</a><br/><small>{this.state.news[8] ? this.state.news[8].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[8] ? news[8].link : null}>{news[8] ? news[8].title : null}</a><br/><small>{news[8] ? news[8].pubDate : null}</small><br/><br/>
 
-                <a target="_new" href={this.state.news[9] ? this.state.news[9].link : null}>{this.state.news[9] ? this.state.news[9].title : null}</a><br/><small>{this.state.news[9] ? this.state.news[9].pubDate : null}</small><br/><br/>
+                <a target="_new" href={news[9] ? news[9].link : null}>{news[9] ? news[9].title : null}</a><br/><small>{news[9] ? news[9].pubDate : null}</small><br/><br/>
                 </small>
             </div>
         </div>
-        );
-    }
+    );
 }
-
-export default News;

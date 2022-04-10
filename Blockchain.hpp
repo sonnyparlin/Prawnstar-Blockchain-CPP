@@ -40,7 +40,7 @@ public:
     bool blockHasTransactions(Block block);
     std::string toJsonWebView() const;
     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>&);
-    std::vector<std::string> txsByAddress(std::string address);
+    std::vector<nlohmann::json> txsByAddress(std::string address);
     std::string getTransaction(std::string txid);
 };
 

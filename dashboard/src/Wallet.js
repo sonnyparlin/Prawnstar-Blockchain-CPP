@@ -1,24 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-class Wallet extends React.Component {
+export default function Wallet({setWallet}) {
 
-    constructor(props) { 
-        super(props);
-        this.state = { amount: "", address: "" };
-    }
+    const [amount, setAmount] = useState("");
+    const [address, setAddress] = useState("");
 
-    componentDidMount() {
-        this.getWalletAmount();
-    }
+    useEffect(() => {
+        // console.log("useEffect call");
+        getWalletAmount();
+        setWallet(amount, address);
+    })
 
-    getWalletAmount() {
+    const getWalletAmount = () => {
 
         fetch("http://127.0.0.1:8001/nodewallet")
             .then(response => response.json())
             .then((jsonData) => {
                 // jsonData is parsed json object received from url
-                this.setState({ amount: jsonData.amount });
-                this.setState({ address: jsonData.address });
+                setAmount(jsonData.amount);
+                setAddress(jsonData.address);
             })
             .catch((error) => {
                 // handle your errors here
@@ -26,16 +26,12 @@ class Wallet extends React.Component {
             });
     }
 
-    render() { 
-        return (
-           
-            <pre>
-                <small>Balance: {this.state.amount} Prawn</small><br/>
-                <small>Address: {this.state.address}</small>
-            </pre>
-      
-        );
-    }
+    return (
+        
+        <pre>
+            <small>Balance: {amount} Prawn</small><br/>
+            <small>Address: {address}</small>
+        </pre>
+    
+    );
 }
-
-export default Wallet;

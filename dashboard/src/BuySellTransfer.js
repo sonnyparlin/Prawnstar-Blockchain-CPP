@@ -15,9 +15,11 @@ const BuySellTransfer = (props) => {
     const [hiddenStake, setHiddenStake] = useState(false);
     const [hiddenCancelStake, setHiddenCancelStake] = useState(false);
 
+    const address = props.address;
+
     const handleBuyClick = async () => {
 
-        const receiver = props.nodeaddress;
+        const receiver = address;
         const amount = document.getElementById('tramount').value;
 
         console.log("address is " + props.nodeaddress);
@@ -157,7 +159,7 @@ const BuySellTransfer = (props) => {
 
             <div className="transferForm" hidden={!hiddenTransfer}>
                 <div className="fleft">
-                <input type="text" className="form-control-plaintext fleft" id="toaddress" placeholder="toaddress" />
+                <input type="text" className="form-control-plaintext fleft" id="toaddress" placeholder="address" />
                 <input type="text" className="form-control-plaintext" id="trsamount" placeholder="amount" />
                 </div>
             <button type="submit" className="btn btn-primary mb-2" onClick={() => 
@@ -291,6 +293,6 @@ const BuySellTransfer = (props) => {
     </div>
     );
   
-  }
+}
   
-  export default BuySellTransfer;
+export default BuySellTransfer;

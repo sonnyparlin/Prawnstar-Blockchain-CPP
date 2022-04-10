@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 
 class App extends React.Component {
@@ -19,7 +18,7 @@ class App extends React.Component {
             .then((jsonData) => {
                 // jsonData is parsed json object received from url
                 this.setState({ console: jsonData.console });
-                console.log(this.state.console);
+                // console.log(this.state.console);
             })
             .catch((error) => {
                 // handle your errors here

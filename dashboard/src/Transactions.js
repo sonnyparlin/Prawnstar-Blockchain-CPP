@@ -1,44 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {AgGridReact} from 'ag-grid-react';
+import { withRouter } from 'react-router-dom';
 
-class Transactions extends React.Component {
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-    constructor(props) { 
-        super(props);
-        this.state = { transactions: [] };
-    }
 
-    componentDidMount() {
-        this.getWalletAmount();
-    }
+function Transactions(props)  {
 
-    getWalletAmount() {
+    // set to default data
+    const [rowData, setRowData] = useState();
 
-        fetch("http://127.0.0.1:8001/nodetransactions")
-            .then(response => response.json())
-            .then((jsonData) => {
-                // jsonData is parsed json object received from url
-                this.state.transactions.push( jsonData );
-                this.setState({transactions: this.state.transactions[0]})
+    const columnDefs = [
+        { field: 'id' },
+    ];
+
+    React.useEffect(() => {
+        // fetch('https://api2.binance.com/api/v3/ticker/24hr')
+        fetch('http://127.0.0.1:8001/nodetransactions')
+            .then(result => result.json())
+            .then(rowData => { 
+                //console.log(rowData);
+                let newData = JSON.stringify(rowData);
+                setRowData(JSON.parse(newData));
             })
-            .catch((error) => {
-                // handle your errors here
-                console.error(error);
-            });
-    }
+    }, []);
 
-    render() {         
-        return (
-            <small>
-                <ul className="txUL">
-                    {this.state.transactions.map(item => 
-                        <li className="noLI" key={item}>
-                            <a href={"http://127.0.0.1:8001/tx/" +item}>{item}</a>
-                        </li>)
-                    }
-                </ul>
-            </small>
-        );
-    }
-}
+   return (
+       <div className="ag-theme-alpine" style={{height: 355}}>   
+           <AgGridReact
+                defaultColDef={{sortable: true, filter: true }}
+                pagination={true}
+                rowData={rowData}
+                columnDefs={columnDefs}
+                onCellClicked={(params) => console.log(params.data)}>
+           </AgGridReact>
+       </div>
+       
+   )
 
-export default Transactions;
+};
+
+export default withRouter(Transactions);

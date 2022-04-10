@@ -66,7 +66,7 @@ void NodeApi::start(std::string po) {
     });
 
     CROW_ROUTE(app, "/nodetransactions")([&](){
-        std::vector<std::string> txids = node->blockchain->txsByAddress(node->nodeWallet->address);
+        std::vector<nlohmann::json> txids = node->blockchain->txsByAddress(node->nodeWallet->address);
         std::reverse(txids.begin(), txids.end());
         
         nlohmann::json j;

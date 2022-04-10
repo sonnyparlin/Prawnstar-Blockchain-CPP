@@ -179,20 +179,17 @@ std::string Blockchain::getTransaction(std::string txid) {
     return "";
 }
 
-std::vector<std::string> Blockchain::txsByAddress(std::string address) {
+std::vector<nlohmann::json> Blockchain::txsByAddress(std::string address) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    std::vector<std::string> txids;
+    std::vector<nlohmann::json> txids;
     std::vector<Block> localChain = blocks;
     
     for(auto block : localChain) {
         for(auto tx : block.transactions) {
             if (tx.senderAddress == address || tx.receiverAddress == address) {
-                txids.push_back(tx.id);
-
-                if (txids.size() > 99) {
-                    // std::reverse(txids.begin(), txids.end());
-                    break;
-                }
+                nlohmann::json j;
+                j["id"] = tx.id;
+                txids.push_back(j);
             }
         }
     }

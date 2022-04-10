@@ -1,23 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-class Stake extends React.Component {
+export default function Stake() {
 
-    constructor(props) { 
-        super(props);
-        this.state = { stake: "" };
-    }
+    const [stake, setStake] = useState("");
 
-    componentDidMount() {
-        this.getWalletAmount();
-    }
+    useEffect(() => {
+        getWalletAmount();
+    });
 
-    getWalletAmount() {
+    const getWalletAmount = () => {
 
         fetch("http://127.0.0.1:8001/nodewallet")
             .then(response => response.json())
             .then((jsonData) => {
                 // jsonData is parsed json object received from url
-                this.setState({ stake: jsonData.nodestake });
+                setStake(jsonData.nodestake);
             })
             .catch((error) => {
                 // handle your errors here
@@ -25,14 +22,10 @@ class Stake extends React.Component {
             });
     }
 
-    render() { 
-        return (
-            <pre>
-                <small>Stake: {this.state.stake} Staked Prawn</small>
-                <br/>
-            </pre>
-        );
-    }
+    return (
+        <pre>
+            <small>Stake: {stake} Staked Prawn</small>
+            <br/>
+        </pre>
+    );
 }
-
-export default Stake;
