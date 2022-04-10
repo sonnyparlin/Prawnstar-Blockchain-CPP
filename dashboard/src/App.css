@@ -152,6 +152,8 @@ body {
 
 .ag-cell {
     width:342px !important;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .btn-primary {
