@@ -156,6 +156,22 @@ body {
     cursor: pointer;
 }
 
+.ag-paging-panel {
+    font-size:11px;
+}
+
+.ag-header-viewport {
+    background-color: #007bff;
+}
+
+.ag-header-cell-text {
+    color: #fff;
+}
+
+.ag-header-icon {
+    color:#fff !important;
+}
+
 .btn-primary {
     height: 30px;
     padding-top:0px;
