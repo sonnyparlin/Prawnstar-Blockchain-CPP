@@ -7,7 +7,7 @@ export default function News() {
 
     useEffect(() => {
         getNews();
-    });
+    }, []);
 
     const getNews = () => {
 

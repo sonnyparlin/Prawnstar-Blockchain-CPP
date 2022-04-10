@@ -9,7 +9,7 @@ export default function NodeInfo() {
 
     useEffect(() => {
         getNodeID();
-    })
+    }, []);
 
     const getNodeID = () => {
 

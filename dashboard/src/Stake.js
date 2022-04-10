@@ -6,7 +6,7 @@ export default function Stake() {
 
     useEffect(() => {
         getWalletAmount();
-    });
+    }, []);
 
     const getWalletAmount = () => {
 

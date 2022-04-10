@@ -5,11 +5,11 @@ export default function Wallet({setWallet}) {
     const [amount, setAmount] = useState("");
     const [address, setAddress] = useState("");
 
-    useEffect(() => {
+    useEffect((amount, address) => {
         // console.log("useEffect call");
         getWalletAmount();
         setWallet(amount, address);
-    })
+    });
 
     const getWalletAmount = () => {
 
