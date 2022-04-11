@@ -150,6 +150,10 @@ body {
     width:100% !important;
 }
 
+#responseClass {
+    font-size:14px;
+}
+
 .ag-cell {
     width:342px !important;
     font-size: 12px;

@@ -23,7 +23,7 @@ const BuySellTransfer = (props) => {
         const receiver = address;
         const amount = document.getElementById('tramount').value;
 
-        console.log("address is " + props.nodeaddress);
+        console.log("address is " + address);
         console.log(amount);
         var jsonData = {
             "transaction":
@@ -50,7 +50,7 @@ const BuySellTransfer = (props) => {
         const receiver = address;
         const samount = document.getElementById('samount').value;
 
-        console.log("address is " + props.nodeaddress);
+        console.log("address is " + address);
         console.log(samount);
         var jsonData = {
             "transaction":
@@ -78,7 +78,7 @@ const BuySellTransfer = (props) => {
         const trsamount = document.getElementById('trsamount').value;
         const sender = document.getElementById('toaddress').value;
 
-        console.log("address is " + props.nodeaddress);
+        console.log("address is " + address);
         console.log(trsamount);
         var jsonData = {
             "transaction":
@@ -105,7 +105,7 @@ const BuySellTransfer = (props) => {
         const receiver = address;
         const amount = document.getElementById('stamount').value;
 
-        console.log("address is " + props.nodeaddress);
+        console.log("address is " + address);
         console.log(amount);
         var jsonData = {
             "transaction":
