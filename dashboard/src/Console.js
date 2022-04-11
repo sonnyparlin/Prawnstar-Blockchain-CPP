@@ -20,12 +20,19 @@ export default function App() {
                 });
         }
 
-        
+        const updateScroll = () => {
+            var x = document.getElementById("cbox");
+            x.scrollTop = x.scrollHeight;
+        }
+
         getNodeID();
+        updateScroll();
+        setInterval(updateScroll,5000);
+        
     });
 
     return (
-        <div className="console">
+        <div id="cbox" className="console">
             <pre>
                 <small>{console}</small>
             </pre>

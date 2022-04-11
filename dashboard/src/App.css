@@ -112,6 +112,14 @@ body {
     border-radius:5px;
 }
 
+.ag-body-horizontal-scroll-viewport {
+    display:none;
+}
+
+.ag-theme-alpine .ag-row {
+    border-width:0px;
+}
+
 .console {
     min-height:178px;
     max-height:178px;
@@ -158,6 +166,14 @@ body {
     width:342px !important;
     font-size: 12px;
     cursor: pointer;
+}
+
+.ag-cell:hover {
+    background-color:#ffffff;
+}
+
+.ag-row:hover {
+    background-color:#ffffff;
 }
 
 .ag-paging-panel {
