@@ -8,13 +8,13 @@ import BuySellTransfer from './BuySellTransfer';
 import Console from './Console';
 import Stake from './Stake';
 
-export default function Prawnstar(props) {
-    // const [amount, setAmount] = useState("");
+export default function Prawnstar() {
+    //const [amount, setAmount] = useState("");
     const [address, setAddress] = useState("");
     const setWallet = (amount, address) => {
         setAddress(address);
+        // console.log("pr component address " + address);
     }
-
     // const {path} = props;
     //console.log(props);
     return (

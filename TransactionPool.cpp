@@ -56,5 +56,9 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
 }
 
 bool TransactionPool::forgerRequired() {
-   return transactions.size() >= 1;
+    for (auto tx : transactions) {
+        if (tx.type == "EXCHANGE" || tx.type == "STAKE")
+            return true;
+    }
+    return transactions.size() >= 20;
 }

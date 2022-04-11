@@ -219,6 +219,9 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
 
     std::thread discoveryThread (&SocketCommunication::peerDiscovery, this);
     discoveryThread.detach();
+
+    std::thread forgerThread (&SocketCommunication::blockForger, this);
+    forgerThread.detach();
 }
 
 int SocketCommunication::startP2PServer ( int argc, char **argv )
@@ -317,6 +320,19 @@ void SocketCommunication::peerDiscoveryStatus() {
             std::cout << "No peers connected" << std::endl;
             
         sleep(10);
+    }
+}
+
+void SocketCommunication::blockForger() {
+    for(;;) {
+        std::cout << "Forger Polling... " << std::endl;
+
+        sleep(utils::BLOCKTIMER);
+        if (node->transactionPool.transactions.size() > 0) {
+            std::cout << node->transactionPool.transactions.size() << " transactions" << std::endl;
+            std::cout << "Forging new block..." << std::endl;
+            node->forge();
+        }
     }
 }
 

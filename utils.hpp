@@ -25,6 +25,7 @@ namespace utils {
     static std::string master_ip = ip_port_vec.at(0);
     static const char *MASTER_NODE_IP = master_ip.c_str();
     const static int MASTER_NODE_PORT=stoi(ip_port_vec.at(1));
+    const static int BLOCKTIMER = 300;
     std::string hash(std::string);
     bool verifySignature(std::string dataStr, std::string, std::string publicKey);
     char asciitolower(char in);

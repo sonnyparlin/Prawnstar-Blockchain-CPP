@@ -6,10 +6,10 @@ export default function Wallet({setWallet}) {
     const [address, setAddress] = useState("");
 
     useEffect((amount, address) => {
-        // console.log("useEffect call");
         getWalletAmount();
-        setWallet(amount, address);
     });
+
+    // console.log("address from Wallet component is " + address);
 
     const getWalletAmount = () => {
 
@@ -17,8 +17,10 @@ export default function Wallet({setWallet}) {
             .then(response => response.json())
             .then((jsonData) => {
                 // jsonData is parsed json object received from url
+                // console.log(jsonData.address);
                 setAmount(jsonData.amount);
                 setAddress(jsonData.address);
+                setWallet(amount, address);
             })
             .catch((error) => {
                 // handle your errors here

@@ -16,7 +16,8 @@ const BuySellTransfer = (props) => {
     const [hiddenCancelStake, setHiddenCancelStake] = useState(false);
 
     const address = props.address;
-
+    // console.log("BuySellTransfer address: " + address);
+    
     const handleBuyClick = async () => {
 
         const receiver = address;
@@ -29,7 +30,7 @@ const BuySellTransfer = (props) => {
             {
                 "sender": "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac",
                 "receiver": receiver,
-                "amount": parseInt(amount),
+                "amount": parseFloat(amount),
                 "type": "EXCHANGE"
             }
         }
@@ -46,7 +47,7 @@ const BuySellTransfer = (props) => {
 
     const handleSellClick = async () => {
 
-        const receiver = props.nodeaddress;
+        const receiver = address;
         const samount = document.getElementById('samount').value;
 
         console.log("address is " + props.nodeaddress);
@@ -56,7 +57,7 @@ const BuySellTransfer = (props) => {
             {
                 "sender": receiver,
                 "receiver": "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac",
-                "amount": parseInt(samount),
+                "amount": parseFloat(samount),
                 "type": "TRANSFER"
             }
         }
@@ -73,7 +74,7 @@ const BuySellTransfer = (props) => {
 
     const handleTransferClick = async () => {
 
-        const receiver = props.nodeaddress;
+        const receiver = address;
         const trsamount = document.getElementById('trsamount').value;
         const sender = document.getElementById('toaddress').value;
 
@@ -84,7 +85,7 @@ const BuySellTransfer = (props) => {
             {
                 "sender": receiver,
                 "receiver": sender,
-                "amount": parseInt(trsamount),
+                "amount": parseFloat(trsamount),
                 "type": "TRANSFER"
             }
         }
@@ -101,7 +102,7 @@ const BuySellTransfer = (props) => {
 
     const handleStakeClick = async () => {
 
-        const receiver = props.nodeaddress;
+        const receiver = address;
         const amount = document.getElementById('stamount').value;
 
         console.log("address is " + props.nodeaddress);
@@ -111,7 +112,7 @@ const BuySellTransfer = (props) => {
             {
                 "sender": receiver,
                 "receiver": receiver,
-                "amount": parseInt(amount),
+                "amount": parseFloat(amount),
                 "type": "STAKE"
             }
         }

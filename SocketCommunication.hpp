@@ -39,6 +39,7 @@ public:
     void peerDiscovery(); // Discovery
     std::string handshakeMessage();
     void peerDiscoveryHandleMessage(const char *message);
+    void blockForger();
 };
 
 #endif // _SOCKETCOMMUNICATION_H_
