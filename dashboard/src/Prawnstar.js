@@ -56,9 +56,9 @@ export default function Prawnstar() {
                     </div>
                     <div className="p-2 border bg-white consoleBox">
                         <b>Node Console</b>
-                        <div className="console">
+                        
                         <Console />
-                        </div>
+                        
                     </div>
                 </div>
 

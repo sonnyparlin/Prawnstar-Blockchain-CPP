@@ -145,7 +145,7 @@ body {
     padding-top:3px;
     max-height: 358px;
     min-height: 358px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-wrap: break-word;
     width:100% !important;
 }
