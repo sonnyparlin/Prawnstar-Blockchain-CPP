@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Blockchain.hpp"
-#include "Block.hpp"
 #include "utils.hpp"
 
 Blockchain::Blockchain(Node *node) {

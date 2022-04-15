@@ -27,6 +27,8 @@ if(UNIX)
     set (OPENSSL_ROOT_DIR /usr/local/opt/openssl@3)
     find_package(OpenSSL REQUIRED)
     find_package(Boost REQUIRED)
+
+    add_subdirectory(PrawnstarTests)
     add_executable(Prawnstar main.cpp)
 
     SET(CMAKE_CXX_FLAGS "-Wall -std=c++14")
@@ -44,6 +46,9 @@ if (MINGW)
     "C:\\OpenSSL-Win64\\include")
 
     find_package(Boost REQUIRED)
+
+    add_subdirectory(PrawnstarTests)
+
     add_executable(Prawnstar main.cpp)
 
     SET(CMAKE_CXX_FLAGS "-Wall")
