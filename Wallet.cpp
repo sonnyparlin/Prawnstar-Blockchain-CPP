@@ -44,13 +44,17 @@ void Wallet::fromKey(const char *file) {
     BIO *bpu = BIO_new(BIO_s_mem());
     char publicKeyString[PUBUFFSIZE];
     
-    if (!PEM_write_bio_PUBKEY(bpu, pkey))
-        std::cerr << "error generating public key" << std::endl;
+    if (!PEM_write_bio_PUBKEY(bpu, pkey)) {
+        std::cerr << "error generating public key: " << errno << std::endl;
+        return;
+    }
 
     n=BIO_read(bpu, (void *)publicKeyString, sizeof(publicKeyString));
-    if (n < 0)
-        std::cerr << "Error generating keypair." << std::endl;
-    
+    if (n < 0) {
+        std::cerr << "Error generating keypair: " << errno << std::endl;
+        return;
+    }
+
     walletPublicKey = publicKeyString;
     
     BIO_free(bpu);
@@ -92,7 +96,7 @@ void Wallet::genKeyPair() {
     char publicKeyString[PUBUFFSIZE];
     
     if (!PEM_write_bio_PUBKEY(bpu, pkey))
-        std::cerr << "error generating public key" << std::endl;
+        std::cerr << "!error generating public key" << std::endl;
 
     n=BIO_read(bpu, (void *)publicKeyString, sizeof(publicKeyString));
     if (n < 0)

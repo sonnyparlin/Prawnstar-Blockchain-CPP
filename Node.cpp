@@ -13,7 +13,7 @@ Node::Node(int argc, char **argv) {
     blockchain = new Blockchain(this);
 
     int port = utils::getPort(argv[2]);
-    std::cout << "port is: " << port << std::endl;
+    // std::cout << "port is: " << port << std::endl;
 
     if (port == 10001)
         nodeWallet = new Wallet(this, true, "genesisNode.pem");
@@ -27,11 +27,11 @@ Node::Node(int argc, char **argv) {
     aliceWallet = new Wallet(this, true, "alice.pem");
     bobWallet = new Wallet(this, true, "bob.pem"); 
 
-    std::cout << "node wallet: " << nodeWallet->address << std::endl;
-    std::cout << "node2 wallet: " << node2Wallet->address << std::endl;
-    std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
-    std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
-    std::cout << "bobAddress: " << bobWallet->address << std::endl;
+//    std::cout << "node wallet: " << nodeWallet->address << std::endl;
+//    std::cout << "node2 wallet: " << node2Wallet->address << std::endl;
+//    std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
+//    std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
+//    std::cout << "bobAddress: " << bobWallet->address << std::endl;
 
     proofOfStake = new ProofOfStake(this, port);
 }
@@ -146,8 +146,6 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
         bool forgingRequired = transactionPool.forgerRequired();
         if (forgingRequired) {
             forge();
-            // Restrict new block creation to 1 block every 100 milliseconds
-            // std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
 
         return true;

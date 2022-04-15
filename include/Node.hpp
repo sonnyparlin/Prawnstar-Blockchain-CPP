@@ -22,7 +22,6 @@ class AccountModel;
 
 class Node {
 private:
-    Node(int argc, char **argv); // Constructor
     static Node *node;
 
 public:
@@ -41,7 +40,8 @@ public:
 
     int argc;
     char **argv;
-    
+
+    Node(int argc, char **argv); // Constructor
     ~Node();                      // Destructor
 
     static Node *createNode(int argc, char **argv);
