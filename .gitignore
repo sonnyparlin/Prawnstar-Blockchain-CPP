@@ -1,4 +1,6 @@
 Prawnstar
+.idea/
+cmake-build-debug/
 dashboard/node_modules/*
 .DS_Store
 lib/
