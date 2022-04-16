@@ -230,6 +230,7 @@ int main() {
     Signature signature = wallet.sign(hash);
 
     std::cout << "Attempting to decode and verify signature: " << std::endl;
+    signature.hexsig = "fart"; // evil stuff
     int ret = wallet.verify(hash, signature, wallet.publicKey);
 
     if (ret == 1)

@@ -29,24 +29,33 @@ namespace utils {
         return res;
     }
 
-    bool verifySignature(std::string message, std::string signature, std::string publicKeyString) {
+    int verifySignature(std::string message, std::string signature, std::string publicKeyString) {
         /* the easy way to translate your hex string back into your buffer */
         // long len;
         // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
 
-        // std::cout << "Verifying signature public key: " << publicKeyString << std::endl;
+        std::vector<std::string> sigParts = split(signature, ":");
+        std::string str1 = ":";
+
+        size_t found = signature.find(str1);
+        if (found == std::string::npos)
+            return 0;
+
+        // std::cout << sigParts.at(0) << " : " << sigParts.at(1) << std::endl;
 
         /* the not so easy way */
         unsigned char buf[256];
-        const char *st = signature.c_str();
+        const char *st = sigParts.at(0).c_str();
         size_t buflen;
-        OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
+        int rv = OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
+        if (rv == 0)
+            return 0;
 
-        /* generate the pubic key using the public key string */
+        /* generate the public key using the public key string */
         const char *mKey = publicKeyString.c_str();
         BIO* bo = BIO_new( BIO_s_mem() );
         BIO_write( bo, mKey,strlen(mKey));
-        EVP_PKEY* pkey = nullptr;
+        EVP_PKEY* pkey = 0;
         PEM_read_bio_PUBKEY( bo, &pkey, 0, 0 );
         /* free memory */
         BIO_free(bo);
@@ -54,25 +63,22 @@ namespace utils {
         /* create the key context */
         EVP_PKEY_CTX *ctx;
         ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
-        if (!ctx) {
+        if (!ctx)
             std::cerr << "ctx error" << std::endl;
-            return false;
-        }
+
         /* initialize the context */
-        if (EVP_PKEY_verify_init(ctx) <= 0) {
+        if (EVP_PKEY_verify_init(ctx) <= 0)
             std::cerr << "ctx verify error" << std::endl;
-            return false;
-        }
+
         /* set the message digest type to sha256 */
-        if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0) {
+        if (EVP_PKEY_CTX_set_signature_md(ctx, EVP_sha256()) <= 0)
             std::cerr << "verify signature error" << std::endl;
-            return false;
-        }
 
         /* Perform operation */
-        unsigned char *md = (unsigned char *)message.c_str();
+        auto *md = (unsigned char *)message.c_str();
         size_t mdlen = 32;
-        size_t siglen = signature.length();
+        size_t siglen = (size_t)stoi(sigParts.at(1));
+        // std::cout << "v sig size: " << siglen << std::endl;
         int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
 
         /* free memory and return the result */

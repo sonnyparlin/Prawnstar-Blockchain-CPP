@@ -123,7 +123,7 @@ std::string Wallet::generateAddress(const std::string str) {
 }
 
 utils::Signature Wallet::sign(std::string str)
-{	
+{
     /* str should be a sha256 hash */
     unsigned char *md = (unsigned char *)str.c_str();
    
@@ -140,6 +140,7 @@ utils::Signature Wallet::sign(std::string str)
     ctx = EVP_PKEY_CTX_new(pkey, NULL /* no engine */);
     if (!ctx)
         std::cerr << "error creating ctx" << std::endl;
+
 
     if (EVP_PKEY_sign_init(ctx) <= 0)
         std::cerr << "error initializing sig ctx" << std::endl;
@@ -198,8 +199,9 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
 
     try {
         utils::Signature signature = sign(transaction.payload());
+        // std::cout << "sig size: " << signature._size << std::endl;
         transaction.senderPublicKey = walletPublicKey;
-        transaction.sign(signature.hexsig);
+        transaction.sign(signature.hexsig + ":" + std::to_string(signature._size));
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;
     }

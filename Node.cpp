@@ -120,12 +120,17 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     std::string data = transaction.payload();
     std::string signature = transaction.signature;
     std::string signerPublicKey = transaction.senderPublicKey;
-
-    bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
-    bool transactionExists = transactionPool.transactionExists(transaction);
-    bool transactionInBlockChain = blockchain->transactionExists(transaction);
     bool transactionCovered = false;
 
+    bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
+    if (!signatureValid)
+        return false;
+
+    bool transactionExists = transactionPool.transactionExists(transaction);
+    if (transactionExists)
+        return false;
+
+    bool transactionInBlockChain = blockchain->transactionExists(transaction);
     if (transactionInBlockChain)
         return false;
     
@@ -135,28 +140,24 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     } else
         transactionCovered = true;
 
-    if (!transactionExists && !transactionInBlockChain && signatureValid && transactionCovered) {
-        transactionPool.addTransaction(transaction);
-        if (broadcast) {
-            // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
-            Message message("TRANSACTION", transaction.toJson());
-            std::string msgJson = message.toJson();
-            p2p->broadcast(msgJson.c_str());
-        }
-        bool forgingRequired = transactionPool.forgerRequired();
-        if (forgingRequired) {
-            forge();
-        }
+    if (!transactionCovered)
+        return false;
 
-        return true;
+    transactionPool.addTransaction(transaction);
+
+    if (broadcast) {
+        // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
+        Message message("TRANSACTION", transaction.toJson());
+        std::string msgJson = message.toJson();
+        p2p->broadcast(msgJson.c_str());
     }
-    std::cout << "Transaction failed:" << std::endl;
-    std::cout << "signatureValid: " << boolalpha << signatureValid << std::endl;
-    std::cout << "transactionExists: " << boolalpha << transactionExists << std::endl;
-    std::cout << "transactionCovered: " << boolalpha << transactionCovered << std::endl;
-    std::cout << transaction.toJson() << std::endl;
 
-    return false;
+    bool forgingRequired = transactionPool.forgerRequired();
+
+    if (forgingRequired) {
+        forge();
+    }
+    return true;
 }
 
 /*

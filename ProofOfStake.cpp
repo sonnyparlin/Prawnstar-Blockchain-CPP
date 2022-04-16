@@ -46,7 +46,7 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
 
     for ( const auto &validator : stakers ) {
         std::string validatorString = validator.first;
-            
+
         if (getStake(validatorString) >= 100000)
             stake = 10;
         else if (getStake(validatorString) >= 50000)
@@ -61,9 +61,9 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
             stake = 6;
         else if (getStake(validatorString) >= 500)
             stake = 5;
-        else if (getStake(validatorString) >= 250)
-            stake = 4;
         else if (getStake(validatorString) >= 100)
+            stake = 4;
+        else if (getStake(validatorString) >= 50)
             stake = 3;
         else if (getStake(validatorString) >= 10)
             stake = 2;
