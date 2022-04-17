@@ -48,12 +48,12 @@ public:
     void startServers(int argc, char **argv);
     bool handleTransaction (Transaction, bool broadcast=true);
     void handleBlock (Block block, bool broadcast);
-    void requestChain();
+    void requestChain() const;
     void forge();
-    void handleBlockchainRequest(std::string);
-    void handleBlockchain(std::string blockchainString);
-    std::string getNodeID();
-    std::string getConsoleLog();
+    void handleBlockchainRequest(std::string) const;
+    void handleBlockchain(std::string blockchainString) const;
+    std::string getNodeID() const;
+    static std::string getConsoleLog();
     void log(std::string const& msg);
 };
 

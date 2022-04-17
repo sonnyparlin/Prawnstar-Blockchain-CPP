@@ -1,7 +1,6 @@
 #include "Node.hpp"
 #include "NodeApi.hpp"
 #include <crow.h>
-#include <chrono>
 #include <thread>
 #include <ctime>
 
@@ -16,16 +15,16 @@ Node::Node(int argc, char **argv) {
     // std::cout << "port is: " << port << std::endl;
 
     if (port == 10001)
-        nodeWallet = new Wallet(this, true, "genesisNode.pem");
+        nodeWallet = new Wallet(this, "genesisNode.pem");
     else if (port == 10002)
-        nodeWallet = new Wallet(this, true, "node2Wallet.pem");
+        nodeWallet = new Wallet(this, "node2Wallet.pem");
     else
         nodeWallet = new Wallet(this);
     
-    node2Wallet = new Wallet(this, true, "node2Wallet.pem");
-    exchangeWallet = new Wallet(this, true, "exchange.pem");
-    aliceWallet = new Wallet(this, true, "alice.pem");
-    bobWallet = new Wallet(this, true, "bob.pem"); 
+    node2Wallet = new Wallet(this, "node2Wallet.pem");
+    exchangeWallet = new Wallet(this, "exchange.pem");
+    aliceWallet = new Wallet(this, "alice.pem");
+    bobWallet = new Wallet(this, "bob.pem");
 
 //    std::cout << "node wallet: " << nodeWallet->address << std::endl;
 //    std::cout << "node2 wallet: " << node2Wallet->address << std::endl;
@@ -69,7 +68,7 @@ void Node::startServers(int argc, char **argv) {
     }
 }
 
-std::string Node::getNodeID() {
+std::string Node::getNodeID() const {
     return p2p->id;
 }
 
@@ -90,12 +89,12 @@ std::string getLastLines( std::string const& filename, int lineCount )
         source.read( buffer.data(), buffer.size() );
         newlineCount = std::count( buffer.begin(), buffer.end(), '\n');
     }
-    std::vector<char>::iterator start = buffer.begin();
+    auto start = buffer.begin();
     while ( newlineCount > lineCount ) {
         start = std::find( start, buffer.end(), '\n' ) + 1;
         -- newlineCount;
     }
-    std::vector<char>::iterator end = remove( start, buffer.end(), '\r' );
+    auto end = remove( start, buffer.end(), '\r' );
     return std::string( start, end );
 }
 
@@ -161,7 +160,7 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 }
 
 /*
-Do checks to make sure the block is valid before adding it to the chain.
+Do check to make sure the block is valid before adding it to the chain.
 Broadcast if necessary.
 */
 void Node::handleBlock (Block block, bool broadcast) {
@@ -169,7 +168,7 @@ void Node::handleBlock (Block block, bool broadcast) {
     std::string blockHash = block.hash;
     bool blockCountValid = blockchain->blockCountValid(block);
 
-    // Requesting node is not up to date, so let's give them the blocks they're missing.
+    // Requesting node is not up-to-date, so let's give them the blocks they're missing.
     if (!blockCountValid) {
         requestChain();
         return;     
@@ -208,23 +207,18 @@ void Node::handleBlock (Block block, bool broadcast) {
 Request complete or partial blockchain from the master node. Uses the local block count to determine
 how many blocks are needed from the master server.
 */
-void Node::requestChain() {
+void Node::requestChain() const {
     // std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
-
-    // int outgoingSocket = p2putils::setOutgoingNodeConnection(utils::MASTER_NODE_IP, utils::MASTER_NODE_PORT);
-    // if (outgoingSocket == -1) {
-    //     return;
-    // }
     p2p->broadcast(msgJson.c_str());
 }
 
 /*!
 Only send the blocks which are missing from the requesting node.
 */
-void Node::handleBlockchainRequest(std::string requestingNode) {
+void Node::handleBlockchainRequest(std::string requestingNode) const {
     // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     /* 
     Only get the blocks I need. [X]
@@ -256,7 +250,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) {
 This is where we read and rebuild the blockchain or partial blockchain after requesting blocks
 from the master server. How many blocks we ad is based on how many we requested.
 */
-void Node::handleBlockchain(std::string blockchainString) {
+void Node::handleBlockchain(std::string blockchainString) const {
     // std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
 
     // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
@@ -284,7 +278,6 @@ void Node::handleBlockchain(std::string blockchainString) {
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
         for (auto& element : j["blocks"]) {
-            // std::cout << "\n\nelement: " << element << "\n" << std::endl;
             blockNumber++;
             Block b;
             b.blockCount = element["blockCount"];

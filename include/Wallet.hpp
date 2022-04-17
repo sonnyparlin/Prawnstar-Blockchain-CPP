@@ -19,7 +19,7 @@ public:
     std::string walletPublicKey;
     std::string address;
 
-    Wallet(Node *node, bool usefile, const char *filename);
+    Wallet(Node *node, const char *filename);
     Wallet(Node *node);
     Wallet(const char *address, Node *node);
     ~Wallet();

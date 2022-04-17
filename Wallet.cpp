@@ -2,7 +2,7 @@
 #include "Block.hpp"
 #include <nlohmann/json.hpp>
 
-Wallet::Wallet(Node *node, bool usefile, const char *filename) {
+Wallet::Wallet(Node *node, const char *filename) {
     fromKey(filename);
     node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
 }
