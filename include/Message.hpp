@@ -13,12 +13,12 @@ public:
     std::vector<std::string> peers;
     std::string data;
     
-    Message(const SocketConnector *sc,
-            std::string *messageType,
-            std::vector<std::string> *peers);
+    Message(SocketConnector*,
+            std::string*,
+            std::vector<std::string>*);
 
-    Message(std::string *messageType,
-            std::string *data);
+    Message(std::string*,
+            std::string*);
     ~Message();
 
     // Write a toJson method for this

@@ -1,13 +1,13 @@
 #include "Message.hpp"
 
-Message::Message(const SocketConnector *sc,
-                 std::string *messageType,
-                 std::vector<std::string> *peers){};
+Message::Message(SocketConnector*,
+                 std::string*,
+                 std::vector<std::string>*){}
 
-Message::Message(std::string *messageType,
-                 std::string *data){};
+Message::Message(std::string*,
+                 std::string*){}
 
-Message::~Message(){};
+Message::~Message()=default;
 
 std::string Message::toJson() {
     nlohmann::json j;
@@ -21,7 +21,7 @@ std::string Message::toJson() {
         j["Message"]["data"]=data;
     } else {
         std::vector<std::string> peersToSerialize;
-        for(auto peer : peers) {
+        for(auto const &peer : peers) {
             peersToSerialize.push_back(peer);
         }
         j["Message"]["Peers"] = peersToSerialize;
