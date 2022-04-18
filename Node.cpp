@@ -32,7 +32,7 @@ Node::Node(int argc, char **argv) {
 //    std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
 //    std::cout << "bobAddress: " << bobWallet->address << std::endl;
 
-    proofOfStake = new ProofOfStake(this, port);
+    proofOfStake = new ProofOfStake(this);
 }
 
 Node::~Node() {

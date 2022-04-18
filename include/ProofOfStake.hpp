@@ -18,7 +18,7 @@ public:
     std::unordered_map<std::string, double>stakers;
     std::mutex posMutex;
 
-    ProofOfStake(Node *node, int);           // Constructor
+    explicit ProofOfStake(Node *node);           // Constructor
     ~ProofOfStake();          // Destructor
 
     void update(std::string publicKeyString, double stake);

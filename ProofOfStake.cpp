@@ -1,12 +1,12 @@
 #include "ProofOfStake.hpp"
 #include "utils.hpp"
 #include "Wallet.hpp"
-#include <stdint.h>
-#include <stdlib.h>
-#include <limits.h>
+#include <cstdint>
+#include <cstdlib>
+#include <climits>
 #include <functional>
 
-ProofOfStake::ProofOfStake(Node *node, int port) {
+ProofOfStake::ProofOfStake(Node *node) {
     this->node = node;
 
     Wallet genesisNodeWallet(node);
@@ -48,9 +48,9 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
         std::string validatorString = validator.first;
 
         if (getStake(validatorString) >= 100000)
-            stake = 10;
+            stake = 20;
         else if (getStake(validatorString) >= 50000)
-            stake = 9;
+            stake = 19;
         else if (getStake(validatorString) >= 25000)
             stake = 8;
         else if (getStake(validatorString) >= 10000)
@@ -70,7 +70,7 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
         else if (getStake(validatorString) >= 1)
             stake = 1;
 
-        Lot l(validatorString, stake+1, seed);
+        Lot l(validatorString, stake, seed);
         lots.push_back(l);
     }
     return lots;
