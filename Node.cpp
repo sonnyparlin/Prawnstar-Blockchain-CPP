@@ -8,7 +8,7 @@ Node * Node::node=nullptr;
 
 Node::Node(int argc, char **argv) {
     p2p = new SocketCommunication(this);
-    accountModel = new AccountModel;
+    accountModel = new AccountModel(this);
     blockchain = new Blockchain(this);
 
     int port = utils::getPort(argv[2]);
@@ -146,9 +146,7 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 
     if (broadcast) {
         // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
-        std::string msg = "TRANSACTION";
-        std::string msJson = transaction.toJson();
-        Message message(&msg, &msJson);
+        Message message("TRANSACTION", transaction.toJson());
         std::string msgJson = message.toJson();
         p2p->broadcast(msgJson.c_str());
     }
@@ -191,9 +189,7 @@ void Node::handleBlock (Block block, bool broadcast) {
         */
 
         if (broadcast) {
-            std::string ms = "BLOCK";
-            std::string msJson = block.toJson();
-            Message message(&ms, &msJson);
+            Message message("BLOCK", block.toJson());
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
         }
@@ -214,8 +210,7 @@ how many blocks are needed from the master server.
 void Node::requestChain() const {
     // std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
-    std::string ms = "BLOCKCHAINREQUEST";
-    Message message(&ms, &requestingNode);
+    Message message("BLOCKCHAINREQUEST", requestingNode);
     std::string msgJson = message.toJson();
     p2p->broadcast(msgJson.c_str());
 }
@@ -240,9 +235,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
     vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
-    std::string ms = "BLOCKCHAIN";
-    std::string msJson = blockchain->toJsonString(subvector);
-    Message message(&ms, &msJson);
+    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
     std::string msgJson = message.toJson();
     
     int num = atoi(receivingNode.at(1).c_str());
@@ -366,9 +359,7 @@ void Node::forge() {
         \todo write the new block to our mongodb instance
         */
 
-        std::string ms = "BLOCK";
-        std::string msJson = block.toJson();
-        Message message(&ms, &msJson);
+        Message message("BLOCK", block.toJson());
         std::string msgJson = message.toJson();
         p2p->broadcast(msgJson.c_str());
     }

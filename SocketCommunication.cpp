@@ -354,7 +354,7 @@ std::string SocketCommunication::handshakeMessage() {
     nlohmann::json j;
     std::string objectAsString;
     std::string messageType = "DISCOVERY";
-    Message handshakeMsg(&sc, &messageType, &peers);
+    Message handshakeMsg(sc, messageType, peers);
     std::string jsonMessage = handshakeMsg.toJson();
     return jsonMessage.c_str();
 }

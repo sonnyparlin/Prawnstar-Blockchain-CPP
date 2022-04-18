@@ -12,33 +12,33 @@ using namespace std;
 class Block {
 public:
     vector <Transaction> transactions;
-    std::string lastHash;
-    std::string hash;
-    std::string forgerAddress;
+    string lastHash;
+    string hash;
+    string forgerAddress;
     time_t timestamp = timeSinceEpoch();
-    unsigned long long blockCount {0};
-    std::string signature;
-    std::string _id;
+    unsigned long long blockCount;
+    string signature;
+    string _id;
 
     // Constructors
     Block();
-    Block(vector <Transaction> &transactions,
-          std::string &lastHash,
-          std::string &forgerAddress,
+    Block(vector <Transaction> transactions,
+          string lastHash, 
+          string forgerAddress,
           unsigned long long blockCount);
 
-    Block(vector <Transaction> &transactions,
-          std::string &lastHash,
+    Block(vector <Transaction> transactions,
+          string lastHash,
           unsigned long long blockCount);
         
     // Destructor
     ~Block();
-
-    std::string toJson();
-    std::string payload();
-    void sign(std::string &data);
-    static vector<nlohmann::json> transactionList(std::vector <Transaction> &transactions);
-    nlohmann::json jsonView();
+    
+    string toJson() const;
+    string payload();
+    void sign(string data);
+    vector<nlohmann::json> transactionList(vector <Transaction> transactions) const;
+    nlohmann::json jsonView() const;
 };
 
 #endif // _BLOCK_H_
