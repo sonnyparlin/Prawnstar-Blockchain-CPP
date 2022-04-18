@@ -39,3 +39,4 @@ creating transactions.
 * ~~Fix signature verification bug~~
 * Write more tests
 * Update React to get rid of security vulnerabilities in the dependancies
+* Fix all clang-tidy warnings!

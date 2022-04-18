@@ -5,13 +5,11 @@
 #include <string>
 #include <chrono>
 
-using namespace std;
-
 struct TX_TYPE {
-    string transfer;
-    string exchange;
-    string stake;
-    string reward;
+    std::string transfer;
+    std::string exchange;
+    std::string stake;
+    std::string reward;
 };
 
 extern struct TX_TYPE tx;

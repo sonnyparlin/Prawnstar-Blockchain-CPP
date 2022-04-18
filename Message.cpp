@@ -1,17 +1,15 @@
 #include "Message.hpp"
 
-Message::Message(SocketConnector sc, 
-                 std::string messageType,
-                 std::vector<std::string> peers)
-                 :sc(sc), messageType(messageType), peers(peers){};
+Message::Message(const SocketConnector *sc,
+                 std::string *messageType,
+                 std::vector<std::string> *peers){};
 
-Message::Message(std::string messageType,
-                 std::string data) // refactor to be a string
-                 :messageType(messageType), data(data){};
+Message::Message(std::string *messageType,
+                 std::string *data){};
 
 Message::~Message(){};
 
-std::string Message::toJson() { 
+std::string Message::toJson() {
     nlohmann::json j;
     j["Message"]["SocketConnector"]["ip"] = sc.ip;
     j["Message"]["SocketConnector"]["port"] = sc.port;

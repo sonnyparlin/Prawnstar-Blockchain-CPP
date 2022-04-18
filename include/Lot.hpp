@@ -7,14 +7,14 @@
 class Lot {
 public:
     std::string publicKeyString;
-    int iteration;
+    int iteration {0};
     std::string lastBlockHash;
 
     Lot();
-    Lot(std::string pubString, int i, std::string lBH); // Constructor
+    Lot(std::string &pubString, int i, std::string &lBH); // Constructor
     ~Lot(); // Destructor
 
-    std::string lotHash();
+    std::string lotHash() const;
 };
 
 #endif // _LOT_H_

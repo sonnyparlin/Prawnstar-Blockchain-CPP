@@ -58,19 +58,19 @@ namespace MasterTestSpace {
         EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
         EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
 
-//        GTEST_COUT << "Executing 1000 transactions, please wait..." << std::endl;
-//        for (int i = 0; i < 1000; i++) {
-//            Transaction txi = node->aliceWallet->createTransaction(
-//                    "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
-//                    1,
-//                    "TRANSFER");
-//            EXPECT_TRUE(node->handleTransaction(txi));
-//        }
-//
-//        double expected = 18905;
-//        auto result = node->accountModel->getBalance(node->aliceWallet->address);
-//        result = roundf((float)result * 100) / 100;
-//        EXPECT_DOUBLE_EQ(expected, result);
+        GTEST_COUT << "Executing 100 transactions, please wait..." << std::endl;
+        for (int i = 0; i < 100; i++) {
+            Transaction txi = node->aliceWallet->createTransaction(
+                    "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
+                    1,
+                    "TRANSFER");
+            EXPECT_TRUE(node->handleTransaction(txi));
+        }
+
+        double expected = 19800.5;
+        auto result = node->accountModel->getBalance(node->aliceWallet->address);
+        result = roundf((float)result * 100) / 100;
+        EXPECT_DOUBLE_EQ(expected, result);
     }
 
     TEST_F(BlockchainTests, ProofOfStakeTests) {

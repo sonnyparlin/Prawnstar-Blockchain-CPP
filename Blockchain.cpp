@@ -7,13 +7,15 @@ Blockchain::Blockchain(Node *node) {
     blocks.push_back(genesis());
 }
 
-Blockchain::~Blockchain() {
-}
+Blockchain::~Blockchain()=default;
 
 Block Blockchain::genesis() {
     vector<Transaction> zeroTransactions;
 
-    Block genesisBlock(zeroTransactions, "***no***last***hash***", 0);
+    Block genesisBlock;
+    genesisBlock.transactions = zeroTransactions;
+    genesisBlock.lastHash = "***no***last***hash***";
+    genesisBlock.blockCount = 0;
     genesisBlock.timestamp = 0;
     genesisBlock.hash = "***genesis***hash***";
     genesisBlock._id = genesisBlock.hash;
@@ -21,7 +23,7 @@ Block Blockchain::genesis() {
     return genesisBlock;
 }
 
-bool Blockchain::addBlock(Block block) {
+bool Blockchain::addBlock(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     executeTransactions(block.transactions);
     blocks.push_back(block);
@@ -32,58 +34,60 @@ bool Blockchain::addBlock(Block block) {
 std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transaction> &transactions) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<Transaction> resultTransactions;
-    for (auto tx : transactions) {
+    for (auto &itx : transactions) {
         double reward {0};
 
-        if (tx.type == "EXCHANGE" || tx.type == "TRANSFER") {
-            double reward = (tx.amount * 0.005);
+        if (itx.type == "EXCHANGE" || itx.type == "TRANSFER") {
+            auto _reward = (double)(itx.amount * 0.005);
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::ostringstream oss;
             oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
             auto str = oss.str();
             node->log(str);
-            std::string r = "reward: " + std::to_string(reward);
+            std::string r = "reward: " + std::to_string(_reward);
             node->log(r);
 
             try {
-                Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address, reward, "REWARD");
+                Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address,
+                                                                               _reward,
+                                                                               "REWARD");
                 resultTransactions.push_back(rewardTx);
             } catch(std::exception& e) {
                 std::cerr << "Error with createTransaction: " << e.what() << std::endl;
             }
-            // node->accountModel->updateBalance(node->nodeWallet->address, reward);
-            tx.amount -= reward;
+            // node->accountModel->updateBalance(node->nodeWallet->address, _reward);
+            itx.amount -= _reward;
         }
 
-        if (tx.type == "EXCHANGE")
-            node->accountModel->updateBalance(tx.receiverAddress, -reward); 
-        else if (tx.type == "TRANSFER" )
-            node->accountModel->updateBalance(tx.senderAddress, -reward);
+        if (itx.type == "EXCHANGE")
+            node->accountModel->updateBalance(itx.receiverAddress, -reward);
+        else if (itx.type == "TRANSFER" )
+            node->accountModel->updateBalance(itx.senderAddress, -reward);
 
-        resultTransactions.push_back(tx);
+        resultTransactions.push_back(itx);
     }
     return resultTransactions;
 }
 
-bool Blockchain::blockCountValid(Block block) {
+bool Blockchain::blockCountValid(Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     return blocks[blocks.size()-1].blockCount == block.blockCount - 1;
 }
 
-bool Blockchain::lastBlockHashValid(Block block) {
+bool Blockchain::lastBlockHashValid(Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     return blocks[blocks.size()-1].hash == block.lastHash;
 }
 
-bool Blockchain::transactionCovered(Transaction transaction) {
+bool Blockchain::transactionCovered(Transaction &transaction) {
     if (transaction.type == tx.exchange || transaction.type == tx.reward)
         return true;
     double senderBalance = node->accountModel->getBalance(transaction.senderAddress);
     return senderBalance >= transaction.amount;
 }
 
-std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction> transactions) {
+std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction> &transactions) {
     std::vector<Transaction> coveredTransactions;
     for (auto transaction : transactions) {
         if (transactionCovered(transaction))
@@ -97,18 +101,18 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(vector<Transaction
     return coveredTransactions;
 }
 
-bool Blockchain::blockHasTransactions(Block block) {
+bool Blockchain::blockHasTransactions(Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    return block.transactions.size() > 0 ? true : false;
+    return block.transactions.empty();
 }
 
 void Blockchain::executeTransactions(std::vector<Transaction> transactions) {
-    for (auto transaction : transactions) {
+    for (auto &transaction : transactions) {
         executeTransaction(transaction);
     }
 }
 
-void Blockchain::executeTransaction(Transaction transaction) {
+void Blockchain::executeTransaction(Transaction &transaction) {
 
     if (transaction.type == "STAKE") {
         std::string sender = transaction.senderAddress;
@@ -116,14 +120,14 @@ void Blockchain::executeTransaction(Transaction transaction) {
         std::string receiver = transaction.receiverAddress;
 
         if (sender == receiver) {
-            double amount = transaction.amount;
+            auto amount = (double)transaction.amount;
             node->proofOfStake->update(publicKeyString, amount);
             node->accountModel->updateBalance(sender, -amount);
         }
     } else {
         std::string senderAddress = transaction.senderAddress;
         std::string receiverAddress = transaction.receiverAddress;
-        double amount = transaction.amount;
+        auto amount = (double)transaction.amount;
 
         // std::cout << "sender: " << senderAddress << " amount: " << amount << std::endl;
 
@@ -132,20 +136,13 @@ void Blockchain::executeTransaction(Transaction transaction) {
     }
 }
 
-Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std::string forgerAddress) {
+Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std::string &forgerAddress) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<Transaction> coveredTransactions = getCoveredTransactionSet(
         transactionsFromPool
     );
 
-    // std::string transactionListAsString;
-    // for (auto tx : coveredTransactions) {
-    //     transactionListAsString += tx.toJson();
-    // }
-
-    // std::string hash = utils::hash(transactionListAsString);
     std::string lastHash = blocks[blocks.size()-1].hash;
-
     Wallet forgerWallet(forgerAddress.c_str(), node);
     executeTransactions(coveredTransactions);
     Block newBlock = forgerWallet.createBlock(coveredTransactions, 
@@ -156,38 +153,38 @@ Block Blockchain::createBlock(std::vector<Transaction> transactionsFromPool, std
     return newBlock;
 }
 
-bool Blockchain::transactionExists(Transaction transaction) {
+bool Blockchain::transactionExists(Transaction &transaction) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    for(auto block : blocks) {
-        for(auto tx : block.transactions) {
-            if (tx == transaction)
+    for(auto &block : blocks) {
+        for(auto &itx : block.transactions) {
+            if (itx == transaction)
                 return true;
         }
     }
     return false;
 }
 
-std::string Blockchain::getTransaction(std::string txid) {
+std::string Blockchain::getTransaction(std::string &txid) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    for(auto block : blocks) {
-        for(auto tx : block.transactions) {
-            if (tx.id == txid)
-                return tx.toJson();
+    for(auto &block : blocks) {
+        for(auto itx : block.transactions) {
+            if (itx.id == txid)
+                return itx.toJson();
         }
     }
     return "";
 }
 
-std::vector<nlohmann::json> Blockchain::txsByAddress(std::string address) {
+std::vector<nlohmann::json> Blockchain::txsByAddress(std::string &address) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<nlohmann::json> txids;
     std::vector<Block> localChain = blocks;
     
-    for(auto block : localChain) {
-        for(auto tx : block.transactions) {
-            if (tx.senderAddress == address || tx.receiverAddress == address) {
+    for(auto &block : localChain) {
+        for(auto &itx : block.transactions) {
+            if (itx.senderAddress == address || itx.receiverAddress == address) {
                 nlohmann::json j;
-                j["id"] = tx.id;
+                j["id"] = itx.id;
                 txids.push_back(j);
             }
         }
@@ -196,7 +193,7 @@ std::vector<nlohmann::json> Blockchain::txsByAddress(std::string address) {
     return txids;
 }
 
-bool Blockchain::forgerValid(Block block) {
+bool Blockchain::forgerValid(Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     Wallet proposedForger(block.forgerAddress.c_str(), this->node);
 
@@ -216,11 +213,11 @@ bool Blockchain::transactionValid(std::vector<Transaction> transactions) {
     return coveredTransactions.size() == transactions.size();
 }
 
-vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
+vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) {
     nlohmann::json j;
     vector<nlohmann::json> blks;
 
-    for (auto block: blocks) {
+    for (auto &block: blocks) {
         blks.push_back(block.jsonView());
     }
     return blks;
@@ -228,7 +225,7 @@ vector<nlohmann::json> Blockchain::blockList(vector <Block> blocks) const {
 
 std::string Blockchain::nextForger() {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    int blocksSize = blocks.size();
+    auto blocksSize = (unsigned long)blocks.size();
     std::string nextForger;
     std::string lastBlockHash;
     lastBlockHash = blocks[blocksSize-1].lastHash;
@@ -243,7 +240,7 @@ nlohmann::json Blockchain::toJson() const {
     return j;
 }
 
-std::string Blockchain::toJsonString(std::vector<Block> blocks) const {
+std::string Blockchain::toJsonString(std::vector<Block> &blocks) {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);
