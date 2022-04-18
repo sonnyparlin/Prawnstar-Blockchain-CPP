@@ -8,7 +8,7 @@ Node * Node::node=nullptr;
 
 Node::Node(int argc, char **argv) {
     p2p = new SocketCommunication(this);
-    accountModel = new AccountModel(this);
+    accountModel = new AccountModel();
     blockchain = new Blockchain(this);
 
     int port = utils::getPort(argv[2]);
