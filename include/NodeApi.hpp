@@ -12,11 +12,10 @@ class NodeApi {
 private:
     Node *node;
 public:
-    NodeApi(Node *node);
+    explicit NodeApi(Node *node);
     ~NodeApi();
     
-    void start(std::string);
-    int validateApiPort(const std::string po);
+    void start(std::string&);
 };
 
 #endif // _NODEAPI_H_

@@ -5,11 +5,10 @@ NodeApi::NodeApi(Node *node) {
     this->node = node;
 }
 
-NodeApi::~NodeApi() {
-}
+NodeApi::~NodeApi()=default;
 
-void NodeApi::start(std::string po) {
-    int port = stol(po);
+void NodeApi::start(std::string &po) {
+    long port = stol(po);
 
     crow::SimpleApp app;
 
@@ -29,7 +28,7 @@ void NodeApi::start(std::string po) {
 
     CROW_ROUTE(app, "/console")([&](){
         nlohmann::json j;
-        j["console"] = node->getConsoleLog();
+        j["console"] = Node::getConsoleLog();
         return crow::response(200, j.dump());
     });
 
@@ -42,13 +41,13 @@ void NodeApi::start(std::string po) {
         return crow::response(200, returnValue);
     });
 
-    CROW_ROUTE(app, "/tx/<string>")([&](std::string txid){
+    CROW_ROUTE(app, "/tx/<string>")([&](const std::string &txid){
         std::string jsonValue = node->blockchain->getTransaction(txid);
         nlohmann::json j = nlohmann::json::parse(jsonValue);
         return crow::response(200, j.dump());
     });
 
-    CROW_ROUTE(app, "/wallet/<string>")([&](std::string address){
+    CROW_ROUTE(app, "/wallet/<string>")([&](const std::string &address){
         double returnValue = node->accountModel->getBalance(address);
         nlohmann::json j;
         j["amount"] = std::to_string(returnValue);
@@ -102,11 +101,11 @@ void NodeApi::start(std::string po) {
             Transaction tx = senderWallet.createTransaction(receiver, amount, type);
             bool success = node->handleTransaction(tx);
             if (!success)
-                return crow::response(500, "{\"message\":\"Failed to handle transaction\"}");
+                return crow::response(500, R"({"message":"Failed to handle transaction"})");
         } else {
-            return crow::response(201, "{\"message\":\"Wallet not found\"}");
+            return crow::response(201, R"({"message":"Wallet not found"})");
         }
-        return crow::response(201, "{\"message\":\"Received transaction\"}");
+        return crow::response(201, R"({"message":"Received transaction"})");
     });
 
     app.loglevel(crow::LogLevel::Warning);
