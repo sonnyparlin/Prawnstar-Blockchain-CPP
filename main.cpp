@@ -1,8 +1,5 @@
 #include <iostream>
-#include <typeinfo>
 #include "Node.hpp"
-#include "ProofOfStake.hpp"
-#include "Lot.hpp"
 
 /*! \mainpage Development documentation for the Prawnstar Blockchain.
  *
