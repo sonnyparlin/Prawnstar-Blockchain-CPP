@@ -146,7 +146,9 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 
     if (broadcast) {
         // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
-        Message message("TRANSACTION", transaction.toJson());
+        std::string msgType = "TRANSACTION";
+        std::string msgBody = transaction.toJson();
+        Message message(msgType, msgBody);
         std::string msgJson = message.toJson();
         p2p->broadcast(msgJson.c_str());
     }
@@ -189,7 +191,9 @@ void Node::handleBlock (Block block, bool broadcast) {
         */
 
         if (broadcast) {
-            Message message("BLOCK", block.toJson());
+            std::string msgType = "block";
+            std::string msgBody = block.toJson();
+            Message message(msgType, msgBody);
             std::string msgJson = message.toJson();
             p2p->broadcast(msgJson.c_str());
         }
@@ -208,9 +212,10 @@ Request complete or partial blockchain from the master node. Uses the local bloc
 how many blocks are needed from the master server.
 */
 void Node::requestChain() const {
-    // std::cout << "inside requestChain()" << std::endl;
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
-    Message message("BLOCKCHAINREQUEST", requestingNode);
+    std::string msgType = "BLOCKCHAINREQUEST";
+    std::string msgBody = requestingNode;
+    Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
     p2p->broadcast(msgJson.c_str());
 }
@@ -235,7 +240,9 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
     vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
-    Message message("BLOCKCHAIN", blockchain->toJsonString(subvector));
+    std::string msgType = "BLOCKCHAIN";
+    std::string msgBody = blockchain->toJsonString(subvector);
+    Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
     
     int num = atoi(receivingNode.at(1).c_str());
@@ -359,7 +366,9 @@ void Node::forge() {
         \todo write the new block to our mongodb instance
         */
 
-        Message message("BLOCK", block.toJson());
+        std::string msgType = "BLOCK";
+        std::string msgBody = block.toJson();
+        Message message(msgType, msgBody);
         std::string msgJson = message.toJson();
         p2p->broadcast(msgJson.c_str());
     }
