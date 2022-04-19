@@ -12,7 +12,7 @@ public:
     string senderPublicKey;
     string receiverAddress;
     string receiverPublicKey;
-    long double amount;
+    double amount;
     string type;
     string id;
     time_t timestamp;

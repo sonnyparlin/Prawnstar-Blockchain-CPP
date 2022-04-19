@@ -18,30 +18,30 @@ public:
     std::vector<Block> blocks;
     std::mutex blockchainMutex;
 
-    Blockchain(Node *node);           // Constructor
+    explicit Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor
     
-    bool addBlock(Block block);
-    vector<nlohmann::json> blockList(vector <Block> blocks) const;
-    nlohmann::json toJson() const;
-    std::string toJsonString(std::vector<Block> blocks) const;
-    Block genesis();
-    bool blockCountValid(Block block);
-    bool lastBlockHashValid(Block block);
-    bool transactionCovered(Transaction transaction);
-    std::vector<Transaction> getCoveredTransactionSet(std::vector<Transaction> transactions);
-    void executeTransaction(Transaction transaction);
-    void executeTransactions(std::vector<Transaction> transactions);
+    bool addBlock(const Block &block);
+    static Block genesis();
+    bool blockCountValid(const Block&);
+    bool lastBlockHashValid(const Block&);
+    bool transactionCovered(const Transaction&);
+    std::vector<Transaction> getCoveredTransactionSet(const std::vector<Transaction>&);
+    void executeTransaction(const Transaction&);
+    void executeTransactions(const std::vector<Transaction>&);
+    Block createBlock(const std::vector<Transaction>&, const std::string&);
+    bool transactionExists(const Transaction&);
+    bool forgerValid(const Block&);
+    bool transactionValid(const std::vector<Transaction>&);
+    static vector<nlohmann::json> blockList(vector<Block>&);
     std::string nextForger();
-    Block createBlock(std::vector<Transaction> transactionsFromPool, std::string forgerAddress);
-    bool transactionExists(Transaction transaction);
-    bool forgerValid(Block block);
-    bool transactionValid(std::vector<Transaction> transactions);
-    bool blockHasTransactions(Block block);
-    std::string toJsonWebView() const;
+    bool blockHasTransactions(const Block&);
+    std::string toJsonWebView();
     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>&);
-    std::vector<nlohmann::json> txsByAddress(std::string address);
-    std::string getTransaction(std::string txid);
+    std::vector<nlohmann::json> txsByAddress(const std::string&);
+    std::string getTransaction(const std::string&);
+    nlohmann::json toJson();
+    static std::string toJsonString(std::vector<Block>);
 };
 
 #endif // _BLOCKCHAIN_H_
