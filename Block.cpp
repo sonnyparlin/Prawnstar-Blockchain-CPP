@@ -4,47 +4,49 @@
 #include <nlohmann/json.hpp>
 
 // Implemention of the construcor
-Block::Block(){}
+Block::Block()=default;
 
-Block::Block(vector <Transaction> transactions, string lastHash, 
-             string forgerAddress, 
+Block::Block(std::vector <Transaction> &transactions,
+             std::string &lastHash,
+             std::string &forgerAddress,
              unsigned long long blockCount)
     : transactions(transactions), 
       lastHash(lastHash),
       forgerAddress(forgerAddress),
       blockCount(blockCount) {}
 
-Block::Block(vector <Transaction> transactions, string lastHash,  
+Block::Block(std::vector <Transaction> &transactions,
+             std::string &lastHash,
              unsigned long long blockCount)
     : transactions(transactions), 
       lastHash(lastHash),
       blockCount(blockCount) {}
 
 // Implementation of the destructor
-Block::~Block() {}
+Block::~Block()=default;
 
-void Block::sign(std::string sig) {
+void Block::sign(std::string &sig) {
     signature = sig;
 }
 
-vector<nlohmann::json> Block::transactionList(vector <Transaction> transactions) const {
+vector<nlohmann::json> Block::transactionList(vector <Transaction> &transactions) {
     nlohmann::json j;
     vector<nlohmann::json> txs;
 
-    for (auto tx: transactions) {
-        j["senderAddress"] = tx.senderAddress;
-        j["receiverAddress"] = tx.receiverAddress;
-        j["amount"] = tx.amount;
-        j["type"] = tx.type;
-        j["id"] = tx.id;
-        j["timestamp"] = tx.timestamp;
-        j["signature"] = tx.signature;
+    for (auto const &itx: transactions) {
+        j["senderAddress"] = itx.senderAddress;
+        j["receiverAddress"] = itx.receiverAddress;
+        j["amount"] = itx.amount;
+        j["type"] = itx.type;
+        j["id"] = itx.id;
+        j["timestamp"] = itx.timestamp;
+        j["signature"] = itx.signature;
         txs.push_back(j);
     }
     return txs;
 }
 
-std::string Block::toJson() const {
+std::string Block::toJson() {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);
@@ -74,7 +76,7 @@ std::string Block::payload() {
     return to_string(j);
 }
 
-nlohmann::json Block::jsonView() const {
+nlohmann::json Block::jsonView() {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);

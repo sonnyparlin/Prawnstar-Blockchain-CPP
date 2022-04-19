@@ -16,29 +16,29 @@ public:
     string hash;
     string forgerAddress;
     time_t timestamp = timeSinceEpoch();
-    unsigned long long blockCount;
+    unsigned long long blockCount {};
     string signature;
     string _id;
 
     // Constructors
     Block();
-    Block(vector <Transaction> transactions,
-          string lastHash, 
-          string forgerAddress,
+    Block(std::vector <Transaction> &transactions,
+          std::string &lastHash,
+          std::string &forgerAddress,
           unsigned long long blockCount);
 
-    Block(vector <Transaction> transactions,
-          string lastHash,
+    Block(std::vector <Transaction> &transactions,
+          std::string &lastHash,
           unsigned long long blockCount);
         
     // Destructor
     ~Block();
     
-    string toJson() const;
+    string toJson();
     string payload();
-    void sign(string data);
-    vector<nlohmann::json> transactionList(vector <Transaction> transactions) const;
-    nlohmann::json jsonView() const;
+    void sign(std::string&);
+    static vector<nlohmann::json> transactionList(vector <Transaction> &transactions);
+    nlohmann::json jsonView();
 };
 
 #endif // _BLOCK_H_

@@ -13,7 +13,8 @@ Blockchain::~Blockchain() {
 Block Blockchain::genesis() {
     vector<Transaction> zeroTransactions;
 
-    Block genesisBlock(zeroTransactions, "***no***last***hash***", 0);
+    std::string lastHash = "***no***last***hash***";
+    Block genesisBlock(zeroTransactions, lastHash, 0);
     genesisBlock.timestamp = 0;
     genesisBlock.hash = "***genesis***hash***";
     genesisBlock._id = genesisBlock.hash;

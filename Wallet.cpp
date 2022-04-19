@@ -219,7 +219,8 @@ Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash
     try {
         utils::Signature signature = sign(block.payload());
         // std::cout << "sig size: " << signature._size << std::endl;
-        block.sign(signature.hexsig + ":" + std::to_string(signature._size));
+        std::string fullSig = signature.hexsig + ":" + std::to_string(signature._size);
+        block.sign(fullSig);
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;
     }
