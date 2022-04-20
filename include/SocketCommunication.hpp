@@ -21,19 +21,19 @@ public:
 
     SocketConnector sc;
 
-    SocketCommunication(Node *node);           // Constructor
+    explicit SocketCommunication(Node *node);           // Constructor
     ~SocketCommunication();          // Destructor
 
     void startSocketCommunication(int argc, char *argv[]);
     void startP2POperations ( int argc, char **argv );
-    int startP2PServer ( int argc, char **argv );
+    void startP2PServer ( int argc, char **argv );
     void handshake(int sock);
     void broadcastPeerDiscovery(const char *message);
-    void broadcast(const char *message);
+    void broadcast(const char *message) const;
     void inbound_node_connected(int sock);
     void outbound_node_connected(int sock);
-    int processArgs(int argc, char **argv);
-    void send_node_message(int sock, const char *message);
+    static int processArgs(int argc, char **argv);
+    static void send_node_message(int sock, const char *message);
     void receive_node_message(int sock);
     void peerDiscoveryStatus(); // Status
     void peerDiscovery(); // Discovery
