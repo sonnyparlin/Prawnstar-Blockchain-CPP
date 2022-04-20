@@ -84,8 +84,8 @@ Making and Running the on UNIX style systems including OSX.</h2>
 <li>cmake ..</li>
 <li>make</li>
 <li>cp ../*.pem .</li>
-<li>./Prawnstar &lt;your_ip_address&gt; 10001 8001</li>
-<li>start second node: ./Prawnstar &lt;your_ip_address&gt; 10001 &lt;ip_of_master_server&gt; 8002</li>
+<li><code>./Prawnstar your_ip_address 10001 8001</code></li>
+<li>start second node: <code>./Prawnstar your_ip_address 10001 ip_of_master_server 8002</code></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Windows</h2>
@@ -109,28 +109,12 @@ Running the app</h2>
 <p >./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Testing</h2>
-<p ><code>python ApiTest.py &lt;number_of_transactions&gt;</code> (keep this to 500 or 1000 for testing purposes on a personal machine)</p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Using Postman</h2>
-<p >Use <a href="https://www.postman.com">Postman</a> to send a transaction</p>
-<div class="fragment"><div class="line">{&quot;transaction&quot;:</div>
-<div class="line">    {</div>
-<div class="line">        &quot;sender&quot;: &quot;pv1403d478bfc4949c9c68af53bbaf8deb58c4eac&quot;,</div>
-<div class="line">        &quot;receiver&quot;: &quot;pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7&quot;,</div>
-<div class="line">        &quot;amount&quot;: 500,</div>
-<div class="line">        &quot;type&quot;: &quot;EXCHANGE&quot;</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-</div><!-- fragment --><p >Send a second transaction:</p>
-<div class="fragment"><div class="line">{&quot;transaction&quot;:</div>
-<div class="line">    {</div>
-<div class="line">        &quot;sender&quot;: &quot;pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7&quot;,</div>
-<div class="line">        &quot;receiver&quot;: &quot;pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42&quot;,</div>
-<div class="line">        &quot;amount&quot;: 50,</div>
-<div class="line">        &quot;type&quot;: &quot;TRANSFER&quot;</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<ol type="1">
+<li>Edit <code>config.json</code> and add your ip address.</li>
+<li><code>python ApiTest.py &lt;number_of_transactions&gt;</code></li>
+<li><code>build/tests/RunTests</code> (Google test suite) </li>
+</ol>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

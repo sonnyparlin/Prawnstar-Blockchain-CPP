@@ -16,8 +16,8 @@
 \item cmake ..
 \item make
 \item cp ../$\ast$.pem .
-\item ./\+Prawnstar $<$your\+\_\+ip\+\_\+address$>$ 10001 8001
-\item start second node\+: ./\+Prawnstar $<$your\+\_\+ip\+\_\+address$>$ 10001 $<$ip\+\_\+of\+\_\+master\+\_\+server$>$ 8002
+\item {\ttfamily ./\+Prawnstar your\+\_\+ip\+\_\+address 10001 8001}
+\item start second node\+: {\ttfamily ./\+Prawnstar your\+\_\+ip\+\_\+address 10001 ip\+\_\+of\+\_\+master\+\_\+server 8002}
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Windows}\label{md__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyItemize}
@@ -41,35 +41,9 @@ The format for the master node\+:
 The format of all client nodes\+:
 
 ./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing}\label{md__r_e_a_d_m_e_autotoc_md5}
-{\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}} (keep this to 500 or 1000 for testing purposes on a personal machine)\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{Using Postman}\label{md__r_e_a_d_m_e_autotoc_md6}
-Use \href{https://www.postman.com}{\texttt{ Postman}} to send a transaction
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{"{}transaction"{}:}
-\DoxyCodeLine{    \{}
-\DoxyCodeLine{        "{}sender"{}: "{}pv1403d478bfc4949c9c68af53bbaf8deb58c4eac"{},}
-\DoxyCodeLine{        "{}receiver"{}: "{}pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"{},}
-\DoxyCodeLine{        "{}amount"{}: 500,}
-\DoxyCodeLine{        "{}type"{}: "{}EXCHANGE"{}}
-\DoxyCodeLine{    \}}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-
-
-Send a second transaction\+:
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{"{}transaction"{}:}
-\DoxyCodeLine{    \{}
-\DoxyCodeLine{        "{}sender"{}: "{}pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"{},}
-\DoxyCodeLine{        "{}receiver"{}: "{}pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42"{},}
-\DoxyCodeLine{        "{}amount"{}: 50,}
-\DoxyCodeLine{        "{}type"{}: "{}TRANSFER"{}}
-\DoxyCodeLine{    \}}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
- 
+\begin{DoxyEnumerate}
+\item Edit {\ttfamily config.\+json} and add your ip address.
+\item {\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}}
+\item {\ttfamily build/tests/\+Run\+Tests} (Google test suite) 
+\end{DoxyEnumerate}
