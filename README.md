@@ -25,6 +25,7 @@
 * Install OpenSSL 3
 * Check `CMakeLists.txt` and make sure the include and library paths are correct for your system.
 * cmake .. -G "Unix Makefiles" 
+* Follow the UNIX style directions after `cmake ..`
 
 ### Running the app
 
