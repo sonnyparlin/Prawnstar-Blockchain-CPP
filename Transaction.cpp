@@ -1,26 +1,25 @@
-#include <iostream>
 #include <string>
-#include <ctime>
 #include "config.hpp"
 #include "Transaction.hpp"
 #include <nlohmann/json.hpp>
+#include <utility>
 #include "utils.hpp"
 
 Transaction::Transaction(string senderAddress, 
                          string receiverAddress, 
                          double amount, 
                          string type)
-    : senderAddress(senderAddress), 
-      receiverAddress(receiverAddress), 
+    : senderAddress(std::move(senderAddress)),
+      receiverAddress(std::move(receiverAddress)),
       amount(amount), 
-      type(type)  {
+      type(std::move(type))  {
     id = utils::get_uuid();
     timestamp = timeSinceEpoch();
 }
 
-Transaction::Transaction() {}
+Transaction::Transaction()=default;
 
-Transaction::~Transaction() {}
+Transaction::~Transaction()=default;
 
 bool operator==(const Transaction &lhs, const Transaction &rhs){ 
     /* do actual comparison */ 
@@ -57,5 +56,5 @@ string Transaction::payload() {
 }
 
 void Transaction::sign(std::string sig) {
-    signature = sig;
+    signature = std::move(sig);
 }

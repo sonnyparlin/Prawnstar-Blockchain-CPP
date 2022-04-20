@@ -57,9 +57,8 @@ print(i+1)
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 
 print("getting final balances...")
-time.sleep(1)
 post_transaction(s, alice, bob, '1', 'TRANSFER')
-time.sleep(4)
+time.sleep(1)
 
 print("Alice's wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")

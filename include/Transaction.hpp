@@ -12,10 +12,10 @@ public:
     string senderPublicKey;
     string receiverAddress;
     string receiverPublicKey;
-    double amount;
+    double amount{};
     string type;
     string id;
-    time_t timestamp;
+    time_t timestamp{};
     string signature;
 
     // Constructor
@@ -30,7 +30,6 @@ public:
     string toJson();
     string payload();
     void sign(std::string sig);
-    bool equals(Transaction transaction);
 
     friend bool operator==(const Transaction &lhs, const Transaction &rhs); 
 };

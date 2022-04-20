@@ -1,10 +1,8 @@
 #include "SocketConnector.hpp"
 
-SocketConnector::SocketConnector(){}
-SocketConnector::SocketConnector(std::string ip, int port) 
-    : ip(ip), port(port) {}
-SocketConnector::~SocketConnector() {}
+#include <utility>
 
-bool SocketConnector::equals(const SocketConnector sc) {
-    return sc.ip == ip && sc.port == port;
-}
+SocketConnector::SocketConnector()=default;
+SocketConnector::SocketConnector(std::string ip, int port)
+: ip(std::move(ip)), port(port) {}
+SocketConnector::~SocketConnector()=default;

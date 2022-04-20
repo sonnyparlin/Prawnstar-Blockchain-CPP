@@ -5,14 +5,12 @@
 
 class SocketConnector {
 public:
-    std::string ip;
-    int port;
+    std::string ip{};
+    int port{};
 
     SocketConnector(std::string, int);
     SocketConnector();
     ~SocketConnector();
-
-    bool equals(const SocketConnector sc);
 };
 
 #endif // _SOCKETCONNECTOR_H_
