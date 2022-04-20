@@ -2,13 +2,9 @@
 
 namespace p2putils {
 
-void logit(std::string message) {
-    std::cout << message << std::endl;
-}
-
-bool isValidIpAddress(std::string ipAddress)
+bool isValidIpAddress(const std::string &ipAddress)
 {
-    struct sockaddr_in sa;
+    struct sockaddr_in sa{};
     int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
     return result != 0;
 }
@@ -48,6 +44,7 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
         #else
         printf("\nbind: %d\n", WSAGetLastError());
         #endif
+        return false;
     }
     
     if (listen ( server, 3) < 0)
@@ -57,11 +54,12 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
         #else
         printf("\nlisten: %d\n", WSAGetLastError());
         #endif
+        return false;
     }
-    return 1;
+    return true;
 }
 
-int setOutgoingNodeConnection(std::string ipaddress, int port) {
+int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
     int outgoingSocket;
 
     if (!p2putils::isValidIpAddress(ipaddress)) {
@@ -69,7 +67,7 @@ int setOutgoingNodeConnection(std::string ipaddress, int port) {
         return -1;
     }
 
-    struct sockaddr_in cli_addr;
+    struct sockaddr_in cli_addr{};
     cli_addr.sin_family = AF_INET;
     cli_addr.sin_addr.s_addr = INADDR_ANY;
 

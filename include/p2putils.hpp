@@ -1,7 +1,7 @@
 #ifndef _P2PUTILS_H_
 #define _P2PUTILS_H_
 
-#include <stdio.h>
+#include <cstdio>
 
 #include <unistd.h>
 
@@ -17,12 +17,11 @@
 #include <pthread.h>
 
 #include <string>
-#include <stdlib.h>
-#include <errno.h>
+#include <cstdlib>
+#include <cerrno>
 #include <iostream>
 #include <cstring>
-#include <limits.h>
-#include <errno.h>
+#include <climits>
 #include <thread>
 #include <sstream>
 #include <unordered_map>
@@ -30,12 +29,10 @@
 #include <nlohmann/json.hpp>
 
 namespace p2putils {
-    void logit(std::string message);
-    bool isValidIpAddress(std::string ipAddress);
+    bool isValidIpAddress(const std::string&);
     int createSocket();
     bool Bind(int server, struct sockaddr_in address, int PORT);
-    int setOutgoingNodeConnection(std::string ipaddress, int port);
-    char *sock_ntop (const struct sockaddr *sa, socklen_t salen);
+    int setOutgoingNodeConnection(const std::string &ipaddress, int port);
 }
 
 #endif // _P2PUTILS_H_
