@@ -1,18 +1,36 @@
 
 \begin{DoxyItemize}
-\item Set up test library, looking at boost and ctest, \href{https://www.codeguru.com/cplusplus/ten-c-testing-tools-for-developers-to-consider/}{\texttt{ https\+://www.\+codeguru.\+com/cplusplus/ten-\/c-\/testing-\/tools-\/for-\/developers-\/to-\/consider/}}
-\item Write tests
+\item \sout{Set up test google test library}
+\item \sout{Write tests}
 \item \sout{keep the blockchain stored locally using a json file.}
-\item Set up mongodb as a first choice and use the json file as backup, or perhaps give the user an option between mongodb and a json file, should also find out which is faster.
+\item Set up the option to use mongodb for local blockchain backups.
 \item Find all instances of json\+::parse() and put them in a try/catch block. Anytime these fail, it kills the running node.
 \item Add front end for users to create wallets
 \item \sout{Modify the handle\+Block\+Chain method to only send over blocks that the requesting node is missing.}
 \item \sout{set new nodes to imediately request the blockchain}
 \item Build or find block explorer
-\item build candlestick chart
+\item Build candlestick chart
 \item \sout{Add forger reward system}
-\item Integrate the liquidity pool script into transactions to determine the price at time of purchase
-\item Make this documentation suite better
+\item Integrate the liquidity pool script into transactions to determine the price at time of purchase, this includes figuring out how to create a liquidity pool / AMM
+\item \sout{Create documentation suite using doxygen}
 \item create reward transactions for forgers
-\item Add security to the \mbox{\hyperlink{class_node}{Node}} API to ensure connections can only come from the current machine 
+\item Add security to the Node API to ensure connections can only come from the current machine
+\item \sout{Fix bug\+: if node goes down, staker info is lost}
+\item Make React UI better
+\item \sout{Code the following rules for forging blocks\+:}
+\begin{DoxyItemize}
+\item \sout{Blocks will be created every 5 minutes}
+\item \sout{Blocks are created as soon as there are 20 transactions in the transaction pool}
+\end{DoxyItemize}
+\item Set up pending state for transactions, this will depend on confirmations on the blockchain.
+\item Code a confirmation system with rules
+\begin{DoxyItemize}
+\item 6 confirmations = confirmed
+\item Figure out how to update state
+\item Build this functionality into the UI
+\end{DoxyItemize}
+\item Code support for using google authenticator when creating transactions.
+\item \sout{Fix signature verification bug}
+\item Write more tests
+\item Update React to get rid of security vulnerabilities in the dependancies 
 \end{DoxyItemize}
