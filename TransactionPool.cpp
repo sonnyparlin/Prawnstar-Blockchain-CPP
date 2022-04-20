@@ -1,24 +1,17 @@
-#include <iostream>
 #include "TransactionPool.hpp"
-#include <nlohmann/json.hpp>
-#include <thread>
-#include <chrono>
 
-TransactionPool::TransactionPool() {
-}
+TransactionPool::TransactionPool()=default;
+TransactionPool::~TransactionPool()=default;
 
-TransactionPool::~TransactionPool() {
-}
-
-void TransactionPool::addTransaction(Transaction transaction) {
+void TransactionPool::addTransaction(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     transactions.push_back(transaction);
 }
 
-bool TransactionPool::transactionExists(Transaction transaction) {
+bool TransactionPool::transactionExists(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
-    for (auto tx : transactions) {
-        if (tx == transaction) {
+    for (auto const &itx : transactions) {
+        if (itx == transaction) {
             std::cout << "Transaction already exists in the pool" << std::endl;
             return true;
         }
@@ -26,16 +19,16 @@ bool TransactionPool::transactionExists(Transaction transaction) {
     return false;
 }
 
-void TransactionPool::removeFromPool(vector<Transaction> txs) {
+void TransactionPool::removeFromPool(const vector<Transaction> &txs) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     vector<Transaction> newPoolTransactions;
-    for (auto poolTransaction : this->transactions) {
+    for (auto const &poolTransaction : this->transactions) {
         bool insert = true;
-        for (auto transaction : txs) {
+        for (auto const &transaction : txs) {
             if (poolTransaction == transaction)
                 insert = false;
         }
-        if (insert == true)
+        if (insert)
             newPoolTransactions.push_back(poolTransaction);
     }
     transactions = newPoolTransactions;
@@ -46,7 +39,7 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
     nlohmann::json j;
     nlohmann::json jContainer;
 
-    for (auto transaction : transactions) {
+    for (auto &transaction : transactions) {
         j = nlohmann::json::parse(transaction.toJson());
         jContainer.push_back(j);
     }
@@ -56,8 +49,8 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
 }
 
 bool TransactionPool::forgerRequired() {
-    for (auto tx : transactions) {
-        if (tx.type == "EXCHANGE" || tx.type == "STAKE")
+    for (auto const &itx : transactions) {
+        if (itx.type == "EXCHANGE" || itx.type == "STAKE")
             return true;
     }
     return transactions.size() >= 20;

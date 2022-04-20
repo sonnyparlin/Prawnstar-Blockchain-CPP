@@ -26,16 +26,15 @@ namespace utils {
     static const char *MASTER_NODE_IP = master_ip.c_str();
     const static int MASTER_NODE_PORT=stoi(ip_port_vec.at(1));
     const static int BLOCKTIMER = 300;
-    std::string hash(std::string);
-    int verifySignature(std::string dataStr, std::string, std::string publicKey);
-    char asciitolower(char in);
-    int hexToInt(const char *hex);
-    int ABS(int x);
+    std::string hash(const std::string&);
+    int verifySignature(const std::string&,
+                        const std::string&,
+                        const std::string&);
     int getPort(char *portString);
     std::vector<std::string> split(std::string str, const char *seperator);
-    std::string generateAddress(const std::string str);
+    std::string generateAddress(const std::string &str);
     std::string get_uuid();
-    std::string gen_random_str(const int len);
+    std::string gen_random_str(int len);
 }
 
 #endif // _UTILS_H_

@@ -11,8 +11,6 @@
 class Node;
 
 class Wallet {
-private:
-    Node *node;
 public:
     std::vector<std::string> walletKeyPair;
     std::string walletPrivateKey;
@@ -20,16 +18,15 @@ public:
     std::string address;
 
     Wallet(Node *node, const char *filename);
-    Wallet(Node *node);
+    explicit Wallet(Node *node);
     Wallet(const char *address, Node *node);
     ~Wallet();
 
     void genKeyPair();
-    utils::Signature sign(std::string data);
-    Transaction createTransaction(std::string receiverAddress, double amount, std::string type);
-    Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount);
-    std::string generateAddress(const std::string str);
-    void loadWalletFromAddress(const std::string& address, Node *node);
+    utils::Signature sign(const std::string &) const;
+    Transaction createTransaction(std::string receiverAddress, double amount, std::string type) const;
+    Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount) const;
+    static std::string generateAddress(const std::string &str);
     std::string toJson();
     void fromKey(const char *file);
 };

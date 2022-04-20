@@ -5,6 +5,9 @@
 #include "Transaction.hpp"
 #include <crow.h>
 #include <mutex>
+#include <thread>
+#include <nlohmann/json.hpp>
+#include <iostream>
 
 class TransactionPool {
 public:
@@ -14,9 +17,9 @@ public:
     TransactionPool();           // Constructor
     ~TransactionPool();          // Destructor
 
-    void addTransaction(Transaction transaction);
-    bool transactionExists(Transaction transaction);
-    void removeFromPool(vector<Transaction> txs);
+    void addTransaction(const Transaction &);
+    bool transactionExists(const Transaction&);
+    void removeFromPool(const vector<Transaction>&);
     std::string getPoolTransactionsJsonString();
     bool forgerRequired();
 };
