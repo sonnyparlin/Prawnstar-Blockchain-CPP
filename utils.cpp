@@ -87,7 +87,7 @@ namespace utils {
         return ret;
     }
 
-    std::vector<std::string> split(std::string str, const char *seperator)  
+    std::vector<std::string> split(std::string str, const char *seperator)
     {  
         char *token = strtok((char *)str.c_str(), seperator);
 

@@ -38,20 +38,17 @@ public:
     std::mutex nodeMutex;
     std::mutex logMutex;
 
-    int argc;
-    char **argv;
-
-    Node(int argc, char **argv); // Constructor
+    explicit Node(char **argv); // Constructor
     ~Node();                      // Destructor
 
-    static Node *createNode(int argc, char **argv);
+    static Node *createNode(char **argv);
     void startServers(int argc, char **argv);
     bool handleTransaction (Transaction, bool broadcast=true);
     void handleBlock (Block block, bool broadcast);
     void requestChain() const;
     void forge();
     void handleBlockchainRequest(std::string) const;
-    void handleBlockchain(std::string blockchainString) const;
+    void handleBlockchain(const std::string &blockchainString) const;
     std::string getNodeID() const;
     static std::string getConsoleLog();
     void log(std::string const& msg);

@@ -15,7 +15,7 @@ namespace MasterTestSpace {
                 nullptr
         };
 
-        Node *node = new Node(4, arguments);
+        Node *node = new Node(arguments);
 
         BlockchainTests()=default;
 

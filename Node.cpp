@@ -6,7 +6,7 @@
 
 Node * Node::node=nullptr;
 
-Node::Node(int argc, char **argv) {
+Node::Node(char **argv) {
     p2p = new SocketCommunication(this);
     accountModel = new AccountModel();
     blockchain = new Blockchain(this);
@@ -47,9 +47,9 @@ Node::~Node() {
     delete bobWallet;
 }
 
-Node *Node::createNode(int argc, char **argv) {
+Node *Node::createNode(char **argv) {
     if (node == nullptr) {
-        node = new Node(argc, argv);
+        node = new Node(argv);
     }
 
     return node;
@@ -86,8 +86,8 @@ std::string getLastLines( std::string const& filename, int lineCount )
         buffer.resize( std::min( buffer.size() + granularity, size ) );
         source.seekg( -static_cast<std::streamoff>( buffer.size() ),
                       std::ios_base::end );
-        source.read( buffer.data(), buffer.size() );
-        newlineCount = std::count( buffer.begin(), buffer.end(), '\n');
+        source.read( buffer.data(), (long)buffer.size() );
+        newlineCount = (int)std::count( buffer.begin(), buffer.end(), '\n');
     }
     auto start = buffer.begin();
     while ( newlineCount > lineCount ) {
@@ -95,7 +95,7 @@ std::string getLastLines( std::string const& filename, int lineCount )
         -- newlineCount;
     }
     auto end = remove( start, buffer.end(), '\r' );
-    return std::string( start, end );
+    return {start, end };
 }
 
 void Node::log(std::string const& msg)
@@ -233,19 +233,19 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
        return;
    }
 
-    std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
-    int blockNumber = atoi(receivingNode.at(2).c_str());
+    std::vector<std::string> receivingNode = utils::split(std::move(requestingNode), ":");
+    auto blockNumber = stol(receivingNode.at(2));
     std::cout << "requesting from block: " << blockNumber << std::endl;
     
     vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
 
     std::string msgType = "BLOCKCHAIN";
-    std::string msgBody = blockchain->toJsonString(subvector);
+    std::string msgBody = Blockchain::toJsonString(subvector);
     Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
     
-    int num = atoi(receivingNode.at(1).c_str());
+    auto num = (int)stol(receivingNode.at(1));
     int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {
         return;
@@ -257,7 +257,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
 This is where we read and rebuild the blockchain or partial blockchain after requesting blocks
 from the master server. How many blocks we ad is based on how many we requested.
 */
-void Node::handleBlockchain(std::string blockchainString) const {
+void Node::handleBlockchain(const std::string &blockchainString) const {
     // std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
 
     // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
@@ -273,8 +273,8 @@ void Node::handleBlockchain(std::string blockchainString) const {
         std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }
-    int localBlockCount = blockchain->blocks[blockchain->blocks.size()-1].blockCount;
-    int receivedBlockCount = j["blocks"].size();
+    auto localBlockCount = (int)blockchain->blocks[blockchain->blocks.size()-1].blockCount;
+    auto receivedBlockCount = (int)j["blocks"].size();
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
@@ -295,16 +295,16 @@ void Node::handleBlockchain(std::string blockchainString) const {
             b.signature = element["signature"];
             b.timestamp = element["timestamp"];
             std::vector<Transaction> transactions;
-            for (auto& tx : element["transactions"]) {
+            for (auto& itx : element["transactions"]) {
                 Transaction t;
-                t.id = tx["id"];
-                t.amount = tx["amount"];
-                t.receiverAddress = tx["receiverAddress"];
-                t.senderAddress = tx["senderAddress"];
+                t.id = itx["id"];
+                t.amount = itx["amount"];
+                t.receiverAddress = itx["receiverAddress"];
+                t.senderAddress = itx["senderAddress"];
                 t.senderPublicKey = accountModel->addressToPublicKey[t.senderAddress];
-                t.signature = tx["signature"];
-                t.timestamp = tx["timestamp"];
-                t.type = tx["type"];
+                t.signature = itx["signature"];
+                t.timestamp = itx["timestamp"];
+                t.type = itx["type"];
                 transactions.push_back(t);
 
                 if (t.type == "STAKE") {
