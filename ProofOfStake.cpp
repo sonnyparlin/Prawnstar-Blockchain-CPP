@@ -55,7 +55,7 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
         else if (getStake(validatorString) >= 1)
             stake = 1;
 
-        for (int i = 0; i < stake; i++) {
+        for (unsigned int i = 0; i < stake; i++) {
             Lot l(validatorString, stake, seed);
             lots.push_back(l);
         }
@@ -89,23 +89,7 @@ uint32_t lcg_rand(uint32_t *state)
 
 Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::string &seed) {
     Lot winnerLot;
-    // int leastOffset = {0};
-    // std::string hash = utils::hash(seed);
     auto hashed = fnv1a(seed);
-
-//    int referenceHashIntValue = fnv1a(std::to_string(hashed)) % INT_MAX;
-//    // std::cout << "referenceHashIntValue: " << referenceHashIntValue << std::endl;
-//    for (auto lot : lots) {
-//        int lotIntValue = fnv1a(lot.lotHash()) % INT_MAX;
-//        // std::cout << "lotIntValue: " << lotIntValue << std::endl;
-//        int offset = abs(int(lotIntValue - referenceHashIntValue));
-//        // std::cout << "offset: " << offset << std::endl;
-//        if (leastOffset == 0 || offset < leastOffset) {
-//            leastOffset = offset;
-//            winnerLot = lot;
-//        }
-//    }
-    // srand(hashed);
     winnerLot = lots.at(lcg_rand(&hashed) % lots.size());
     return winnerLot;
 }
