@@ -33,9 +33,9 @@ namespace MasterTestSpace {
     {
         ProofOfStake pos(node);
         // pos.update("bob", 1);
-        pos.update("alice", 500);
-        pos.update("phil", 5000);
-        pos.update("jimmy", 50000);
+        pos.update("alice", 100);
+        pos.update("phil", 500);
+        pos.update("jimmy", 1000);
 
         int bobWins {0};
         int aliceWins {0};
@@ -43,7 +43,7 @@ namespace MasterTestSpace {
         int jimmyWins {0};
 
         std::string forger;
-        int loopTimes = 100;
+        int loopTimes = 1000;
 
         for (int i = 0; i < loopTimes; i++) {
             forger = pos.forger(utils::gen_random_str(i));

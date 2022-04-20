@@ -155,6 +155,19 @@ namespace utils {
         return config;
     }
 
+    // random number generator
+    uint32_t nLehmer = 0;
+    uint32_t lehmer()
+    {
+        nLehmer += 0xe120fc15;
+        uint64_t tmp;
+        tmp = (uint64_t)nLehmer * 0x4a39b70d;
+        uint32_t m1 = (tmp >> 32) ^ tmp;
+        tmp = (uint64_t)m1 * 0x12fad5c9;
+        uint32_t m2 = (tmp >> 32) ^ tmp;
+        return m2;
+    }
+
     std::string gen_random_str(const int len) {
         static const char alphanum[] =
                 "0123456789"
@@ -163,8 +176,9 @@ namespace utils {
         std::string tmp_s;
         tmp_s.reserve(len);
 
+        nLehmer = 937162211; // seed our random number generator
         for (int i = 0; i < len; ++i) {
-            tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+            tmp_s += alphanum[lehmer() % (sizeof(alphanum) - 1)];
         }
 
         return tmp_s;

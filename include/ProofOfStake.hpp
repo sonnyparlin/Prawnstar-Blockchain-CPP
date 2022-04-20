@@ -21,12 +21,12 @@ public:
     explicit ProofOfStake(Node *node);           // Constructor
     ~ProofOfStake();          // Destructor
 
-    void update(std::string publicKeyString, double stake);
-    double getStake(std::string publicKeyString);
+    void update(const std::string&, double stake);
+    double getStake(const std::string&);
     std::vector<Lot> validatorLots(std::string seed);
-    Lot winnerLot(std::vector<Lot> lots, std::string seed);
+    static Lot winnerLot(const std::vector<Lot>&, const std::string &);
     std::string forger(std::string lastBlockHash);
-    void setGenesisNodeStake(std::string);
+    void setGenesisNodeStake(const std::string&);
 };
 
 #endif // _PROOFOFSTAKE_H_
