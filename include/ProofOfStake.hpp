@@ -25,7 +25,7 @@ public:
     double getStake(const std::string&);
     std::vector<Lot> validatorLots(std::string seed);
     static Lot winnerLot(const std::vector<Lot>&, const std::string &);
-    std::string forger(std::string lastBlockHash);
+    std::string forger(const std::string&);
     void setGenesisNodeStake(const std::string&);
 };
 

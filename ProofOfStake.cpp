@@ -110,7 +110,7 @@ Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::string &see
     return winnerLot;
 }
 
-std::string ProofOfStake::forger(std::string lastBlockHash) {
+std::string ProofOfStake::forger(const std::string &lastBlockHash) {
     std::vector<Lot> lots = validatorLots(lastBlockHash);
     Lot winner;
     winner = winnerLot(lots, lastBlockHash);
