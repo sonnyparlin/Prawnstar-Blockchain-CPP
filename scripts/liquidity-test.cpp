@@ -6,14 +6,19 @@
 
 using namespace std;
 
+uint32_t lcg_rand(uint32_t *state)
+{
+    return *state = (uint64_t)*state * 279470273u % 0xfffffffb;
+}
+
 int main() {
     double SUPPLY = 1000000000;
     const double ORIGINAL_SUPPLY = SUPPLY;
     double LIQUIDITY = 20000;
     double TOKEN_PRICE = LIQUIDITY / SUPPLY;
-    const int NUMBER_OF_TRANSACTIONS = 10000;
+    const int NUMBER_OF_TRANSACTIONS = 100000;
     const int PRICE_RANGE_LOW=1;
-    const int PRICE_RANGE_HIGH=700;
+    const int PRICE_RANGE_HIGH=1000;
     double USD_PRICE=0;
     double NUM_TOKENS=0;
     time_t start, end;
@@ -22,9 +27,9 @@ int main() {
 
     time(&start);
     srand(time(nullptr));
-
+    uint32_t x = time(nullptr);
     for (int i = 0; i < NUMBER_OF_TRANSACTIONS; i++) {
-        USD_PRICE = rand() % PRICE_RANGE_HIGH + PRICE_RANGE_LOW;
+        USD_PRICE = lcg_rand(&x) % PRICE_RANGE_HIGH + PRICE_RANGE_LOW;
         NUM_TOKENS = USD_PRICE / TOKEN_PRICE;
 
         if (USD_PRICE > PRICE_RANGE_HIGH) {
