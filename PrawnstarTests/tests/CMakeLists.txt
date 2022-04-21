@@ -8,4 +8,11 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(RunTests BlockchainTests.cpp ProofOfStakeTests.cpp)
-target_link_libraries(RunTests gtest gtest_main PrawnstarBlockchainLib OpenSSL::Crypto)
+
+if (MINGW)
+        target_link_libraries(RunTests gtest gtest_main PrawnstarBlockchainLib OpenSSL::Crypto wsock32 ws2_32)
+endif(MINGW)
+
+if (UNIX)
+        target_link_libraries(RunTests gtest gtest_main PrawnstarBlockchainLib OpenSSL::Crypto)
+endif(UNIX)
