@@ -55,7 +55,7 @@ std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
         else if (getStake(validatorString) >= 1)
             stake = 1;
 
-        for (unsigned int i = 0; i < stake; i++) {
+        for (int i = 0; i < stake; i++) {
             Lot l(validatorString, stake, seed);
             lots.push_back(l);
         }
