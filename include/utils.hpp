@@ -1,6 +1,5 @@
 #ifndef _UTILS_H_
 #define _UTILS_H_
-
 #include <string>
 #include <openssl/evp.h>
 #include <openssl/bio.h>
@@ -22,10 +21,9 @@ namespace utils {
 
     std::vector<std::string> get_ip_and_port_from_config();
     static std::vector<std::string> ip_port_vec = get_ip_and_port_from_config();
-    static std::string master_ip = ip_port_vec.at(0);
-    static const char *MASTER_NODE_IP = master_ip.c_str();
-    const static int MASTER_NODE_PORT=stoi(ip_port_vec.at(1));
-    const static int BLOCKTIMER = 300;
+    static std::string MASTER_NODE_IP = ip_port_vec.at(0);
+    static int MASTER_NODE_PORT = (int)stol(ip_port_vec.at(1));
+    static int BLOCKTIMER = 300;
     std::string hash(const std::string&);
     int verifySignature(const std::string&,
                         const std::string&,
