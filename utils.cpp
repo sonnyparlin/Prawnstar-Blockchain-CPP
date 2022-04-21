@@ -3,7 +3,7 @@
 namespace utils {
 
     std::string hash(const std::string &str)
-    {   
+    {
         unsigned char hash[SHA256_DIGEST_LENGTH];
         SHA256((unsigned char *)str.c_str(), str.length(), hash);
         std::stringstream ss;
@@ -54,7 +54,8 @@ namespace utils {
         // long len;
         // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
 
-        std::vector<std::string> sigParts = split(signature, ":");
+        std::string tmp = signature;
+        std::vector<std::string> sigParts = split(tmp, ":");
         std::string str1 = ":";
 
         size_t found = signature.find(str1);
@@ -107,18 +108,18 @@ namespace utils {
         return ret;
     }
 
-    std::vector<std::string> split(std::string str, const char *seperator)
+    std::vector<std::string> split(std::string &str, const char *seperator)
     {
         char *token = strtok((char *)str.c_str(), seperator);
 
-        std::vector<std::string> ipPortStrV;
+        std::vector<std::string> vec;
         while (token != nullptr)
         {
-            ipPortStrV.emplace_back(token);
+            vec.emplace_back(token);
             token = strtok(nullptr, ":");
         }
 
-        return ipPortStrV;
+        return vec;
     }
 
     int getPort(char *portString) {
@@ -141,7 +142,7 @@ namespace utils {
 
     std::string generateAddress(const std::string &str) {
 
-        // The public crypto address is a SHA1 
+        // The public crypto address is a SHA1
         // hex encoded string of the walletPublicKey.
 
         unsigned char hash[20];

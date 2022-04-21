@@ -2,7 +2,10 @@
 
 Wallet::Wallet(Node *node, const char *filename) {
     fromKey(filename);
-    node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
+    node->accountModel->addAccount(
+            address,
+            walletPublicKey,
+            walletPrivateKey);
 }
 
 Wallet::Wallet(const char *_address, Node *node) {
@@ -51,7 +54,7 @@ void Wallet::fromKey(const char *file) {
         return;
     }
 
-    walletPublicKey = publicKeyString;
+    walletPublicKey = (char *)publicKeyString;
 
     BIO_free(bpu);
     EVP_PKEY_free(pkey);
@@ -84,7 +87,7 @@ void Wallet::genKeyPair() {
     if (n < 0)
         std::cerr << "Error generating keypair." << std::endl;
     
-    walletPrivateKey = privateKeyString;
+    walletPrivateKey = (char *)privateKeyString;
     BIO_free(bp);
 
     // PUBLIC KEY
@@ -98,7 +101,7 @@ void Wallet::genKeyPair() {
     if (n < 0)
         std::cerr << "Error generating keypair." << std::endl;
     
-    walletPublicKey = publicKeyString;
+    walletPublicKey = (char *)publicKeyString;
     
     BIO_free(bpu);
     EVP_PKEY_free(pkey);

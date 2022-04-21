@@ -31,7 +31,7 @@ namespace utils {
                         const std::string&,
                         const std::string&);
     int getPort(char *portString);
-    std::vector<std::string> split(std::string str, const char *seperator);
+    std::vector<std::string> split(std::string &str, const char *seperator);
     std::string generateAddress(const std::string &str);
     std::string get_uuid();
     std::string gen_random_str(int len);

@@ -233,7 +233,8 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
        return;
    }
 
-    std::vector<std::string> receivingNode = utils::split(std::move(requestingNode), ":");
+    std::string tmp = std::move(requestingNode); // needed so split won't break
+    std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     auto blockNumber = stol(receivingNode.at(2));
     std::cout << "requesting from block: " << blockNumber << std::endl;
     
@@ -250,7 +251,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
     if (outgoingSocket == -1) {
         return;
     }
-    p2p->send_node_message(outgoingSocket, msgJson.c_str());
+    SocketCommunication::send_node_message(outgoingSocket, msgJson.c_str());
 }
 
 /*!
