@@ -23,7 +23,6 @@ namespace utils {
     static std::vector<std::string> ip_port_vec = get_ip_and_port_from_config();
     static std::string MASTER_NODE_IP = ip_port_vec.at(0);
     static int MASTER_NODE_PORT = (int)stol(ip_port_vec.at(1));
-    static int BLOCKTIMER = 300;
     std::string hash(const std::string&);
     int verifySignature(const std::string&,
                         const std::string&,

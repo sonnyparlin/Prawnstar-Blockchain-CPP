@@ -308,7 +308,7 @@ void SocketCommunication::blockForger() {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
 
-        sleep(utils::BLOCKTIMER);
+        sleep(300); // 300 seconds between blocks
         if (!node->transactionPool.transactions.empty()) {
             std::cout << node->transactionPool.transactions.size() << " transactions" << std::endl;
             std::cout << "Forging new block..." << std::endl;
