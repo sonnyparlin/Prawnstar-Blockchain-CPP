@@ -9,7 +9,7 @@ Block::Block()=default;
 Block::Block(std::vector <Transaction> &transactions,
              std::string &lastHash,
              std::string &forgerAddress,
-             unsigned long long blockCount)
+             long blockCount)
     : transactions(transactions), 
       lastHash(lastHash),
       forgerAddress(forgerAddress),
@@ -17,7 +17,7 @@ Block::Block(std::vector <Transaction> &transactions,
 
 Block::Block(std::vector <Transaction> &transactions,
              std::string &lastHash,
-             unsigned long long blockCount)
+             long blockCount)
     : transactions(transactions), 
       lastHash(lastHash),
       blockCount(blockCount) {}

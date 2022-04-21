@@ -7,35 +7,34 @@
 #include <ctime>
 #include <nlohmann/json.hpp>
 
-using namespace std;
 
 class Block {
 public:
-    vector <Transaction> transactions;
-    string lastHash;
-    string hash;
-    string forgerAddress;
+    std::vector <Transaction> transactions;
+    std::string lastHash;
+    std::string hash;
+    std::string forgerAddress;
     time_t timestamp = timeSinceEpoch();
-    unsigned long long blockCount {};
-    string signature;
-    string _id;
+    long blockCount {};
+    std::string signature;
+    std::string _id;
 
     // Constructors
     Block();
-    Block(std::vector <Transaction> &transactions,
-          std::string &lastHash,
-          std::string &forgerAddress,
-          unsigned long long blockCount);
+    Block(std::vector <Transaction>&,
+          std::string&,
+          std::string&,
+          long blockCount);
 
-    Block(std::vector <Transaction> &transactions,
-          std::string &lastHash,
-          unsigned long long blockCount);
+    Block(std::vector <Transaction>&,
+          std::string&,
+          long blockCount);
         
     // Destructor
     ~Block();
-    
-    string toJson();
-    string payload();
+
+    std::string toJson();
+    std::string payload();
     void sign(std::string&);
     static vector<nlohmann::json> transactionList(vector <Transaction> &transactions);
     nlohmann::json jsonView();
