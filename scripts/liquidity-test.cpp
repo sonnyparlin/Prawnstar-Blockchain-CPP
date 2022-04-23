@@ -17,16 +17,14 @@ int main() {
     double LIQUIDITY = 20000;
     double TOKEN_PRICE = LIQUIDITY / SUPPLY;
     const int NUMBER_OF_TRANSACTIONS = 100000;
-    const int PRICE_RANGE_LOW=1;
-    const int PRICE_RANGE_HIGH=1000;
-    double USD_PRICE=0;
-    double NUM_TOKENS=0;
+    const int PRICE_RANGE_LOW=10;
+    const int PRICE_RANGE_HIGH=10000;
+    double USD_PRICE;
+    double NUM_TOKENS;
     time_t start, end;
     std::vector<double> sales;
 
-
     time(&start);
-    srand(time(nullptr));
     uint32_t x = time(nullptr);
     for (int i = 0; i < NUMBER_OF_TRANSACTIONS; i++) {
         USD_PRICE = lcg_rand(&x) % PRICE_RANGE_HIGH + PRICE_RANGE_LOW;

@@ -9,29 +9,12 @@ data = json.load(f)
 ip = data["master_server_ip"]
 f.close()
 
-def countdown():
-    sys.stdout.write("3")
-    sys.stdout.flush()
-    time.sleep(1)
-    sys.stdout.write(" 2")
-    sys.stdout.flush()
-    time.sleep(1)
-    sys.stdout.write(" 1")
-    sys.stdout.flush()
-    time.sleep(1)
-    print(" ")
-
 def post_transaction(session, sender, receiver, amount, type):
     url = f"http://{ip}:8001/transact"
     json = '{"transaction": {"sender": "'+ sender +'","receiver": "'+ receiver +'", "amount": '+ amount +', "type": "'+ type +'"}}'
     r = session.post(url, data = json)
-    #if "Received" not in r.text:
-    #print(r.text)
-    
-    #time.sleep(2)
 
 start_time = time.time()
-
 exchange = 'pv1403d478bfc4949c9c68af53bbaf8deb58c4eac'
 nodeWallet = 'pv171e654b041c51d978becc5cf65b0e2f48ff7'
 alice = 'pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7'
@@ -44,19 +27,17 @@ with requests.Session() as s:
     post_transaction(s, exchange, node2, '4', 'EXCHANGE')
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
     post_transaction(s, node2, node2, '3', 'STAKE')
-    #countdown()    
 
     for x in range(int(sys.argv[1])-1):
         i += 1
         if i % 100 == 0:
-            print(i)            
+            print(f"{i} transactions...")
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.5)
 
-print(i+1)
+print("1000 transactions complete: getting final balances...")
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 
-print("getting final balances...")
 post_transaction(s, alice, bob, '1', 'TRANSFER')
 time.sleep(1)
 
@@ -75,3 +56,5 @@ print(x.text)
 print("Node two wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{node2}")
 print(x.text)
+
+print("\nTest Complete")

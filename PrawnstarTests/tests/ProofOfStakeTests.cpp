@@ -84,4 +84,25 @@ namespace MasterTestSpace {
         EXPECT_EQ(bobWins, loopTimes);
         delete node;
     }
+
+    TEST_F(ProofOfStakeTests, AddStakeTest) {
+        std::string sender = "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac"; // exchange
+        std::string receiver = node->nodeWallet->address; // node wallet
+        std::string type = "EXCHANGE"; // type
+        double amount = 100000;
+        Wallet senderWallet(sender.c_str(), node);
+        EXPECT_EQ(senderWallet.address, "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac");
+        Transaction tx = senderWallet.createTransaction(receiver, amount, type);
+        EXPECT_TRUE(node->handleTransaction(tx));
+
+        std::string type2 = "STAKE";
+        Wallet senderWallet2(receiver.c_str(), node);
+        Transaction tx2 = senderWallet2.createTransaction(receiver, amount, type2);
+        EXPECT_TRUE(node->handleTransaction(tx2));
+        EXPECT_EQ(node->blockchain->blocks.size(), 3);
+        EXPECT_EQ(node->proofOfStake->getStake(node->nodeWallet->walletPublicKey), 100001);
+
+        // Since I am the only forger, I should get back my own node's public key
+        EXPECT_EQ(node->blockchain->nextForger(),node->nodeWallet->walletPublicKey);
+    }
 }

@@ -57,41 +57,37 @@ namespace MasterTestSpace {
         EXPECT_EQ(node->blockchain->blocks.size(), 2);
         EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
         EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
-
-//        GTEST_COUT << "Executing 1000 transactions, please wait..." << std::endl;
-//        for (int i = 0; i < 1000; i++) {
-//            Transaction txi = node->aliceWallet->createTransaction(
-//                    "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
-//                    1,
-//                    "TRANSFER");
-//            EXPECT_TRUE(node->handleTransaction(txi));
-//        }
-//
-//        double expected = 18905;
-//        auto result = node->accountModel->getBalance(node->aliceWallet->address);
-//        result = roundf((float)result * 100) / 100;
-//        EXPECT_DOUBLE_EQ(expected, result);
     }
 
-    TEST_F(BlockchainTests, ProofOfStakeTests) {
+    TEST_F(BlockchainTests, TransactionStressTest) {
         std::string sender = "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac"; // exchange
-        std::string receiver = node->nodeWallet->address; // node wallet
-        std::string type = "EXCHANGE"; // type
-        double amount = 100000;
+        std::string receiver = "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"; // alice
+        std::string type = "EXCHANGE"; // extract type
+        double amount = 20000;
+
         Wallet senderWallet(sender.c_str(), node);
         EXPECT_EQ(senderWallet.address, "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac");
         Transaction tx = senderWallet.createTransaction(receiver, amount, type);
+        EXPECT_EQ(tx.senderAddress, "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac");
+        EXPECT_EQ(tx.receiverAddress, "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7");
         EXPECT_TRUE(node->handleTransaction(tx));
+        EXPECT_EQ(node->blockchain->blocks.size(), 2);
+        EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
+        EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
 
-        std::string type2 = "STAKE";
-        Wallet senderWallet2(receiver.c_str(), node);
-        Transaction tx2 = senderWallet2.createTransaction(receiver, amount, type2);
-        EXPECT_TRUE(node->handleTransaction(tx2));
-        EXPECT_EQ(node->blockchain->blocks.size(), 3);
-        EXPECT_EQ(node->proofOfStake->getStake(node->nodeWallet->walletPublicKey), 100001);
+        GTEST_COUT << "Executing 1000 transactions, please wait..." << std::endl;
+        for (int i = 0; i < 1000; i++) {
+            Transaction txi = node->aliceWallet->createTransaction(
+                    "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
+                    1,
+                    "TRANSFER");
+            EXPECT_TRUE(node->handleTransaction(txi));
+        }
 
-        // Since I am the only forger, I should get back my own node's public key
-        EXPECT_EQ(node->blockchain->nextForger(),node->nodeWallet->walletPublicKey);
+        double expected = 18905;
+        auto result = node->accountModel->getBalance(node->aliceWallet->address);
+        result = roundf((float)result * 100) / 100;
+        EXPECT_DOUBLE_EQ(expected, result);
     }
 
     TEST_F(BlockchainTests, TransactionNotCovered) {
