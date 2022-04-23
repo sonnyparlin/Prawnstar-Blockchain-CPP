@@ -265,7 +265,7 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
         // Master node handshake
         //=========================================================   
         if (i == 0 && argc == 5) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], utils::MASTER_NODE_PORT);
+            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], utils::get_master_node_port());
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }
@@ -369,8 +369,8 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
                 // remove peer from peers list.
                 // ======================================
                 std::string elementToRemove = ipPortStrV.at(0) + ":" + std::to_string(num);
-                std::string masterNode = utils::MASTER_NODE_IP;
-                std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
+                std::string masterNode = utils::get_master_node_ip();
+                std::string masterNode2 = ":" + std::to_string(utils::get_master_node_port());
                 masterNode += masterNode2;
 
                 if (elementToRemove != masterNode) {
@@ -472,8 +472,8 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
         peers.push_back(newPeerToAdd);
         
         // std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
-        // std::string masterNode = utils::MASTER_NODE_IP;
-        // std::string masterNode2 = ":" + std::to_string(utils::MASTER_NODE_PORT);
+        // std::string masterNode = utils::get_master_node_ip();
+        // std::string masterNode2 = ":" + std::to_string(utils::get_master_node_port());
         // masterNode += masterNode2;
 
         // if (thisNode != masterNode) {

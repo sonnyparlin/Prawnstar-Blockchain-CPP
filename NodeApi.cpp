@@ -22,7 +22,7 @@ void NodeApi::start(std::string &po) {
         std::vector<std::string> ip_port = utils::get_ip_and_port_from_config();
         j["ip"] = ip_port.at(0);
         j["port"] = ip_port.at(1);
-        j["master"] = utils::MASTER_NODE_IP;
+        j["master"] = utils::get_master_node_ip();
         return crow::response(200, j.dump());
     });
 

@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <vector>
 #include <random>
 
 namespace utils {
@@ -20,9 +21,13 @@ namespace utils {
     };
 
     std::vector<std::string> get_ip_and_port_from_config();
-    static std::vector<std::string> ip_port_vec = get_ip_and_port_from_config();
-    static std::string MASTER_NODE_IP = ip_port_vec.at(0);
-    static int MASTER_NODE_PORT = (int)stol(ip_port_vec.at(1));
+
+    static std::string MASTER_NODE_IP;
+    static int MASTER_NODE_PORT;
+
+    std::string get_master_node_ip();
+    int get_master_node_port();
+    void startUtils();
     std::string hash(const std::string&);
     int verifySignature(const std::string&,
                         const std::string&,

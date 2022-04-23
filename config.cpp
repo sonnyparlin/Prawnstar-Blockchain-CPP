@@ -1,11 +1,11 @@
 #include "config.hpp"
 
-struct TX_TYPE tx = 
+struct TX_TYPE tx =
 {
-    .transfer = "TRANSFER", 
-    .exchange = "EXCHANGE", 
-    .stake    = "STAKE", 
-    .reward   = "REWARD"  
+    .transfer = "TRANSFER",
+    .exchange = "EXCHANGE",
+    .stake    = "STAKE",
+    .reward   = "REWARD"
 };
 
 time_t timeSinceEpoch()
