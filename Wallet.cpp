@@ -189,10 +189,14 @@ utils::Signature Wallet::sign(const std::string &str) const
 }
 
 /*!
-This is where transactions originate. Right now there are no checks and balances to verify a user's identity. This will change with the implementation of a user interface.
+This is where transactions originate. Right now there are no checks and balances to verify a user's identity.
+This will change with the implementation of a user interface.
 */
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) const {
-    Transaction transaction(address, std::move(receiverAddress), amount, std::move(type));
+    Transaction transaction(address,
+                            std::move(receiverAddress),
+                            amount,
+                            std::move(type));
 
     // AUTHENTICATE HERE
 
@@ -208,9 +212,13 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
 }
 
 /*!
-This is where blocks are generated for the entire blockchain. Since this is a proof of stake blockchain, transactions will always be the created by a forger determined by the prof of stake algorithm. Called from Blockchain::createBlock() inside of Node.cpp.
+This is where blocks are generated for the entire blockchain. Since this is a proof of stake blockchain,
+transactions will always be the created by a forger determined by the prof of stake algorithm.
+Called from Blockchain::createBlock() inside of Node.cpp.
 */
-Block Wallet::createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount) const {
+Block Wallet::createBlock(vector<Transaction> transactions,
+                          std::string lastHash,
+                          unsigned long long blockCount) const {
     Block block(transactions, lastHash, blockCount);
     block.hash = utils::hash(block.payload());
     block._id = block.hash;
