@@ -22,8 +22,7 @@ namespace utils {
 
     std::vector<std::string> get_ip_and_port_from_config();
 
-    static std::string MASTER_NODE_IP;
-    static int MASTER_NODE_PORT;
+    static std::vector<std::string> ip_port_vec;
 
     std::string get_master_node_ip();
     int get_master_node_port();

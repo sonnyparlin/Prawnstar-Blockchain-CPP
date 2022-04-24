@@ -49,7 +49,6 @@ if (MINGW)
     find_package(Boost REQUIRED)
 
     add_subdirectory(PrawnstarTests)
-    add_subdirectory(scripts)
     add_executable(Prawnstar main.cpp)
 
     SET(CMAKE_CXX_FLAGS "-Wall")

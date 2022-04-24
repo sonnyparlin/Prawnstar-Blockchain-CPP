@@ -202,15 +202,15 @@ std::string utils::gen_random_str(int len) {
 
 void utils::startUtils()
 {
-    std::vector<std::string> ip_port_vec = get_ip_and_port_from_config();
-    MASTER_NODE_IP = ip_port_vec.at(0);
-    MASTER_NODE_PORT = (int)stol(ip_port_vec.at(1));
+    ip_port_vec = get_ip_and_port_from_config();
 }
 
 std::string utils::get_master_node_ip() {
-    return MASTER_NODE_IP;
+    std::string ip = ip_port_vec.at(0);
+    return ip;
 }
 
 int utils::get_master_node_port() {
-    return MASTER_NODE_PORT;
+    auto port = (int)stol(ip_port_vec.at(1));
+    return port;
 }
