@@ -218,7 +218,7 @@ Called from Blockchain::createBlock() inside of Node.cpp.
 */
 Block Wallet::createBlock(vector<Transaction> transactions,
                           std::string lastHash,
-                          unsigned long long blockCount) const {
+                          long blockCount) const {
     Block block(transactions, lastHash, blockCount);
     block.hash = utils::hash(block.payload());
     block._id = block.hash;

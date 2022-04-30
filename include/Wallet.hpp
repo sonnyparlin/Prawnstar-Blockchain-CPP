@@ -25,7 +25,7 @@ public:
     void genKeyPair();
     utils::Signature sign(const std::string &) const;
     Transaction createTransaction(std::string receiverAddress, double amount, std::string type) const;
-    Block createBlock(vector<Transaction> transactions, std::string lastHash, unsigned long long blockCount) const;
+    Block createBlock(vector<Transaction> transactions, std::string lastHash, long blockCount) const;
     static std::string generateAddress(const std::string &str);
     std::string toJson();
     void fromKey(const char *file);

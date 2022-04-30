@@ -1,13 +1,15 @@
 #include "Message.hpp"
 
-Message::Message(SocketConnector &sc,
-                 std::string &messageType,
-                 std::vector<std::string> &peers)
-                 :sc(sc), messageType(messageType), peers(peers){}
+#include <utility>
 
-Message::Message(std::string &messageType,
-                 std::string &data) // refactor to be a string
-                 :messageType(messageType), data(data){}
+Message::Message(SocketConnector &sc,
+                 std::string messageType,
+                 std::vector<std::string> &peers)
+                 :sc(sc), messageType(std::move(messageType)), peers(peers){}
+
+Message::Message(std::string messageType,
+                 std::string data) // refactor to be a string
+                 :messageType(std::move(messageType)), data(std::move(data)){}
 
 Message::~Message()=default;
 
