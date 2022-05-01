@@ -8,7 +8,7 @@ Message::Message(SocketConnector &sc,
                  :sc(sc), messageType(std::move(messageType)), peers(peers){}
 
 Message::Message(std::string messageType,
-                 std::string data) // refactor to be a string
+                 std::string data)
                  :messageType(std::move(messageType)), data(std::move(data)){}
 
 Message::~Message()=default;

@@ -11,10 +11,10 @@ public:
     std::string lastBlockHash{};
 
     Lot();
-    Lot(std::string &pubString, int i, std::string &lBH); // Constructor
+    Lot(std::string pubString, int i, std::string lBH); // Constructor
     ~Lot(); // Destructor
 
-    std::string lotHash() const;
+    // std::string lotHash() const;
 };
 
 #endif // _LOT_H_

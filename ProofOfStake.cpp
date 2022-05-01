@@ -37,44 +37,45 @@ double ProofOfStake::getStake(const std::string &publicKeyString) {
         return 0;
 }
 
-std::vector<Lot> ProofOfStake::validatorLots(std::string seed) {
+inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
     std::vector<Lot> lots;
     int stake;
 
     for ( const auto &validator : stakers ) {
-        std::string validatorString = validator.first;
 
-        if (getStake(validatorString) >= 1000)
+        // Note, in this configuration it doesn't do you any good to stake
+        // more than 1000 tokens. At 1000, you are a tier 5 staker.
+        if (getStake(validator.first) >= 1000) // tier 5
             stake = 5;
-        else if (getStake(validatorString) >= 500)
+        else if (getStake(validator.first) >= 500) // tier 4
             stake = 4;
-        else if (getStake(validatorString) >= 100)
+        else if (getStake(validator.first) >= 100) // tier 3
             stake = 3;
-        else if (getStake(validatorString) >= 50)
+        else if (getStake(validator.first) >= 50) // tier 2
             stake = 2;
-        else if (getStake(validatorString) >= 1)
+        else if (getStake(validator.first) >= 1) // tier 1
             stake = 1;
 
         for (int i = 0; i < stake; i++) {
-            Lot l(validatorString, stake, seed);
+            Lot l(validator.first, stake, seed);
             lots.push_back(l);
         }
     }
     return lots;
 }
 
-inline uint32_t fnv1a(std::string const & text) {
+inline uint32_t ProofOfStake::fnv1a(const std::string& text) {
      // 32 bit params
      uint32_t constexpr fnv_prime = 16777619U;
      uint32_t constexpr fnv_offset_basis = 2166136261U;
 
     // 64 bit params
-//    uint64_t constexpr fnv_prime = 1099511628211ULL;
-//    uint64_t constexpr fnv_offset_basis = 14695981039346656037ULL;
-//
+    // uint64_t constexpr fnv_prime = 1099511628211ULL;
+    // uint64_t constexpr fnv_offset_basis = 14695981039346656037ULL;
+
     uint64_t hash = fnv_offset_basis;
     
-    for(auto c: text) {
+    for(const auto& c: text) {
         hash ^= c;
         hash *= fnv_prime;
     }
@@ -82,21 +83,19 @@ inline uint32_t fnv1a(std::string const & text) {
     return hash;
 }
 
-uint32_t lcg_rand(uint32_t *state)
+inline uint32_t ProofOfStake::lcg_rand(uint32_t *state)
 {
     return *state = (uint64_t)*state * 279470273u % 0xfffffffb;
 }
 
-Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::string &seed) {
-    Lot winnerLot;
+inline Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::string &seed) {
     auto hashed = fnv1a(seed);
-    winnerLot = lots.at(lcg_rand(&hashed) % lots.size());
+    const auto &winnerLot = lots.at(lcg_rand(&hashed) % lots.size());
     return winnerLot;
 }
 
 std::string ProofOfStake::forger(const std::string &lastBlockHash) {
     std::vector<Lot> lots = validatorLots(lastBlockHash);
-    Lot winner;
-    winner = winnerLot(lots, lastBlockHash);
+    auto winner = winnerLot(lots, lastBlockHash);
     return winner.publicKeyString;
 }
