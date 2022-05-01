@@ -38,7 +38,7 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
         #ifndef _WIN32
         std::cout << "send() error " << errno << std::endl;
         #else
-        printf("\nsend() error: %d\n", WSAGetLastError());
+        std::cout << "\nsend() error: " << WSAGetLastError() << std::endl;
         #endif
         return;
     }
@@ -52,9 +52,9 @@ void SocketCommunication::receive_node_message(int sock) {
     auto reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, MSG_WAITALL);
     if (reader < 0) {
         #ifndef _WIN32
-        std::cout << "read() error " << errno << std::endl;
+        std::cout << "recv() error " << errno << std::endl;
         #else
-        printf("\nread() error: %d\n", WSAGetLastError());
+        std::cout << "\nrecv() error: " << WSAGetLastError() << std::endl;
         #endif
         return;
     }
@@ -159,7 +159,7 @@ void SocketCommunication::receive_node_message(int sock) {
         #ifndef _WIN32
         std::cout << "close() error " << errno << std::endl;
         #else
-        printf("\nclose() error: %d\n", WSAGetLastError());
+        std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
         #endif
     }
     delete[] buffer;
@@ -176,14 +176,7 @@ int SocketCommunication::processArgs(int argc, char **argv) {
         std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
     }
     
-    char* p;
-    errno = 0; // not 'int errno', because the '#include' already defined it
-    long arg = strtol(argv[2], &p, 10);
-
-    if (*p != '\0' || errno != 0) {
-        std::cout << "Invalid null or ernno not 0" << std::endl;
-        return 1; // In main(), returning non-zero means failure
-    }
+    auto arg = stoi(argv[2]);
 
     if (arg < INT_MIN || arg > INT_MAX) {
         std::cout << "Invalid port" << std::endl;
@@ -205,8 +198,7 @@ the blocks it's missing (if any) from the blockchain on the master node.
 */
 void SocketCommunication::startP2POperations( int argc, char **argv ) {
     sc.ip = argv[1];
-    char *p;
-    sc.port = (int)strtol(argv[2], &p, 10);
+    sc.port = stoi(argv[2]);
 
     std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
     serverThread.detach();
@@ -223,9 +215,7 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
 
 void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
-    // Everything went well, set the port
-    char *p;
-    auto PORT = (int)strtol(argv[2], &p, 10);
+    auto PORT = stoi(argv[2]);
     id = utils::get_uuid();
     struct sockaddr_in address{};
     int address_length = sizeof(address);
@@ -255,7 +245,7 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
                     #ifndef _WIN32
                     std::cout << "accept() error " << errno << std::endl;
                     #else
-                    printf("\naccept() error: %d\n", WSAGetLastError());
+                    std::cout << "\naccept() error: " << WSAGetLastError() << std::endl;
                     #endif
                     exit(0);
             }
@@ -391,7 +381,7 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
                 #ifndef _WIN32
                 std::cout << "close() error " << errno << std::endl;
                 #else
-                printf("\nclose() error: %d\n", WSAGetLastError());
+                std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
                 #endif
             }
         }
@@ -433,7 +423,7 @@ void SocketCommunication::broadcast(const char *message) const {
             #ifndef _WIN32
             std::cout << "close() error " << errno << std::endl;
             #else
-            printf("\nclose() error: %d\n", WSAGetLastError());
+            std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
             #endif
         }
     }

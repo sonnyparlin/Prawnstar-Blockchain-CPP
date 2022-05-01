@@ -15,9 +15,9 @@ int createSocket() {
     if (( obj_server = socket ( AF_INET, SOCK_STREAM, 0)) == 0)
     {
         #ifndef _WIN32
-        std::cerr << "socket: " << errno << std::endl;
+        std::cerr << "socket() error: " << errno << std::endl;
         #else
-        printf("\nsocket: %d\n", WSAGetLastError());
+        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
         #endif
     }
     
@@ -25,9 +25,9 @@ int createSocket() {
     (char *)&opted, sizeof ( opted )))
     {
         #ifndef _WIN32
-        std::cerr << "setsockopt: " << errno << std::endl;
+        std::cerr << "setsockopt() error: " << errno << std::endl;
         #else
-        printf("\nsetsockopt: %d\n", WSAGetLastError());
+        std::cout << "\nsetsockopt() error: " << WSAGetLastError() << std::endl;
         #endif
     }
     return obj_server;
@@ -40,9 +40,9 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
     sizeof(address))<0)
     {
         #ifndef _WIN32
-        std::cerr << "bind: " << errno << std::endl;
+        std::cerr << "bind() error: " << errno << std::endl;
         #else
-        printf("\nbind: %d\n", WSAGetLastError());
+        std::cout << "\nbind() error: " << WSAGetLastError() << std::endl;
         #endif
         return false;
     }
@@ -50,9 +50,9 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
     if (listen ( server, 3) < 0)
     {
         #ifndef _WIN32
-        std::cerr << "listen: " << errno << std::endl;
+        std::cerr << "listen() error: " << errno << std::endl;
         #else
-        printf("\nlisten: %d\n", WSAGetLastError());
+        std::cout << "\nlisten() error: " << WSAGetLastError() << std::endl;
         #endif
         return false;
     }
@@ -76,7 +76,7 @@ int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
         #ifndef _WIN32
         std::cout << "socket() error " << errno << std::endl;
         #else
-        printf("\nsocket() error: %d\n", WSAGetLastError());
+        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
         #endif
         return -1;
     }
@@ -88,7 +88,7 @@ int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
         #ifndef _WIN32
         std::cout << "inet_pton() error " << errno << std::endl;
         #else
-        printf("\ninet_pton() error: %d\n", WSAGetLastError());
+        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
         #endif
         return -1;
     }
@@ -98,7 +98,7 @@ int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
         #ifndef _WIN32
         std::cout << "connect() error: " << errno << std::endl;
         #else
-        printf("\n\nconnect() error: %d\n", WSAGetLastError());
+        std::cout << "\nconnect() error: " << WSAGetLastError() << std::endl;
         #endif
         return -1;
     }
