@@ -25,7 +25,7 @@ bool Blockchain::addBlock(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     executeTransactions(block.transactions);
     blocks.push_back(block);
-    blocks.shrink_to_fit();
+    // blocks.shrink_to_fit();
     return true;
 }
 
