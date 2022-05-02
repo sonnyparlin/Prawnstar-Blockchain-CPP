@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "Blockchain.hpp"
 #include "utils.hpp"
 
@@ -54,7 +55,6 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
         } catch(std::exception& e) {
             std::cerr << "Error with createTransaction: " << e.what() << std::endl;
         }
-        // node->accountModel->updateBalance(node->nodeWallet->address, reward);
         itx.amount -= reward;
 
         resultTransactions.push_back(itx);
@@ -95,8 +95,7 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(const vector<Trans
 
 bool Blockchain::blockHasTransactions(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    auto response = block.transactions.size();
-    return response > 0;
+    return block.transactions.size() > 0;
 }
 
 void Blockchain::executeTransactions(const std::vector<Transaction> &transactions) {
@@ -139,7 +138,7 @@ Block Blockchain::createBlock(const std::vector<Transaction> &transactionsFromPo
     executeTransactions(coveredTransactions);
     Block newBlock = forgerWallet.createBlock(coveredTransactions, 
                                               lastHash,
-                                              blocks.size());
+                                              static_cast<long>(blocks.size()));
     blocks.push_back(newBlock);
 
     return newBlock;
@@ -147,13 +146,11 @@ Block Blockchain::createBlock(const std::vector<Transaction> &transactionsFromPo
 
 bool Blockchain::transactionExists(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    for(auto const &block : blocks) {
-        for(auto const &itx : block.transactions) {
-            if (itx == transaction)
-                return true;
-        }
-    }
-    return false;
+    return std::any_of(blocks.begin(), blocks.end(), [&transaction](const Block &block){
+        if ( std::find(block.transactions.begin(), block.transactions.end(), transaction) != block.transactions.end() )
+            return true;
+        return false;
+    });
 }
 
 std::string Blockchain::getTransaction(const std::string &txid) {
