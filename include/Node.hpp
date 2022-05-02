@@ -43,8 +43,8 @@ public:
 
     static Node *createNode(char **argv);
     void startServers(int argc, char **argv);
-    bool handleTransaction (Transaction, bool broadcast=true);
-    void handleBlock (Block block, bool broadcast);
+    bool handleTransaction (Transaction&, bool broadcast=true);
+    void handleBlock (Block &block, bool broadcast);
     void requestChain() const;
     void forge();
     void handleBlockchainRequest(std::string) const;

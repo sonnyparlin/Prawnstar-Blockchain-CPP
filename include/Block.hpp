@@ -15,9 +15,10 @@ public:
     std::string hash;
     std::string forgerAddress;
     time_t timestamp = timeSinceEpoch();
-    long blockCount {};
+    long blockCount {0};
     std::string signature;
     std::string _id;
+    size_t signatureLength {0};
 
     // Constructors
     Block();

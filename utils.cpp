@@ -50,24 +50,15 @@ std::string utils::get_uuid() {
 
 int utils::verifySignature(const std::string &message,
                     const std::string &signature,
+                    size_t &signatureSize,
                     const std::string &publicKeyString) {
     /* the easy way to translate your hex string back into your buffer */
     // long len;
     // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
 
-    std::string tmp = signature;
-    std::vector<std::string> sigParts = split(tmp, ":");
-    std::string str1 = ":";
-
-    size_t found = signature.find(str1);
-    if (found == std::string::npos)
-        return 0;
-
-    // std::cout << sigParts.at(0) << " : " << sigParts.at(1) << std::endl;
-
     /* the not so easy way */
     unsigned char buf[256];
-    const char *st = sigParts.at(0).c_str();
+    const char *st = signature.c_str();
     size_t buflen;
     int rv = OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
     if (rv == 0)
@@ -99,7 +90,7 @@ int utils::verifySignature(const std::string &message,
     /* Perform operation */
     auto *md = (unsigned char *)message.c_str();
     size_t mdlen = 32;
-    auto siglen = (size_t)stoi(sigParts.at(1));
+    auto siglen = (size_t)signatureSize;
     // std::cout << "v sig size: " << siglen << std::endl;
     int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
 

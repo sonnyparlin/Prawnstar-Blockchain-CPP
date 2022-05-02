@@ -17,6 +17,7 @@ public:
     string id;
     time_t timestamp{};
     string signature;
+    size_t signatureLength{};
 
     // Constructor
     Transaction(string senderAddress, 

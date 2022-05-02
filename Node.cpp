@@ -115,13 +115,12 @@ std::string Node::getConsoleLog() {
 /*!
 This is where we handle transactions. Called from NodeAPI and SocketCommunication.
 */
-bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
-    std::string data = transaction.payload();
-    std::string signature = transaction.signature;
-    std::string signerPublicKey = transaction.senderPublicKey;
+bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     bool transactionCovered = false;
-
-    bool signatureValid = utils::verifySignature(data, signature, signerPublicKey);
+    bool signatureValid = utils::verifySignature(transaction.payload(),
+                                                 transaction.signature,
+                                                 transaction.signatureLength,
+                                                 transaction.senderPublicKey);
     if (!signatureValid)
         return false;
 
@@ -154,10 +153,8 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
     }
 
     bool forgingRequired = transactionPool.forgerRequired();
+    if (forgingRequired) forge();
 
-    if (forgingRequired) {
-        forge();
-    }
     return true;
 }
 
@@ -165,7 +162,7 @@ bool Node::handleTransaction (Transaction transaction, bool broadcast ) {
 Do check to make sure the block is valid before adding it to the chain.
 Broadcast if necessary.
 */
-void Node::handleBlock (Block block, bool broadcast) {
+void Node::handleBlock (Block &block, bool broadcast) {
     Wallet forger(block.forgerAddress.c_str(), this);
     std::string blockHash = block.hash;
     bool blockCountValid = blockchain->blockCountValid(block);
@@ -179,7 +176,7 @@ void Node::handleBlock (Block block, bool broadcast) {
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
     bool transactionValid = blockchain->transactionValid(block.transactions);
-    bool signatureValid = utils::verifySignature(block.payload(), block.signature, forger.walletPublicKey);
+    bool signatureValid = utils::verifySignature(block.payload(), block.signature, block.signatureLength, forger.walletPublicKey);
     bool blockHasTransactions = blockchain->blockHasTransactions(block);
 
     if (lastBlockHashValid && forgerValid && transactionValid && signatureValid && blockHasTransactions) {
@@ -214,8 +211,7 @@ how many blocks are needed from the master server.
 void Node::requestChain() const {
     std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
     std::string msgType = "BLOCKCHAINREQUEST";
-    std::string msgBody = requestingNode;
-    Message message(msgType, msgBody);
+    Message message(msgType, requestingNode);
     std::string msgJson = message.toJson();
     p2p->broadcast(msgJson.c_str());
 }

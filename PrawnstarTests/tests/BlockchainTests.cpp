@@ -72,7 +72,7 @@ namespace MasterTestSpace {
         EXPECT_EQ(tx.senderAddress, "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac");
         EXPECT_EQ(tx.receiverAddress, "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7");
         node->transactionPool.addTransaction(tx);
-        
+
         Transaction txi = node->aliceWallet->createTransaction(
                 "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
                 1,

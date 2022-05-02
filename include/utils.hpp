@@ -30,6 +30,7 @@ namespace utils {
     std::string hash(const std::string&);
     int verifySignature(const std::string&,
                         const std::string&,
+                        size_t&,
                         const std::string&);
     int getPort(char *portString);
     std::vector<std::string> split(std::string &str, const char *seperator);
