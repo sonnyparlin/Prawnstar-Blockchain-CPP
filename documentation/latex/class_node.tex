@@ -100,7 +100,7 @@ This is where new blocks are initiated for this forger. \begin{DoxyRefDesc}{Todo
 \doxysubsubsection{\texorpdfstring{handleBlockchain()}{handleBlockchain()}}
 {\footnotesize\ttfamily void Node\+::handle\+Blockchain (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{blockchain\+String }\end{DoxyParamCaption}) const}
 
-This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. Ensure the incoming block count is greater than the local block count we can do this even when downloading a partial chain because we are using the block\+Count variable of the block itself rather than blocks.\+size().
+This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. Ensure the incoming block count is greater than the local block count. We can do this even when downloading a partial chain because we are using the block\+Count variable of the block itself rather than blocks.\+size().
 
 \begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000002}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}

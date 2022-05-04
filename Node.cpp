@@ -266,8 +266,8 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
 
     /*!
-    Ensure the incoming block count is greater than the local block count
-    we can do this even when downloading a partial chain because we are using
+    Ensure the incoming block count is greater than the local block count.
+    We can do this even when downloading a partial chain because we are using
     the blockCount variable of the block itself rather than blocks.size().
     */
     if (receivedBlockCount > localBlockCount) {

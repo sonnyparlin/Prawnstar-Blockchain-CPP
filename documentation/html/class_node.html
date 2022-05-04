@@ -211,7 +211,7 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>logMutex</b></t
       </table>
 </div><div class="memdoc">
 <p >This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. </p>
-<p >Ensure the incoming block count is greater than the local block count we can do this even when downloading a partial chain because we are using the blockCount variable of the block itself rather than blocks.size().</p>
+<p >Ensure the incoming block count is greater than the local block count. We can do this even when downloading a partial chain because we are using the blockCount variable of the block itself rather than blocks.size().</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>write the new block to our mongodb instance </dd></dl>
 
 </div>
