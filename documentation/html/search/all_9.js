@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['proofofstake_0',['ProofOfStake',['../class_proof_of_stake.html',1,'']]]
+  ['lastblockhashvalid_0',['lastBlockHashValid',['../class_blockchain.html#aff4479e0d60e2178e5990791003b7d2f',1,'Blockchain']]],
+  ['lot_1',['Lot',['../class_lot.html',1,'']]]
 ];

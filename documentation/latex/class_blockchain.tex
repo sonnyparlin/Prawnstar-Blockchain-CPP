@@ -3,74 +3,54 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blockchain_a8b2d507929548019ed2c73b1956317b1}\label{class_blockchain_a8b2d507929548019ed2c73b1956317b1}} 
-{\bfseries Blockchain} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\mbox{\hyperlink{class_blockchain_a8b2d507929548019ed2c73b1956317b1}{Blockchain}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_blockchain_a89948907068998a0d48ef911a4cc9e40}\label{class_blockchain_a89948907068998a0d48ef911a4cc9e40}} 
-bool {\bfseries add\+Block} (const \mbox{\hyperlink{class_block}{Block}} \&block)
+\mbox{\hyperlink{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}{$\sim$\+Blockchain}} ()
 \item 
-\mbox{\Hypertarget{class_blockchain_afcd7f1987327abfc8880d132e26d0744}\label{class_blockchain_afcd7f1987327abfc8880d132e26d0744}} 
-bool {\bfseries block\+Count\+Valid} (const \mbox{\hyperlink{class_block}{Block}} \&)
+bool \mbox{\hyperlink{class_blockchain_a89948907068998a0d48ef911a4cc9e40}{add\+Block}} (const \mbox{\hyperlink{class_block}{Block}} \&block)
 \item 
-\mbox{\Hypertarget{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}\label{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}} 
-bool {\bfseries last\+Block\+Hash\+Valid} (const \mbox{\hyperlink{class_block}{Block}} \&)
+bool \mbox{\hyperlink{class_blockchain_afcd7f1987327abfc8880d132e26d0744}{block\+Count\+Valid}} (const \mbox{\hyperlink{class_block}{Block}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a313ff824d102d675c08e902ac72468ae}\label{class_blockchain_a313ff824d102d675c08e902ac72468ae}} 
-bool {\bfseries transaction\+Covered} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
+bool \mbox{\hyperlink{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}{last\+Block\+Hash\+Valid}} (const \mbox{\hyperlink{class_block}{Block}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}\label{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}} 
-std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries get\+Covered\+Transaction\+Set} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
+bool \mbox{\hyperlink{class_blockchain_a313ff824d102d675c08e902ac72468ae}{transaction\+Covered}} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}\label{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}} 
-void {\bfseries execute\+Transaction} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \mbox{\hyperlink{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}{get\+Covered\+Transaction\+Set}} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}\label{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}} 
-void {\bfseries execute\+Transactions} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
+void \mbox{\hyperlink{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}{execute\+Transaction}} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}\label{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}} 
-\mbox{\hyperlink{class_block}{Block}} {\bfseries create\+Block} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&, const std\+::string \&)
+void \mbox{\hyperlink{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}{execute\+Transactions}} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a0dcd65d602435ffe46498dabd901648d}\label{class_blockchain_a0dcd65d602435ffe46498dabd901648d}} 
-bool {\bfseries transaction\+Exists} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
+\mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}{create\+Block}} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&, const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}\label{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}} 
-bool {\bfseries forger\+Valid} (const \mbox{\hyperlink{class_block}{Block}} \&)
+bool \mbox{\hyperlink{class_blockchain_a0dcd65d602435ffe46498dabd901648d}{transaction\+Exists}} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}\label{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}} 
-bool {\bfseries transaction\+Valid} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
+bool \mbox{\hyperlink{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}{forger\+Valid}} (const \mbox{\hyperlink{class_block}{Block}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}\label{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}} 
-std\+::string {\bfseries next\+Forger} ()
+bool \mbox{\hyperlink{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}{transaction\+Valid}} (const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}\label{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}} 
-bool {\bfseries block\+Has\+Transactions} (const \mbox{\hyperlink{class_block}{Block}} \&)
+std\+::string \mbox{\hyperlink{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}{next\+Forger}} ()
 \item 
-\mbox{\Hypertarget{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}\label{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}} 
-std\+::string {\bfseries to\+Json\+Web\+View} ()
+bool \mbox{\hyperlink{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}{block\+Has\+Transactions}} (const \mbox{\hyperlink{class_block}{Block}} \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}\label{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}} 
-std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries calculate\+Forger\+Reward} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
+std\+::string \mbox{\hyperlink{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}{to\+Json\+Web\+View}} ()
 \item 
-\mbox{\Hypertarget{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}\label{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}} 
-std\+::vector$<$ nlohmann\+::json $>$ {\bfseries txs\+By\+Address} (const std\+::string \&)
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \mbox{\hyperlink{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}{calculate\+Forger\+Reward}} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_af1235ef58b69abb44d002454c97e91d6}\label{class_blockchain_af1235ef58b69abb44d002454c97e91d6}} 
-std\+::string {\bfseries get\+Transaction} (const std\+::string \&)
+std\+::vector$<$ nlohmann\+::json $>$ \mbox{\hyperlink{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}{txs\+By\+Address}} (const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}\label{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}} 
-nlohmann\+::json {\bfseries to\+Json} ()
+std\+::string \mbox{\hyperlink{class_blockchain_af1235ef58b69abb44d002454c97e91d6}{get\+Transaction}} (const std\+::string \&)
+\item 
+nlohmann\+::json \mbox{\hyperlink{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}{to\+Json}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}\label{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}} 
-static \mbox{\hyperlink{class_block}{Block}} {\bfseries genesis} ()
+static \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}{genesis}} ()
 \item 
-\mbox{\Hypertarget{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}\label{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}} 
-static vector$<$ nlohmann\+::json $>$ {\bfseries block\+List} (vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ \&)
+static vector$<$ nlohmann\+::json $>$ \mbox{\hyperlink{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}{block\+List}} (vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}\label{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}} 
-static std\+::string {\bfseries to\+Json\+String} (std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$)
+static std\+::string \mbox{\hyperlink{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}{to\+Json\+String}} (std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -82,6 +62,299 @@ std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ {\bfseries blocks}
 std\+::mutex {\bfseries blockchain\+Mutex}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blockchain_a8b2d507929548019ed2c73b1956317b1}\label{class_blockchain_a8b2d507929548019ed2c73b1956317b1}} 
+\index{Blockchain@{Blockchain}!Blockchain@{Blockchain}}
+\index{Blockchain@{Blockchain}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{Blockchain()}{Blockchain()}}
+{\footnotesize\ttfamily Blockchain\+::\+Blockchain (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node$\ast$} & node\\
+\hline
+\end{DoxyParams}
+Create the blockchain object. \mbox{\Hypertarget{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}\label{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}} 
+\index{Blockchain@{Blockchain}!````~Blockchain@{$\sim$Blockchain}}
+\index{````~Blockchain@{$\sim$Blockchain}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{$\sim$Blockchain()}{~Blockchain()}}
+{\footnotesize\ttfamily Blockchain\+::$\sim$\+Blockchain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\hyperlink{class_blockchain}{Blockchain}} destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blockchain_a89948907068998a0d48ef911a4cc9e40}\label{class_blockchain_a89948907068998a0d48ef911a4cc9e40}} 
+\index{Blockchain@{Blockchain}!addBlock@{addBlock}}
+\index{addBlock@{addBlock}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{addBlock()}{addBlock()}}
+{\footnotesize\ttfamily bool Blockchain\+::add\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_block}{Block}} \&}]{block }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Add a new block to the blockchain. \mbox{\Hypertarget{class_blockchain_afcd7f1987327abfc8880d132e26d0744}\label{class_blockchain_afcd7f1987327abfc8880d132e26d0744}} 
+\index{Blockchain@{Blockchain}!blockCountValid@{blockCountValid}}
+\index{blockCountValid@{blockCountValid}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{blockCountValid()}{blockCountValid()}}
+{\footnotesize\ttfamily bool Blockchain\+::block\+Count\+Valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_block}{Block}} \&}]{block }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Ensure that the block count is valid by comparing the block\+Count of the new block minus one is equal to the last block of the blockchain. \mbox{\Hypertarget{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}\label{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}} 
+\index{Blockchain@{Blockchain}!blockHasTransactions@{blockHasTransactions}}
+\index{blockHasTransactions@{blockHasTransactions}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{blockHasTransactions()}{blockHasTransactions()}}
+{\footnotesize\ttfamily bool Blockchain\+::block\+Has\+Transactions (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_block}{Block}} \&}]{block }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Ensure the new block has transactions before execution. \mbox{\Hypertarget{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}\label{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}} 
+\index{Blockchain@{Blockchain}!blockList@{blockList}}
+\index{blockList@{blockList}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{blockList()}{blockList()}}
+{\footnotesize\ttfamily vector$<$ nlohmann\+::json $>$ Blockchain\+::block\+List (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ \&}]{blocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector$<$\+Block$>$} & \&blocks \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$nlohmann\+::json$>$
+\end{DoxyReturn}
+Return a json representation for a list of given blocks. \mbox{\Hypertarget{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}\label{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}} 
+\index{Blockchain@{Blockchain}!calculateForgerReward@{calculateForgerReward}}
+\index{calculateForgerReward@{calculateForgerReward}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{calculateForgerReward()}{calculateForgerReward()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ Blockchain\+::calculate\+Forger\+Reward (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{transactions }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::vector$<$\+Transaction$>$} & \&transactions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Transaction$>$
+\end{DoxyReturn}
+Calculate the forger reward and set new balances accordingly. Forgers get paid by the senders. \mbox{\Hypertarget{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}\label{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}} 
+\index{Blockchain@{Blockchain}!createBlock@{createBlock}}
+\index{createBlock@{createBlock}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{createBlock()}{createBlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Blockchain\+::create\+Block (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{transactions\+From\+Pool,  }\item[{const std\+::string \&}]{forger\+Address }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions\+From\+Pool \\
+\hline
+{\em const} & std\+::string \&forger\+Address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_block}{Block}}
+\end{DoxyReturn}
+Create a new block with the given transactions and forger. \mbox{\Hypertarget{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}\label{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}} 
+\index{Blockchain@{Blockchain}!executeTransaction@{executeTransaction}}
+\index{executeTransaction@{executeTransaction}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{executeTransaction()}{executeTransaction()}}
+{\footnotesize\ttfamily void Blockchain\+::execute\+Transaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transaction}{Transaction}} \&}]{transaction }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::vector$<$\+Transaction$>$ \&transaction\\
+\hline
+\end{DoxyParams}
+Execute the given transaction. \mbox{\Hypertarget{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}\label{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}} 
+\index{Blockchain@{Blockchain}!executeTransactions@{executeTransactions}}
+\index{executeTransactions@{executeTransactions}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{executeTransactions()}{executeTransactions()}}
+{\footnotesize\ttfamily void Blockchain\+::execute\+Transactions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{transactions }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions\\
+\hline
+\end{DoxyParams}
+Wrapper for executing each transaction. \mbox{\Hypertarget{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}\label{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}} 
+\index{Blockchain@{Blockchain}!forgerValid@{forgerValid}}
+\index{forgerValid@{forgerValid}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{forgerValid()}{forgerValid()}}
+{\footnotesize\ttfamily bool Blockchain\+::forger\+Valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_block}{Block}} \&}]{block }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Run the proof of work algorithm to double check our forger is valid. \mbox{\Hypertarget{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}\label{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}} 
+\index{Blockchain@{Blockchain}!genesis@{genesis}}
+\index{genesis@{genesis}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{genesis()}{genesis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Blockchain\+::genesis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_block}{Block}}
+\end{DoxyReturn}
+Create the genesis block for the blockchain. \mbox{\Hypertarget{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}\label{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}} 
+\index{Blockchain@{Blockchain}!getCoveredTransactionSet@{getCoveredTransactionSet}}
+\index{getCoveredTransactionSet@{getCoveredTransactionSet}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{getCoveredTransactionSet()}{getCoveredTransactionSet()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ Blockchain\+::get\+Covered\+Transaction\+Set (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & vector$<$\+Transaction$>$ \&transactions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const vector$<$\+Transaction$>$
+\end{DoxyReturn}
+Collect covered transactions to be executed. \mbox{\Hypertarget{class_blockchain_af1235ef58b69abb44d002454c97e91d6}\label{class_blockchain_af1235ef58b69abb44d002454c97e91d6}} 
+\index{Blockchain@{Blockchain}!getTransaction@{getTransaction}}
+\index{getTransaction@{getTransaction}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{getTransaction()}{getTransaction()}}
+{\footnotesize\ttfamily std\+::string Blockchain\+::get\+Transaction (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{txid }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&txid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Return a json string of the transaction with the given transaction id. \mbox{\Hypertarget{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}\label{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}} 
+\index{Blockchain@{Blockchain}!lastBlockHashValid@{lastBlockHashValid}}
+\index{lastBlockHashValid@{lastBlockHashValid}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{lastBlockHashValid()}{lastBlockHashValid()}}
+{\footnotesize\ttfamily bool Blockchain\+::last\+Block\+Hash\+Valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_block}{Block}} \&}]{block }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Make sure the last\+Hash of the block is equal to the hash of the blockchain\textquotesingle{}s last block. \mbox{\Hypertarget{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}\label{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}} 
+\index{Blockchain@{Blockchain}!nextForger@{nextForger}}
+\index{nextForger@{nextForger}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{nextForger()}{nextForger()}}
+{\footnotesize\ttfamily std\+::string Blockchain\+::next\+Forger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Run the proof of work algorithm to get the next forger. \mbox{\Hypertarget{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}\label{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}} 
+\index{Blockchain@{Blockchain}!toJson@{toJson}}
+\index{toJson@{toJson}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
+{\footnotesize\ttfamily nlohmann\+::json Blockchain\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+nlohmann\+::json
+\end{DoxyReturn}
+Return json representation of the entire blockchain. \mbox{\Hypertarget{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}\label{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}} 
+\index{Blockchain@{Blockchain}!toJsonString@{toJsonString}}
+\index{toJsonString@{toJsonString}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{toJsonString()}{toJsonString()}}
+{\footnotesize\ttfamily std\+::string Blockchain\+::to\+Json\+String (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$}]{blocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::vector$<$\+Block$>$} & blocks \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Given a list of blocks, return a stringified json representation. \mbox{\Hypertarget{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}\label{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}} 
+\index{Blockchain@{Blockchain}!toJsonWebView@{toJsonWebView}}
+\index{toJsonWebView@{toJsonWebView}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{toJsonWebView()}{toJsonWebView()}}
+{\footnotesize\ttfamily std\+::string Blockchain\+::to\+Json\+Web\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Return a stringified json representation of all blocks. \mbox{\Hypertarget{class_blockchain_a313ff824d102d675c08e902ac72468ae}\label{class_blockchain_a313ff824d102d675c08e902ac72468ae}} 
+\index{Blockchain@{Blockchain}!transactionCovered@{transactionCovered}}
+\index{transactionCovered@{transactionCovered}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{transactionCovered()}{transactionCovered()}}
+{\footnotesize\ttfamily bool Blockchain\+::transaction\+Covered (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transaction}{Transaction}} \&}]{transaction }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_transaction}{Transaction}} \&transaction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Make sure the sender has enough funds to continue the transaction. Note that we forgo this check if the transaction type is a REWARD or an EXCHANGE transaction. \mbox{\Hypertarget{class_blockchain_a0dcd65d602435ffe46498dabd901648d}\label{class_blockchain_a0dcd65d602435ffe46498dabd901648d}} 
+\index{Blockchain@{Blockchain}!transactionExists@{transactionExists}}
+\index{transactionExists@{transactionExists}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{transactionExists()}{transactionExists()}}
+{\footnotesize\ttfamily bool Blockchain\+::transaction\+Exists (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transaction}{Transaction}} \&}]{transaction }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_transaction}{Transaction}} \&transaction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Check to see if the given transaction is already on the blockchain. \mbox{\Hypertarget{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}\label{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}} 
+\index{Blockchain@{Blockchain}!transactionValid@{transactionValid}}
+\index{transactionValid@{transactionValid}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{transactionValid()}{transactionValid()}}
+{\footnotesize\ttfamily bool Blockchain\+::transaction\+Valid (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{transactions }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Run \mbox{\hyperlink{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}{get\+Covered\+Transaction\+Set()}} on the list of transactions and compare the resulting vector size with the original vector size for validity. \mbox{\Hypertarget{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}\label{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}} 
+\index{Blockchain@{Blockchain}!txsByAddress@{txsByAddress}}
+\index{txsByAddress@{txsByAddress}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{txsByAddress()}{txsByAddress()}}
+{\footnotesize\ttfamily std\+::vector$<$ nlohmann\+::json $>$ Blockchain\+::txs\+By\+Address (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{address }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$nlohmann\+::json$>$
+\end{DoxyReturn}
+Return a json representation of all transactions associated with a specific address. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

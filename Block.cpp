@@ -6,6 +6,15 @@
 // Implemention of the construcor
 Block::Block()=default;
 
+/*!
+ *
+ * @param std::vector <Transaction> transactions
+ * @param std::string lastHash
+ * @param std::string forgerAddress
+ * @param long blockCount
+ *
+ * Constructor for the Block class when the forger is local
+ */
 Block::Block(std::vector <Transaction> transactions,
              std::string lastHash,
              std::string forgerAddress,
@@ -15,6 +24,14 @@ Block::Block(std::vector <Transaction> transactions,
       forgerAddress(std::move(forgerAddress)),
       blockCount(blockCount) {}
 
+/*!
+*
+* @param std::vector <Transaction> transactions
+* @param std::string lastHash
+* @param long blockCount
+*
+* Constructor for the Block class when the forger is NOT local
+*/
 Block::Block(std::vector <Transaction> transactions,
              std::string lastHash,
              long blockCount)
@@ -22,13 +39,28 @@ Block::Block(std::vector <Transaction> transactions,
       lastHash(std::move(lastHash)),
       blockCount(blockCount) {}
 
-// Implementation of the destructor
+/*!
+ * Block destructor
+ */
 Block::~Block()=default;
 
+/*!
+ *
+ * @param std::string sig
+ *
+ * Add the generated signature to the new block.
+ */
 void Block::sign(std::string sig) {
     signature = std::move(sig);
 }
 
+/*!
+ *
+ * @param vector <Transaction> &transactions
+ * @return vector<nlohmann::json>
+ *
+ * Create a json representation for a list of given transactions
+ */
 vector<nlohmann::json> Block::transactionList(vector <Transaction> &transactions) {
     nlohmann::json j;
     vector<nlohmann::json> txs;
@@ -46,6 +78,13 @@ vector<nlohmann::json> Block::transactionList(vector <Transaction> &transactions
     return txs;
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Create a json representation of the block and return
+ * it as a string.
+ */
 std::string Block::toJson() {
     nlohmann::json j;
 
@@ -61,6 +100,12 @@ std::string Block::toJson() {
     return to_string(j);
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Create a json representation of our payload for signing.
+ */
 std::string Block::payload() {
     nlohmann::json j;
 
@@ -76,6 +121,12 @@ std::string Block::payload() {
     return to_string(j);
 }
 
+/*!
+ *
+ * @return lohmann::json
+ *
+ * Create a json representation of the block.
+ */
 nlohmann::json Block::jsonView() {
     nlohmann::json j;
 

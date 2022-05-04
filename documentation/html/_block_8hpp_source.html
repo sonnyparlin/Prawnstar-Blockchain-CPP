@@ -90,13 +90,13 @@ $(function() {
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="class_block.html">Block</a>(std::vector &lt;Transaction&gt;,</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>          std::string,</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>          <span class="keywordtype">long</span> blockCount);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_block.html">~Block</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">   22</a></span>    <a class="code hl_function" href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">~Block</a>();</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::string toJson();</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::string payload();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> sign(std::string);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static</span> vector&lt;nlohmann::json&gt; transactionList(vector &lt;Transaction&gt; &amp;transactions);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    nlohmann::json jsonView();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::string <a class="code hl_function" href="class_block.html#a0b652be63a2ee5c05c520a28907bd6d0">toJson</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::string <a class="code hl_function" href="class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1">payload</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_block.html#a7e1496b05fa44208e34a220649dd57a4">sign</a>(std::string);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static</span> vector&lt;nlohmann::json&gt; <a class="code hl_function" href="class_block.html#a7da47ddd87bb54b88cc14e5d0ee53ec8">transactionList</a>(vector &lt;Transaction&gt; &amp;transactions);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    nlohmann::json <a class="code hl_function" href="class_block.html#aea52bff3648dc629b7ad0df3fa362d30">jsonView</a>();</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    std::vector &lt;Transaction&gt; transactions;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string lastHash;</div>
@@ -111,6 +111,12 @@ $(function() {
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// _BLOCK_H_</span></div>
 <div class="ttc" id="aclass_block_html"><div class="ttname"><a href="class_block.html">Block</a></div><div class="ttdef"><b>Definition:</b> Block.hpp:11</div></div>
+<div class="ttc" id="aclass_block_html_a0b652be63a2ee5c05c520a28907bd6d0"><div class="ttname"><a href="class_block.html#a0b652be63a2ee5c05c520a28907bd6d0">Block::toJson</a></div><div class="ttdeci">std::string toJson()</div><div class="ttdef"><b>Definition:</b> Block.cpp:88</div></div>
+<div class="ttc" id="aclass_block_html_a19d1bd0e1cef6a865ed2745a2e648405"><div class="ttname"><a href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">Block::~Block</a></div><div class="ttdeci">~Block()</div></div>
+<div class="ttc" id="aclass_block_html_a7da47ddd87bb54b88cc14e5d0ee53ec8"><div class="ttname"><a href="class_block.html#a7da47ddd87bb54b88cc14e5d0ee53ec8">Block::transactionList</a></div><div class="ttdeci">static vector&lt; nlohmann::json &gt; transactionList(vector&lt; Transaction &gt; &amp;transactions)</div><div class="ttdef"><b>Definition:</b> Block.cpp:64</div></div>
+<div class="ttc" id="aclass_block_html_a7e1496b05fa44208e34a220649dd57a4"><div class="ttname"><a href="class_block.html#a7e1496b05fa44208e34a220649dd57a4">Block::sign</a></div><div class="ttdeci">void sign(std::string)</div><div class="ttdef"><b>Definition:</b> Block.cpp:53</div></div>
+<div class="ttc" id="aclass_block_html_aea52bff3648dc629b7ad0df3fa362d30"><div class="ttname"><a href="class_block.html#aea52bff3648dc629b7ad0df3fa362d30">Block::jsonView</a></div><div class="ttdeci">nlohmann::json jsonView()</div><div class="ttdef"><b>Definition:</b> Block.cpp:130</div></div>
+<div class="ttc" id="aclass_block_html_aedb6bc67d5334b5d2b18910818ae1ae1"><div class="ttname"><a href="class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1">Block::payload</a></div><div class="ttdeci">std::string payload()</div><div class="ttdef"><b>Definition:</b> Block.cpp:109</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['todo_0',['Todo',['../md__t_o_d_o.html',1,'']]],
-  ['todo_20list_1',['Todo List',['../todo.html',1,'']]],
-  ['transaction_2',['Transaction',['../class_transaction.html',1,'']]],
-  ['transactionpool_3',['TransactionPool',['../class_transaction_pool.html',1,'']]]
+  ['payload_0',['payload',['../class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1',1,'Block']]],
+  ['proofofstake_1',['ProofOfStake',['../class_proof_of_stake.html',1,'']]]
 ];

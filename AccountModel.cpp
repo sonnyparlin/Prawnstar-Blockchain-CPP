@@ -3,10 +3,24 @@
 AccountModel::AccountModel()=default;
 AccountModel::~AccountModel()=default;
 
+/*!
+ * @param const std::string &walletAddress
+ * @return bool
+ *
+ * Check if the account exists, return true if found, false otherwise.
+ */
 bool AccountModel::accountExists(const std::string &walletAddress) {
     return std::find(accounts.begin(), accounts.end(), walletAddress) != accounts.end();
 }
 
+/*!
+ *
+ * @param const std::string &walletAddress
+ * @param const std::string &pubKey
+ * @param const std::string &privkey
+ *
+ * Adds a new account to the account model with a private key and an initial value of 0
+ */
 void AccountModel::addAccount(const std::string &walletAddress,
                               const std::string &pubKey,
                               const std::string &privkey) {
@@ -20,6 +34,13 @@ void AccountModel::addAccount(const std::string &walletAddress,
     }
 }
 
+/*!
+ *
+ * @param const std::string &walletAddress
+ * @param const std::string &pubKey
+ *
+ * Adds a new account to the account model without a private key and an initial value of 0
+ */
 void AccountModel::addAccount(const std::string &walletAddress, const std::string &pubKey) {
     std::lock_guard<std::mutex> guard(acMutex);
 
@@ -30,11 +51,25 @@ void AccountModel::addAccount(const std::string &walletAddress, const std::strin
     }
 }
 
+/*!
+ *
+ * @param const std::string &walletAddress
+ * @return double
+ *
+ * Get the balance of an account in the accountModel
+ */
 double AccountModel::getBalance(const std::string &walletAddress) {
     std::lock_guard<std::mutex> guard(acMutex);
     return balances[walletAddress];
 }
 
+/*!
+ *
+ * @param const std::string &walletAddress
+ * @param double amount
+ *
+ * Updates the balance of an account in the accountModel
+ */
 void AccountModel::updateBalance(const std::string &walletAddress, double amount) {
     std::lock_guard<std::mutex> guard(acMutex);
     balances[walletAddress] += amount;

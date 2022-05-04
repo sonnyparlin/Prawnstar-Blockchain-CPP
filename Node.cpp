@@ -148,7 +148,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     return true;
 }
 
-/*
+/*!
 Do check to make sure the block is valid before adding it to the chain.
 Broadcast if necessary.
 */

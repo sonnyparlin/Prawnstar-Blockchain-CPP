@@ -3,29 +3,24 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_block_ad6559d71520043bfaa31b6f9bc47ec98}\label{class_block_ad6559d71520043bfaa31b6f9bc47ec98}} 
-{\bfseries Block} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, std\+::string, long block\+Count)
+\mbox{\hyperlink{class_block_ad6559d71520043bfaa31b6f9bc47ec98}{Block}} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, std\+::string, long block\+Count)
 \item 
-\mbox{\Hypertarget{class_block_a06c11b8431d35709df47a1150315828f}\label{class_block_a06c11b8431d35709df47a1150315828f}} 
-{\bfseries Block} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, long block\+Count)
+\mbox{\hyperlink{class_block_a06c11b8431d35709df47a1150315828f}{Block}} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, long block\+Count)
 \item 
-\mbox{\Hypertarget{class_block_a0b652be63a2ee5c05c520a28907bd6d0}\label{class_block_a0b652be63a2ee5c05c520a28907bd6d0}} 
-std\+::string {\bfseries to\+Json} ()
+\mbox{\hyperlink{class_block_a19d1bd0e1cef6a865ed2745a2e648405}{$\sim$\+Block}} ()
 \item 
-\mbox{\Hypertarget{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}\label{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}} 
-std\+::string {\bfseries payload} ()
+std\+::string \mbox{\hyperlink{class_block_a0b652be63a2ee5c05c520a28907bd6d0}{to\+Json}} ()
 \item 
-\mbox{\Hypertarget{class_block_a7e1496b05fa44208e34a220649dd57a4}\label{class_block_a7e1496b05fa44208e34a220649dd57a4}} 
-void {\bfseries sign} (std\+::string)
+std\+::string \mbox{\hyperlink{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}{payload}} ()
 \item 
-\mbox{\Hypertarget{class_block_aea52bff3648dc629b7ad0df3fa362d30}\label{class_block_aea52bff3648dc629b7ad0df3fa362d30}} 
-nlohmann\+::json {\bfseries json\+View} ()
+void \mbox{\hyperlink{class_block_a7e1496b05fa44208e34a220649dd57a4}{sign}} (std\+::string)
+\item 
+nlohmann\+::json \mbox{\hyperlink{class_block_aea52bff3648dc629b7ad0df3fa362d30}{json\+View}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}\label{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}} 
-static vector$<$ nlohmann\+::json $>$ {\bfseries transaction\+List} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&transactions)
+static vector$<$ nlohmann\+::json $>$ \mbox{\hyperlink{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}{transaction\+List}} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&transactions)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -58,6 +53,102 @@ std\+::string {\bfseries \+\_\+id}
 size\+\_\+t {\bfseries signature\+Length} \{0\}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_block_ad6559d71520043bfaa31b6f9bc47ec98}\label{class_block_ad6559d71520043bfaa31b6f9bc47ec98}} 
+\index{Block@{Block}!Block@{Block}}
+\index{Block@{Block}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{Block()}{Block()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Block\+::\+Block (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{std\+::string}]{forger\+Address,  }\item[{long}]{block\+Count }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::vector} & $<$\+Transaction$>$ transactions \\
+\hline
+{\em std\+::string} & last\+Hash \\
+\hline
+{\em std\+::string} & forger\+Address \\
+\hline
+{\em long} & block\+Count\\
+\hline
+\end{DoxyParams}
+Constructor for the \mbox{\hyperlink{class_block}{Block}} class when the forger is local \mbox{\Hypertarget{class_block_a06c11b8431d35709df47a1150315828f}\label{class_block_a06c11b8431d35709df47a1150315828f}} 
+\index{Block@{Block}!Block@{Block}}
+\index{Block@{Block}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{Block()}{Block()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Block\+::\+Block (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{long}]{block\+Count }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::vector} & $<$\+Transaction$>$ transactions \\
+\hline
+{\em std\+::string} & last\+Hash \\
+\hline
+{\em long} & block\+Count\\
+\hline
+\end{DoxyParams}
+Constructor for the \mbox{\hyperlink{class_block}{Block}} class when the forger is NOT local \mbox{\Hypertarget{class_block_a19d1bd0e1cef6a865ed2745a2e648405}\label{class_block_a19d1bd0e1cef6a865ed2745a2e648405}} 
+\index{Block@{Block}!````~Block@{$\sim$Block}}
+\index{````~Block@{$\sim$Block}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{$\sim$Block()}{~Block()}}
+{\footnotesize\ttfamily Block\+::$\sim$\+Block (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\hyperlink{class_block}{Block}} destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_block_aea52bff3648dc629b7ad0df3fa362d30}\label{class_block_aea52bff3648dc629b7ad0df3fa362d30}} 
+\index{Block@{Block}!jsonView@{jsonView}}
+\index{jsonView@{jsonView}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{jsonView()}{jsonView()}}
+{\footnotesize\ttfamily nlohmann\+::json Block\+::json\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+lohmann\+::json
+\end{DoxyReturn}
+Create a json representation of the block. \mbox{\Hypertarget{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}\label{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}} 
+\index{Block@{Block}!payload@{payload}}
+\index{payload@{payload}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{payload()}{payload()}}
+{\footnotesize\ttfamily std\+::string Block\+::payload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Create a json representation of our payload for signing. \mbox{\Hypertarget{class_block_a7e1496b05fa44208e34a220649dd57a4}\label{class_block_a7e1496b05fa44208e34a220649dd57a4}} 
+\index{Block@{Block}!sign@{sign}}
+\index{sign@{sign}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily void Block\+::sign (\begin{DoxyParamCaption}\item[{std\+::string}]{sig }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::string} & sig\\
+\hline
+\end{DoxyParams}
+Add the generated signature to the new block. \mbox{\Hypertarget{class_block_a0b652be63a2ee5c05c520a28907bd6d0}\label{class_block_a0b652be63a2ee5c05c520a28907bd6d0}} 
+\index{Block@{Block}!toJson@{toJson}}
+\index{toJson@{toJson}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
+{\footnotesize\ttfamily std\+::string Block\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Create a json representation of the block and return it as a string. \mbox{\Hypertarget{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}\label{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}} 
+\index{Block@{Block}!transactionList@{transactionList}}
+\index{transactionList@{transactionList}!Block@{Block}}
+\doxysubsubsection{\texorpdfstring{transactionList()}{transactionList()}}
+{\footnotesize\ttfamily vector$<$ nlohmann\+::json $>$ Block\+::transaction\+List (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{transactions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & $<$\+Transaction$>$ \&transactions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$nlohmann\+::json$>$
+\end{DoxyReturn}
+Create a json representation for a list of given transactions 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

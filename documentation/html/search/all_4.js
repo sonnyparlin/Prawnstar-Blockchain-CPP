@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['forge_0',['forge',['../class_node.html#ac08fe080956d22ded0226fd3b47a4fdc',1,'Node']]]
+  ['executetransaction_0',['executeTransaction',['../class_blockchain.html#a8fa58c56900a828b0840063c2f9691ac',1,'Blockchain']]],
+  ['executetransactions_1',['executeTransactions',['../class_blockchain.html#a4850cf82e32a776715eb205ee9a08e75',1,'Blockchain']]]
 ];

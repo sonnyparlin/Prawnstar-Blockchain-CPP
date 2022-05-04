@@ -3,20 +3,15 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_account_model_a08b066221ebe83d70f35b0e5ae890937}\label{class_account_model_a08b066221ebe83d70f35b0e5ae890937}} 
-bool {\bfseries account\+Exists} (const std\+::string \&wallet\+Address)
+bool \mbox{\hyperlink{class_account_model_a08b066221ebe83d70f35b0e5ae890937}{account\+Exists}} (const std\+::string \&wallet\+Address)
 \item 
-\mbox{\Hypertarget{class_account_model_a87e1ed72c7378037c03e1022d4431df8}\label{class_account_model_a87e1ed72c7378037c03e1022d4431df8}} 
-void {\bfseries add\+Account} (const std\+::string \&wallet\+Address, const std\+::string \&pub\+Key, const std\+::string \&priv\+Key)
+void \mbox{\hyperlink{class_account_model_a87e1ed72c7378037c03e1022d4431df8}{add\+Account}} (const std\+::string \&wallet\+Address, const std\+::string \&pub\+Key, const std\+::string \&priv\+Key)
 \item 
-\mbox{\Hypertarget{class_account_model_a4357ffffdd574f7023b5dcaf86e22752}\label{class_account_model_a4357ffffdd574f7023b5dcaf86e22752}} 
-void {\bfseries add\+Account} (const std\+::string \&wallet\+Address, const std\+::string \&pub\+Key)
+void \mbox{\hyperlink{class_account_model_a4357ffffdd574f7023b5dcaf86e22752}{add\+Account}} (const std\+::string \&wallet\+Address, const std\+::string \&pub\+Key)
 \item 
-\mbox{\Hypertarget{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}\label{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}} 
-double {\bfseries get\+Balance} (const std\+::string \&wallet\+Address)
+double \mbox{\hyperlink{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}{get\+Balance}} (const std\+::string \&wallet\+Address)
 \item 
-\mbox{\Hypertarget{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}\label{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}} 
-void {\bfseries update\+Balance} (const std\+::string \&wallet\+Address, double amount)
+void \mbox{\hyperlink{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}{update\+Balance}} (const std\+::string \&wallet\+Address, double amount)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -37,6 +32,78 @@ std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries balances}
 std\+::mutex {\bfseries ac\+Mutex}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_account_model_a08b066221ebe83d70f35b0e5ae890937}\label{class_account_model_a08b066221ebe83d70f35b0e5ae890937}} 
+\index{AccountModel@{AccountModel}!accountExists@{accountExists}}
+\index{accountExists@{accountExists}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{accountExists()}{accountExists()}}
+{\footnotesize\ttfamily bool Account\+Model\+::account\+Exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{wallet\+Address }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&wallet\+Address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Check if the account exists, return true if found, false otherwise. \mbox{\Hypertarget{class_account_model_a4357ffffdd574f7023b5dcaf86e22752}\label{class_account_model_a4357ffffdd574f7023b5dcaf86e22752}} 
+\index{AccountModel@{AccountModel}!addAccount@{addAccount}}
+\index{addAccount@{addAccount}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{addAccount()}{addAccount()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Account\+Model\+::add\+Account (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{wallet\+Address,  }\item[{const std\+::string \&}]{pub\+Key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&wallet\+Address \\
+\hline
+{\em const} & std\+::string \&pub\+Key\\
+\hline
+\end{DoxyParams}
+Adds a new account to the account model without a private key and an initial value of 0 \mbox{\Hypertarget{class_account_model_a87e1ed72c7378037c03e1022d4431df8}\label{class_account_model_a87e1ed72c7378037c03e1022d4431df8}} 
+\index{AccountModel@{AccountModel}!addAccount@{addAccount}}
+\index{addAccount@{addAccount}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{addAccount()}{addAccount()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Account\+Model\+::add\+Account (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{wallet\+Address,  }\item[{const std\+::string \&}]{pub\+Key,  }\item[{const std\+::string \&}]{privkey }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&wallet\+Address \\
+\hline
+{\em const} & std\+::string \&pub\+Key \\
+\hline
+{\em const} & std\+::string \&privkey\\
+\hline
+\end{DoxyParams}
+Adds a new account to the account model with a private key and an initial value of 0 \mbox{\Hypertarget{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}\label{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}} 
+\index{AccountModel@{AccountModel}!getBalance@{getBalance}}
+\index{getBalance@{getBalance}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{getBalance()}{getBalance()}}
+{\footnotesize\ttfamily double Account\+Model\+::get\+Balance (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{wallet\+Address }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&wallet\+Address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double
+\end{DoxyReturn}
+Get the balance of an account in the account\+Model \mbox{\Hypertarget{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}\label{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}} 
+\index{AccountModel@{AccountModel}!updateBalance@{updateBalance}}
+\index{updateBalance@{updateBalance}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{updateBalance()}{updateBalance()}}
+{\footnotesize\ttfamily void Account\+Model\+::update\+Balance (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{wallet\+Address,  }\item[{double}]{amount }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::string \&wallet\+Address \\
+\hline
+{\em double} & amount\\
+\hline
+\end{DoxyParams}
+Updates the balance of an account in the account\+Model 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

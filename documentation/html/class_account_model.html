@@ -72,20 +72,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a08b066221ebe83d70f35b0e5ae890937"><td class="memItemLeft" align="right" valign="top"><a id="a08b066221ebe83d70f35b0e5ae890937" name="a08b066221ebe83d70f35b0e5ae890937"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>accountExists</b> (const std::string &amp;walletAddress)</td></tr>
+<tr class="memitem:a08b066221ebe83d70f35b0e5ae890937"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_account_model.html#a08b066221ebe83d70f35b0e5ae890937">accountExists</a> (const std::string &amp;walletAddress)</td></tr>
 <tr class="separator:a08b066221ebe83d70f35b0e5ae890937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87e1ed72c7378037c03e1022d4431df8"><td class="memItemLeft" align="right" valign="top"><a id="a87e1ed72c7378037c03e1022d4431df8" name="a87e1ed72c7378037c03e1022d4431df8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAccount</b> (const std::string &amp;walletAddress, const std::string &amp;pubKey, const std::string &amp;privKey)</td></tr>
+<tr class="memitem:a87e1ed72c7378037c03e1022d4431df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_account_model.html#a87e1ed72c7378037c03e1022d4431df8">addAccount</a> (const std::string &amp;walletAddress, const std::string &amp;pubKey, const std::string &amp;privKey)</td></tr>
 <tr class="separator:a87e1ed72c7378037c03e1022d4431df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4357ffffdd574f7023b5dcaf86e22752"><td class="memItemLeft" align="right" valign="top"><a id="a4357ffffdd574f7023b5dcaf86e22752" name="a4357ffffdd574f7023b5dcaf86e22752"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAccount</b> (const std::string &amp;walletAddress, const std::string &amp;pubKey)</td></tr>
+<tr class="memitem:a4357ffffdd574f7023b5dcaf86e22752"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_account_model.html#a4357ffffdd574f7023b5dcaf86e22752">addAccount</a> (const std::string &amp;walletAddress, const std::string &amp;pubKey)</td></tr>
 <tr class="separator:a4357ffffdd574f7023b5dcaf86e22752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b461e5d30dfc42b628efed78a6c7748"><td class="memItemLeft" align="right" valign="top"><a id="a1b461e5d30dfc42b628efed78a6c7748" name="a1b461e5d30dfc42b628efed78a6c7748"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getBalance</b> (const std::string &amp;walletAddress)</td></tr>
+<tr class="memitem:a1b461e5d30dfc42b628efed78a6c7748"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_account_model.html#a1b461e5d30dfc42b628efed78a6c7748">getBalance</a> (const std::string &amp;walletAddress)</td></tr>
 <tr class="separator:a1b461e5d30dfc42b628efed78a6c7748"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d1f5efc7d66615e5ec51e0f8ee788c1"><td class="memItemLeft" align="right" valign="top"><a id="a2d1f5efc7d66615e5ec51e0f8ee788c1" name="a2d1f5efc7d66615e5ec51e0f8ee788c1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateBalance</b> (const std::string &amp;walletAddress, double amount)</td></tr>
+<tr class="memitem:a2d1f5efc7d66615e5ec51e0f8ee788c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_account_model.html#a2d1f5efc7d66615e5ec51e0f8ee788c1">updateBalance</a> (const std::string &amp;walletAddress, double amount)</td></tr>
 <tr class="separator:a2d1f5efc7d66615e5ec51e0f8ee788c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -106,6 +101,174 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>acMutex</b></td></tr>
 <tr class="separator:aacddbf9c18aad59b7f476668eaaebacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a08b066221ebe83d70f35b0e5ae890937" name="a08b066221ebe83d70f35b0e5ae890937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b066221ebe83d70f35b0e5ae890937">&#9670;&nbsp;</a></span>accountExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AccountModel::accountExists </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>walletAddress</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>std::string &amp;walletAddress </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<p>Check if the account exists, return true if found, false otherwise. </p>
+
+</div>
+</div>
+<a id="a4357ffffdd574f7023b5dcaf86e22752" name="a4357ffffdd574f7023b5dcaf86e22752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4357ffffdd574f7023b5dcaf86e22752">&#9670;&nbsp;</a></span>addAccount() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AccountModel::addAccount </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>walletAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>pubKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>std::string &amp;walletAddress </td></tr>
+    <tr><td class="paramname">const</td><td>std::string &amp;pubKey</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Adds a new account to the account model without a private key and an initial value of 0 </p>
+
+</div>
+</div>
+<a id="a87e1ed72c7378037c03e1022d4431df8" name="a87e1ed72c7378037c03e1022d4431df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87e1ed72c7378037c03e1022d4431df8">&#9670;&nbsp;</a></span>addAccount() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AccountModel::addAccount </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>walletAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>pubKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>privkey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>std::string &amp;walletAddress </td></tr>
+    <tr><td class="paramname">const</td><td>std::string &amp;pubKey </td></tr>
+    <tr><td class="paramname">const</td><td>std::string &amp;privkey</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Adds a new account to the account model with a private key and an initial value of 0 </p>
+
+</div>
+</div>
+<a id="a1b461e5d30dfc42b628efed78a6c7748" name="a1b461e5d30dfc42b628efed78a6c7748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b461e5d30dfc42b628efed78a6c7748">&#9670;&nbsp;</a></span>getBalance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double AccountModel::getBalance </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>walletAddress</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>std::string &amp;walletAddress </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double</dd></dl>
+<p>Get the balance of an account in the accountModel </p>
+
+</div>
+</div>
+<a id="a2d1f5efc7d66615e5ec51e0f8ee788c1" name="a2d1f5efc7d66615e5ec51e0f8ee788c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1f5efc7d66615e5ec51e0f8ee788c1">&#9670;&nbsp;</a></span>updateBalance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AccountModel::updateBalance </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>walletAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>amount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>std::string &amp;walletAddress </td></tr>
+    <tr><td class="paramname">double</td><td>amount</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates the balance of an account in the accountModel </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="_account_model_8hpp_source.html">AccountModel.hpp</a></li>
 <li>AccountModel.cpp</li>
