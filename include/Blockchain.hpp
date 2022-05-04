@@ -14,10 +14,6 @@ private:
     Node *node;
 
 public:
-    // TX_TYPE tx;
-    std::vector<Block> blocks;
-    std::mutex blockchainMutex;
-
     explicit Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor
     
@@ -42,6 +38,9 @@ public:
     std::string getTransaction(const std::string&);
     nlohmann::json toJson();
     static std::string toJsonString(std::vector<Block>);
+
+    std::vector<Block> blocks; /*!< list of blocks */
+    std::mutex blockchainMutex; /*!< mutex for accessing shared blockchain data */
 };
 
 #endif // _BLOCKCHAIN_H_

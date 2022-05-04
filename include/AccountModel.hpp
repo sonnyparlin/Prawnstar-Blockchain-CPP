@@ -8,12 +8,6 @@
 
 class AccountModel {
 public:
-    std::vector<std::string> accounts;
-    std::unordered_map<std::string, std::string> addressToPublicKey;
-    std::unordered_map<std::string, std::string> addressToPrivateKey;
-    std::unordered_map<std::string, double> balances;
-    std::mutex acMutex;
-
     AccountModel();
     ~AccountModel();
 
@@ -24,6 +18,12 @@ public:
     void addAccount(const std::string &walletAddress, const std::string &pubKey);
     double getBalance(const std::string &walletAddress);
     void updateBalance(const std::string &walletAddress, double amount);
+
+    std::vector<std::string> accounts; /*!< list of accounts */
+    std::unordered_map<std::string, std::string> addressToPublicKey; /*!< address to Public Key map*/
+    std::unordered_map<std::string, std::string> addressToPrivateKey; /*!< address to private key map*/
+    std::unordered_map<std::string, double> balances; /*!< address to balances map */
+    std::mutex acMutex; /*!< mutex for locking shared data */
 };
 
 #endif // _ACCOUNTMODEL_H_

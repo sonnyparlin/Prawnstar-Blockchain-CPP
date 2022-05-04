@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['sign_0',['sign',['../class_block.html#a7e1496b05fa44208e34a220649dd57a4',1,'Block']]],
-  ['signature_1',['Signature',['../structutils_1_1_signature.html',1,'utils']]],
-  ['socketcommunication_2',['SocketCommunication',['../class_socket_communication.html',1,'']]],
-  ['socketconnector_3',['SocketConnector',['../class_socket_connector.html',1,'']]],
-  ['startp2poperations_4',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_5',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]]
+  ['p2p_0',['p2p',['../class_node.html#a7094f5ca84e772165ce4ab369679853b',1,'Node']]],
+  ['payload_1',['payload',['../class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1',1,'Block']]],
+  ['peers_2',['peers',['../class_message.html#a3ae86cbfd31b7b259be53e9a2d79ef8f',1,'Message']]],
+  ['proofofstake_3',['ProofOfStake',['../class_proof_of_stake.html',1,'']]],
+  ['proofofstake_4',['proofOfStake',['../class_node.html#a8924885855cec659830a99c46e0b190e',1,'Node']]],
+  ['publickeystring_5',['publicKeyString',['../class_lot.html#a7f553926f1bb5bfca511cf4b0d3b52b1',1,'Lot']]]
 ];

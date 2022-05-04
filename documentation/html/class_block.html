@@ -73,9 +73,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad6559d71520043bfaa31b6f9bc47ec98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#ad6559d71520043bfaa31b6f9bc47ec98">Block</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;, std::string, std::string, long blockCount)</td></tr>
+<tr class="memitem:ad6559d71520043bfaa31b6f9bc47ec98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#ad6559d71520043bfaa31b6f9bc47ec98">Block</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;, std::string, std::string, long <a class="el" href="class_block.html#affd8bb7f05f0985ab78bc21c04eb6f29">blockCount</a>)</td></tr>
 <tr class="separator:ad6559d71520043bfaa31b6f9bc47ec98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06c11b8431d35709df47a1150315828f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a06c11b8431d35709df47a1150315828f">Block</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;, std::string, long blockCount)</td></tr>
+<tr class="memitem:a06c11b8431d35709df47a1150315828f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a06c11b8431d35709df47a1150315828f">Block</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;, std::string, long <a class="el" href="class_block.html#affd8bb7f05f0985ab78bc21c04eb6f29">blockCount</a>)</td></tr>
 <tr class="separator:a06c11b8431d35709df47a1150315828f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19d1bd0e1cef6a865ed2745a2e648405"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">~Block</a> ()</td></tr>
 <tr class="separator:a19d1bd0e1cef6a865ed2745a2e648405"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -90,37 +90,28 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7da47ddd87bb54b88cc14e5d0ee53ec8"><td class="memItemLeft" align="right" valign="top">static vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a7da47ddd87bb54b88cc14e5d0ee53ec8">transactionList</a> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;transactions)</td></tr>
+<tr class="memitem:a7da47ddd87bb54b88cc14e5d0ee53ec8"><td class="memItemLeft" align="right" valign="top">static vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a7da47ddd87bb54b88cc14e5d0ee53ec8">transactionList</a> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;<a class="el" href="class_block.html#a5413ec173e6e040beeb84148145e8d33">transactions</a>)</td></tr>
 <tr class="separator:a7da47ddd87bb54b88cc14e5d0ee53ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5413ec173e6e040beeb84148145e8d33"><td class="memItemLeft" align="right" valign="top"><a id="a5413ec173e6e040beeb84148145e8d33" name="a5413ec173e6e040beeb84148145e8d33"></a>
-std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>transactions</b></td></tr>
+<tr class="memitem:a5413ec173e6e040beeb84148145e8d33"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a5413ec173e6e040beeb84148145e8d33">transactions</a></td></tr>
 <tr class="separator:a5413ec173e6e040beeb84148145e8d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaca2fd6381f0460c3b8a5b7afe55e0d4"><td class="memItemLeft" align="right" valign="top"><a id="aaca2fd6381f0460c3b8a5b7afe55e0d4" name="aaca2fd6381f0460c3b8a5b7afe55e0d4"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lastHash</b></td></tr>
+<tr class="memitem:aaca2fd6381f0460c3b8a5b7afe55e0d4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#aaca2fd6381f0460c3b8a5b7afe55e0d4">lastHash</a></td></tr>
 <tr class="separator:aaca2fd6381f0460c3b8a5b7afe55e0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad81167700ff115ff348eba6b22d97fb1"><td class="memItemLeft" align="right" valign="top"><a id="ad81167700ff115ff348eba6b22d97fb1" name="ad81167700ff115ff348eba6b22d97fb1"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>hash</b></td></tr>
+<tr class="memitem:ad81167700ff115ff348eba6b22d97fb1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#ad81167700ff115ff348eba6b22d97fb1">hash</a></td></tr>
 <tr class="separator:ad81167700ff115ff348eba6b22d97fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a663b3e363c8a2c4f35da197029cc2db2"><td class="memItemLeft" align="right" valign="top"><a id="a663b3e363c8a2c4f35da197029cc2db2" name="a663b3e363c8a2c4f35da197029cc2db2"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>forgerAddress</b></td></tr>
+<tr class="memitem:a663b3e363c8a2c4f35da197029cc2db2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a663b3e363c8a2c4f35da197029cc2db2">forgerAddress</a></td></tr>
 <tr class="separator:a663b3e363c8a2c4f35da197029cc2db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f48203d2b976b8857b22e5981c8f943"><td class="memItemLeft" align="right" valign="top"><a id="a6f48203d2b976b8857b22e5981c8f943" name="a6f48203d2b976b8857b22e5981c8f943"></a>
-time_t&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b> = utils::timeSinceEpoch()</td></tr>
+<tr class="memitem:a6f48203d2b976b8857b22e5981c8f943"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a6f48203d2b976b8857b22e5981c8f943">timestamp</a> = utils::timeSinceEpoch()</td></tr>
 <tr class="separator:a6f48203d2b976b8857b22e5981c8f943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd8bb7f05f0985ab78bc21c04eb6f29"><td class="memItemLeft" align="right" valign="top"><a id="affd8bb7f05f0985ab78bc21c04eb6f29" name="affd8bb7f05f0985ab78bc21c04eb6f29"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>blockCount</b> {0}</td></tr>
+<tr class="memitem:affd8bb7f05f0985ab78bc21c04eb6f29"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#affd8bb7f05f0985ab78bc21c04eb6f29">blockCount</a> {0}</td></tr>
 <tr class="separator:affd8bb7f05f0985ab78bc21c04eb6f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecdc5380b6dd3833840ea28a504ea3aa"><td class="memItemLeft" align="right" valign="top"><a id="aecdc5380b6dd3833840ea28a504ea3aa" name="aecdc5380b6dd3833840ea28a504ea3aa"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>signature</b></td></tr>
+<tr class="memitem:aecdc5380b6dd3833840ea28a504ea3aa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#aecdc5380b6dd3833840ea28a504ea3aa">signature</a></td></tr>
 <tr class="separator:aecdc5380b6dd3833840ea28a504ea3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a486a311467e1fbff47ef14e428231860"><td class="memItemLeft" align="right" valign="top"><a id="a486a311467e1fbff47ef14e428231860" name="a486a311467e1fbff47ef14e428231860"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_id</b></td></tr>
+<tr class="memitem:a486a311467e1fbff47ef14e428231860"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a486a311467e1fbff47ef14e428231860">_id</a></td></tr>
 <tr class="separator:a486a311467e1fbff47ef14e428231860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85544ce2b95f47fe32283fef37869e64"><td class="memItemLeft" align="right" valign="top"><a id="a85544ce2b95f47fe32283fef37869e64" name="a85544ce2b95f47fe32283fef37869e64"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b> {0}</td></tr>
+<tr class="memitem:a85544ce2b95f47fe32283fef37869e64"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block.html#a85544ce2b95f47fe32283fef37869e64">signatureLength</a> {0}</td></tr>
 <tr class="separator:a85544ce2b95f47fe32283fef37869e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -163,10 +154,10 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">std::vector</td><td>&lt;Transaction&gt; transactions </td></tr>
-    <tr><td class="paramname">std::string</td><td>lastHash </td></tr>
-    <tr><td class="paramname">std::string</td><td>forgerAddress </td></tr>
-    <tr><td class="paramname">long</td><td>blockCount</td></tr>
+    <tr><td class="paramname">transactions</td><td></td></tr>
+    <tr><td class="paramname">lastHash</td><td></td></tr>
+    <tr><td class="paramname">forgerAddress</td><td></td></tr>
+    <tr><td class="paramname">blockCount</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -207,9 +198,9 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">std::vector</td><td>&lt;Transaction&gt; transactions </td></tr>
-    <tr><td class="paramname">std::string</td><td>lastHash </td></tr>
-    <tr><td class="paramname">long</td><td>blockCount</td></tr>
+    <tr><td class="paramname">transactions</td><td></td></tr>
+    <tr><td class="paramname">lastHash</td><td></td></tr>
+    <tr><td class="paramname">blockCount</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -292,14 +283,14 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b>
           <td class="memname">void Block::sign </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>sig</em></td><td>)</td>
+          <td class="paramname"><em>_signature</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">std::string</td><td>sig</td></tr>
+    <tr><td class="paramname">_signature</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -351,12 +342,148 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vector</td><td>&lt;Transaction&gt; &amp;transactions </td></tr>
+    <tr><td class="paramname">transactions</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vector&lt;nlohmann::json&gt;</dd></dl>
 <p>Create a json representation for a list of given transactions </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a486a311467e1fbff47ef14e428231860" name="a486a311467e1fbff47ef14e428231860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a486a311467e1fbff47ef14e428231860">&#9670;&nbsp;</a></span>_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Block::_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >_id for use with mongodb if functionality is added </p>
+
+</div>
+</div>
+<a id="affd8bb7f05f0985ab78bc21c04eb6f29" name="affd8bb7f05f0985ab78bc21c04eb6f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affd8bb7f05f0985ab78bc21c04eb6f29">&#9670;&nbsp;</a></span>blockCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long Block::blockCount {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >block count </p>
+
+</div>
+</div>
+<a id="a663b3e363c8a2c4f35da197029cc2db2" name="a663b3e363c8a2c4f35da197029cc2db2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663b3e363c8a2c4f35da197029cc2db2">&#9670;&nbsp;</a></span>forgerAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Block::forgerAddress</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >forger address of current block's forger </p>
+
+</div>
+</div>
+<a id="ad81167700ff115ff348eba6b22d97fb1" name="ad81167700ff115ff348eba6b22d97fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81167700ff115ff348eba6b22d97fb1">&#9670;&nbsp;</a></span>hash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Block::hash</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >current block hash </p>
+
+</div>
+</div>
+<a id="aaca2fd6381f0460c3b8a5b7afe55e0d4" name="aaca2fd6381f0460c3b8a5b7afe55e0d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca2fd6381f0460c3b8a5b7afe55e0d4">&#9670;&nbsp;</a></span>lastHash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Block::lastHash</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >block last hash </p>
+
+</div>
+</div>
+<a id="aecdc5380b6dd3833840ea28a504ea3aa" name="aecdc5380b6dd3833840ea28a504ea3aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecdc5380b6dd3833840ea28a504ea3aa">&#9670;&nbsp;</a></span>signature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Block::signature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >block signature </p>
+
+</div>
+</div>
+<a id="a85544ce2b95f47fe32283fef37869e64" name="a85544ce2b95f47fe32283fef37869e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85544ce2b95f47fe32283fef37869e64">&#9670;&nbsp;</a></span>signatureLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Block::signatureLength {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >signature length </p>
+
+</div>
+</div>
+<a id="a6f48203d2b976b8857b22e5981c8f943" name="a6f48203d2b976b8857b22e5981c8f943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f48203d2b976b8857b22e5981c8f943">&#9670;&nbsp;</a></span>timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">time_t Block::timestamp = utils::timeSinceEpoch()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >timestamp of block </p>
+
+</div>
+</div>
+<a id="a5413ec173e6e040beeb84148145e8d33" name="a5413ec173e6e040beeb84148145e8d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5413ec173e6e040beeb84148145e8d33">&#9670;&nbsp;</a></span>transactions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_transaction.html">Transaction</a>&gt; Block::transactions</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >list of block transactions </p>
 
 </div>
 </div>

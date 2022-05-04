@@ -7,13 +7,13 @@
 class Lot {
 public:
     Lot();
-    Lot(std::string pubString, int i, std::string lBH); // Constructor
+    Lot(std::string, int, std::string); // Constructor
     ~Lot(); // Destructor
 
     // std::string lotHash() const;
-    std::string publicKeyString{};
-    int iteration{};
-    std::string lastBlockHash{};
+    std::string publicKeyString{}; /*!< publicKeyString used for identifying Lot ownership */
+    int iteration{}; /*!< Iteration variable */
+    std::string lastBlockHash{}; /*!< LastBlockHash */
 };
 
 #endif // _LOT_H_

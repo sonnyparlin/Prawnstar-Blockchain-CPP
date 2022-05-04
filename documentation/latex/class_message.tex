@@ -3,31 +3,94 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_message_adacb8e263f64f1dc767fd273326e0cc4}\label{class_message_adacb8e263f64f1dc767fd273326e0cc4}} 
-{\bfseries Message} (const \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \&sc, std\+::string message\+Type, std\+::vector$<$ std\+::string $>$ peers)
+\mbox{\hyperlink{class_message_adacb8e263f64f1dc767fd273326e0cc4}{Message}} (const \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \&\mbox{\hyperlink{class_message_aa76d00df50848996367063767ea470cf}{sc}}, std\+::string \mbox{\hyperlink{class_message_aba32dfd100c81d92f10eb24d74594aaf}{message\+Type}}, std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}{peers}})
 \item 
-\mbox{\Hypertarget{class_message_a48218400d16f61ae8fea42b748062faf}\label{class_message_a48218400d16f61ae8fea42b748062faf}} 
-{\bfseries Message} (std\+::string message\+Type, std\+::string data)
+\mbox{\hyperlink{class_message_a48218400d16f61ae8fea42b748062faf}{Message}} (std\+::string \mbox{\hyperlink{class_message_aba32dfd100c81d92f10eb24d74594aaf}{message\+Type}}, std\+::string \mbox{\hyperlink{class_message_a300ea496aacd30a8de1d03a0174f5f19}{data}})
 \item 
-\mbox{\Hypertarget{class_message_a11439e2268c1fefb5ffa20512a9222f4}\label{class_message_a11439e2268c1fefb5ffa20512a9222f4}} 
-std\+::string {\bfseries to\+Json} ()
+std\+::string \mbox{\hyperlink{class_message_a11439e2268c1fefb5ffa20512a9222f4}{to\+Json}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_message_aa76d00df50848996367063767ea470cf}\label{class_message_aa76d00df50848996367063767ea470cf}} 
-\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} {\bfseries sc}
+\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \mbox{\hyperlink{class_message_aa76d00df50848996367063767ea470cf}{sc}}
 \item 
-\mbox{\Hypertarget{class_message_aba32dfd100c81d92f10eb24d74594aaf}\label{class_message_aba32dfd100c81d92f10eb24d74594aaf}} 
-std\+::string {\bfseries message\+Type}
+std\+::string \mbox{\hyperlink{class_message_aba32dfd100c81d92f10eb24d74594aaf}{message\+Type}}
 \item 
-\mbox{\Hypertarget{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}\label{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries peers}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}{peers}}
 \item 
-\mbox{\Hypertarget{class_message_a300ea496aacd30a8de1d03a0174f5f19}\label{class_message_a300ea496aacd30a8de1d03a0174f5f19}} 
-std\+::string {\bfseries data}
+std\+::string \mbox{\hyperlink{class_message_a300ea496aacd30a8de1d03a0174f5f19}{data}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_message_adacb8e263f64f1dc767fd273326e0cc4}\label{class_message_adacb8e263f64f1dc767fd273326e0cc4}} 
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{Message()}{Message()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Message\+::\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \&}]{sc,  }\item[{std\+::string}]{message\+Type,  }\item[{std\+::vector$<$ std\+::string $>$}]{peers }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sc} & \\
+\hline
+{\em message\+Type} & \\
+\hline
+{\em peers} & \\
+\hline
+\end{DoxyParams}
+Constructor for broadcast messages \mbox{\Hypertarget{class_message_a48218400d16f61ae8fea42b748062faf}\label{class_message_a48218400d16f61ae8fea42b748062faf}} 
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{Message()}{Message()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Message\+::\+Message (\begin{DoxyParamCaption}\item[{std\+::string}]{message\+Type,  }\item[{std\+::string}]{data }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message\+Type} & \\
+\hline
+{\em data} & \\
+\hline
+\end{DoxyParams}
+Constructor for messages 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_message_a11439e2268c1fefb5ffa20512a9222f4}\label{class_message_a11439e2268c1fefb5ffa20512a9222f4}} 
+\index{Message@{Message}!toJson@{toJson}}
+\index{toJson@{toJson}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
+{\footnotesize\ttfamily std\+::string Message\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Json represented string of message. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_message_a300ea496aacd30a8de1d03a0174f5f19}\label{class_message_a300ea496aacd30a8de1d03a0174f5f19}} 
+\index{Message@{Message}!data@{data}}
+\index{data@{data}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily std\+::string Message\+::data}
+
+message data \mbox{\Hypertarget{class_message_aba32dfd100c81d92f10eb24d74594aaf}\label{class_message_aba32dfd100c81d92f10eb24d74594aaf}} 
+\index{Message@{Message}!messageType@{messageType}}
+\index{messageType@{messageType}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{messageType}{messageType}}
+{\footnotesize\ttfamily std\+::string Message\+::message\+Type}
+
+\mbox{\hyperlink{class_message}{Message}} type \mbox{\Hypertarget{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}\label{class_message_a3ae86cbfd31b7b259be53e9a2d79ef8f}} 
+\index{Message@{Message}!peers@{peers}}
+\index{peers@{peers}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{peers}{peers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Message\+::peers}
+
+List of peers to send message to if it\textquotesingle{}s a broadcast message \mbox{\Hypertarget{class_message_aa76d00df50848996367063767ea470cf}\label{class_message_aa76d00df50848996367063767ea470cf}} 
+\index{Message@{Message}!sc@{sc}}
+\index{sc@{sc}!Message@{Message}}
+\doxysubsubsection{\texorpdfstring{sc}{sc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} Message\+::sc}
+
+Socket connector 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

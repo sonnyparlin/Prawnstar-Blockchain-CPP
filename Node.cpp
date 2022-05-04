@@ -38,6 +38,13 @@ Node::~Node() {
     delete bobWallet;
 }
 
+/*!
+ *
+ * @param argv
+ * @return Node
+ *
+ * Our main singleton Node for the application.
+ */
 Node *Node::createNode(char **argv) {
     if (node == nullptr) {
         node = new Node(argv);
@@ -46,6 +53,13 @@ Node *Node::createNode(char **argv) {
     return node;
 }
 
+/*!
+ *
+ * @param argc
+ * @param argv
+ *
+ * Start peer to peer server and api server
+ */
 void Node::startServers(int argc, char **argv) {
     p2p->startSocketCommunication(argc, argv);
     
@@ -59,10 +73,24 @@ void Node::startServers(int argc, char **argv) {
     }
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Return Node's peer to peer server id
+ */
 std::string Node::getNodeID() const {
     return p2p->id;
 }
 
+/*!
+ *
+ * @param filename
+ * @param lineCount
+ * @return std::string
+ *
+ * Get the last 100 lines of log file
+ */
 std::string getLastLines( std::string const& filename, int lineCount )
 {
     size_t const granularity = 100 * lineCount;
@@ -89,6 +117,12 @@ std::string getLastLines( std::string const& filename, int lineCount )
     return {start, end };
 }
 
+/*!
+ *
+ * @param msg
+ *
+ * Write to log file.
+ */
 void Node::log(std::string const& msg)
 {
     std::lock_guard<std::mutex> guard(logMutex);
@@ -98,13 +132,24 @@ void Node::log(std::string const& msg)
     myfile.close();
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Return last 10 lines of console.log
+ */
 std::string Node::getConsoleLog() {
     return getLastLines("console.log", 100);
 }
 
 /*!
-This is where we handle transactions. Called from NodeAPI and SocketCommunication.
-*/
+ *
+ * @param transaction
+ * @param broadcast
+ * @return
+ *
+ * This is where we handle transactions. Called from NodeAPI and SocketCommunication.
+ */
 bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     bool transactionCovered = false;
     bool signatureValid = utils::verifySignature(transaction.payload(),
@@ -149,9 +194,12 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
 }
 
 /*!
-Do check to make sure the block is valid before adding it to the chain.
-Broadcast if necessary.
-*/
+ *
+ * @param block
+ * @param broadcast
+ * Do check to make sure the block is valid before adding it to the chain.
+ * Broadcast if necessary.
+ */
 void Node::handleBlock (Block &block, bool broadcast) {
     Wallet forger(block.forgerAddress.c_str(), this);
     std::string blockHash = block.hash;
@@ -195,9 +243,9 @@ void Node::handleBlock (Block &block, bool broadcast) {
 }
 
 /*!
-Request complete or partial blockchain from the master node. Uses the local
-block count to determine how many blocks are needed from the master server.
-*/
+ * Request complete or partial blockchain from the master node. Uses the local
+ * block count to determine how many blocks are needed from the master server.
+ */
 void Node::requestChain() const {
     std::string requestingNode { p2p->sc.ip + ":" +
                                  std::to_string(p2p->sc.port) + ":" +
@@ -209,8 +257,11 @@ void Node::requestChain() const {
 }
 
 /*!
-Only send the blocks which are missing from the requesting node.
-*/
+ *
+ * @param requestingNode
+ *
+ * Only send the blocks which are missing from the requesting node.
+ */
 void Node::handleBlockchainRequest(std::string requestingNode) const {
     std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     /* 
@@ -244,9 +295,12 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
 }
 
 /*!
-This is where we read and rebuild the blockchain or partial blockchain after requesting blocks
-from the master server. How many blocks we ad is based on how many we requested.
-*/
+ *
+ * @param blockchainString
+ *
+ * This is where we read and rebuild the blockchain or partial blockchain after requesting blocks
+ * from the master server. How many blocks we ad is based on how many we requested.
+ */
 void Node::handleBlockchain(const std::string &blockchainString) const {
     std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
@@ -317,8 +371,8 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
 }
 
 /*!
-This is where new blocks are initiated for this forger.
-*/
+ * This is where new blocks are initiated for this forger.
+ */
 void Node::forge() {
     std::string forger = blockchain->nextForger();
     if (forger != nodeWallet->walletPublicKey) {

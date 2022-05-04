@@ -5,7 +5,7 @@
 
 /*!
  *
- * @param Node* node
+ * @param node
  *
  * Create the blockchain object.
  */
@@ -38,7 +38,7 @@ Block Blockchain::genesis() {
 
 /*!
  *
- * @param const Block &block
+ * @param block
  * @return bool
  *
  * Add a new block to the blockchain.
@@ -53,7 +53,7 @@ bool Blockchain::addBlock(const Block &block) {
 
 /*!
  *
- * @param std::vector<Transaction> &transactions
+ * @param transactions
  * @return std::vector<Transaction>
  *
  * Calculate the forger reward and set new balances accordingly. Forgers get paid by the senders.
@@ -93,7 +93,7 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
 
 /*!
  *
- * @param const Block &block
+ * @param block
  * @return bool
  *
  * Ensure that the block count is valid by comparing the blockCount of the new block
@@ -106,7 +106,7 @@ bool Blockchain::blockCountValid(const Block &block) {
 
 /*!
  *
- * @param const Block &block
+ * @param block
  * @return bool
  *
  * Make sure the lastHash of the block is equal to the hash of the blockchain's last
@@ -119,7 +119,7 @@ bool Blockchain::lastBlockHashValid(const Block &block) {
 
 /*!
  *
- * @param const Transaction &transaction
+ * @param transaction
  * @return bool
  *
  * Make sure the sender has enough funds to continue the transaction. Note that
@@ -135,10 +135,10 @@ bool Blockchain::transactionCovered(const Transaction &transaction) {
 
 /*!
  *
- * @param const vector<Transaction> &transactions
- * @return const vector<Transaction>
  *
- * Collect covered transactions to be executed.
+ * @return std::vector<Transaction>
+ *
+ * Get covered transactions from list of transactions.
  */
 std::vector<Transaction> Blockchain::getCoveredTransactionSet(const vector<Transaction> &transactions) {
     std::vector<Transaction> coveredTransactions;
@@ -156,7 +156,7 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(const vector<Trans
 
 /*!
  *
- * @param const Block &block
+ * @param block
  * @return bool
  *
  * Ensure the new block has transactions before execution.
@@ -168,7 +168,7 @@ bool Blockchain::blockHasTransactions(const Block &block) {
 
 /*!
  *
- * @param const std::vector<Transaction> &transactions
+ * @param transactions
  *
  * Wrapper for executing each transaction.
  */
@@ -180,7 +180,7 @@ void Blockchain::executeTransactions(const std::vector<Transaction> &transaction
 
 /*!
  *
- * @param const std::vector<Transaction> &transaction
+ * @param transaction
  *
  * Execute the given transaction.
  */
@@ -199,8 +199,8 @@ void Blockchain::executeTransaction(const Transaction &transaction) {
 
 /*!
  *
- * @param const std::vector<Transaction> &transactionsFromPool
- * @param const std::string &forgerAddress
+ * @param transactionsFromPool
+ * @param forgerAddress
  * @return Block
  *
  * Create a new block with the given transactions and forger.
@@ -225,7 +225,7 @@ Block Blockchain::createBlock(const std::vector<Transaction> &transactionsFromPo
 
 /*!
  *
- * @param const Transaction &transaction
+ * @param transaction
  * @return bool
  *
  * Check to see if the given transaction is already on the blockchain.
@@ -241,7 +241,7 @@ bool Blockchain::transactionExists(const Transaction &transaction) {
 
 /*!
  *
- * @param const std::string &txid
+ * @param txid
  * @return std::string
  *
  * Return a json string of the transaction with the given transaction id.
@@ -264,7 +264,7 @@ std::string Blockchain::getTransaction(const std::string &txid) {
 
 /*!
  *
- * @param const std::string &address
+ * @param address
  * @return std::vector<nlohmann::json>
  *
  * Return a json representation of all transactions associated with a specific
@@ -289,7 +289,7 @@ std::vector<nlohmann::json> Blockchain::txsByAddress(const std::string &address)
 
 /*!
  *
- * @param const Block &block
+ * @param block
  * @return bool
  *
  * Run the proof of work algorithm to double check our forger is valid.
@@ -309,7 +309,7 @@ bool Blockchain::forgerValid(const Block &block) {
 
 /*!
  *
- * @param const std::vector<Transaction> &transactions
+ * @param transactions
  * @return bool
  *
  * Run getCoveredTransactionSet() on the list of transactions and compare the resulting vector size
@@ -323,7 +323,7 @@ bool Blockchain::transactionValid(const std::vector<Transaction> &transactions) 
 
 /*!
  *
- * @param vector<Block> &blocks
+ * @param blocks
  * @return vector<nlohmann::json>
  *
  * Return a json representation for a list of given blocks.
@@ -369,7 +369,7 @@ nlohmann::json Blockchain::toJson() {
 
 /*!
  *
- * @param std::vector<Block> blocks
+ * @param blocks
  * @return std::string
  *
  * Given a list of blocks, return a stringified json representation.
@@ -382,7 +382,7 @@ std::string Blockchain::toJsonString(std::vector<Block> blocks) {
 }
 
 /*!
- * 
+ *
  * @return std::string
  *
  * Return a stringified json representation of all blocks.

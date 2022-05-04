@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['genesis_0',['genesis',['../class_blockchain.html#af95ef0f76e085ca5b4aa20fbacdd68d4',1,'Blockchain']]],
-  ['getbalance_1',['getBalance',['../class_account_model.html#a1b461e5d30dfc42b628efed78a6c7748',1,'AccountModel']]],
-  ['getcoveredtransactionset_2',['getCoveredTransactionSet',['../class_blockchain.html#aa4e6bb083bde20f6ad2a60f80fbd4655',1,'Blockchain']]],
-  ['gettransaction_3',['getTransaction',['../class_blockchain.html#af1235ef58b69abb44d002454c97e91d6',1,'Blockchain']]]
+  ['forge_0',['forge',['../class_node.html#ac08fe080956d22ded0226fd3b47a4fdc',1,'Node']]],
+  ['forgeraddress_1',['forgerAddress',['../class_block.html#a663b3e363c8a2c4f35da197029cc2db2',1,'Block']]],
+  ['forgervalid_2',['forgerValid',['../class_blockchain.html#a3839678f351a8973eb5f75a04beb1f0f',1,'Blockchain']]]
 ];

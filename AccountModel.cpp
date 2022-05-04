@@ -4,7 +4,7 @@ AccountModel::AccountModel()=default;
 AccountModel::~AccountModel()=default;
 
 /*!
- * @param const std::string &walletAddress
+ * @param walletAddress
  * @return bool
  *
  * Check if the account exists, return true if found, false otherwise.
@@ -15,9 +15,9 @@ bool AccountModel::accountExists(const std::string &walletAddress) {
 
 /*!
  *
- * @param const std::string &walletAddress
- * @param const std::string &pubKey
- * @param const std::string &privkey
+ * @param walletAddress
+ * @param pubKey
+ * @param privkey
  *
  * Adds a new account to the account model with a private key and an initial value of 0
  */
@@ -36,8 +36,8 @@ void AccountModel::addAccount(const std::string &walletAddress,
 
 /*!
  *
- * @param const std::string &walletAddress
- * @param const std::string &pubKey
+ * @param walletAddress
+ * @param pubKey
  *
  * Adds a new account to the account model without a private key and an initial value of 0
  */
@@ -53,7 +53,7 @@ void AccountModel::addAccount(const std::string &walletAddress, const std::strin
 
 /*!
  *
- * @param const std::string &walletAddress
+ * @param walletAddress
  * @return double
  *
  * Get the balance of an account in the accountModel
@@ -65,8 +65,8 @@ double AccountModel::getBalance(const std::string &walletAddress) {
 
 /*!
  *
- * @param const std::string &walletAddress
- * @param double amount
+ * @param walletAddress
+ * @param amount
  *
  * Updates the balance of an account in the accountModel
  */

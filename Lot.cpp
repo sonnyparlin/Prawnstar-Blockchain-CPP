@@ -1,20 +1,20 @@
 #include "Lot.hpp"
-//#include "utils.hpp"
 
+/*!
+ * Default constructor
+ */
 Lot::Lot()=default;
 
-Lot::Lot(std::string pubString, int i, std::string lBH) {
-    publicKeyString = std::move(pubString);
-    iteration = i;
-    lastBlockHash = std::move(lBH);
+/*!
+ *
+ * @param _publicKeyString
+ * @param _iteration
+ * @param _lastBlockHash
+ */
+Lot::Lot(std::string _publicKeyString, int _iteration, std::string _lastBlockHash) {
+    publicKeyString = std::move(_publicKeyString);
+    iteration = _iteration;
+    lastBlockHash = std::move(_lastBlockHash);
 }
 
 Lot::~Lot()=default;
-
-//std::string Lot::lotHash() const {
-//    std::string hashData = publicKeyString + lastBlockHash;
-//    for (int i=0; i < iteration; i++) {
-//        hashData = utils::hash(hashData);
-//    }
-//    return hashData;
-//}

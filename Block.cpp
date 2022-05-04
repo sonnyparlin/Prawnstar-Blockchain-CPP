@@ -3,15 +3,14 @@
 #include "TransactionPool.hpp"
 #include <nlohmann/json.hpp>
 
-// Implemention of the construcor
 Block::Block()=default;
 
 /*!
  *
- * @param std::vector <Transaction> transactions
- * @param std::string lastHash
- * @param std::string forgerAddress
- * @param long blockCount
+ * @param transactions
+ * @param lastHash
+ * @param forgerAddress
+ * @param blockCount
  *
  * Constructor for the Block class when the forger is local
  */
@@ -26,9 +25,9 @@ Block::Block(std::vector <Transaction> transactions,
 
 /*!
 *
-* @param std::vector <Transaction> transactions
-* @param std::string lastHash
-* @param long blockCount
+* @param transactions
+* @param lastHash
+* @param blockCount
 *
 * Constructor for the Block class when the forger is NOT local
 */
@@ -46,17 +45,17 @@ Block::~Block()=default;
 
 /*!
  *
- * @param std::string sig
+ * @param _signature
  *
  * Add the generated signature to the new block.
  */
-void Block::sign(std::string sig) {
-    signature = std::move(sig);
+void Block::sign(std::string _signature) {
+    signature = std::move(_signature);
 }
 
 /*!
  *
- * @param vector <Transaction> &transactions
+ * @param transactions
  * @return vector<nlohmann::json>
  *
  * Create a json representation for a list of given transactions

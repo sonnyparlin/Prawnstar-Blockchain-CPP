@@ -16,20 +16,15 @@ void \mbox{\hyperlink{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}{upd
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}\label{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries accounts}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}{accounts}}
 \item 
-\mbox{\Hypertarget{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}\label{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}} 
-std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries address\+To\+Public\+Key}
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}{address\+To\+Public\+Key}}
 \item 
-\mbox{\Hypertarget{class_account_model_a2589dcd424d7a700886527bc078a734b}\label{class_account_model_a2589dcd424d7a700886527bc078a734b}} 
-std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries address\+To\+Private\+Key}
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_a2589dcd424d7a700886527bc078a734b}{address\+To\+Private\+Key}}
 \item 
-\mbox{\Hypertarget{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}\label{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}} 
-std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries balances}
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}{balances}}
 \item 
-\mbox{\Hypertarget{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}\label{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}} 
-std\+::mutex {\bfseries ac\+Mutex}
+std\+::mutex \mbox{\hyperlink{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}{ac\+Mutex}}
 \end{DoxyCompactItemize}
 
 
@@ -42,7 +37,7 @@ std\+::mutex {\bfseries ac\+Mutex}
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&wallet\+Address \\
+{\em wallet\+Address} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -56,9 +51,9 @@ Check if the account exists, return true if found, false otherwise. \mbox{\Hyper
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&wallet\+Address \\
+{\em wallet\+Address} & \\
 \hline
-{\em const} & std\+::string \&pub\+Key\\
+{\em pub\+Key} & \\
 \hline
 \end{DoxyParams}
 Adds a new account to the account model without a private key and an initial value of 0 \mbox{\Hypertarget{class_account_model_a87e1ed72c7378037c03e1022d4431df8}\label{class_account_model_a87e1ed72c7378037c03e1022d4431df8}} 
@@ -69,11 +64,11 @@ Adds a new account to the account model without a private key and an initial val
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&wallet\+Address \\
+{\em wallet\+Address} & \\
 \hline
-{\em const} & std\+::string \&pub\+Key \\
+{\em pub\+Key} & \\
 \hline
-{\em const} & std\+::string \&privkey\\
+{\em privkey} & \\
 \hline
 \end{DoxyParams}
 Adds a new account to the account model with a private key and an initial value of 0 \mbox{\Hypertarget{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}\label{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}} 
@@ -84,7 +79,7 @@ Adds a new account to the account model with a private key and an initial value 
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&wallet\+Address \\
+{\em wallet\+Address} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -98,12 +93,45 @@ Get the balance of an account in the account\+Model \mbox{\Hypertarget{class_acc
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&wallet\+Address \\
+{\em wallet\+Address} & \\
 \hline
-{\em double} & amount\\
+{\em amount} & \\
 \hline
 \end{DoxyParams}
 Updates the balance of an account in the account\+Model 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}\label{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}} 
+\index{AccountModel@{AccountModel}!accounts@{accounts}}
+\index{accounts@{accounts}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{accounts}{accounts}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Account\+Model\+::accounts}
+
+list of accounts \mbox{\Hypertarget{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}\label{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}} 
+\index{AccountModel@{AccountModel}!acMutex@{acMutex}}
+\index{acMutex@{acMutex}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{acMutex}{acMutex}}
+{\footnotesize\ttfamily std\+::mutex Account\+Model\+::ac\+Mutex}
+
+mutex for locking shared data \mbox{\Hypertarget{class_account_model_a2589dcd424d7a700886527bc078a734b}\label{class_account_model_a2589dcd424d7a700886527bc078a734b}} 
+\index{AccountModel@{AccountModel}!addressToPrivateKey@{addressToPrivateKey}}
+\index{addressToPrivateKey@{addressToPrivateKey}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{addressToPrivateKey}{addressToPrivateKey}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Private\+Key}
+
+address to private key map \mbox{\Hypertarget{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}\label{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}} 
+\index{AccountModel@{AccountModel}!addressToPublicKey@{addressToPublicKey}}
+\index{addressToPublicKey@{addressToPublicKey}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{addressToPublicKey}{addressToPublicKey}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Public\+Key}
+
+address to Public Key map \mbox{\Hypertarget{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}\label{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}} 
+\index{AccountModel@{AccountModel}!balances@{balances}}
+\index{balances@{balances}!AccountModel@{AccountModel}}
+\doxysubsubsection{\texorpdfstring{balances}{balances}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Account\+Model\+::balances}
+
+address to balances map 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

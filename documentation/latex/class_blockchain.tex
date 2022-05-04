@@ -55,11 +55,9 @@ static std\+::string \mbox{\hyperlink{class_blockchain_a8956b2548c67d722a0d1194a
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}\label{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}} 
-std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ {\bfseries blocks}
+std\+::vector$<$ \mbox{\hyperlink{class_block}{Block}} $>$ \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}}
 \item 
-\mbox{\Hypertarget{class_blockchain_a4797856382c3260becf198bd29693513}\label{class_blockchain_a4797856382c3260becf198bd29693513}} 
-std\+::mutex {\bfseries blockchain\+Mutex}
+std\+::mutex \mbox{\hyperlink{class_blockchain_a4797856382c3260becf198bd29693513}{blockchain\+Mutex}}
 \end{DoxyCompactItemize}
 
 
@@ -72,7 +70,7 @@ std\+::mutex {\bfseries blockchain\+Mutex}
 
 
 \begin{DoxyParams}{Parameters}
-{\em Node$\ast$} & node\\
+{\em node} & \\
 \hline
 \end{DoxyParams}
 Create the blockchain object. \mbox{\Hypertarget{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}\label{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}} 
@@ -92,7 +90,7 @@ Create the blockchain object. \mbox{\Hypertarget{class_blockchain_a47010faf89dca
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+{\em block} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -106,7 +104,7 @@ Add a new block to the blockchain. \mbox{\Hypertarget{class_blockchain_afcd7f198
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+{\em block} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -120,7 +118,7 @@ Ensure that the block count is valid by comparing the block\+Count of the new bl
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+{\em block} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -134,7 +132,7 @@ Ensure the new block has transactions before execution. \mbox{\Hypertarget{class
 
 
 \begin{DoxyParams}{Parameters}
-{\em vector$<$\+Block$>$} & \&blocks \\
+{\em blocks} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -148,7 +146,7 @@ Return a json representation for a list of given blocks. \mbox{\Hypertarget{clas
 
 
 \begin{DoxyParams}{Parameters}
-{\em std\+::vector$<$\+Transaction$>$} & \&transactions \\
+{\em transactions} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -162,9 +160,9 @@ Calculate the forger reward and set new balances accordingly. Forgers get paid b
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions\+From\+Pool \\
+{\em transactions\+From\+Pool} & \\
 \hline
-{\em const} & std\+::string \&forger\+Address \\
+{\em forger\+Address} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -178,7 +176,7 @@ Create a new block with the given transactions and forger. \mbox{\Hypertarget{cl
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::vector$<$\+Transaction$>$ \&transaction\\
+{\em transaction} & \\
 \hline
 \end{DoxyParams}
 Execute the given transaction. \mbox{\Hypertarget{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}\label{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}} 
@@ -189,7 +187,7 @@ Execute the given transaction. \mbox{\Hypertarget{class_blockchain_a4850cf82e32a
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions\\
+{\em transactions} & \\
 \hline
 \end{DoxyParams}
 Wrapper for executing each transaction. \mbox{\Hypertarget{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}\label{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}} 
@@ -200,7 +198,7 @@ Wrapper for executing each transaction. \mbox{\Hypertarget{class_blockchain_a383
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+{\em block} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -221,15 +219,10 @@ Create the genesis block for the blockchain. \mbox{\Hypertarget{class_blockchain
 \doxysubsubsection{\texorpdfstring{getCoveredTransactionSet()}{getCoveredTransactionSet()}}
 {\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ Blockchain\+::get\+Covered\+Transaction\+Set (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{ }\end{DoxyParamCaption})}
 
-
-\begin{DoxyParams}{Parameters}
-{\em const} & vector$<$\+Transaction$>$ \&transactions \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-const vector$<$\+Transaction$>$
+std\+::vector$<$\+Transaction$>$
 \end{DoxyReturn}
-Collect covered transactions to be executed. \mbox{\Hypertarget{class_blockchain_af1235ef58b69abb44d002454c97e91d6}\label{class_blockchain_af1235ef58b69abb44d002454c97e91d6}} 
+Get covered transactions from list of transactions. \mbox{\Hypertarget{class_blockchain_af1235ef58b69abb44d002454c97e91d6}\label{class_blockchain_af1235ef58b69abb44d002454c97e91d6}} 
 \index{Blockchain@{Blockchain}!getTransaction@{getTransaction}}
 \index{getTransaction@{getTransaction}!Blockchain@{Blockchain}}
 \doxysubsubsection{\texorpdfstring{getTransaction()}{getTransaction()}}
@@ -237,7 +230,7 @@ Collect covered transactions to be executed. \mbox{\Hypertarget{class_blockchain
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&txid \\
+{\em txid} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -251,7 +244,7 @@ Return a json string of the transaction with the given transaction id. \mbox{\Hy
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_block}{Block}} \&block \\
+{\em block} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -283,7 +276,7 @@ Return json representation of the entire blockchain. \mbox{\Hypertarget{class_bl
 
 
 \begin{DoxyParams}{Parameters}
-{\em std\+::vector$<$\+Block$>$} & blocks \\
+{\em blocks} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -306,7 +299,7 @@ Return a stringified json representation of all blocks. \mbox{\Hypertarget{class
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_transaction}{Transaction}} \&transaction \\
+{\em transaction} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -320,7 +313,7 @@ Make sure the sender has enough funds to continue the transaction. Note that we 
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & \mbox{\hyperlink{class_transaction}{Transaction}} \&transaction \\
+{\em transaction} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -334,7 +327,7 @@ Check to see if the given transaction is already on the blockchain. \mbox{\Hyper
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::vector$<$\+Transaction$>$ \&transactions \\
+{\em transactions} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -348,13 +341,28 @@ Run \mbox{\hyperlink{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}{get\+Co
 
 
 \begin{DoxyParams}{Parameters}
-{\em const} & std\+::string \&address \\
+{\em address} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 std\+::vector$<$nlohmann\+::json$>$
 \end{DoxyReturn}
 Return a json representation of all transactions associated with a specific address. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_blockchain_a4797856382c3260becf198bd29693513}\label{class_blockchain_a4797856382c3260becf198bd29693513}} 
+\index{Blockchain@{Blockchain}!blockchainMutex@{blockchainMutex}}
+\index{blockchainMutex@{blockchainMutex}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{blockchainMutex}{blockchainMutex}}
+{\footnotesize\ttfamily std\+::mutex Blockchain\+::blockchain\+Mutex}
+
+mutex for accessing shared blockchain data \mbox{\Hypertarget{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}\label{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}} 
+\index{Blockchain@{Blockchain}!blocks@{blocks}}
+\index{blocks@{blocks}!Blockchain@{Blockchain}}
+\doxysubsubsection{\texorpdfstring{blocks}{blocks}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_block}{Block}}$>$ Blockchain\+::blocks}
+
+list of blocks 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

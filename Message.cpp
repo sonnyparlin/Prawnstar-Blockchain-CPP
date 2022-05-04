@@ -1,18 +1,38 @@
 #include "Message.hpp"
-
 #include <utility>
 
+/*!
+ *
+ * @param sc
+ * @param messageType
+ * @param peers
+ *
+ * Constructor for broadcast messages
+ */
 Message::Message(const SocketConnector &sc,
                  std::string messageType,
                  std::vector<std::string> peers)
                  :sc(sc), messageType(std::move(messageType)), peers(std::move(peers)){}
 
+/*!
+ *
+ * @param messageType
+ * @param data
+ *
+ * Constructor for messages
+ */
 Message::Message(std::string messageType,
                  std::string data)
                  :messageType(std::move(messageType)), data(std::move(data)){}
 
 Message::~Message()=default;
 
+/*!
+ *
+ * @return std::string
+ *
+ * Json represented string of message.
+ */
 std::string Message::toJson() { 
     nlohmann::json j;
     j["Message"]["SocketConnector"]["ip"] = sc.ip;

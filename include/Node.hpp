@@ -26,6 +26,12 @@ private:
 
 public:
     // constructors/destructors
+    /*!
+     *
+     * @param argv
+     *
+     * Constructor for our main Node class (singleton)
+     */
     explicit Node(char **argv); // Constructor
     ~Node();                      // Destructor
 
@@ -43,18 +49,18 @@ public:
     void log(std::string const& msg);
 
     // class members
-    TransactionPool transactionPool;
-    Wallet *nodeWallet;
-    Wallet *exchangeWallet;
-    Wallet *bobWallet;
-    Wallet *aliceWallet;
-    Wallet *node2Wallet;
-    Blockchain *blockchain;
-    AccountModel *accountModel;
-    SocketCommunication *p2p;
-    ProofOfStake *proofOfStake;
-    std::mutex nodeMutex;
-    std::mutex logMutex;
+    TransactionPool transactionPool; /*!< Node transaction pool */
+    Wallet *nodeWallet; /*!< This node's wallet. */
+    Wallet *exchangeWallet; /*!< Exchange wallet */
+    Wallet *bobWallet; /*!< test wallet */
+    Wallet *aliceWallet; /*!< test wallet */
+    Wallet *node2Wallet; /*!< test wallet */
+    Blockchain *blockchain; /*!< Node's blockchain */
+    AccountModel *accountModel; /*!< Node's accountModel */
+    SocketCommunication *p2p; /*!< Node's SocketCommunication */
+    ProofOfStake *proofOfStake; /*!< Node's proofOfStake */
+    // std::mutex nodeMutex; /*!< Mutex for */
+    std::mutex logMutex; /*!< mutex for accessing shared log file */
 };
 
 #endif // _NODE_H_
