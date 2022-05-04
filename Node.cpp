@@ -92,7 +92,6 @@ std::string getLastLines( std::string const& filename, int lineCount )
 void Node::log(std::string const& msg)
 {
     std::lock_guard<std::mutex> guard(logMutex);
-    // std::cout << "Writing to log file " << std::endl;
     ofstream myfile;
     myfile.open ("console.log", std::ios_base::app);
     myfile << msg << std::endl;
@@ -196,11 +195,13 @@ void Node::handleBlock (Block &block, bool broadcast) {
 }
 
 /*!
-Request complete or partial blockchain from the master node. Uses the local block count to determine
-how many blocks are needed from the master server.
+Request complete or partial blockchain from the master node. Uses the local
+block count to determine how many blocks are needed from the master server.
 */
 void Node::requestChain() const {
-    std::string requestingNode { p2p->sc.ip + ":" + std::to_string(p2p->sc.port) + ":" + std::to_string(blockchain->blocks.size()) };
+    std::string requestingNode { p2p->sc.ip + ":" +
+                                 std::to_string(p2p->sc.port) + ":" +
+                                 std::to_string(blockchain->blocks.size()) };
     std::string msgType = "BLOCKCHAINREQUEST";
     Message message(msgType, requestingNode);
     std::string msgJson = message.toJson();
@@ -211,23 +212,24 @@ void Node::requestChain() const {
 Only send the blocks which are missing from the requesting node.
 */
 void Node::handleBlockchainRequest(std::string requestingNode) const {
-    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
+    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     /* 
     Only get the blocks I need. [X]
     */
-   // std::cout << "Inside handleBlockchainRequest()" << std::endl;
+   // std::cout << "Inside handleBlockchainRequest()" << requestingNode << std::endl;
    if (blockchain->blocks.size() == 1) {
        return;
    }
 
-    std::string tmp = std::move(requestingNode); // needed so split won't break
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     auto blockNumber = stol(receivingNode.at(2));
-    std::cout << "requesting from block: " << blockNumber << std::endl;
+    std::cout << "\n\n\tReceived blockchain download request from "
+              << receivingNode.at(0) + " for "
+              << (blockchain->blocks.size() - blockNumber)
+              << " blocks.\n"
+              << std::endl;
     
     vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
-    // std::cout << "Sending: " << blockchain->toJsonString(subvector) << std::endl;
-
     std::string msgType = "BLOCKCHAIN";
     std::string msgBody = Blockchain::toJsonString(subvector);
     Message message(msgType, msgBody);
@@ -246,13 +248,9 @@ This is where we read and rebuild the blockchain or partial blockchain after req
 from the master server. How many blocks we ad is based on how many we requested.
 */
 void Node::handleBlockchain(const std::string &blockchainString) const {
-    // std::cout << "inside handleBlockchain(): " << blockchainString << std::endl;
-
-    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
+    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
         return;
-
-    // std::cout << "blockchainString: " << blockchainString << std::endl;
 
     nlohmann::json j;
     try {
@@ -261,14 +259,19 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
         std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }
-    auto localBlockCount = (int)blockchain->blocks[blockchain->blocks.size()-1].blockCount;
-    auto receivedBlockCount = (int)j["blocks"].size();
+    auto localBlockCount = static_cast<int>(blockchain->blocks[blockchain->blocks.size()-1].blockCount);
+    auto receivedBlockCount = static_cast<int>(j["blocks"].at(j["blocks"].size()-1)["blockCount"]);
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
 
-    if (receivedBlockCount != localBlockCount) {
-        std::cout << "importing subvector" << std::endl;
+    /*!
+    Ensure the incoming block count is greater than the local block count
+    we can do this even when downloading a partial chain because we are using
+    the blockCount variable of the block itself rather than blocks.size().
+    */
+    if (receivedBlockCount > localBlockCount) {
+        std::cout << "importing " << receivedBlockCount << " blocks..." << std::endl;
         
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
