@@ -73,7 +73,7 @@ bool Blockchain::lastBlockHashValid(const Block &block) {
 }
 
 bool Blockchain::transactionCovered(const Transaction &transaction) {
-    if (transaction.type == tx.exchange || transaction.type == tx.reward)
+    if (transaction.type == "EXCHANGE" || transaction.type == "REWARD")
         return true;
     double senderBalance = node->accountModel->getBalance(transaction.senderAddress);
     return senderBalance >= transaction.amount;

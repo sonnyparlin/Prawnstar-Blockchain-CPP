@@ -4,7 +4,6 @@
 #include <string>
 #include "Block.hpp"
 #include "AccountModel.hpp"
-#include "config.hpp"
 #include "Node.hpp"
 #include <mutex>
 
@@ -15,6 +14,7 @@ private:
     Node *node;
 
 public:
+    // TX_TYPE tx;
     std::vector<Block> blocks;
     std::mutex blockchainMutex;
 

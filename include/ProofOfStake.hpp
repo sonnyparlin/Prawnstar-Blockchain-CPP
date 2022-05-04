@@ -9,17 +9,14 @@
 #include "Node.hpp"
 #include <mutex>
 
-class Node;
+//class Node;
 
 class ProofOfStake {
 private:
     Node *node;
 public:
-    std::unordered_map<std::string, double>stakers;
-    std::mutex posMutex;
-
-    explicit ProofOfStake(Node *node);           // Constructor
-    ~ProofOfStake();          // Destructor
+    explicit ProofOfStake(Node *node);
+    ~ProofOfStake();
 
     void update(const std::string&, double stake);
     double getStake(const std::string&);
@@ -29,6 +26,9 @@ public:
     void setGenesisNodeStake(const std::string&);
     inline static uint32_t fnv1a(const std::string& text);
     inline static uint32_t lcg_rand(uint32_t *state);
+
+    std::unordered_map<std::string, double>stakers;
+    std::mutex posMutex;
 };
 
 #endif // _PROOFOFSTAKE_H_

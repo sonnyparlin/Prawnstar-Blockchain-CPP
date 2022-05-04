@@ -21,9 +21,6 @@ namespace utils {
     };
 
     std::vector<std::string> get_ip_and_port_from_config();
-
-    static std::vector<std::string> ip_port_vec;
-
     std::string get_master_node_ip();
     int get_master_node_port();
     void startUtils();
@@ -37,6 +34,9 @@ namespace utils {
     std::string generateAddress(const std::string &str);
     std::string get_uuid();
     std::string gen_random_str(int len);
+    time_t timeSinceEpoch();
+
+    static std::vector<std::string> ip_port_vec;
 }
 
 #endif // _UTILS_H_

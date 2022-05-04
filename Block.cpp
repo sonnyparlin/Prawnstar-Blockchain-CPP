@@ -6,27 +6,27 @@
 // Implemention of the construcor
 Block::Block()=default;
 
-Block::Block(std::vector <Transaction> &transactions,
-             std::string &lastHash,
-             std::string &forgerAddress,
+Block::Block(std::vector <Transaction> transactions,
+             std::string lastHash,
+             std::string forgerAddress,
              long blockCount)
-    : transactions(transactions), 
-      lastHash(lastHash),
-      forgerAddress(forgerAddress),
+    : transactions(std::move(transactions)),
+      lastHash(std::move(lastHash)),
+      forgerAddress(std::move(forgerAddress)),
       blockCount(blockCount) {}
 
-Block::Block(std::vector <Transaction> &transactions,
-             std::string &lastHash,
+Block::Block(std::vector <Transaction> transactions,
+             std::string lastHash,
              long blockCount)
-    : transactions(transactions), 
-      lastHash(lastHash),
+    : transactions(std::move(transactions)),
+      lastHash(std::move(lastHash)),
       blockCount(blockCount) {}
 
 // Implementation of the destructor
 Block::~Block()=default;
 
-void Block::sign(std::string &sig) {
-    signature = sig;
+void Block::sign(std::string sig) {
+    signature = std::move(sig);
 }
 
 vector<nlohmann::json> Block::transactionList(vector <Transaction> &transactions) {

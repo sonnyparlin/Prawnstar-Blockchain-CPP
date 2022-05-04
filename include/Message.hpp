@@ -13,9 +13,9 @@ public:
     std::vector<std::string> peers;
     std::string data;
     
-    Message(SocketConnector &sc,
+    Message(const SocketConnector &sc,
             std::string messageType,
-            std::vector<std::string> &peers);
+            std::vector<std::string> peers);
 
     Message(std::string messageType,
             std::string data);

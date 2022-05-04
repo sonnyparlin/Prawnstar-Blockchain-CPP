@@ -1,5 +1,4 @@
 #include "utils.hpp"
-#include "config.hpp"
 
 using namespace utils;
 
@@ -204,4 +203,10 @@ std::string utils::get_master_node_ip() {
 int utils::get_master_node_port() {
     auto port = (int)stol(ip_port_vec.at(1));
     return port;
+}
+
+time_t utils::timeSinceEpoch()
+{
+    auto now = std::chrono::system_clock::now();
+    return std::chrono::system_clock::to_time_t( now );
 }

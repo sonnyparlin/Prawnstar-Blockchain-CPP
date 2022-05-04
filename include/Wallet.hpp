@@ -11,6 +11,7 @@
 class Node;
 
 class Wallet {
+
 public:
     std::vector<std::string> walletKeyPair;
     std::string walletPrivateKey;

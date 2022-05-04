@@ -6,8 +6,6 @@
 #include <mutex>
 #include <algorithm>
 
-class Node;
-
 class AccountModel {
 public:
     std::vector<std::string> accounts;
@@ -16,8 +14,8 @@ public:
     std::unordered_map<std::string, double> balances;
     std::mutex acMutex;
 
-    AccountModel();           // Constructor
-    ~AccountModel();          // Destructor
+    AccountModel();
+    ~AccountModel();
 
     bool accountExists(const std::string &walletAddress);
     void addAccount(const std::string &walletAddress,

@@ -13,8 +13,7 @@ utils.cpp
 Block.cpp
 Node.cpp
 SocketConnector.cpp
-config.cpp
-Blockchain.cpp
+        Blockchain.cpp
 NodeApi.cpp
 Transaction.cpp
 Lot.cpp

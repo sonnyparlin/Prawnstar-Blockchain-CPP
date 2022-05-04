@@ -25,6 +25,24 @@ private:
     static Node *node;
 
 public:
+    // constructors/destructors
+    explicit Node(char **argv); // Constructor
+    ~Node();                      // Destructor
+
+    // class methods
+    static Node *createNode(char **argv);
+    void startServers(int argc, char **argv);
+    bool handleTransaction (Transaction&, bool broadcast=true);
+    void handleBlock (Block &block, bool broadcast);
+    void requestChain() const;
+    void forge();
+    void handleBlockchainRequest(std::string) const;
+    void handleBlockchain(const std::string &blockchainString) const;
+    std::string getNodeID() const;
+    static std::string getConsoleLog();
+    void log(std::string const& msg);
+
+    // class members
     TransactionPool transactionPool;
     Wallet *nodeWallet;
     Wallet *exchangeWallet;
@@ -37,21 +55,6 @@ public:
     ProofOfStake *proofOfStake;
     std::mutex nodeMutex;
     std::mutex logMutex;
-
-    explicit Node(char **argv); // Constructor
-    ~Node();                      // Destructor
-
-    static Node *createNode(char **argv);
-    void startServers(int argc, char **argv);
-    bool handleTransaction (Transaction&, bool broadcast=true);
-    void handleBlock (Block &block, bool broadcast);
-    void requestChain() const;
-    void forge();
-    void handleBlockchainRequest(std::string) const;
-    void handleBlockchain(const std::string &blockchainString) const;
-    std::string getNodeID() const;
-    static std::string getConsoleLog();
-    void log(std::string const& msg);
 };
 
 #endif // _NODE_H_

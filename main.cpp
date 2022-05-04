@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Node.hpp"
 #include "utils.hpp"
-#include "config.hpp"
 
 /*! \mainpage Development documentation for the Prawnstar Blockchain.
  *

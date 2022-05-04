@@ -1,5 +1,4 @@
 #include <string>
-#include "config.hpp"
 #include "Transaction.hpp"
 #include <nlohmann/json.hpp>
 #include <utility>
@@ -14,15 +13,13 @@ Transaction::Transaction(string senderAddress,
       amount(amount), 
       type(std::move(type))  {
     id = utils::get_uuid();
-    timestamp = timeSinceEpoch();
+    timestamp = utils::timeSinceEpoch();
 }
 
 Transaction::Transaction()=default;
-
 Transaction::~Transaction()=default;
 
-bool operator==(const Transaction &lhs, const Transaction &rhs){ 
-    /* do actual comparison */ 
+bool operator==(const Transaction &lhs, const Transaction &rhs) {
     return lhs.id == rhs.id;
 }
 

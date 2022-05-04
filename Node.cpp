@@ -4,7 +4,7 @@
 #include <thread>
 #include <ctime>
 
-Node * Node::node=nullptr;
+Node* Node::node=nullptr;
 
 Node::Node(char **argv) {
     p2p = new SocketCommunication(this);
@@ -12,8 +12,6 @@ Node::Node(char **argv) {
     blockchain = new Blockchain(this);
 
     int port = utils::getPort(argv[2]);
-    // std::cout << "port is: " << port << std::endl;
-
     if (port == 10001)
         nodeWallet = new Wallet(this, "genesisNode.pem");
     else if (port == 10002)
@@ -25,13 +23,6 @@ Node::Node(char **argv) {
     exchangeWallet = new Wallet(this, "exchange.pem");
     aliceWallet = new Wallet(this, "alice.pem");
     bobWallet = new Wallet(this, "bob.pem");
-
-//    std::cout << "node wallet: " << nodeWallet->address << std::endl;
-//    std::cout << "node2 wallet: " << node2Wallet->address << std::endl;
-//    std::cout << "exchangeAddress: " << exchangeWallet->address << std::endl;
-//    std::cout << "aliceAddress: " << aliceWallet->address << std::endl;
-//    std::cout << "bobAddress: " << bobWallet->address << std::endl;
-
     proofOfStake = new ProofOfStake(this);
 }
 

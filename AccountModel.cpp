@@ -1,8 +1,6 @@
 #include "AccountModel.hpp"
 
-
 AccountModel::AccountModel()=default;
-
 AccountModel::~AccountModel()=default;
 
 bool AccountModel::accountExists(const std::string &walletAddress) {
@@ -12,6 +10,8 @@ bool AccountModel::accountExists(const std::string &walletAddress) {
 void AccountModel::addAccount(const std::string &walletAddress,
                               const std::string &pubKey,
                               const std::string &privkey) {
+    std::lock_guard<std::mutex> guard(acMutex);
+
     if (!accountExists(walletAddress)) {
         accounts.push_back(walletAddress);
         balances[walletAddress] = 0;
@@ -21,6 +21,8 @@ void AccountModel::addAccount(const std::string &walletAddress,
 }
 
 void AccountModel::addAccount(const std::string &walletAddress, const std::string &pubKey) {
+    std::lock_guard<std::mutex> guard(acMutex);
+
     if (!accountExists(walletAddress)) {
         accounts.push_back(walletAddress);
         balances[walletAddress] = 0;
