@@ -3,14 +3,14 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_transaction_pool_a8eaa0f74fcfb3660c016e4f81a8be068}\label{class_transaction_pool_a8eaa0f74fcfb3660c016e4f81a8be068}} 
-void {\bfseries add\+Transaction} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\mbox{\Hypertarget{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}\label{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}} 
+void {\bfseries add\+Transaction} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_transaction_pool_a00221cdee49f4eb748122155bf86cfaa}\label{class_transaction_pool_a00221cdee49f4eb748122155bf86cfaa}} 
-bool {\bfseries transaction\+Exists} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\mbox{\Hypertarget{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}\label{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}} 
+bool {\bfseries transaction\+Exists} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_transaction_pool_abcbd823ee0fea1d89e58794770b0b74d}\label{class_transaction_pool_abcbd823ee0fea1d89e58794770b0b74d}} 
-void {\bfseries remove\+From\+Pool} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ txs)
+\mbox{\Hypertarget{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}\label{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}} 
+void {\bfseries remove\+From\+Pool} (const vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
 \mbox{\Hypertarget{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}\label{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}} 
 std\+::string {\bfseries get\+Pool\+Transactions\+Json\+String} ()
@@ -31,5 +31,5 @@ std\+::mutex {\bfseries tpool\+Mutex}
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Transaction\+Pool.\+hpp\item 
+include/Transaction\+Pool.\+hpp\item 
 Transaction\+Pool.\+cpp\end{DoxyCompactItemize}

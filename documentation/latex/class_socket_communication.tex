@@ -11,31 +11,25 @@ void {\bfseries start\+Socket\+Communication} (int argc, char $\ast$argv\mbox{[}
 \item 
 void \mbox{\hyperlink{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}{start\+P2\+POperations}} (int argc, char $\ast$$\ast$argv)
 \item 
-int \mbox{\hyperlink{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}{start\+P2\+PServer}} (int argc, char $\ast$$\ast$argv)
-\item 
-\mbox{\Hypertarget{class_socket_communication_a5e89d704ca77450f4947346640be1621}\label{class_socket_communication_a5e89d704ca77450f4947346640be1621}} 
-void {\bfseries handshake} (int sock)
+void \mbox{\hyperlink{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}{start\+P2\+PServer}} (int argc, char $\ast$$\ast$argv)
 \item 
 \mbox{\Hypertarget{class_socket_communication_a556f923e6a6346454f8055400668ef27}\label{class_socket_communication_a556f923e6a6346454f8055400668ef27}} 
 void {\bfseries broadcast\+Peer\+Discovery} (const char $\ast$message)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a735ef3c71b6294c95a4941d582aec2f7}\label{class_socket_communication_a735ef3c71b6294c95a4941d582aec2f7}} 
-void {\bfseries broadcast} (const char $\ast$message)
+\mbox{\Hypertarget{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}\label{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}} 
+void {\bfseries broadcast} (const char $\ast$message) const
 \item 
 \mbox{\Hypertarget{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}\label{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}} 
 void {\bfseries inbound\+\_\+node\+\_\+connected} (int sock)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a24d43029922a16e291e014ff8f6dd64c}\label{class_socket_communication_a24d43029922a16e291e014ff8f6dd64c}} 
-void {\bfseries outbound\+\_\+node\+\_\+connected} (int sock)
-\item 
-\mbox{\Hypertarget{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}\label{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}} 
-int {\bfseries process\+Args} (int argc, char $\ast$$\ast$argv)
-\item 
-\mbox{\Hypertarget{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}\label{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}} 
-void {\bfseries send\+\_\+node\+\_\+message} (int sock, const char $\ast$message)
+\mbox{\Hypertarget{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}\label{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}} 
+void {\bfseries outbound\+\_\+node\+\_\+connected} (int sock) const
 \item 
 \mbox{\Hypertarget{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}\label{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}} 
 void {\bfseries receive\+\_\+node\+\_\+message} (int sock)
+\item 
+\mbox{\Hypertarget{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}\label{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}} 
+void {\bfseries block\+Forger} ()
 \item 
 \mbox{\Hypertarget{class_socket_communication_a853380083a5e1450551e3d238dc656b4}\label{class_socket_communication_a853380083a5e1450551e3d238dc656b4}} 
 void {\bfseries peer\+Discovery\+Status} ()
@@ -43,11 +37,23 @@ void {\bfseries peer\+Discovery\+Status} ()
 \mbox{\Hypertarget{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}\label{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}} 
 void {\bfseries peer\+Discovery} ()
 \item 
-\mbox{\Hypertarget{class_socket_communication_afd39f2ad483f11cb48094cdd42e962ac}\label{class_socket_communication_afd39f2ad483f11cb48094cdd42e962ac}} 
-std\+::string {\bfseries handshake\+Message} ()
+\mbox{\Hypertarget{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}\label{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}} 
+void {\bfseries handshake} (int sock) const
+\item 
+\mbox{\Hypertarget{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}\label{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}} 
+std\+::string {\bfseries handshake\+Message} () const
 \item 
 \mbox{\Hypertarget{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}\label{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}} 
 void {\bfseries peer\+Discovery\+Handle\+Message} (const char $\ast$message)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}\label{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}} 
+static int {\bfseries process\+Args} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}\label{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}} 
+static void {\bfseries send\+\_\+node\+\_\+message} (int sock, const char $\ast$message)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -76,11 +82,11 @@ std\+::string {\bfseries id}
 \doxysubsubsection{\texorpdfstring{startP2POperations()}{startP2POperations()}}
 {\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+POperations (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
-This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. \mbox{\Hypertarget{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}\label{class_socket_communication_a9d8cebb7b8a9fdc343d63de5e8b78162}} 
+This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. \mbox{\Hypertarget{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}\label{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}} 
 \index{SocketCommunication@{SocketCommunication}!startP2PServer@{startP2PServer}}
 \index{startP2PServer@{startP2PServer}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{startP2PServer()}{startP2PServer()}}
-{\footnotesize\ttfamily int Socket\+Communication\+::start\+P2\+PServer (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+PServer (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
 \begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000004}{Todo}}]open db and if it has no data, write the genesis block to our mongodb instance \end{DoxyRefDesc}
@@ -88,5 +94,5 @@ This is where everything starts up in terms of a single node. We start with our 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Socket\+Communication.\+hpp\item 
+include/Socket\+Communication.\+hpp\item 
 Socket\+Communication.\+cpp\end{DoxyCompactItemize}

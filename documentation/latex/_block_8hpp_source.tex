@@ -1,4 +1,5 @@
 \hypertarget{_block_8hpp_source}{}\doxysection{Block.\+hpp}
+\label{_block_8hpp_source}\index{include/Block.hpp@{include/Block.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_BLOCK\_H\_}}
@@ -9,41 +10,38 @@
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}TransactionPool.hpp"{}}}
 \DoxyCodeLine{7 \textcolor{preprocessor}{\#include <ctime>}}
 \DoxyCodeLine{8 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
-\DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{keyword}{using namespace }std;}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_block}{Block}} \{}
-\DoxyCodeLine{13 \textcolor{keyword}{public}:}
-\DoxyCodeLine{14     vector <Transaction> transactions;}
-\DoxyCodeLine{15     \textcolor{keywordtype}{string} lastHash;}
-\DoxyCodeLine{16     \textcolor{keywordtype}{string} hash;}
-\DoxyCodeLine{17     \textcolor{keywordtype}{string} forgerAddress;}
-\DoxyCodeLine{18     time\_t timestamp = timeSinceEpoch();}
-\DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount;}
-\DoxyCodeLine{20     \textcolor{keywordtype}{string} signature;}
-\DoxyCodeLine{21     \textcolor{keywordtype}{string} \_id;}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23     \textcolor{comment}{// Constructors}}
-\DoxyCodeLine{24     \mbox{\hyperlink{class_block}{Block}}();}
-\DoxyCodeLine{25     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
-\DoxyCodeLine{26           \textcolor{keywordtype}{string} lastHash, }
-\DoxyCodeLine{27           \textcolor{keywordtype}{string} forgerAddress,}
-\DoxyCodeLine{28           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}utils.hpp"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_block}{Block}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{14     \mbox{\hyperlink{class_block}{Block}}();}
+\DoxyCodeLine{15     \mbox{\hyperlink{class_block}{Block}}(std::vector <Transaction>,}
+\DoxyCodeLine{16           std::string,}
+\DoxyCodeLine{17           std::string,}
+\DoxyCodeLine{18           \textcolor{keywordtype}{long} blockCount);}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_block}{Block}}(std::vector <Transaction>,}
+\DoxyCodeLine{20           std::string,}
+\DoxyCodeLine{21           \textcolor{keywordtype}{long} blockCount);}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_block}{\string~Block}}();}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     std::string toJson();}
+\DoxyCodeLine{25     std::string payload();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} sign(std::string);}
+\DoxyCodeLine{27     \textcolor{keyword}{static} vector<nlohmann::json> transactionList(vector <Transaction> \&transactions);}
+\DoxyCodeLine{28     nlohmann::json jsonView();}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30     \mbox{\hyperlink{class_block}{Block}}(vector <Transaction> transactions,}
-\DoxyCodeLine{31           \textcolor{keywordtype}{string} lastHash,}
-\DoxyCodeLine{32           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
-\DoxyCodeLine{33         }
-\DoxyCodeLine{34     \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{35     \mbox{\hyperlink{class_block}{\string~Block}}();}
-\DoxyCodeLine{36     }
-\DoxyCodeLine{37     \textcolor{keywordtype}{string} toJson() \textcolor{keyword}{const};}
-\DoxyCodeLine{38     \textcolor{keywordtype}{string} payload();}
-\DoxyCodeLine{39     \textcolor{keywordtype}{void} sign(\textcolor{keywordtype}{string} data);}
-\DoxyCodeLine{40     vector<nlohmann::json> transactionList(vector <Transaction> transactions) \textcolor{keyword}{const};}
-\DoxyCodeLine{41     nlohmann::json jsonView() \textcolor{keyword}{const};}
-\DoxyCodeLine{42 \};}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCK\_H\_}}
+\DoxyCodeLine{30     std::vector <Transaction> transactions;}
+\DoxyCodeLine{31     std::string lastHash;}
+\DoxyCodeLine{32     std::string hash;}
+\DoxyCodeLine{33     std::string forgerAddress;}
+\DoxyCodeLine{34     time\_t timestamp = utils::timeSinceEpoch();}
+\DoxyCodeLine{35     \textcolor{keywordtype}{long} blockCount \{0\};}
+\DoxyCodeLine{36     std::string signature;}
+\DoxyCodeLine{37     std::string \_id;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{size\_t} signatureLength \{0\};}
+\DoxyCodeLine{39 \};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCK\_H\_}}
 
 \end{DoxyCode}

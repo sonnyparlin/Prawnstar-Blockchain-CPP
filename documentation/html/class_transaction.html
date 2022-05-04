@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -74,9 +73,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa79b30343f7bd6ef94981e4437116f22"><td class="memItemLeft" align="right" valign="top"><a id="aa79b30343f7bd6ef94981e4437116f22" name="aa79b30343f7bd6ef94981e4437116f22"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Transaction</b> (string senderAddress, string receiverAddress, double amount, string type)</td></tr>
-<tr class="separator:aa79b30343f7bd6ef94981e4437116f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae01553f02698dbb78e6e5c4aca160cfa"><td class="memItemLeft" align="right" valign="top"><a id="ae01553f02698dbb78e6e5c4aca160cfa" name="ae01553f02698dbb78e6e5c4aca160cfa"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>toJson</b> ()</td></tr>
 <tr class="separator:ae01553f02698dbb78e6e5c4aca160cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -86,9 +82,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>payload</b> ()</td>
 <tr class="memitem:a8fc44a24bfca6202ca05113e31e7f1b5"><td class="memItemLeft" align="right" valign="top"><a id="a8fc44a24bfca6202ca05113e31e7f1b5" name="a8fc44a24bfca6202ca05113e31e7f1b5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sign</b> (std::string sig)</td></tr>
 <tr class="separator:a8fc44a24bfca6202ca05113e31e7f1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaad47dc8b50ab7eef1e14dbc997779e"><td class="memItemLeft" align="right" valign="top"><a id="abaad47dc8b50ab7eef1e14dbc997779e" name="abaad47dc8b50ab7eef1e14dbc997779e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>equals</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:abaad47dc8b50ab7eef1e14dbc997779e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa79b30343f7bd6ef94981e4437116f22"><td class="memItemLeft" align="right" valign="top"><a id="aa79b30343f7bd6ef94981e4437116f22" name="aa79b30343f7bd6ef94981e4437116f22"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Transaction</b> (string senderAddress, string receiverAddress, double amount, string type)</td></tr>
+<tr class="separator:aa79b30343f7bd6ef94981e4437116f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -104,9 +100,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>receiverAddress</b>
 <tr class="memitem:aee8367335bc186afce178e3f813711ad"><td class="memItemLeft" align="right" valign="top"><a id="aee8367335bc186afce178e3f813711ad" name="aee8367335bc186afce178e3f813711ad"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>receiverPublicKey</b></td></tr>
 <tr class="separator:aee8367335bc186afce178e3f813711ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60e1a137b6e45eda95a8539a7f6171ef"><td class="memItemLeft" align="right" valign="top"><a id="a60e1a137b6e45eda95a8539a7f6171ef" name="a60e1a137b6e45eda95a8539a7f6171ef"></a>
-long double&#160;</td><td class="memItemRight" valign="bottom"><b>amount</b></td></tr>
-<tr class="separator:a60e1a137b6e45eda95a8539a7f6171ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d18292be964d9196985f20474abe64"><td class="memItemLeft" align="right" valign="top"><a id="a79d18292be964d9196985f20474abe64" name="a79d18292be964d9196985f20474abe64"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>amount</b> {}</td></tr>
+<tr class="separator:a79d18292be964d9196985f20474abe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af295af302feb2c12bd88c1af30c358b3"><td class="memItemLeft" align="right" valign="top"><a id="af295af302feb2c12bd88c1af30c358b3" name="af295af302feb2c12bd88c1af30c358b3"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
 <tr class="separator:af295af302feb2c12bd88c1af30c358b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,11 +110,14 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
 <tr class="separator:a44b7c4fe4086933c4f948d91912314db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae23f8b9f7264a97cd5abaaeb103c2a85"><td class="memItemLeft" align="right" valign="top"><a id="ae23f8b9f7264a97cd5abaaeb103c2a85" name="ae23f8b9f7264a97cd5abaaeb103c2a85"></a>
-time_t&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b></td></tr>
+time_t&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b> {}</td></tr>
 <tr class="separator:ae23f8b9f7264a97cd5abaaeb103c2a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66d7bde825c74dc38a3de06545b8775e"><td class="memItemLeft" align="right" valign="top"><a id="a66d7bde825c74dc38a3de06545b8775e" name="a66d7bde825c74dc38a3de06545b8775e"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>signature</b></td></tr>
 <tr class="separator:a66d7bde825c74dc38a3de06545b8775e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6940e85f9cba6c8f331e1ce6e4d65c"><td class="memItemLeft" align="right" valign="top"><a id="a9a6940e85f9cba6c8f331e1ce6e4d65c" name="a9a6940e85f9cba6c8f331e1ce6e4d65c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b> {}</td></tr>
+<tr class="separator:a9a6940e85f9cba6c8f331e1ce6e4d65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -127,7 +126,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <tr class="separator:a7d309437514ff230646f8dbcd9a2fa06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_transaction_8hpp_source.html">Transaction.hpp</a></li>
+<li>include/<a class="el" href="_transaction_8hpp_source.html">Transaction.hpp</a></li>
 <li>Transaction.cpp</li>
 </ul>
 </div><!-- contents -->

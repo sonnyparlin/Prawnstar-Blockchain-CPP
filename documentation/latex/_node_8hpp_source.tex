@@ -1,4 +1,5 @@
 \hypertarget{_node_8hpp_source}{}\doxysection{Node.\+hpp}
+\label{_node_8hpp_source}\index{include/Node.hpp@{include/Node.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_NODE\_H\_}}
@@ -25,39 +26,39 @@
 \DoxyCodeLine{22 }
 \DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_node}{Node}} \{}
 \DoxyCodeLine{24 \textcolor{keyword}{private}:}
-\DoxyCodeLine{25     \mbox{\hyperlink{class_node}{Node}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv); \textcolor{comment}{// Constructor}}
-\DoxyCodeLine{26     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *node;}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{28 \textcolor{keyword}{public}:}
-\DoxyCodeLine{29     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}} transactionPool;}
-\DoxyCodeLine{30     \mbox{\hyperlink{class_wallet}{Wallet}} *nodeWallet;}
-\DoxyCodeLine{31     \mbox{\hyperlink{class_wallet}{Wallet}} *exchangeWallet;}
-\DoxyCodeLine{32     \mbox{\hyperlink{class_wallet}{Wallet}} *bobWallet;}
-\DoxyCodeLine{33     \mbox{\hyperlink{class_wallet}{Wallet}} *aliceWallet;}
-\DoxyCodeLine{34     \mbox{\hyperlink{class_wallet}{Wallet}} *node2Wallet;}
-\DoxyCodeLine{35     \mbox{\hyperlink{class_blockchain}{Blockchain}} *blockchain;}
-\DoxyCodeLine{36     \mbox{\hyperlink{class_account_model}{AccountModel}} *accountModel;}
-\DoxyCodeLine{37     \mbox{\hyperlink{class_socket_communication}{SocketCommunication}} *p2p;}
-\DoxyCodeLine{38     \mbox{\hyperlink{class_proof_of_stake}{ProofOfStake}} *proofOfStake;}
-\DoxyCodeLine{39     std::mutex nodeMutex;}
-\DoxyCodeLine{40     std::mutex logMutex;}
-\DoxyCodeLine{41 }
-\DoxyCodeLine{42     \textcolor{keywordtype}{int} argc;}
-\DoxyCodeLine{43     \textcolor{keywordtype}{char} **argv;}
-\DoxyCodeLine{44     }
-\DoxyCodeLine{45     \mbox{\hyperlink{class_node}{\string~Node}}();                      \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *createNode(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
-\DoxyCodeLine{48     \textcolor{keywordtype}{void} startServers(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
-\DoxyCodeLine{49     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_node_a2fd2928bbec56f5fcf96fca8b165c7ce}{handleTransaction}} (\mbox{\hyperlink{class_transaction}{Transaction}}, \textcolor{keywordtype}{bool} broadcast=\textcolor{keyword}{true});}
-\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ae1918e440c28994f9fd8343d5bc0c429}{handleBlock}} (\mbox{\hyperlink{class_block}{Block}} block, \textcolor{keywordtype}{bool} broadcast);}
-\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a063565fe59b1c9c9dff18776f5b689df}{requestChain}}();}
-\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
-\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a414ce08fd86e7490debcb0f56642f2fa}{handleBlockchainRequest}}(std::string);}
-\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_adbc4873aa5493cdea93bbc2a24354da2}{handleBlockchain}}(std::string blockchainString);}
-\DoxyCodeLine{55     std::string getNodeID();}
-\DoxyCodeLine{56     std::string getConsoleLog();}
-\DoxyCodeLine{57     \textcolor{keywordtype}{void} log(std::string \textcolor{keyword}{const}\& msg);}
+\DoxyCodeLine{25     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *node;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28     \textcolor{comment}{// constructors/destructors}}
+\DoxyCodeLine{29     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_node}{Node}}(\textcolor{keywordtype}{char} **argv); \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_node}{\string~Node}}();                      \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{comment}{// class methods}}
+\DoxyCodeLine{33     \textcolor{keyword}{static} \mbox{\hyperlink{class_node}{Node}} *createNode(\textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} startServers(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_node_a308b10eb07ee09df6bef85ecd67d4e85}{handleTransaction}} (\mbox{\hyperlink{class_transaction}{Transaction}}\&, \textcolor{keywordtype}{bool} broadcast=\textcolor{keyword}{true});}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a3431dcfd8525b2eb4bc74262363d0465}{handleBlock}} (\mbox{\hyperlink{class_block}{Block}} \&block, \textcolor{keywordtype}{bool} broadcast);}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af7afdfcb0f02875839812b4c0a44b981}{requestChain}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af25a469a96f939eb8a2bde8de080a2cb}{handleBlockchainRequest}}(std::string) \textcolor{keyword}{const};}
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_afca81a037e9e4fe4cbacf0a0637b7ce2}{handleBlockchain}}(\textcolor{keyword}{const} std::string \&blockchainString) \textcolor{keyword}{const};}
+\DoxyCodeLine{41     std::string getNodeID() \textcolor{keyword}{const};}
+\DoxyCodeLine{42     \textcolor{keyword}{static} std::string getConsoleLog();}
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} log(std::string \textcolor{keyword}{const}\& msg);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{comment}{// class members}}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}} transactionPool;}
+\DoxyCodeLine{47     \mbox{\hyperlink{class_wallet}{Wallet}} *nodeWallet;}
+\DoxyCodeLine{48     \mbox{\hyperlink{class_wallet}{Wallet}} *exchangeWallet;}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_wallet}{Wallet}} *bobWallet;}
+\DoxyCodeLine{50     \mbox{\hyperlink{class_wallet}{Wallet}} *aliceWallet;}
+\DoxyCodeLine{51     \mbox{\hyperlink{class_wallet}{Wallet}} *node2Wallet;}
+\DoxyCodeLine{52     \mbox{\hyperlink{class_blockchain}{Blockchain}} *blockchain;}
+\DoxyCodeLine{53     \mbox{\hyperlink{class_account_model}{AccountModel}} *accountModel;}
+\DoxyCodeLine{54     \mbox{\hyperlink{class_socket_communication}{SocketCommunication}} *p2p;}
+\DoxyCodeLine{55     \mbox{\hyperlink{class_proof_of_stake}{ProofOfStake}} *proofOfStake;}
+\DoxyCodeLine{56     std::mutex nodeMutex;}
+\DoxyCodeLine{57     std::mutex logMutex;}
 \DoxyCodeLine{58 \};}
 \DoxyCodeLine{59 }
 \DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODE\_H\_}}

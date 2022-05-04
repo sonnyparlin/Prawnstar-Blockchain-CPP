@@ -1,4 +1,5 @@
 \hypertarget{_node_api_8hpp_source}{}\doxysection{Node\+Api.\+hpp}
+\label{_node_api_8hpp_source}\index{include/NodeApi.hpp@{include/NodeApi.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_NODEAPI\_H\_}}
@@ -15,13 +16,12 @@
 \DoxyCodeLine{12 \textcolor{keyword}{private}:}
 \DoxyCodeLine{13     \mbox{\hyperlink{class_node}{Node}} *node;}
 \DoxyCodeLine{14 \textcolor{keyword}{public}:}
-\DoxyCodeLine{15     \mbox{\hyperlink{class_node_api}{NodeApi}}(\mbox{\hyperlink{class_node}{Node}} *node);}
+\DoxyCodeLine{15     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_node_api}{NodeApi}}(\mbox{\hyperlink{class_node}{Node}} *node);}
 \DoxyCodeLine{16     \mbox{\hyperlink{class_node_api}{\string~NodeApi}}();}
 \DoxyCodeLine{17     }
-\DoxyCodeLine{18     \textcolor{keywordtype}{void} start(std::string);}
-\DoxyCodeLine{19     \textcolor{keywordtype}{int} validateApiPort(\textcolor{keyword}{const} std::string po);}
-\DoxyCodeLine{20 \};}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODEAPI\_H\_}}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} start(std::string\&);}
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODEAPI\_H\_}}
 
 \end{DoxyCode}

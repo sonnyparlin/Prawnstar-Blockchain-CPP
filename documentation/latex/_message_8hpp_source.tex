@@ -1,4 +1,5 @@
 \hypertarget{_message_8hpp_source}{}\doxysection{Message.\+hpp}
+\label{_message_8hpp_source}\index{include/Message.hpp@{include/Message.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_MESSAGE\_H\_}}
@@ -16,11 +17,11 @@
 \DoxyCodeLine{13     std::vector<std::string> peers;}
 \DoxyCodeLine{14     std::string data;}
 \DoxyCodeLine{15     }
-\DoxyCodeLine{16     \mbox{\hyperlink{class_message}{Message}}(\mbox{\hyperlink{class_socket_connector}{SocketConnector}} sc, }
-\DoxyCodeLine{17             std::string messageType, }
+\DoxyCodeLine{16     \mbox{\hyperlink{class_message}{Message}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_socket_connector}{SocketConnector}} \&sc,}
+\DoxyCodeLine{17             std::string messageType,}
 \DoxyCodeLine{18             std::vector<std::string> peers);}
 \DoxyCodeLine{19 }
-\DoxyCodeLine{20     \mbox{\hyperlink{class_message}{Message}}(std::string messageType, }
+\DoxyCodeLine{20     \mbox{\hyperlink{class_message}{Message}}(std::string messageType,}
 \DoxyCodeLine{21             std::string data);}
 \DoxyCodeLine{22     \mbox{\hyperlink{class_message}{\string~Message}}();}
 \DoxyCodeLine{23 }

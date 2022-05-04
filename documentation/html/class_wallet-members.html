@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -70,21 +69,20 @@ $(function() {
 <p>This is the complete list of members for <a class="el" href="class_wallet.html">Wallet</a>, including all inherited members.</p>
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>address</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_wallet.html#a3c5ecc5bfcd5ba049cd8d6ed98764f1f">createBlock</a>(vector&lt; Transaction &gt; transactions, std::string lastHash, unsigned long long blockCount)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_wallet.html#a4b3dd34d79245c9c17f9807ff0357558">createTransaction</a>(std::string receiverAddress, double amount, std::string type)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_wallet.html#a8be5e7a99366da5ed7d704fc650ccba1">createBlock</a>(vector&lt; Transaction &gt; transactions, std::string lastHash, long blockCount) const</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_wallet.html#a47962a946675e2b56d02a7968919a24d">createTransaction</a>(std::string receiverAddress, double amount, std::string type) const</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>fromKey</b>(const char *file) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>generateAddress</b>(const std::string str) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>generateAddress</b>(const std::string &amp;str) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>genKeyPair</b>() (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>loadWalletFromAddress</b>(const std::string &amp;address, Node *node) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>sign</b>(std::string data) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toJson</b>() (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Wallet</b>(Node *node, bool usefile, const char *filename) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Wallet</b>(Node *node) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Wallet</b>(const char *address, Node *node) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>walletKeyPair</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>walletPrivateKey</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>walletPublicKey</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~Wallet</b>() (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sign</b>(const std::string &amp;) const (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>toJson</b>() (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Wallet</b>(Node *node, const char *filename) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Wallet</b>(Node *node) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Wallet</b>(const char *address, Node *node) (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>walletKeyPair</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>walletPrivateKey</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>walletPublicKey</b> (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Wallet</b>() (defined in <a class="el" href="class_wallet.html">Wallet</a>)</td><td class="entry"><a class="el" href="class_wallet.html">Wallet</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

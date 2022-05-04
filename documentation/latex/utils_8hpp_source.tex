@@ -1,20 +1,21 @@
 \hypertarget{utils_8hpp_source}{}\doxysection{utils.\+hpp}
+\label{utils_8hpp_source}\index{include/utils.hpp@{include/utils.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_UTILS\_H\_}}
 \DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_UTILS\_H\_}}
-\DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <openssl/evp.h>}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <openssl/bio.h>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <openssl/pem.h>}}
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <openssl/sha.h>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <openssl/ec.h>}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <sstream>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <openssl/evp.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <openssl/bio.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <openssl/pem.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <openssl/sha.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <openssl/ec.h>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <vector>}}
 \DoxyCodeLine{15 \textcolor{preprocessor}{\#include <random>}}
 \DoxyCodeLine{16 }
 \DoxyCodeLine{17 \textcolor{keyword}{namespace }utils \{}
@@ -24,21 +25,24 @@
 \DoxyCodeLine{21     \};}
 \DoxyCodeLine{22 }
 \DoxyCodeLine{23     std::vector<std::string> get\_ip\_and\_port\_from\_config();}
-\DoxyCodeLine{24     \textcolor{keyword}{static} std::vector<std::string> ip\_port\_vec = get\_ip\_and\_port\_from\_config();}
-\DoxyCodeLine{25     \textcolor{keyword}{static} std::string master\_ip = ip\_port\_vec.at(0);}
-\DoxyCodeLine{26     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *MASTER\_NODE\_IP = master\_ip.c\_str();}
-\DoxyCodeLine{27     \textcolor{keyword}{const} \textcolor{keyword}{static} \textcolor{keywordtype}{int} MASTER\_NODE\_PORT=stoi(ip\_port\_vec.at(1));}
-\DoxyCodeLine{28     std::string hash(std::string);}
-\DoxyCodeLine{29     \textcolor{keywordtype}{bool} verifySignature(std::string dataStr, std::string, std::string publicKey);}
-\DoxyCodeLine{30     \textcolor{keywordtype}{char} asciitolower(\textcolor{keywordtype}{char} in);}
-\DoxyCodeLine{31     \textcolor{keywordtype}{int} hexToInt(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *hex);}
-\DoxyCodeLine{32     \textcolor{keywordtype}{int} ABS(\textcolor{keywordtype}{int} x);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{int} getPort(\textcolor{keywordtype}{char} *portString);}
-\DoxyCodeLine{34     std::vector<std::string> split(std::string str, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *seperator);}
-\DoxyCodeLine{35     std::string generateAddress(\textcolor{keyword}{const} std::string str);}
-\DoxyCodeLine{36     std::string get\_uuid();}
-\DoxyCodeLine{37 \}}
+\DoxyCodeLine{24     std::string get\_master\_node\_ip();}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} get\_master\_node\_port();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} startUtils();}
+\DoxyCodeLine{27     std::string hash(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} verifySignature(\textcolor{keyword}{const} std::string\&,}
+\DoxyCodeLine{29                         \textcolor{keyword}{const} std::string\&,}
+\DoxyCodeLine{30                         \textcolor{keywordtype}{size\_t}\&,}
+\DoxyCodeLine{31                         \textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} getPort(\textcolor{keywordtype}{char} *portString);}
+\DoxyCodeLine{33     std::vector<std::string> split(std::string \&str, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *seperator);}
+\DoxyCodeLine{34     std::string generateAddress(\textcolor{keyword}{const} std::string \&str);}
+\DoxyCodeLine{35     std::string get\_uuid();}
+\DoxyCodeLine{36     std::string gen\_random\_str(\textcolor{keywordtype}{int} len);}
+\DoxyCodeLine{37     time\_t timeSinceEpoch();}
 \DoxyCodeLine{38 }
-\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_UTILS\_H\_}}
+\DoxyCodeLine{39     \textcolor{keyword}{static} std::vector<std::string> ip\_port\_vec;}
+\DoxyCodeLine{40 \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_UTILS\_H\_}}
 
 \end{DoxyCode}

@@ -1,4 +1,5 @@
 \hypertarget{_lot_8hpp_source}{}\doxysection{Lot.\+hpp}
+\label{_lot_8hpp_source}\index{include/Lot.hpp@{include/Lot.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_LOT\_H\_}}
@@ -9,17 +10,16 @@
 \DoxyCodeLine{6 }
 \DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_lot}{Lot}} \{}
 \DoxyCodeLine{8 \textcolor{keyword}{public}:}
-\DoxyCodeLine{9     std::string publicKeyString;}
-\DoxyCodeLine{10     \textcolor{keywordtype}{int} iteration;}
-\DoxyCodeLine{11     std::string lastBlockHash;}
+\DoxyCodeLine{9     \mbox{\hyperlink{class_lot}{Lot}}();}
+\DoxyCodeLine{10     \mbox{\hyperlink{class_lot}{Lot}}(std::string pubString, \textcolor{keywordtype}{int} i, std::string lBH); \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_lot}{\string~Lot}}(); \textcolor{comment}{// Destructor}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13     \mbox{\hyperlink{class_lot}{Lot}}();}
-\DoxyCodeLine{14     \mbox{\hyperlink{class_lot}{Lot}}(std::string pubString, \textcolor{keywordtype}{int} i, std::string lBH); \textcolor{comment}{// Constructor}}
-\DoxyCodeLine{15     \mbox{\hyperlink{class_lot}{\string~Lot}}(); \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17     std::string lotHash();}
-\DoxyCodeLine{18 \};}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_LOT\_H\_}}
+\DoxyCodeLine{13     \textcolor{comment}{// std::string lotHash() const;}}
+\DoxyCodeLine{14     std::string publicKeyString\{\};}
+\DoxyCodeLine{15     \textcolor{keywordtype}{int} iteration\{\};}
+\DoxyCodeLine{16     std::string lastBlockHash\{\};}
+\DoxyCodeLine{17 \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_LOT\_H\_}}
 
 \end{DoxyCode}

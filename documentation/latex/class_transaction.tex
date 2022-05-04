@@ -3,9 +3,6 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_transaction_aa79b30343f7bd6ef94981e4437116f22}\label{class_transaction_aa79b30343f7bd6ef94981e4437116f22}} 
-{\bfseries Transaction} (string sender\+Address, string receiver\+Address, double amount, string type)
-\item 
 \mbox{\Hypertarget{class_transaction_ae01553f02698dbb78e6e5c4aca160cfa}\label{class_transaction_ae01553f02698dbb78e6e5c4aca160cfa}} 
 string {\bfseries to\+Json} ()
 \item 
@@ -15,8 +12,8 @@ string {\bfseries payload} ()
 \mbox{\Hypertarget{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}\label{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}} 
 void {\bfseries sign} (std\+::string sig)
 \item 
-\mbox{\Hypertarget{class_transaction_abaad47dc8b50ab7eef1e14dbc997779e}\label{class_transaction_abaad47dc8b50ab7eef1e14dbc997779e}} 
-bool {\bfseries equals} (\mbox{\hyperlink{class_transaction}{Transaction}} transaction)
+\mbox{\Hypertarget{class_transaction_aa79b30343f7bd6ef94981e4437116f22}\label{class_transaction_aa79b30343f7bd6ef94981e4437116f22}} 
+{\bfseries Transaction} (string sender\+Address, string receiver\+Address, double amount, string type)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -33,8 +30,8 @@ string {\bfseries receiver\+Address}
 \mbox{\Hypertarget{class_transaction_aee8367335bc186afce178e3f813711ad}\label{class_transaction_aee8367335bc186afce178e3f813711ad}} 
 string {\bfseries receiver\+Public\+Key}
 \item 
-\mbox{\Hypertarget{class_transaction_a60e1a137b6e45eda95a8539a7f6171ef}\label{class_transaction_a60e1a137b6e45eda95a8539a7f6171ef}} 
-long double {\bfseries amount}
+\mbox{\Hypertarget{class_transaction_a79d18292be964d9196985f20474abe64}\label{class_transaction_a79d18292be964d9196985f20474abe64}} 
+double {\bfseries amount} \{\}
 \item 
 \mbox{\Hypertarget{class_transaction_af295af302feb2c12bd88c1af30c358b3}\label{class_transaction_af295af302feb2c12bd88c1af30c358b3}} 
 string {\bfseries type}
@@ -43,10 +40,13 @@ string {\bfseries type}
 string {\bfseries id}
 \item 
 \mbox{\Hypertarget{class_transaction_ae23f8b9f7264a97cd5abaaeb103c2a85}\label{class_transaction_ae23f8b9f7264a97cd5abaaeb103c2a85}} 
-time\+\_\+t {\bfseries timestamp}
+time\+\_\+t {\bfseries timestamp} \{\}
 \item 
 \mbox{\Hypertarget{class_transaction_a66d7bde825c74dc38a3de06545b8775e}\label{class_transaction_a66d7bde825c74dc38a3de06545b8775e}} 
 string {\bfseries signature}
+\item 
+\mbox{\Hypertarget{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}\label{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}} 
+size\+\_\+t {\bfseries signature\+Length} \{\}
 \end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -58,5 +58,5 @@ bool {\bfseries operator==} (const \mbox{\hyperlink{class_transaction}{Transacti
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Transaction.\+hpp\item 
+include/Transaction.\+hpp\item 
 Transaction.\+cpp\end{DoxyCompactItemize}

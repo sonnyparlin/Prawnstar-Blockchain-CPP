@@ -1,43 +1,42 @@
 \hypertarget{_transaction_8hpp_source}{}\doxysection{Transaction.\+hpp}
+\label{_transaction_8hpp_source}\index{include/Transaction.hpp@{include/Transaction.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_TRANSACTION\_H\_}}
 \DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_TRANSACTION\_H\_}}
-\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}config.hpp"{}}}
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{6 }
-\DoxyCodeLine{7 \textcolor{keyword}{using namespace }std;}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_transaction}{Transaction}} \{}
-\DoxyCodeLine{10 \textcolor{keyword}{public}:}
-\DoxyCodeLine{11     \textcolor{keywordtype}{string} senderAddress;}
-\DoxyCodeLine{12     \textcolor{keywordtype}{string} senderPublicKey;}
-\DoxyCodeLine{13     \textcolor{keywordtype}{string} receiverAddress;}
-\DoxyCodeLine{14     \textcolor{keywordtype}{string} receiverPublicKey;}
-\DoxyCodeLine{15     \textcolor{keywordtype}{long} \textcolor{keywordtype}{double} amount;}
-\DoxyCodeLine{16     \textcolor{keywordtype}{string} type;}
-\DoxyCodeLine{17     \textcolor{keywordtype}{string} id;}
-\DoxyCodeLine{18     time\_t timestamp;}
-\DoxyCodeLine{19     \textcolor{keywordtype}{string} signature;}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21     \textcolor{comment}{// Constructor}}
-\DoxyCodeLine{22     \mbox{\hyperlink{class_transaction}{Transaction}}(\textcolor{keywordtype}{string} senderAddress, }
-\DoxyCodeLine{23                 \textcolor{keywordtype}{string} receiverAddress, }
-\DoxyCodeLine{24                 \textcolor{keywordtype}{double} amount, }
-\DoxyCodeLine{25                 \textcolor{keywordtype}{string} type);}
-\DoxyCodeLine{26      }
-\DoxyCodeLine{27     \mbox{\hyperlink{class_transaction}{Transaction}}();}
-\DoxyCodeLine{28     \mbox{\hyperlink{class_transaction}{\string~Transaction}}();          \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30     \textcolor{keywordtype}{string} toJson();}
-\DoxyCodeLine{31     \textcolor{keywordtype}{string} payload();}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} sign(std::string sig);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{bool} equals(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{35     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&rhs); }
-\DoxyCodeLine{36 \};}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <nlohmann/json.hpp>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_transaction}{Transaction}} \{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{10     \textcolor{keywordtype}{string} toJson();}
+\DoxyCodeLine{11     \textcolor{keywordtype}{string} payload();}
+\DoxyCodeLine{12     \textcolor{keywordtype}{void} sign(std::string sig);}
+\DoxyCodeLine{13     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&rhs);}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{comment}{// ctor}}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_transaction}{Transaction}}(\textcolor{keywordtype}{string} senderAddress, }
+\DoxyCodeLine{17                 \textcolor{keywordtype}{string} receiverAddress, }
+\DoxyCodeLine{18                 \textcolor{keywordtype}{double} amount, }
+\DoxyCodeLine{19                 \textcolor{keywordtype}{string} type);}
+\DoxyCodeLine{20      }
+\DoxyCodeLine{21     \mbox{\hyperlink{class_transaction}{Transaction}}(); \textcolor{comment}{// ctor}}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_transaction}{\string~Transaction}}(); \textcolor{comment}{// dtor}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{string} senderAddress;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{string} senderPublicKey;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{string} receiverAddress;}
+\DoxyCodeLine{27     \textcolor{keywordtype}{string} receiverPublicKey;}
+\DoxyCodeLine{28     \textcolor{keywordtype}{double} amount\{\};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{string} type;}
+\DoxyCodeLine{30     \textcolor{keywordtype}{string} id;}
+\DoxyCodeLine{31     time\_t timestamp\{\};}
+\DoxyCodeLine{32     \textcolor{keywordtype}{string} signature;}
+\DoxyCodeLine{33     \textcolor{keywordtype}{size\_t} signatureLength\{\};}
+\DoxyCodeLine{34 \};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
 
 \end{DoxyCode}

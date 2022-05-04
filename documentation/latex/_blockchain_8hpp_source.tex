@@ -1,4 +1,5 @@
 \hypertarget{_blockchain_8hpp_source}{}\doxysection{Blockchain.\+hpp}
+\label{_blockchain_8hpp_source}\index{include/Blockchain.hpp@{include/Blockchain.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_BLOCKCHAIN\_H\_}}
@@ -7,44 +8,44 @@
 \DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
 \DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Block.hpp"{}}}
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}AccountModel.hpp"{}}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}config.hpp"{}}}
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Node.hpp"{}}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <mutex>}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_node}{Node}};}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_blockchain}{Blockchain}} \{}
-\DoxyCodeLine{14 \textcolor{keyword}{private}:}
-\DoxyCodeLine{15     \mbox{\hyperlink{class_node}{Node}} *node;}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}Node.hpp"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_node}{Node}};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_blockchain}{Blockchain}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{private}:}
+\DoxyCodeLine{14     \mbox{\hyperlink{class_node}{Node}} *node;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \textcolor{comment}{// TX\_TYPE tx;}}
 \DoxyCodeLine{18     std::vector<Block> blocks;}
 \DoxyCodeLine{19     std::mutex blockchainMutex;}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21     \mbox{\hyperlink{class_blockchain}{Blockchain}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{21     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_blockchain}{Blockchain}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
 \DoxyCodeLine{22     \mbox{\hyperlink{class_blockchain}{\string~Blockchain}}();          \textcolor{comment}{// Destructor}}
 \DoxyCodeLine{23     }
-\DoxyCodeLine{24     \textcolor{keywordtype}{bool} addBlock(\mbox{\hyperlink{class_block}{Block}} block);}
-\DoxyCodeLine{25     vector<nlohmann::json> blockList(vector <Block> blocks) \textcolor{keyword}{const};}
-\DoxyCodeLine{26     nlohmann::json toJson() \textcolor{keyword}{const};}
-\DoxyCodeLine{27     std::string toJsonString(std::vector<Block> blocks) \textcolor{keyword}{const};}
-\DoxyCodeLine{28     \mbox{\hyperlink{class_block}{Block}} genesis();}
-\DoxyCodeLine{29     \textcolor{keywordtype}{bool} blockCountValid(\mbox{\hyperlink{class_block}{Block}} block);}
-\DoxyCodeLine{30     \textcolor{keywordtype}{bool} lastBlockHashValid(\mbox{\hyperlink{class_block}{Block}} block);}
-\DoxyCodeLine{31     \textcolor{keywordtype}{bool} transactionCovered(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
-\DoxyCodeLine{32     std::vector<Transaction> getCoveredTransactionSet(std::vector<Transaction> transactions);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{void} executeTransaction(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
-\DoxyCodeLine{34     \textcolor{keywordtype}{void} executeTransactions(std::vector<Transaction> transactions);}
-\DoxyCodeLine{35     std::string nextForger();}
-\DoxyCodeLine{36     \mbox{\hyperlink{class_block}{Block}} createBlock(std::vector<Transaction> transactionsFromPool, std::string forgerAddress);}
-\DoxyCodeLine{37     \textcolor{keywordtype}{bool} transactionExists(\mbox{\hyperlink{class_transaction}{Transaction}} transaction);}
-\DoxyCodeLine{38     \textcolor{keywordtype}{bool} forgerValid(\mbox{\hyperlink{class_block}{Block}} block);}
-\DoxyCodeLine{39     \textcolor{keywordtype}{bool} transactionValid(std::vector<Transaction> transactions);}
-\DoxyCodeLine{40     \textcolor{keywordtype}{bool} blockHasTransactions(\mbox{\hyperlink{class_block}{Block}} block);}
-\DoxyCodeLine{41     std::string toJsonWebView() \textcolor{keyword}{const};}
-\DoxyCodeLine{42     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>\&);}
-\DoxyCodeLine{43     std::vector<nlohmann::json> txsByAddress(std::string address);}
-\DoxyCodeLine{44     std::string getTransaction(std::string txid);}
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} addBlock(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}} \&block);}
+\DoxyCodeLine{25     \textcolor{keyword}{static} \mbox{\hyperlink{class_block}{Block}} genesis();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} blockCountValid(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} lastBlockHashValid(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} transactionCovered(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
+\DoxyCodeLine{29     std::vector<Transaction> getCoveredTransactionSet(\textcolor{keyword}{const} std::vector<Transaction>\&);}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} executeTransaction(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} executeTransactions(\textcolor{keyword}{const} std::vector<Transaction>\&);}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_block}{Block}} createBlock(\textcolor{keyword}{const} std::vector<Transaction>\&, \textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{33     \textcolor{keywordtype}{bool} transactionExists(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} forgerValid(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} transactionValid(\textcolor{keyword}{const} std::vector<Transaction>\&);}
+\DoxyCodeLine{36     \textcolor{keyword}{static} vector<nlohmann::json> blockList(vector<Block>\&);}
+\DoxyCodeLine{37     std::string nextForger();}
+\DoxyCodeLine{38     \textcolor{keywordtype}{bool} blockHasTransactions(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{39     std::string toJsonWebView();}
+\DoxyCodeLine{40     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>\&);}
+\DoxyCodeLine{41     std::vector<nlohmann::json> txsByAddress(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{42     std::string getTransaction(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{43     nlohmann::json toJson();}
+\DoxyCodeLine{44     \textcolor{keyword}{static} std::string toJsonString(std::vector<Block>);}
 \DoxyCodeLine{45 \};}
 \DoxyCodeLine{46 }
 \DoxyCodeLine{47 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCKCHAIN\_H\_}}

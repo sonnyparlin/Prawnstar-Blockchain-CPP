@@ -3,57 +3,63 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_block_a65dd5254935e15cf2d0c7e5e5429bb00}\label{class_block_a65dd5254935e15cf2d0c7e5e5429bb00}} 
-{\bfseries Block} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, string last\+Hash, string forger\+Address, unsigned long long block\+Count)
+\mbox{\Hypertarget{class_block_ad6559d71520043bfaa31b6f9bc47ec98}\label{class_block_ad6559d71520043bfaa31b6f9bc47ec98}} 
+{\bfseries Block} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, std\+::string, long block\+Count)
 \item 
-\mbox{\Hypertarget{class_block_a3969dc3e155a05ac654601e08737594d}\label{class_block_a3969dc3e155a05ac654601e08737594d}} 
-{\bfseries Block} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, string last\+Hash, unsigned long long block\+Count)
+\mbox{\Hypertarget{class_block_a06c11b8431d35709df47a1150315828f}\label{class_block_a06c11b8431d35709df47a1150315828f}} 
+{\bfseries Block} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$, std\+::string, long block\+Count)
 \item 
-\mbox{\Hypertarget{class_block_a91bcc984ff850abcbb792ee77a6cb4c0}\label{class_block_a91bcc984ff850abcbb792ee77a6cb4c0}} 
-string {\bfseries to\+Json} () const
+\mbox{\Hypertarget{class_block_a0b652be63a2ee5c05c520a28907bd6d0}\label{class_block_a0b652be63a2ee5c05c520a28907bd6d0}} 
+std\+::string {\bfseries to\+Json} ()
 \item 
 \mbox{\Hypertarget{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}\label{class_block_aedb6bc67d5334b5d2b18910818ae1ae1}} 
-string {\bfseries payload} ()
+std\+::string {\bfseries payload} ()
 \item 
-\mbox{\Hypertarget{class_block_a105e655b2e4f8333f0860abb8eb6baee}\label{class_block_a105e655b2e4f8333f0860abb8eb6baee}} 
-void {\bfseries sign} (string data)
+\mbox{\Hypertarget{class_block_a7e1496b05fa44208e34a220649dd57a4}\label{class_block_a7e1496b05fa44208e34a220649dd57a4}} 
+void {\bfseries sign} (std\+::string)
 \item 
-\mbox{\Hypertarget{class_block_a280e09084232f6994a20d03497051dfe}\label{class_block_a280e09084232f6994a20d03497051dfe}} 
-vector$<$ nlohmann\+::json $>$ {\bfseries transaction\+List} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions) const
+\mbox{\Hypertarget{class_block_aea52bff3648dc629b7ad0df3fa362d30}\label{class_block_aea52bff3648dc629b7ad0df3fa362d30}} 
+nlohmann\+::json {\bfseries json\+View} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_block_a483d1b75449615c04b2e04e2abb41f91}\label{class_block_a483d1b75449615c04b2e04e2abb41f91}} 
-nlohmann\+::json {\bfseries json\+View} () const
+\mbox{\Hypertarget{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}\label{class_block_a7da47ddd87bb54b88cc14e5d0ee53ec8}} 
+static vector$<$ nlohmann\+::json $>$ {\bfseries transaction\+List} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&transactions)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_block_af82f3ad5ea785c2b952c2aeb7813d891}\label{class_block_af82f3ad5ea785c2b952c2aeb7813d891}} 
-vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries transactions}
+\mbox{\Hypertarget{class_block_a5413ec173e6e040beeb84148145e8d33}\label{class_block_a5413ec173e6e040beeb84148145e8d33}} 
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries transactions}
 \item 
-\mbox{\Hypertarget{class_block_a665cb7b97477cdc209d90de1d3ee6e95}\label{class_block_a665cb7b97477cdc209d90de1d3ee6e95}} 
-string {\bfseries last\+Hash}
+\mbox{\Hypertarget{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}\label{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}} 
+std\+::string {\bfseries last\+Hash}
 \item 
-\mbox{\Hypertarget{class_block_af27da86497ff461b22868a4cd585588c}\label{class_block_af27da86497ff461b22868a4cd585588c}} 
-string {\bfseries hash}
+\mbox{\Hypertarget{class_block_ad81167700ff115ff348eba6b22d97fb1}\label{class_block_ad81167700ff115ff348eba6b22d97fb1}} 
+std\+::string {\bfseries hash}
 \item 
-\mbox{\Hypertarget{class_block_aec2ccc1fba317ba55f1445549ea81b83}\label{class_block_aec2ccc1fba317ba55f1445549ea81b83}} 
-string {\bfseries forger\+Address}
+\mbox{\Hypertarget{class_block_a663b3e363c8a2c4f35da197029cc2db2}\label{class_block_a663b3e363c8a2c4f35da197029cc2db2}} 
+std\+::string {\bfseries forger\+Address}
 \item 
 \mbox{\Hypertarget{class_block_a6f48203d2b976b8857b22e5981c8f943}\label{class_block_a6f48203d2b976b8857b22e5981c8f943}} 
-time\+\_\+t {\bfseries timestamp} = time\+Since\+Epoch()
+time\+\_\+t {\bfseries timestamp} = utils\+::time\+Since\+Epoch()
 \item 
-\mbox{\Hypertarget{class_block_a87f1c010ee0c9497ad69bf12f3db7c51}\label{class_block_a87f1c010ee0c9497ad69bf12f3db7c51}} 
-unsigned long long {\bfseries block\+Count}
+\mbox{\Hypertarget{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}\label{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}} 
+long {\bfseries block\+Count} \{0\}
 \item 
-\mbox{\Hypertarget{class_block_a3e5c39cb63b06630941c470683e6ed4a}\label{class_block_a3e5c39cb63b06630941c470683e6ed4a}} 
-string {\bfseries signature}
+\mbox{\Hypertarget{class_block_aecdc5380b6dd3833840ea28a504ea3aa}\label{class_block_aecdc5380b6dd3833840ea28a504ea3aa}} 
+std\+::string {\bfseries signature}
 \item 
-\mbox{\Hypertarget{class_block_a269cd766d44957d614d830724e71bd06}\label{class_block_a269cd766d44957d614d830724e71bd06}} 
-string {\bfseries \+\_\+id}
+\mbox{\Hypertarget{class_block_a486a311467e1fbff47ef14e428231860}\label{class_block_a486a311467e1fbff47ef14e428231860}} 
+std\+::string {\bfseries \+\_\+id}
+\item 
+\mbox{\Hypertarget{class_block_a85544ce2b95f47fe32283fef37869e64}\label{class_block_a85544ce2b95f47fe32283fef37869e64}} 
+size\+\_\+t {\bfseries signature\+Length} \{0\}
 \end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Block.\+hpp\item 
+include/Block.\+hpp\item 
 Block.\+cpp\end{DoxyCompactItemize}

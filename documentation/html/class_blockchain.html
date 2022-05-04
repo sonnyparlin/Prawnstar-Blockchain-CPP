@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -65,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_blockchain-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Blockchain Class Reference</div></div>
@@ -76,69 +76,72 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8b2d507929548019ed2c73b1956317b1"><td class="memItemLeft" align="right" valign="top"><a id="a8b2d507929548019ed2c73b1956317b1" name="a8b2d507929548019ed2c73b1956317b1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Blockchain</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
 <tr class="separator:a8b2d507929548019ed2c73b1956317b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1778215eab706cdd7f1bd7d968c0304"><td class="memItemLeft" align="right" valign="top"><a id="ac1778215eab706cdd7f1bd7d968c0304" name="ac1778215eab706cdd7f1bd7d968c0304"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addBlock</b> (<a class="el" href="class_block.html">Block</a> block)</td></tr>
-<tr class="separator:ac1778215eab706cdd7f1bd7d968c0304"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada877983b82acc5f31fb9dbdf29dc9cd"><td class="memItemLeft" align="right" valign="top"><a id="ada877983b82acc5f31fb9dbdf29dc9cd" name="ada877983b82acc5f31fb9dbdf29dc9cd"></a>
-vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>blockList</b> (vector&lt; <a class="el" href="class_block.html">Block</a> &gt; blocks) const</td></tr>
-<tr class="separator:ada877983b82acc5f31fb9dbdf29dc9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb0cd4f12e110b25b1504c2d2671bbb5"><td class="memItemLeft" align="right" valign="top"><a id="abb0cd4f12e110b25b1504c2d2671bbb5" name="abb0cd4f12e110b25b1504c2d2671bbb5"></a>
-nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><b>toJson</b> () const</td></tr>
-<tr class="separator:abb0cd4f12e110b25b1504c2d2671bbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a206f00351ece124280b7d382c16daab0"><td class="memItemLeft" align="right" valign="top"><a id="a206f00351ece124280b7d382c16daab0" name="a206f00351ece124280b7d382c16daab0"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toJsonString</b> (std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt; blocks) const</td></tr>
-<tr class="separator:a206f00351ece124280b7d382c16daab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memItemLeft" align="right" valign="top"><a id="af95ef0f76e085ca5b4aa20fbacdd68d4" name="af95ef0f76e085ca5b4aa20fbacdd68d4"></a>
-<a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><b>genesis</b> ()</td></tr>
-<tr class="separator:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aeb2c55234df412fef2f1a37f144ea1"><td class="memItemLeft" align="right" valign="top"><a id="a5aeb2c55234df412fef2f1a37f144ea1" name="a5aeb2c55234df412fef2f1a37f144ea1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>blockCountValid</b> (<a class="el" href="class_block.html">Block</a> block)</td></tr>
-<tr class="separator:a5aeb2c55234df412fef2f1a37f144ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb018ff8afc932743be825096e3a5b9"><td class="memItemLeft" align="right" valign="top"><a id="a4bb018ff8afc932743be825096e3a5b9" name="a4bb018ff8afc932743be825096e3a5b9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>lastBlockHashValid</b> (<a class="el" href="class_block.html">Block</a> block)</td></tr>
-<tr class="separator:a4bb018ff8afc932743be825096e3a5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab17e38815d7321be6309c03ce5de6d5b"><td class="memItemLeft" align="right" valign="top"><a id="ab17e38815d7321be6309c03ce5de6d5b" name="ab17e38815d7321be6309c03ce5de6d5b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionCovered</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:ab17e38815d7321be6309c03ce5de6d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ee2cd4f410691a161b37c0100b66b6e"><td class="memItemLeft" align="right" valign="top"><a id="a5ee2cd4f410691a161b37c0100b66b6e" name="a5ee2cd4f410691a161b37c0100b66b6e"></a>
-std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCoveredTransactionSet</b> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions)</td></tr>
-<tr class="separator:a5ee2cd4f410691a161b37c0100b66b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa52a594366e6d44b2c569f2e7e9fddd4"><td class="memItemLeft" align="right" valign="top"><a id="aa52a594366e6d44b2c569f2e7e9fddd4" name="aa52a594366e6d44b2c569f2e7e9fddd4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>executeTransaction</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:aa52a594366e6d44b2c569f2e7e9fddd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a057aec528b1c41b4480bda2c7e4f646b"><td class="memItemLeft" align="right" valign="top"><a id="a057aec528b1c41b4480bda2c7e4f646b" name="a057aec528b1c41b4480bda2c7e4f646b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>executeTransactions</b> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions)</td></tr>
-<tr class="separator:a057aec528b1c41b4480bda2c7e4f646b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89948907068998a0d48ef911a4cc9e40"><td class="memItemLeft" align="right" valign="top"><a id="a89948907068998a0d48ef911a4cc9e40" name="a89948907068998a0d48ef911a4cc9e40"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>addBlock</b> (const <a class="el" href="class_block.html">Block</a> &amp;block)</td></tr>
+<tr class="separator:a89948907068998a0d48ef911a4cc9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd7f1987327abfc8880d132e26d0744"><td class="memItemLeft" align="right" valign="top"><a id="afcd7f1987327abfc8880d132e26d0744" name="afcd7f1987327abfc8880d132e26d0744"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>blockCountValid</b> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
+<tr class="separator:afcd7f1987327abfc8880d132e26d0744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4479e0d60e2178e5990791003b7d2f"><td class="memItemLeft" align="right" valign="top"><a id="aff4479e0d60e2178e5990791003b7d2f" name="aff4479e0d60e2178e5990791003b7d2f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>lastBlockHashValid</b> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
+<tr class="separator:aff4479e0d60e2178e5990791003b7d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313ff824d102d675c08e902ac72468ae"><td class="memItemLeft" align="right" valign="top"><a id="a313ff824d102d675c08e902ac72468ae" name="a313ff824d102d675c08e902ac72468ae"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionCovered</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
+<tr class="separator:a313ff824d102d675c08e902ac72468ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4e6bb083bde20f6ad2a60f80fbd4655"><td class="memItemLeft" align="right" valign="top"><a id="aa4e6bb083bde20f6ad2a60f80fbd4655" name="aa4e6bb083bde20f6ad2a60f80fbd4655"></a>
+std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCoveredTransactionSet</b> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
+<tr class="separator:aa4e6bb083bde20f6ad2a60f80fbd4655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fa58c56900a828b0840063c2f9691ac"><td class="memItemLeft" align="right" valign="top"><a id="a8fa58c56900a828b0840063c2f9691ac" name="a8fa58c56900a828b0840063c2f9691ac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>executeTransaction</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
+<tr class="separator:a8fa58c56900a828b0840063c2f9691ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4850cf82e32a776715eb205ee9a08e75"><td class="memItemLeft" align="right" valign="top"><a id="a4850cf82e32a776715eb205ee9a08e75" name="a4850cf82e32a776715eb205ee9a08e75"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>executeTransactions</b> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
+<tr class="separator:a4850cf82e32a776715eb205ee9a08e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ebf8475a14fcb7b943e5dbcf6134ec8"><td class="memItemLeft" align="right" valign="top"><a id="a6ebf8475a14fcb7b943e5dbcf6134ec8" name="a6ebf8475a14fcb7b943e5dbcf6134ec8"></a>
+<a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><b>createBlock</b> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;, const std::string &amp;)</td></tr>
+<tr class="separator:a6ebf8475a14fcb7b943e5dbcf6134ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dcd65d602435ffe46498dabd901648d"><td class="memItemLeft" align="right" valign="top"><a id="a0dcd65d602435ffe46498dabd901648d" name="a0dcd65d602435ffe46498dabd901648d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionExists</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
+<tr class="separator:a0dcd65d602435ffe46498dabd901648d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3839678f351a8973eb5f75a04beb1f0f"><td class="memItemLeft" align="right" valign="top"><a id="a3839678f351a8973eb5f75a04beb1f0f" name="a3839678f351a8973eb5f75a04beb1f0f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>forgerValid</b> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
+<tr class="separator:a3839678f351a8973eb5f75a04beb1f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c06155afda5057358a20a6cf95bb4d"><td class="memItemLeft" align="right" valign="top"><a id="a87c06155afda5057358a20a6cf95bb4d" name="a87c06155afda5057358a20a6cf95bb4d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionValid</b> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
+<tr class="separator:a87c06155afda5057358a20a6cf95bb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a846fbcfc5132f7bbd9bd6a6ec79e4d22"><td class="memItemLeft" align="right" valign="top"><a id="a846fbcfc5132f7bbd9bd6a6ec79e4d22" name="a846fbcfc5132f7bbd9bd6a6ec79e4d22"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>nextForger</b> ()</td></tr>
 <tr class="separator:a846fbcfc5132f7bbd9bd6a6ec79e4d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb3e4edb5c26be1448a6253b0fbff51a"><td class="memItemLeft" align="right" valign="top"><a id="adb3e4edb5c26be1448a6253b0fbff51a" name="adb3e4edb5c26be1448a6253b0fbff51a"></a>
-<a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><b>createBlock</b> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactionsFromPool, std::string forgerAddress)</td></tr>
-<tr class="separator:adb3e4edb5c26be1448a6253b0fbff51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37a8b167436b54e330976767c4935efa"><td class="memItemLeft" align="right" valign="top"><a id="a37a8b167436b54e330976767c4935efa" name="a37a8b167436b54e330976767c4935efa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionExists</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:a37a8b167436b54e330976767c4935efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8622c3dcc5575ca3d19ee3359d358979"><td class="memItemLeft" align="right" valign="top"><a id="a8622c3dcc5575ca3d19ee3359d358979" name="a8622c3dcc5575ca3d19ee3359d358979"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>forgerValid</b> (<a class="el" href="class_block.html">Block</a> block)</td></tr>
-<tr class="separator:a8622c3dcc5575ca3d19ee3359d358979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89eb3a9b8484ea643cff1436a499e4b8"><td class="memItemLeft" align="right" valign="top"><a id="a89eb3a9b8484ea643cff1436a499e4b8" name="a89eb3a9b8484ea643cff1436a499e4b8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionValid</b> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions)</td></tr>
-<tr class="separator:a89eb3a9b8484ea643cff1436a499e4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51158d934cf6b186989f3d0e08d7ff5e"><td class="memItemLeft" align="right" valign="top"><a id="a51158d934cf6b186989f3d0e08d7ff5e" name="a51158d934cf6b186989f3d0e08d7ff5e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>blockHasTransactions</b> (<a class="el" href="class_block.html">Block</a> block)</td></tr>
-<tr class="separator:a51158d934cf6b186989f3d0e08d7ff5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae790df2096b847c518655d0077203cf7"><td class="memItemLeft" align="right" valign="top"><a id="ae790df2096b847c518655d0077203cf7" name="ae790df2096b847c518655d0077203cf7"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toJsonWebView</b> () const</td></tr>
-<tr class="separator:ae790df2096b847c518655d0077203cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d993d8f29c4aa68476ed115a263d8c"><td class="memItemLeft" align="right" valign="top"><a id="a56d993d8f29c4aa68476ed115a263d8c" name="a56d993d8f29c4aa68476ed115a263d8c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>blockHasTransactions</b> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
+<tr class="separator:a56d993d8f29c4aa68476ed115a263d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829f0552d41c8078f336c63c768e8bbb"><td class="memItemLeft" align="right" valign="top"><a id="a829f0552d41c8078f336c63c768e8bbb" name="a829f0552d41c8078f336c63c768e8bbb"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toJsonWebView</b> ()</td></tr>
+<tr class="separator:a829f0552d41c8078f336c63c768e8bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a694b5f2cfe6f327ecfeeb6985e000f7d"><td class="memItemLeft" align="right" valign="top"><a id="a694b5f2cfe6f327ecfeeb6985e000f7d" name="a694b5f2cfe6f327ecfeeb6985e000f7d"></a>
 std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculateForgerReward</b> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
 <tr class="separator:a694b5f2cfe6f327ecfeeb6985e000f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7737dcba41889eec237bd13687d28731"><td class="memItemLeft" align="right" valign="top"><a id="a7737dcba41889eec237bd13687d28731" name="a7737dcba41889eec237bd13687d28731"></a>
-std::vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>txsByAddress</b> (std::string address)</td></tr>
-<tr class="separator:a7737dcba41889eec237bd13687d28731"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb0632945553892c19f00f5d70309821"><td class="memItemLeft" align="right" valign="top"><a id="acb0632945553892c19f00f5d70309821" name="acb0632945553892c19f00f5d70309821"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTransaction</b> (std::string txid)</td></tr>
-<tr class="separator:acb0632945553892c19f00f5d70309821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc23150b5e1cedf6942aade929ec775"><td class="memItemLeft" align="right" valign="top"><a id="a1fc23150b5e1cedf6942aade929ec775" name="a1fc23150b5e1cedf6942aade929ec775"></a>
+std::vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>txsByAddress</b> (const std::string &amp;)</td></tr>
+<tr class="separator:a1fc23150b5e1cedf6942aade929ec775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1235ef58b69abb44d002454c97e91d6"><td class="memItemLeft" align="right" valign="top"><a id="af1235ef58b69abb44d002454c97e91d6" name="af1235ef58b69abb44d002454c97e91d6"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTransaction</b> (const std::string &amp;)</td></tr>
+<tr class="separator:af1235ef58b69abb44d002454c97e91d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e11301b46481d5a4d2e0bf517bf6989"><td class="memItemLeft" align="right" valign="top"><a id="a5e11301b46481d5a4d2e0bf517bf6989" name="a5e11301b46481d5a4d2e0bf517bf6989"></a>
+nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><b>toJson</b> ()</td></tr>
+<tr class="separator:a5e11301b46481d5a4d2e0bf517bf6989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memItemLeft" align="right" valign="top"><a id="af95ef0f76e085ca5b4aa20fbacdd68d4" name="af95ef0f76e085ca5b4aa20fbacdd68d4"></a>
+static <a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><b>genesis</b> ()</td></tr>
+<tr class="separator:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c654d2336b7691abe31fb31ec2bf7ec"><td class="memItemLeft" align="right" valign="top"><a id="a1c654d2336b7691abe31fb31ec2bf7ec" name="a1c654d2336b7691abe31fb31ec2bf7ec"></a>
+static vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>blockList</b> (vector&lt; <a class="el" href="class_block.html">Block</a> &gt; &amp;)</td></tr>
+<tr class="separator:a1c654d2336b7691abe31fb31ec2bf7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8956b2548c67d722a0d1194a2213a89c"><td class="memItemLeft" align="right" valign="top"><a id="a8956b2548c67d722a0d1194a2213a89c" name="a8956b2548c67d722a0d1194a2213a89c"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toJsonString</b> (std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt;)</td></tr>
+<tr class="separator:a8956b2548c67d722a0d1194a2213a89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -150,7 +153,7 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>blockchainMutex
 <tr class="separator:a4797856382c3260becf198bd29693513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_blockchain_8hpp_source.html">Blockchain.hpp</a></li>
+<li>include/<a class="el" href="_blockchain_8hpp_source.html">Blockchain.hpp</a></li>
 <li>Blockchain.cpp</li>
 </ul>
 </div><!-- contents -->

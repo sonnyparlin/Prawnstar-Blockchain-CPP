@@ -3,26 +3,35 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a9cc649d6b7fb9ed01518cce47feedf13}\label{class_proof_of_stake_a9cc649d6b7fb9ed01518cce47feedf13}} 
-{\bfseries Proof\+Of\+Stake} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, int)
+\mbox{\Hypertarget{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}\label{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}} 
+{\bfseries Proof\+Of\+Stake} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a76389e42035cb2df7d32fb8a2407d161}\label{class_proof_of_stake_a76389e42035cb2df7d32fb8a2407d161}} 
-void {\bfseries update} (std\+::string public\+Key\+String, double stake)
+\mbox{\Hypertarget{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}\label{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}} 
+void {\bfseries update} (const std\+::string \&, double stake)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_af639d6f426d7338ddf9c5210a2aa2519}\label{class_proof_of_stake_af639d6f426d7338ddf9c5210a2aa2519}} 
-double {\bfseries get\+Stake} (std\+::string public\+Key\+String)
+\mbox{\Hypertarget{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}\label{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}} 
+double {\bfseries get\+Stake} (const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a5e8d8d22e80663daa866112132160a8a}\label{class_proof_of_stake_a5e8d8d22e80663daa866112132160a8a}} 
-std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ {\bfseries validator\+Lots} (std\+::string seed)
+\mbox{\Hypertarget{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}\label{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}} 
+std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ {\bfseries validator\+Lots} (const std\+::string \&seed)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a7bdb18976ec3d8086a1c51cc1fd1cde2}\label{class_proof_of_stake_a7bdb18976ec3d8086a1c51cc1fd1cde2}} 
-\mbox{\hyperlink{class_lot}{Lot}} {\bfseries winner\+Lot} (std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ lots, std\+::string seed)
+\mbox{\Hypertarget{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}\label{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}} 
+std\+::string {\bfseries forger} (const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_afc88d0e2e35eb9eb0252fe7edcbcf4ab}\label{class_proof_of_stake_afc88d0e2e35eb9eb0252fe7edcbcf4ab}} 
-std\+::string {\bfseries forger} (std\+::string last\+Block\+Hash)
+\mbox{\Hypertarget{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}\label{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}} 
+void {\bfseries set\+Genesis\+Node\+Stake} (const std\+::string \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a62ad805df00e748ba527fb878a02c989}\label{class_proof_of_stake_a62ad805df00e748ba527fb878a02c989}} 
-void {\bfseries set\+Genesis\+Node\+Stake} (std\+::string)
+\mbox{\Hypertarget{class_proof_of_stake_ac16b760356071b95f058ade60600520d}\label{class_proof_of_stake_ac16b760356071b95f058ade60600520d}} 
+static \mbox{\hyperlink{class_lot}{Lot}} {\bfseries winner\+Lot} (const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&, const std\+::string \&)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}\label{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}} 
+static uint32\+\_\+t {\bfseries fnv1a} (const std\+::string \&text)
+\item 
+\mbox{\Hypertarget{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}\label{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}} 
+static uint32\+\_\+t {\bfseries lcg\+\_\+rand} (uint32\+\_\+t $\ast$state)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -37,5 +46,5 @@ std\+::mutex {\bfseries pos\+Mutex}
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Proof\+Of\+Stake.\+hpp\item 
+include/Proof\+Of\+Stake.\+hpp\item 
 Proof\+Of\+Stake.\+cpp\end{DoxyCompactItemize}

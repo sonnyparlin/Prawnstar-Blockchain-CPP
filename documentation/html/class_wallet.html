@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -65,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_wallet-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Wallet Class Reference</div></div>
@@ -73,9 +73,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7c4dca8b811cd720b6518a6e79bd7a0c"><td class="memItemLeft" align="right" valign="top"><a id="a7c4dca8b811cd720b6518a6e79bd7a0c" name="a7c4dca8b811cd720b6518a6e79bd7a0c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Wallet</b> (<a class="el" href="class_node.html">Node</a> *node, bool usefile, const char *filename)</td></tr>
-<tr class="separator:a7c4dca8b811cd720b6518a6e79bd7a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae21d07774a6003a7409023ca4b9e9b2b"><td class="memItemLeft" align="right" valign="top"><a id="ae21d07774a6003a7409023ca4b9e9b2b" name="ae21d07774a6003a7409023ca4b9e9b2b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wallet</b> (<a class="el" href="class_node.html">Node</a> *node, const char *filename)</td></tr>
+<tr class="separator:ae21d07774a6003a7409023ca4b9e9b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa51123d3d825f9c1f8738aa588c17ac9"><td class="memItemLeft" align="right" valign="top"><a id="aa51123d3d825f9c1f8738aa588c17ac9" name="aa51123d3d825f9c1f8738aa588c17ac9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Wallet</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
 <tr class="separator:aa51123d3d825f9c1f8738aa588c17ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -85,25 +85,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab783113deae4bb8f811050f316623509"><td class="memItemLeft" align="right" valign="top"><a id="ab783113deae4bb8f811050f316623509" name="ab783113deae4bb8f811050f316623509"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>genKeyPair</b> ()</td></tr>
 <tr class="separator:ab783113deae4bb8f811050f316623509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17449d21250329064a2614cff4e7ad34"><td class="memItemLeft" align="right" valign="top"><a id="a17449d21250329064a2614cff4e7ad34" name="a17449d21250329064a2614cff4e7ad34"></a>
-<a class="el" href="structutils_1_1_signature.html">utils::Signature</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sign</b> (std::string data)</td></tr>
-<tr class="separator:a17449d21250329064a2614cff4e7ad34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b3dd34d79245c9c17f9807ff0357558"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transaction.html">Transaction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a4b3dd34d79245c9c17f9807ff0357558">createTransaction</a> (std::string receiverAddress, double amount, std::string type)</td></tr>
-<tr class="separator:a4b3dd34d79245c9c17f9807ff0357558"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c5ecc5bfcd5ba049cd8d6ed98764f1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a3c5ecc5bfcd5ba049cd8d6ed98764f1f">createBlock</a> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions, std::string lastHash, unsigned long long blockCount)</td></tr>
-<tr class="separator:a3c5ecc5bfcd5ba049cd8d6ed98764f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a2e2739844070770ebe1cdef01046de"><td class="memItemLeft" align="right" valign="top"><a id="a2a2e2739844070770ebe1cdef01046de" name="a2a2e2739844070770ebe1cdef01046de"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>generateAddress</b> (const std::string str)</td></tr>
-<tr class="separator:a2a2e2739844070770ebe1cdef01046de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b50696ebc2bf5b1a9958dc467187767"><td class="memItemLeft" align="right" valign="top"><a id="a1b50696ebc2bf5b1a9958dc467187767" name="a1b50696ebc2bf5b1a9958dc467187767"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadWalletFromAddress</b> (const std::string &amp;address, <a class="el" href="class_node.html">Node</a> *node)</td></tr>
-<tr class="separator:a1b50696ebc2bf5b1a9958dc467187767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee4ef7c5ec46c1ac9e1398af957d8f9"><td class="memItemLeft" align="right" valign="top"><a id="a4ee4ef7c5ec46c1ac9e1398af957d8f9" name="a4ee4ef7c5ec46c1ac9e1398af957d8f9"></a>
+<a class="el" href="structutils_1_1_signature.html">utils::Signature</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sign</b> (const std::string &amp;) const</td></tr>
+<tr class="separator:a4ee4ef7c5ec46c1ac9e1398af957d8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47962a946675e2b56d02a7968919a24d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transaction.html">Transaction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a47962a946675e2b56d02a7968919a24d">createTransaction</a> (std::string receiverAddress, double amount, std::string type) const</td></tr>
+<tr class="separator:a47962a946675e2b56d02a7968919a24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8be5e7a99366da5ed7d704fc650ccba1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a8be5e7a99366da5ed7d704fc650ccba1">createBlock</a> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions, std::string lastHash, long blockCount) const</td></tr>
+<tr class="separator:a8be5e7a99366da5ed7d704fc650ccba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a369255d696afbc1ea9d2b1fdfae07ad4"><td class="memItemLeft" align="right" valign="top"><a id="a369255d696afbc1ea9d2b1fdfae07ad4" name="a369255d696afbc1ea9d2b1fdfae07ad4"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toJson</b> ()</td></tr>
 <tr class="separator:a369255d696afbc1ea9d2b1fdfae07ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dda508363e6daecd31e2df25bfb4ade"><td class="memItemLeft" align="right" valign="top"><a id="a0dda508363e6daecd31e2df25bfb4ade" name="a0dda508363e6daecd31e2df25bfb4ade"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>fromKey</b> (const char *file)</td></tr>
 <tr class="separator:a0dda508363e6daecd31e2df25bfb4ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa6354c03cad74cc7d325a4a9dd55a2f1"><td class="memItemLeft" align="right" valign="top"><a id="aa6354c03cad74cc7d325a4a9dd55a2f1" name="aa6354c03cad74cc7d325a4a9dd55a2f1"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>generateAddress</b> (const std::string &amp;str)</td></tr>
+<tr class="separator:aa6354c03cad74cc7d325a4a9dd55a2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -121,8 +121,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></t
 <tr class="separator:acb84b316931574393a098f16bf79a19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3c5ecc5bfcd5ba049cd8d6ed98764f1f" name="a3c5ecc5bfcd5ba049cd8d6ed98764f1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c5ecc5bfcd5ba049cd8d6ed98764f1f">&#9670;&nbsp;</a></span>createBlock()</h2>
+<a id="a8be5e7a99366da5ed7d704fc650ccba1" name="a8be5e7a99366da5ed7d704fc650ccba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8be5e7a99366da5ed7d704fc650ccba1">&#9670;&nbsp;</a></span>createBlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,13 +142,13 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramtype">long&#160;</td>
           <td class="paramname"><em>blockCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -156,8 +156,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></t
 
 </div>
 </div>
-<a id="a4b3dd34d79245c9c17f9807ff0357558" name="a4b3dd34d79245c9c17f9807ff0357558"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b3dd34d79245c9c17f9807ff0357558">&#9670;&nbsp;</a></span>createTransaction()</h2>
+<a id="a47962a946675e2b56d02a7968919a24d" name="a47962a946675e2b56d02a7968919a24d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47962a946675e2b56d02a7968919a24d">&#9670;&nbsp;</a></span>createTransaction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></t
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -192,7 +192,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_wallet_8hpp_source.html">Wallet.hpp</a></li>
+<li>include/<a class="el" href="_wallet_8hpp_source.html">Wallet.hpp</a></li>
 <li>Wallet.cpp</li>
 </ul>
 </div><!-- contents -->

@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -69,15 +68,17 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>forger</b>(std::string lastBlockHash) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>getStake</b>(std::string publicKeyString) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>fnv1a</b>(const std::string &amp;text) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>forger</b>(const std::string &amp;) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getStake</b>(const std::string &amp;) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>lcg_rand</b>(uint32_t *state) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>posMutex</b> (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>ProofOfStake</b>(Node *node, int) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setGenesisNodeStake</b>(std::string) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>ProofOfStake</b>(Node *node) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setGenesisNodeStake</b>(const std::string &amp;) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>stakers</b> (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>update</b>(std::string publicKeyString, double stake) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>validatorLots</b>(std::string seed) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>winnerLot</b>(std::vector&lt; Lot &gt; lots, std::string seed) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>update</b>(const std::string &amp;, double stake) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>validatorLots</b>(const std::string &amp;seed) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>winnerLot</b>(const std::vector&lt; Lot &gt; &amp;, const std::string &amp;) (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~ProofOfStake</b>() (defined in <a class="el" href="class_proof_of_stake.html">ProofOfStake</a>)</td><td class="entry"><a class="el" href="class_proof_of_stake.html">ProofOfStake</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->

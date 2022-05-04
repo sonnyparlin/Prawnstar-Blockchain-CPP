@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -65,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_proof_of_stake-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ProofOfStake Class Reference</div></div>
@@ -73,27 +73,36 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9cc649d6b7fb9ed01518cce47feedf13"><td class="memItemLeft" align="right" valign="top"><a id="a9cc649d6b7fb9ed01518cce47feedf13" name="a9cc649d6b7fb9ed01518cce47feedf13"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ProofOfStake</b> (<a class="el" href="class_node.html">Node</a> *node, int)</td></tr>
-<tr class="separator:a9cc649d6b7fb9ed01518cce47feedf13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76389e42035cb2df7d32fb8a2407d161"><td class="memItemLeft" align="right" valign="top"><a id="a76389e42035cb2df7d32fb8a2407d161" name="a76389e42035cb2df7d32fb8a2407d161"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (std::string publicKeyString, double stake)</td></tr>
-<tr class="separator:a76389e42035cb2df7d32fb8a2407d161"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af639d6f426d7338ddf9c5210a2aa2519"><td class="memItemLeft" align="right" valign="top"><a id="af639d6f426d7338ddf9c5210a2aa2519" name="af639d6f426d7338ddf9c5210a2aa2519"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getStake</b> (std::string publicKeyString)</td></tr>
-<tr class="separator:af639d6f426d7338ddf9c5210a2aa2519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e8d8d22e80663daa866112132160a8a"><td class="memItemLeft" align="right" valign="top"><a id="a5e8d8d22e80663daa866112132160a8a" name="a5e8d8d22e80663daa866112132160a8a"></a>
-std::vector&lt; <a class="el" href="class_lot.html">Lot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>validatorLots</b> (std::string seed)</td></tr>
-<tr class="separator:a5e8d8d22e80663daa866112132160a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bdb18976ec3d8086a1c51cc1fd1cde2"><td class="memItemLeft" align="right" valign="top"><a id="a7bdb18976ec3d8086a1c51cc1fd1cde2" name="a7bdb18976ec3d8086a1c51cc1fd1cde2"></a>
-<a class="el" href="class_lot.html">Lot</a>&#160;</td><td class="memItemRight" valign="bottom"><b>winnerLot</b> (std::vector&lt; <a class="el" href="class_lot.html">Lot</a> &gt; lots, std::string seed)</td></tr>
-<tr class="separator:a7bdb18976ec3d8086a1c51cc1fd1cde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc88d0e2e35eb9eb0252fe7edcbcf4ab"><td class="memItemLeft" align="right" valign="top"><a id="afc88d0e2e35eb9eb0252fe7edcbcf4ab" name="afc88d0e2e35eb9eb0252fe7edcbcf4ab"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>forger</b> (std::string lastBlockHash)</td></tr>
-<tr class="separator:afc88d0e2e35eb9eb0252fe7edcbcf4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62ad805df00e748ba527fb878a02c989"><td class="memItemLeft" align="right" valign="top"><a id="a62ad805df00e748ba527fb878a02c989" name="a62ad805df00e748ba527fb878a02c989"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setGenesisNodeStake</b> (std::string)</td></tr>
-<tr class="separator:a62ad805df00e748ba527fb878a02c989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48be725a43b54e7e5e7acdeb50e5f275"><td class="memItemLeft" align="right" valign="top"><a id="a48be725a43b54e7e5e7acdeb50e5f275" name="a48be725a43b54e7e5e7acdeb50e5f275"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProofOfStake</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="separator:a48be725a43b54e7e5e7acdeb50e5f275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7450b27f25066f7d58ed1457a28c5882"><td class="memItemLeft" align="right" valign="top"><a id="a7450b27f25066f7d58ed1457a28c5882" name="a7450b27f25066f7d58ed1457a28c5882"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const std::string &amp;, double stake)</td></tr>
+<tr class="separator:a7450b27f25066f7d58ed1457a28c5882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae5f1b8f8fca2a4715d26797a9d54af"><td class="memItemLeft" align="right" valign="top"><a id="aaae5f1b8f8fca2a4715d26797a9d54af" name="aaae5f1b8f8fca2a4715d26797a9d54af"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getStake</b> (const std::string &amp;)</td></tr>
+<tr class="separator:aaae5f1b8f8fca2a4715d26797a9d54af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab40dabdee4512c01652a90fa0286c536"><td class="memItemLeft" align="right" valign="top"><a id="ab40dabdee4512c01652a90fa0286c536" name="ab40dabdee4512c01652a90fa0286c536"></a>
+std::vector&lt; <a class="el" href="class_lot.html">Lot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>validatorLots</b> (const std::string &amp;seed)</td></tr>
+<tr class="separator:ab40dabdee4512c01652a90fa0286c536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab26da4a7bdcd9a1cd41a8f712f0bfcaf"><td class="memItemLeft" align="right" valign="top"><a id="ab26da4a7bdcd9a1cd41a8f712f0bfcaf" name="ab26da4a7bdcd9a1cd41a8f712f0bfcaf"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>forger</b> (const std::string &amp;)</td></tr>
+<tr class="separator:ab26da4a7bdcd9a1cd41a8f712f0bfcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c30dfae8c37a570cb912e36c0d54da"><td class="memItemLeft" align="right" valign="top"><a id="aa1c30dfae8c37a570cb912e36c0d54da" name="aa1c30dfae8c37a570cb912e36c0d54da"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setGenesisNodeStake</b> (const std::string &amp;)</td></tr>
+<tr class="separator:aa1c30dfae8c37a570cb912e36c0d54da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac16b760356071b95f058ade60600520d"><td class="memItemLeft" align="right" valign="top"><a id="ac16b760356071b95f058ade60600520d" name="ac16b760356071b95f058ade60600520d"></a>
+static <a class="el" href="class_lot.html">Lot</a>&#160;</td><td class="memItemRight" valign="bottom"><b>winnerLot</b> (const std::vector&lt; <a class="el" href="class_lot.html">Lot</a> &gt; &amp;, const std::string &amp;)</td></tr>
+<tr class="separator:ac16b760356071b95f058ade60600520d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c085fef5384a0389935a6eed49979e4"><td class="memItemLeft" align="right" valign="top"><a id="a7c085fef5384a0389935a6eed49979e4" name="a7c085fef5384a0389935a6eed49979e4"></a>
+static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>fnv1a</b> (const std::string &amp;text)</td></tr>
+<tr class="separator:a7c085fef5384a0389935a6eed49979e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea36e15943830944d455cb700d4106c"><td class="memItemLeft" align="right" valign="top"><a id="a3ea36e15943830944d455cb700d4106c" name="a3ea36e15943830944d455cb700d4106c"></a>
+static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>lcg_rand</b> (uint32_t *state)</td></tr>
+<tr class="separator:a3ea36e15943830944d455cb700d4106c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -105,7 +114,7 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>posMutex</b></t
 <tr class="separator:a231de78a8b3da7b17ec779720b148358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_proof_of_stake_8hpp_source.html">ProofOfStake.hpp</a></li>
+<li>include/<a class="el" href="_proof_of_stake_8hpp_source.html">ProofOfStake.hpp</a></li>
 <li>ProofOfStake.cpp</li>
 </ul>
 </div><!-- contents -->

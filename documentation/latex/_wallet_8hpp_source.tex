@@ -1,4 +1,5 @@
 \hypertarget{_wallet_8hpp_source}{}\doxysection{Wallet.\+hpp}
+\label{_wallet_8hpp_source}\index{include/Wallet.hpp@{include/Wallet.hpp}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_WALLET\_H\_}}
@@ -14,29 +15,27 @@
 \DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_node}{Node}};}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_wallet}{Wallet}} \{}
-\DoxyCodeLine{14 \textcolor{keyword}{private}:}
-\DoxyCodeLine{15     \mbox{\hyperlink{class_node}{Node}} *node;}
-\DoxyCodeLine{16 \textcolor{keyword}{public}:}
-\DoxyCodeLine{17     std::vector<std::string> walletKeyPair;}
-\DoxyCodeLine{18     std::string walletPrivateKey;}
-\DoxyCodeLine{19     std::string walletPublicKey;}
-\DoxyCodeLine{20     std::string address;}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22     \mbox{\hyperlink{class_wallet}{Wallet}}(\mbox{\hyperlink{class_node}{Node}} *node, \textcolor{keywordtype}{bool} usefile, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
-\DoxyCodeLine{23     \mbox{\hyperlink{class_wallet}{Wallet}}(\mbox{\hyperlink{class_node}{Node}} *node);}
-\DoxyCodeLine{24     \mbox{\hyperlink{class_wallet}{Wallet}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *address, \mbox{\hyperlink{class_node}{Node}} *node);}
-\DoxyCodeLine{25     \mbox{\hyperlink{class_wallet}{\string~Wallet}}();}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     \textcolor{keywordtype}{void} genKeyPair();}
-\DoxyCodeLine{28     \mbox{\hyperlink{structutils_1_1_signature}{utils::Signature}} sign(std::string data);}
-\DoxyCodeLine{29     \mbox{\hyperlink{class_transaction}{Transaction}} \mbox{\hyperlink{class_wallet_a4b3dd34d79245c9c17f9807ff0357558}{createTransaction}}(std::string receiverAddress, \textcolor{keywordtype}{double} amount, std::string type);}
-\DoxyCodeLine{30     \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a3c5ecc5bfcd5ba049cd8d6ed98764f1f}{createBlock}}(vector<Transaction> transactions, std::string lastHash, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} blockCount);}
-\DoxyCodeLine{31     std::string generateAddress(\textcolor{keyword}{const} std::string str);}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} loadWalletFromAddress(\textcolor{keyword}{const} std::string\& address, \mbox{\hyperlink{class_node}{Node}} *node);}
-\DoxyCodeLine{33     std::string toJson();}
-\DoxyCodeLine{34     \textcolor{keywordtype}{void} fromKey(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *file);}
-\DoxyCodeLine{35 \};}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WALLET\_H\_}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     std::vector<std::string> walletKeyPair;}
+\DoxyCodeLine{17     std::string walletPrivateKey;}
+\DoxyCodeLine{18     std::string walletPublicKey;}
+\DoxyCodeLine{19     std::string address;}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \mbox{\hyperlink{class_wallet}{Wallet}}(\mbox{\hyperlink{class_node}{Node}} *node, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{22     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_wallet}{Wallet}}(\mbox{\hyperlink{class_node}{Node}} *node);}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_wallet}{Wallet}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *address, \mbox{\hyperlink{class_node}{Node}} *node);}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_wallet}{\string~Wallet}}();}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} genKeyPair();}
+\DoxyCodeLine{27     \mbox{\hyperlink{structutils_1_1_signature}{utils::Signature}} sign(\textcolor{keyword}{const} std::string \&) \textcolor{keyword}{const};}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_transaction}{Transaction}} \mbox{\hyperlink{class_wallet_a47962a946675e2b56d02a7968919a24d}{createTransaction}}(std::string receiverAddress, \textcolor{keywordtype}{double} amount, std::string type) \textcolor{keyword}{const};}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}{createBlock}}(vector<Transaction> transactions, std::string lastHash, \textcolor{keywordtype}{long} blockCount) \textcolor{keyword}{const};}
+\DoxyCodeLine{30     \textcolor{keyword}{static} std::string generateAddress(\textcolor{keyword}{const} std::string \&str);}
+\DoxyCodeLine{31     std::string toJson();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} fromKey(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *file);}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WALLET\_H\_}}
 
 \end{DoxyCode}

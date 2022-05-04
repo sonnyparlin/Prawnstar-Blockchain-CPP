@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -71,21 +70,22 @@ $(function() {
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_id</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Block</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Block</b>(vector&lt; Transaction &gt; transactions, string lastHash, string forgerAddress, unsigned long long blockCount) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Block</b>(vector&lt; Transaction &gt; transactions, string lastHash, unsigned long long blockCount) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Block</b>(std::vector&lt; Transaction &gt;, std::string, std::string, long blockCount) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Block</b>(std::vector&lt; Transaction &gt;, std::string, long blockCount) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>blockCount</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>forgerAddress</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>hash</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>jsonView</b>() const (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>jsonView</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lastHash</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>payload</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sign</b>(string data) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sign</b>(std::string) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>signature</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>timestamp</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>toJson</b>() const (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>transactionList</b>(vector&lt; Transaction &gt; transactions) const (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>transactions</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Block</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>signatureLength</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>timestamp</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toJson</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>transactionList</b>(vector&lt; Transaction &gt; &amp;transactions) (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>transactions</b> (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~Block</b>() (defined in <a class="el" href="class_block.html">Block</a>)</td><td class="entry"><a class="el" href="class_block.html">Block</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

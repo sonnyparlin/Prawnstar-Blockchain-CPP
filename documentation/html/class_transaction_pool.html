@@ -21,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Prawnstar Blockchain<span id="projectnumber">&#160;0.001</span>
+   <div id="projectname">Prawnstar Blockchain
    </div>
-   <div id="projectbrief">Proof of stake blockchain written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -73,15 +72,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8eaa0f74fcfb3660c016e4f81a8be068"><td class="memItemLeft" align="right" valign="top"><a id="a8eaa0f74fcfb3660c016e4f81a8be068" name="a8eaa0f74fcfb3660c016e4f81a8be068"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTransaction</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:a8eaa0f74fcfb3660c016e4f81a8be068"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00221cdee49f4eb748122155bf86cfaa"><td class="memItemLeft" align="right" valign="top"><a id="a00221cdee49f4eb748122155bf86cfaa" name="a00221cdee49f4eb748122155bf86cfaa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionExists</b> (<a class="el" href="class_transaction.html">Transaction</a> transaction)</td></tr>
-<tr class="separator:a00221cdee49f4eb748122155bf86cfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcbd823ee0fea1d89e58794770b0b74d"><td class="memItemLeft" align="right" valign="top"><a id="abcbd823ee0fea1d89e58794770b0b74d" name="abcbd823ee0fea1d89e58794770b0b74d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeFromPool</b> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; txs)</td></tr>
-<tr class="separator:abcbd823ee0fea1d89e58794770b0b74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7cf6e6e62fceb74114eecca82588b9"><td class="memItemLeft" align="right" valign="top"><a id="aee7cf6e6e62fceb74114eecca82588b9" name="aee7cf6e6e62fceb74114eecca82588b9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addTransaction</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
+<tr class="separator:aee7cf6e6e62fceb74114eecca82588b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8dcb46849bb911dabe965b9e1ad92a5"><td class="memItemLeft" align="right" valign="top"><a id="ad8dcb46849bb911dabe965b9e1ad92a5" name="ad8dcb46849bb911dabe965b9e1ad92a5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>transactionExists</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
+<tr class="separator:ad8dcb46849bb911dabe965b9e1ad92a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c66a1487083927debc057a94fdf743e"><td class="memItemLeft" align="right" valign="top"><a id="a4c66a1487083927debc057a94fdf743e" name="a4c66a1487083927debc057a94fdf743e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>removeFromPool</b> (const vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
+<tr class="separator:a4c66a1487083927debc057a94fdf743e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75d388012cc9b8ac636f4314bef8ab2f"><td class="memItemLeft" align="right" valign="top"><a id="a75d388012cc9b8ac636f4314bef8ab2f" name="a75d388012cc9b8ac636f4314bef8ab2f"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getPoolTransactionsJsonString</b> ()</td></tr>
 <tr class="separator:a75d388012cc9b8ac636f4314bef8ab2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,7 +98,7 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>tpoolMutex</b><
 <tr class="separator:a23c10159c39db80016b4911d54d5a79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_transaction_pool_8hpp_source.html">TransactionPool.hpp</a></li>
+<li>include/<a class="el" href="_transaction_pool_8hpp_source.html">TransactionPool.hpp</a></li>
 <li>TransactionPool.cpp</li>
 </ul>
 </div><!-- contents -->
