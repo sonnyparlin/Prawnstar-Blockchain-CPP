@@ -81,17 +81,23 @@ inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
 
     for ( const auto &validator : stakers ) {
 
-        // Note, in this configuration it doesn't do you any good to stake
-        // more than 1000 tokens. At 1000, you are a tier 5 staker.
+        /*!
+         * Note, in this configuration it doesn't do you any good to stake
+         * more than 1000 tokens. At 1000, you are a tier 5 staker.
+         */
         if (getStake(validator.first) >= 1000) // tier 5
             stake = 5;
-        else if (getStake(validator.first) >= 500) // tier 4
+
+        if (getStake(validator.first) >= 500) // tier 4
             stake = 4;
-        else if (getStake(validator.first) >= 100) // tier 3
+
+        if (getStake(validator.first) >= 100) // tier 3
             stake = 3;
-        else if (getStake(validator.first) >= 50) // tier 2
+
+        if (getStake(validator.first) >= 50) // tier 2
             stake = 2;
-        else if (getStake(validator.first) >= 1) // tier 1
+
+        if (getStake(validator.first) >= 1) // tier 1
             stake = 1;
 
         for (int i = 0; i < stake; i++) {

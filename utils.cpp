@@ -68,7 +68,7 @@ std::string utils::get_uuid() {
  * @param publicKeyString
  * @return int
  *
- * Verify <message> with <signature> of <signatureSize> against the <publicKeyString>
+ * Verify message with signature of signatureSize against the publicKeyString.
  * Function uses OpenSSL 3.
  */
 int utils::verifySignature(const std::string &message,
@@ -129,7 +129,7 @@ int utils::verifySignature(const std::string &message,
  * @param seperator
  * @return std::vector<std::string>
  *
- * string split function, returns a vector of strings split by <seperator>
+ * string split function, returns a vector of strings split by seperator
  */
 std::vector<std::string> utils::split(std::string &str, const char *seperator)
 {
