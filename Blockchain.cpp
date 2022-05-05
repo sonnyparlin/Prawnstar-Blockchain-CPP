@@ -79,7 +79,8 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
         node->log(r);
 
         try {
-            Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address, reward, "REWARD");
+            Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address,
+                                                                           reward, "REWARD");
             resultTransactions.push_back(rewardTx);
         } catch(std::exception& e) {
             std::cerr << "Error with createTransaction: " << e.what() << std::endl;
