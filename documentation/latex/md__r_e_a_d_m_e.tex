@@ -7,7 +7,7 @@
 
 \href{https://www.boost.org/doc/libs/1_78_0/more/getting_started/unix-variants.html\#easy-build-and-install}{\texttt{ Boost installation info}}
 \item Install \href{https://www.openssl.org/}{\texttt{ Open\+SSL 3}}.
-\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Making and Running the on UNIX style systems including OSX.}\label{md__r_e_a_d_m_e_autotoc_md2}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{Building on UNIX style systems including OSX.}\label{md__r_e_a_d_m_e_autotoc_md2}
 
 \begin{DoxyItemize}
 \item Check {\ttfamily CMake\+Lists.\+txt} and make sure the include and library paths are correct for your system.
@@ -16,9 +16,8 @@
 \item cmake ..
 \item make
 \item cp ../$\ast$.pem .
-\item {\ttfamily ./\+Prawnstar your\+\_\+ip\+\_\+address 10001 8001}
-\item start second node\+: {\ttfamily ./\+Prawnstar your\+\_\+ip\+\_\+address 10001 ip\+\_\+of\+\_\+master\+\_\+server 8002}
-\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Windows}\label{md__r_e_a_d_m_e_autotoc_md3}
+\item cp ../$\ast$.pem Prawnstar\+Tests/tests/
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Building on Windows using mingw64}\label{md__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyItemize}
 \item Install \href{https://www.mingw-w64.org/}{\texttt{ mingw64}}
@@ -46,5 +45,7 @@ The format of all client nodes\+:
 
 \begin{DoxyEnumerate}
 \item {\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}}
-\item {\ttfamily build/tests/\+Run\+Tests} (Google test suite) 
+\item {\ttfamily build/tests/\+Run\+Tests} (Google test suite)
 \end{DoxyEnumerate}
+
+Or run both at once with {\ttfamily sh runtests.\+sh} on UNIX systems. 
