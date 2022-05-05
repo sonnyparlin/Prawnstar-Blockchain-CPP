@@ -4,6 +4,9 @@
 #include <string>
 #include <iostream>
 
+/*!
+ * Lot class, used for creating lottery tickets for the proof of stake system.
+ */
 class Lot {
 public:
     Lot();

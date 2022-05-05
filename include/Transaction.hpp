@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/*!
+ * Our transaction class.
+ */
 class Transaction {
 public:
     string toJson();
@@ -21,16 +24,16 @@ public:
     Transaction(); // ctor
     ~Transaction(); // dtor
 
-    string senderAddress;
-    string senderPublicKey;
-    string receiverAddress;
-    string receiverPublicKey;
-    double amount{};
-    string type;
-    string id;
-    time_t timestamp{};
-    string signature;
-    size_t signatureLength{};
+    string senderAddress; /*!< sending address */
+    string senderPublicKey; /*!< sender's public key */
+    string receiverAddress; /*!< receiver's address */
+    string receiverPublicKey; /*!< receiver's public key */
+    double amount{}; /*!< transaction amount */
+    string type; /*!< type (EXCHANGE, TRANSFER, STAKE, REWARD) */
+    string id; /*!< Transaction id */
+    time_t timestamp{}; /*!< Transaction timestamp */
+    string signature; /*!< Transaction's signature. */
+    size_t signatureLength{}; /*!< Signature length */
 };
 
 #endif // _TRANSACTION_H_

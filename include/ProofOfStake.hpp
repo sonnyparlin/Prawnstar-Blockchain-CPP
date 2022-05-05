@@ -11,6 +11,9 @@
 
 //class Node;
 
+/*!
+ * Proof of Stake, our blockchain's consensus algorithm.
+ */
 class ProofOfStake {
 private:
     Node *node;
@@ -27,8 +30,8 @@ public:
     inline static uint32_t fnv1a(const std::string& text);
     inline static uint32_t lcg_rand(uint32_t *state);
 
-    std::unordered_map<std::string, double>stakers;
-    std::mutex posMutex;
+    std::unordered_map<std::string, double>stakers; /*!< list of stakers */
+    std::mutex posMutex; /*!< mutext for guarding shared data (stakers list) */
 };
 
 #endif // _PROOFOFSTAKE_H_

@@ -1,96 +1,290 @@
 \hypertarget{class_socket_communication}{}\doxysection{Socket\+Communication Class Reference}
 \label{class_socket_communication}\index{SocketCommunication@{SocketCommunication}}
+
+
+{\ttfamily \#include $<$Socket\+Communication.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}\label{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}} 
-{\bfseries Socket\+Communication} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\mbox{\hyperlink{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}{Socket\+Communication}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}\label{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}} 
-void {\bfseries start\+Socket\+Communication} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+void \mbox{\hyperlink{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}{start\+Socket\+Communication}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \item 
 void \mbox{\hyperlink{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}{start\+P2\+POperations}} (int argc, char $\ast$$\ast$argv)
 \item 
 void \mbox{\hyperlink{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}{start\+P2\+PServer}} (int argc, char $\ast$$\ast$argv)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a556f923e6a6346454f8055400668ef27}\label{class_socket_communication_a556f923e6a6346454f8055400668ef27}} 
-void {\bfseries broadcast\+Peer\+Discovery} (const char $\ast$message)
+void \mbox{\hyperlink{class_socket_communication_a556f923e6a6346454f8055400668ef27}{broadcast\+Peer\+Discovery}} (const char $\ast$message)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}\label{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}} 
-void {\bfseries broadcast} (const char $\ast$message) const
+void \mbox{\hyperlink{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}{broadcast}} (const char $\ast$message) const
 \item 
-\mbox{\Hypertarget{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}\label{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}} 
-void {\bfseries inbound\+\_\+node\+\_\+connected} (int sock)
+void \mbox{\hyperlink{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}{inbound\+\_\+node\+\_\+connected}} (int sock)
 \item 
-\mbox{\Hypertarget{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}\label{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}} 
-void {\bfseries outbound\+\_\+node\+\_\+connected} (int sock) const
+void \mbox{\hyperlink{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}{outbound\+\_\+node\+\_\+connected}} (int sock) const
 \item 
-\mbox{\Hypertarget{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}\label{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}} 
-void {\bfseries receive\+\_\+node\+\_\+message} (int sock)
+void \mbox{\hyperlink{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}{receive\+\_\+node\+\_\+message}} (int sock)
 \item 
-\mbox{\Hypertarget{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}\label{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}} 
-void {\bfseries block\+Forger} ()
+void \mbox{\hyperlink{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}{block\+Forger}} ()
 \item 
-\mbox{\Hypertarget{class_socket_communication_a853380083a5e1450551e3d238dc656b4}\label{class_socket_communication_a853380083a5e1450551e3d238dc656b4}} 
-void {\bfseries peer\+Discovery\+Status} ()
+void \mbox{\hyperlink{class_socket_communication_a853380083a5e1450551e3d238dc656b4}{peer\+Discovery\+Status}} ()
 \item 
-\mbox{\Hypertarget{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}\label{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}} 
-void {\bfseries peer\+Discovery} ()
+void \mbox{\hyperlink{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}{peer\+Discovery}} ()
 \item 
-\mbox{\Hypertarget{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}\label{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}} 
-void {\bfseries handshake} (int sock) const
+void \mbox{\hyperlink{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}{handshake}} (int sock) const
 \item 
-\mbox{\Hypertarget{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}\label{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}} 
-std\+::string {\bfseries handshake\+Message} () const
+std\+::string \mbox{\hyperlink{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}{handshake\+Message}} () const
 \item 
-\mbox{\Hypertarget{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}\label{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}} 
-void {\bfseries peer\+Discovery\+Handle\+Message} (const char $\ast$message)
+void \mbox{\hyperlink{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}{peer\+Discovery\+Handle\+Message}} (const char $\ast$message)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}\label{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}} 
-static int {\bfseries process\+Args} (int argc, char $\ast$$\ast$argv)
+static int \mbox{\hyperlink{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}{process\+Args}} (int argc, char $\ast$$\ast$argv)
 \item 
-\mbox{\Hypertarget{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}\label{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}} 
-static void {\bfseries send\+\_\+node\+\_\+message} (int sock, const char $\ast$message)
+static void \mbox{\hyperlink{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}{send\+\_\+node\+\_\+message}} (int sock, const char $\ast$message)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}\label{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries peers}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}{peers}}
 \item 
-\mbox{\Hypertarget{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}\label{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries inactive\+Peers}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}{inactive\+Peers}}
 \item 
-\mbox{\Hypertarget{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}\label{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}} 
-const int {\bfseries MESSAGELENGTH} = 20
+const int \mbox{\hyperlink{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}{MESSAGELENGTH}} = 20
 \item 
-\mbox{\Hypertarget{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}\label{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}} 
-std\+::string {\bfseries id}
+std\+::string \mbox{\hyperlink{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}{id}}
 \item 
-\mbox{\Hypertarget{class_socket_communication_a30f06d9bb957d12517468379feb5530a}\label{class_socket_communication_a30f06d9bb957d12517468379feb5530a}} 
-\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} {\bfseries sc}
+\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \mbox{\hyperlink{class_socket_communication_a30f06d9bb957d12517468379feb5530a}{sc}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_socket_communication}{Socket\+Communication}} class for network and peer to peer communication. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}\label{class_socket_communication_aa40ba4027fb0197430a3bb3c8721cb91}} 
+\index{SocketCommunication@{SocketCommunication}!SocketCommunication@{SocketCommunication}}
+\index{SocketCommunication@{SocketCommunication}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{SocketCommunication()}{SocketCommunication()}}
+{\footnotesize\ttfamily Socket\+Communication\+::\+Socket\+Communication (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+Constructor for \mbox{\hyperlink{class_socket_communication}{Socket\+Communication}} class 
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}\label{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}} 
+\mbox{\Hypertarget{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}\label{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}} 
+\index{SocketCommunication@{SocketCommunication}!blockForger@{blockForger}}
+\index{blockForger@{blockForger}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{blockForger()}{blockForger()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::block\+Forger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+blockforger polls the transaction pool once every 300 seconds and if there are transactions in the pool, it calls forge() so they are dealt with. \mbox{\Hypertarget{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}\label{class_socket_communication_a4f319adf1c03deb69716a320e10e3727}} 
+\index{SocketCommunication@{SocketCommunication}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{broadcast()}{broadcast()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::broadcast (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+Broadcast a message to all known peers \mbox{\Hypertarget{class_socket_communication_a556f923e6a6346454f8055400668ef27}\label{class_socket_communication_a556f923e6a6346454f8055400668ef27}} 
+\index{SocketCommunication@{SocketCommunication}!broadcastPeerDiscovery@{broadcastPeerDiscovery}}
+\index{broadcastPeerDiscovery@{broadcastPeerDiscovery}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{broadcastPeerDiscovery()}{broadcastPeerDiscovery()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::broadcast\+Peer\+Discovery (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+Peer dscovery thread for discovering other nodes on the network. \mbox{\Hypertarget{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}\label{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}} 
+\index{SocketCommunication@{SocketCommunication}!handshake@{handshake}}
+\index{handshake@{handshake}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{handshake()}{handshake()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::handshake (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & \\
+\hline
+\end{DoxyParams}
+Send the actual handshake to the node comnected to our socket. \mbox{\Hypertarget{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}\label{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}} 
+\index{SocketCommunication@{SocketCommunication}!handshakeMessage@{handshakeMessage}}
+\index{handshakeMessage@{handshakeMessage}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{handshakeMessage()}{handshakeMessage()}}
+{\footnotesize\ttfamily std\+::string Socket\+Communication\+::handshake\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Create the handshake\+Message for peer discovery. \mbox{\Hypertarget{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}\label{class_socket_communication_a0db5173cd70769ce6aa318cb4c389211}} 
+\index{SocketCommunication@{SocketCommunication}!inbound\_node\_connected@{inbound\_node\_connected}}
+\index{inbound\_node\_connected@{inbound\_node\_connected}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{inbound\_node\_connected()}{inbound\_node\_connected()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::inbound\+\_\+node\+\_\+connected (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & \\
+\hline
+\end{DoxyParams}
+When an incoming message arrives we call \mbox{\hyperlink{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}{receive\+\_\+node\+\_\+message()}} with the passed in socket. \mbox{\Hypertarget{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}\label{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}} 
+\index{SocketCommunication@{SocketCommunication}!outbound\_node\_connected@{outbound\_node\_connected}}
+\index{outbound\_node\_connected@{outbound\_node\_connected}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{outbound\_node\_connected()}{outbound\_node\_connected()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::outbound\+\_\+node\+\_\+connected (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & \\
+\hline
+\end{DoxyParams}
+When an outbound connection is made, \mbox{\hyperlink{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}{outbound\+\_\+node\+\_\+connected()}} is called, which in turn calls \mbox{\hyperlink{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}{handshake()}} with the passed in socket. This is only used by the peer discovery system to hansshake with new nodes found on the network. \mbox{\Hypertarget{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}\label{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}} 
+\index{SocketCommunication@{SocketCommunication}!peerDiscovery@{peerDiscovery}}
+\index{peerDiscovery@{peerDiscovery}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{peerDiscovery()}{peerDiscovery()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::peer\+Discovery (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The actual peer discovery system. It creates a handshake message and broadcasts it. \mbox{\Hypertarget{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}\label{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}} 
+\index{SocketCommunication@{SocketCommunication}!peerDiscoveryHandleMessage@{peerDiscoveryHandleMessage}}
+\index{peerDiscoveryHandleMessage@{peerDiscoveryHandleMessage}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{peerDiscoveryHandleMessage()}{peerDiscoveryHandleMessage()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::peer\+Discovery\+Handle\+Message (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+Handle the incoming peer discovery message. \mbox{\Hypertarget{class_socket_communication_a853380083a5e1450551e3d238dc656b4}\label{class_socket_communication_a853380083a5e1450551e3d238dc656b4}} 
+\index{SocketCommunication@{SocketCommunication}!peerDiscoveryStatus@{peerDiscoveryStatus}}
+\index{peerDiscoveryStatus@{peerDiscoveryStatus}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{peerDiscoveryStatus()}{peerDiscoveryStatus()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::peer\+Discovery\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Peer\+Discovery\+Status is used to display connected nodes. \mbox{\Hypertarget{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}\label{class_socket_communication_af0bd2836102b0b03bdd7254203160dd5}} 
+\index{SocketCommunication@{SocketCommunication}!processArgs@{processArgs}}
+\index{processArgs@{processArgs}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{processArgs()}{processArgs()}}
+{\footnotesize\ttfamily int Socket\+Communication\+::process\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Process command line arguments \mbox{\Hypertarget{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}\label{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}} 
+\index{SocketCommunication@{SocketCommunication}!receive\_node\_message@{receive\_node\_message}}
+\index{receive\_node\_message@{receive\_node\_message}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{receive\_node\_message()}{receive\_node\_message()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::receive\+\_\+node\+\_\+message (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & \\
+\hline
+\end{DoxyParams}
+Recieves a message sent from the node connected to our socket. We make two calls to recv(), the first call gets the message length, the second call gets the message. \mbox{\Hypertarget{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}\label{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}} 
+\index{SocketCommunication@{SocketCommunication}!send\_node\_message@{send\_node\_message}}
+\index{send\_node\_message@{send\_node\_message}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{send\_node\_message()}{send\_node\_message()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::send\+\_\+node\+\_\+message (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & \\
+\hline
+{\em message} & \\
+\hline
+\end{DoxyParams}
+Used for sending a specific node (connected via our socket) a message. \mbox{\Hypertarget{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}\label{class_socket_communication_a5d83e3c33eb5a109d2d3ddbd1e7b2813}} 
 \index{SocketCommunication@{SocketCommunication}!startP2POperations@{startP2POperations}}
 \index{startP2POperations@{startP2POperations}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{startP2POperations()}{startP2POperations()}}
 {\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+POperations (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
 This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it\textquotesingle{}s missing (if any) from the blockchain on the master node. \mbox{\Hypertarget{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}\label{class_socket_communication_ac76c9fff0528a7f72726072a49a7109f}} 
 \index{SocketCommunication@{SocketCommunication}!startP2PServer@{startP2PServer}}
 \index{startP2PServer@{startP2PServer}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{startP2PServer()}{startP2PServer()}}
 {\footnotesize\ttfamily void Socket\+Communication\+::start\+P2\+PServer (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]open db and if it has no data, write the genesis block to our mongodb instance \end{DoxyRefDesc}
 
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+Starts the peer to peer server. \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]open db and if it has no data, write the genesis block to our mongodb instance \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}\label{class_socket_communication_ada488d9ffe321ae2275c12e9b4656393}} 
+\index{SocketCommunication@{SocketCommunication}!startSocketCommunication@{startSocketCommunication}}
+\index{startSocketCommunication@{startSocketCommunication}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{startSocketCommunication()}{startSocketCommunication()}}
+{\footnotesize\ttfamily void Socket\+Communication\+::start\+Socket\+Communication (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+Calls process\+Args and then starts peer to peer operations. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}\label{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}} 
+\index{SocketCommunication@{SocketCommunication}!id@{id}}
+\index{id@{id}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily std\+::string Socket\+Communication\+::id}
+
+peer to peer server id \mbox{\Hypertarget{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}\label{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}} 
+\index{SocketCommunication@{SocketCommunication}!inactivePeers@{inactivePeers}}
+\index{inactivePeers@{inactivePeers}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{inactivePeers}{inactivePeers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::inactive\+Peers}
+
+list of inactive peers, used for temporary storage \mbox{\Hypertarget{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}\label{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}} 
+\index{SocketCommunication@{SocketCommunication}!MESSAGELENGTH@{MESSAGELENGTH}}
+\index{MESSAGELENGTH@{MESSAGELENGTH}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{MESSAGELENGTH}{MESSAGELENGTH}}
+{\footnotesize\ttfamily const int Socket\+Communication\+::\+MESSAGELENGTH = 20}
+
+Our predetermined message length for discovery messages \mbox{\Hypertarget{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}\label{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}} 
+\index{SocketCommunication@{SocketCommunication}!peers@{peers}}
+\index{peers@{peers}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{peers}{peers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::peers}
+
+List of peers connected to this node. \mbox{\Hypertarget{class_socket_communication_a30f06d9bb957d12517468379feb5530a}\label{class_socket_communication_a30f06d9bb957d12517468379feb5530a}} 
+\index{SocketCommunication@{SocketCommunication}!sc@{sc}}
+\index{sc@{sc}!SocketCommunication@{SocketCommunication}}
+\doxysubsubsection{\texorpdfstring{sc}{sc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} Socket\+Communication\+::sc}
+
+this node\textquotesingle{}s socket connecter (ip and port) 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

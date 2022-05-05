@@ -9,34 +9,34 @@
 \DoxyCodeLine{5 }
 \DoxyCodeLine{6 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_transaction}{Transaction}} \{}
-\DoxyCodeLine{9 \textcolor{keyword}{public}:}
-\DoxyCodeLine{10     \textcolor{keywordtype}{string} toJson();}
-\DoxyCodeLine{11     \textcolor{keywordtype}{string} payload();}
-\DoxyCodeLine{12     \textcolor{keywordtype}{void} sign(std::string sig);}
-\DoxyCodeLine{13     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&rhs);}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15     \textcolor{comment}{// ctor}}
-\DoxyCodeLine{16     \mbox{\hyperlink{class_transaction}{Transaction}}(\textcolor{keywordtype}{string} senderAddress, }
-\DoxyCodeLine{17                 \textcolor{keywordtype}{string} receiverAddress, }
-\DoxyCodeLine{18                 \textcolor{keywordtype}{double} amount, }
-\DoxyCodeLine{19                 \textcolor{keywordtype}{string} type);}
-\DoxyCodeLine{20      }
-\DoxyCodeLine{21     \mbox{\hyperlink{class_transaction}{Transaction}}(); \textcolor{comment}{// ctor}}
-\DoxyCodeLine{22     \mbox{\hyperlink{class_transaction}{\string~Transaction}}(); \textcolor{comment}{// dtor}}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24     \textcolor{keywordtype}{string} senderAddress;}
-\DoxyCodeLine{25     \textcolor{keywordtype}{string} senderPublicKey;}
-\DoxyCodeLine{26     \textcolor{keywordtype}{string} receiverAddress;}
-\DoxyCodeLine{27     \textcolor{keywordtype}{string} receiverPublicKey;}
-\DoxyCodeLine{28     \textcolor{keywordtype}{double} amount\{\};}
-\DoxyCodeLine{29     \textcolor{keywordtype}{string} type;}
-\DoxyCodeLine{30     \textcolor{keywordtype}{string} id;}
-\DoxyCodeLine{31     time\_t timestamp\{\};}
-\DoxyCodeLine{32     \textcolor{keywordtype}{string} signature;}
-\DoxyCodeLine{33     \textcolor{keywordtype}{size\_t} signatureLength\{\};}
-\DoxyCodeLine{34 \};}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_transaction}{Transaction}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a6a57b62f03c662b094b27ab7245666a6}{toJson}}();}
+\DoxyCodeLine{14     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a2711b335f673a115279100dcd759bf20}{payload}}();}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}{sign}}(std::string sig);}
+\DoxyCodeLine{16     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_transaction_a7d309437514ff230646f8dbcd9a2fa06}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}} \&rhs);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{comment}{// ctor}}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_transaction}{Transaction}}(\textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_ac0e72f4339c637961607896f591d0eb2}{senderAddress}}, }
+\DoxyCodeLine{20                 \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}{receiverAddress}}, }
+\DoxyCodeLine{21                 \textcolor{keywordtype}{double} \mbox{\hyperlink{class_transaction_a79d18292be964d9196985f20474abe64}{amount}}, }
+\DoxyCodeLine{22                 \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_af295af302feb2c12bd88c1af30c358b3}{type}});}
+\DoxyCodeLine{23      }
+\DoxyCodeLine{24     \mbox{\hyperlink{class_transaction}{Transaction}}(); \textcolor{comment}{// ctor}}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_transaction}{\string~Transaction}}(); \textcolor{comment}{// dtor}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_ac0e72f4339c637961607896f591d0eb2}{senderAddress}}; }
+\DoxyCodeLine{28     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a6a477bb1b0ddc439155aee18705c8bb5}{senderPublicKey}}; }
+\DoxyCodeLine{29     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}{receiverAddress}}; }
+\DoxyCodeLine{30     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_aee8367335bc186afce178e3f813711ad}{receiverPublicKey}}; }
+\DoxyCodeLine{31     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_transaction_a79d18292be964d9196985f20474abe64}{amount}}\{\}; }
+\DoxyCodeLine{32     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_af295af302feb2c12bd88c1af30c358b3}{type}}; }
+\DoxyCodeLine{33     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a44b7c4fe4086933c4f948d91912314db}{id}}; }
+\DoxyCodeLine{34     time\_t \mbox{\hyperlink{class_transaction_ae23f8b9f7264a97cd5abaaeb103c2a85}{timestamp}}\{\}; }
+\DoxyCodeLine{35     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_transaction_a66d7bde825c74dc38a3de06545b8775e}{signature}}; }
+\DoxyCodeLine{36     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}{signatureLength}}\{\}; }
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_TRANSACTION\_H\_}}
 
 \end{DoxyCode}

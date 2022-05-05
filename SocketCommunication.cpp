@@ -7,12 +7,26 @@
 #include <algorithm>
 #include <fstream>
 
+/*!
+ *
+ * @param node
+ *
+ * Constructor for SocketCommunication class
+ */
 SocketCommunication::SocketCommunication(Node *node) {
     this->node = node;
 }
 
 SocketCommunication::~SocketCommunication()=default;
 
+/*!
+ *
+ * @param argc
+ * @param argv
+ * @return int
+ *
+ * Process command line arguments
+ */
 int SocketCommunication::processArgs(int argc, char **argv) {
     if (argc < 3) {
         std::cout << "Usage for the first node: ./server <ip> <port>" << std::endl;
@@ -38,6 +52,13 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     return 0;
 }
 
+/*!
+ *
+ * @param argc
+ * @param argv
+ *
+ * Calls processArgs and then starts peer to peer operations.
+ */
 void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
     
     if (processArgs(argc, argv) != 0)
@@ -47,11 +68,15 @@ void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
 }
 
 /*!
-This is where everything starts up in terms of a single node. We start with
-our p2p server, our peer discovery status thread as well as our actual peer discovery
-thread. We also check to see if this is a master node or not, if not, it will grab
-the blocks it's missing (if any) from the blockchain on the master node.
-*/
+ *
+ * @param argc
+ * @param argv
+ *
+ * This is where everything starts up in terms of a single node. We start with
+ * our p2p server, our peer discovery status thread as well as our actual peer discovery
+ * thread. We also check to see if this is a master node or not, if not, it will grab
+ * the blocks it's missing (if any) from the blockchain on the master node.
+ */
 void SocketCommunication::startP2POperations( int argc, char **argv ) {
     sc.ip = argv[1];
     sc.port = stoi(argv[2]);
@@ -69,6 +94,13 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
     forgerThread.detach();
 }
 
+/*!
+ *
+ * @param argc
+ * @param argv
+ *
+ * Starts the peer to peer server.
+ */
 void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
     auto PORT = stoi(argv[2]);
@@ -130,6 +162,12 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
     }
 }
 
+/*!
+ *
+ * @param message
+ *
+ * Peer dscovery thread for discovering other nodes on the network.
+ */
 void SocketCommunication::broadcastPeerDiscovery(const char *message) {
     //std::cout << "broadcast " << std::endl;
     auto j = nlohmann::json::parse(message + MESSAGELENGTH);
@@ -190,6 +228,12 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
     }
 }
 
+/*!
+ *
+ * @param message
+ *
+ * Broadcast a message to all known peers
+ */
 void SocketCommunication::broadcast(const char *message) const {
     if (peers.empty()) {return;}
     auto fullJsonString = nlohmann::json::parse(message + MESSAGELENGTH);
@@ -232,14 +276,37 @@ void SocketCommunication::broadcast(const char *message) const {
     }
 }
 
+/*!
+ *
+ * @param sock
+ *
+ * When an incoming message arrives we call receive_node_message()
+ * with the passed in socket.
+ */
 void SocketCommunication::inbound_node_connected(int sock) {
     receive_node_message(sock);
 }
 
+/*!
+ *
+ * @param sock
+ *
+ * When an outbound connection is made, outbound_node_connected() is
+ * called, which in turn calls handshake() with the passed in socket.
+ * This is only used by the peer discovery system to hansshake with new
+ * nodes found on the network.
+ */
 void SocketCommunication::outbound_node_connected(int sock) const {
     handshake(sock);
 }
 
+/*!
+ *
+ * @param sock
+ * @param message
+ *
+ * Used for sending a specific node (connected via our socket) a message.
+ */
 void SocketCommunication::send_node_message(int sock, const char *message) {
     auto result = send(sock, message, strlen(message), 0);
     if (result < 0) {
@@ -252,6 +319,13 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
     }
 }
 
+/*!
+ *
+ * @param sock
+ *
+ * Recieves a message sent from the node connected to our socket. We make two calls to recv(),
+ * the first call gets the message length, the second call gets the message.
+ */
 void SocketCommunication::receive_node_message(int sock) {
     // read message body length
     unsigned long long msgLength;
@@ -373,6 +447,10 @@ void SocketCommunication::receive_node_message(int sock) {
     delete[] buffer;
 }
 
+/*!
+ * blockforger polls the transaction pool once every 300 seconds and if there
+ * are transactions in the pool, it calls forge() so they are dealt with.
+ */
 void SocketCommunication::blockForger() {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
@@ -386,10 +464,9 @@ void SocketCommunication::blockForger() {
     }
 }
 
-//==============================
-// Peer Discovery Methods
-//==============================
-
+/*!
+ * PeerDiscoveryStatus is used to display connected nodes.
+ */
 void SocketCommunication::peerDiscoveryStatus() {
     for(;;) {
         std::cout << "Current connections: " << std::endl;
@@ -405,6 +482,9 @@ void SocketCommunication::peerDiscoveryStatus() {
     }
 }
 
+/*!
+ * The actual peer discovery system. It creates a handshake message and broadcasts it.
+ */
 void SocketCommunication::peerDiscovery() {
     for(;;) {
         std::string message = handshakeMessage();
@@ -413,11 +493,23 @@ void SocketCommunication::peerDiscovery() {
     }
 }
 
+/*!
+ *
+ * @param sock
+ *
+ * Send the actual handshake to the node comnected to our socket.
+ */
 void SocketCommunication::handshake(int sock) const {
     std::string message = handshakeMessage();
     send_node_message(sock, message.c_str());
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Create the handshakeMessage for peer discovery.
+ */
 std::string SocketCommunication::handshakeMessage() const {
     nlohmann::json j;
     std::string objectAsString;
@@ -427,6 +519,12 @@ std::string SocketCommunication::handshakeMessage() const {
     return jsonMessage;
 }
 
+/*!
+ *
+ * @param message
+ *
+ * Handle the incoming peer discovery message.
+ */
 void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
 
     if (!message)
@@ -456,16 +554,8 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                   << peersSenderConnector.port << std::endl;
         newPeerToAdd = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
         peers.push_back(newPeerToAdd);
-        
-        // std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
-        // std::string masterNode = utils::get_master_node_ip();
-        // std::string masterNode2 = ":" + std::to_string(utils::get_master_node_port());
-        // masterNode += masterNode2;
-
-        // if (thisNode != masterNode) {
         std::cout << "Requesting blockchain from network" << std::endl;
         node->requestChain();
-        // }
     }
 
     if (j["Message"]["Peers"] != nullptr) {
@@ -510,14 +600,6 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                     std::string newPeerToAdd = tcpPair.at(0) + ":" + std::to_string(num);
                     peers.push_back(newPeerToAdd);
                     inactivePeers.clear();
-                    
-                    // ###
-                    // std::string portString = std::to_string(node->p2p->sc.port);
-                    // ofstream peerFile;
-                    // std::string peerFileName = "known_peers_for_" + node->p2p->sc.ip + ":" + portString + ".txt";
-                    // peerFile.open (peerFileName, std::ios_base::app);
-                    // peerFile << newPeerToAdd << std::endl;
-                    // peerFile.close();
                 }
             }
         }

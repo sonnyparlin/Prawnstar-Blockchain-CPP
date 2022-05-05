@@ -1,5 +1,12 @@
 #include "Wallet.hpp"
 
+/*!
+ *
+ * @param node
+ * @param filename
+ *
+ * Wallet constructor for wallets on disk.
+ */
 Wallet::Wallet(Node *node, const char *filename) {
     fromKey(filename);
     node->accountModel->addAccount(
@@ -8,12 +15,25 @@ Wallet::Wallet(Node *node, const char *filename) {
             walletPrivateKey);
 }
 
+/*!
+ *
+ * @param _address
+ * @param node
+ *
+ * Wallet constructor that finds wallet by address.
+ */
 Wallet::Wallet(const char *_address, Node *node) {
     address = _address;
     walletPublicKey = node->accountModel->addressToPublicKey[address];
     walletPrivateKey = node->accountModel->addressToPrivateKey[address];
 }
 
+/*!
+ *
+ * @param node
+ *
+ * Generate a new wallet (elliptical curve key pair)
+ */
 Wallet::Wallet(Node *node) {
     genKeyPair();
     node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
@@ -21,6 +41,12 @@ Wallet::Wallet(Node *node) {
 
 Wallet::~Wallet()=default;
 
+/*!
+ *
+ * @param file
+ *
+ * Method for opening wallet from file
+ */
 void Wallet::fromKey(const char *file) {
     int PUBUFFSIZE=174;
     int n;
@@ -62,6 +88,9 @@ void Wallet::fromKey(const char *file) {
     address = "pv1" + generateAddress(walletPublicKey);
 }
 
+/*!
+ * Method for generating an elliptic curve key pair using openssl.
+ */
 void Wallet::genKeyPair() {
     const char *curve = "secp256k1";
     int PRBUFFSIZE=255;
@@ -109,6 +138,14 @@ void Wallet::genKeyPair() {
     address = "pv1" + generateAddress(walletPublicKey);
 }
 
+/*!
+ *
+ * @param str
+ * @return
+ *
+ * The public crypto address is a SHA1
+ * hex encoded string of the walletPublicKey.
+ */
 std::string Wallet::generateAddress(const std::string &str) {
 
     // The public crypto address is a SHA1
@@ -121,6 +158,13 @@ std::string Wallet::generateAddress(const std::string &str) {
     return ss.str();
 }
 
+/*!
+ *
+ * @param str
+ * @return utils::Signature
+ *
+ * Creates a signature by signing the passed in data (str).
+ */
 utils::Signature Wallet::sign(const std::string &str) const
 {
     /* str should be a sha256 hash */
@@ -189,9 +233,16 @@ utils::Signature Wallet::sign(const std::string &str) const
 }
 
 /*!
-This is where transactions originate. Right now there are no checks and balances to verify a user's identity.
-This will change with the implementation of a user interface.
-*/
+ *
+ * @param receiverAddress
+ * @param amount
+ * @param type
+ * @return Transaction
+ *
+ * This is where transactions originate. Right now there are no checks and balances
+ * to verify a user's identity. This will change with the implementation of a user
+ * interface.
+ */
 Transaction Wallet::createTransaction(std::string receiverAddress, double amount, std::string type) const {
     Transaction transaction(address,
                             std::move(receiverAddress),
@@ -213,14 +264,21 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
 }
 
 /*!
-This is where blocks are generated for the entire blockchain. Since this is a proof of stake blockchain,
-transactions will always be the created by a forger determined by the prof of stake algorithm.
-Called from Blockchain::createBlock() inside of Node.cpp.
-*/
+ *
+ * @param transactions
+ * @param lastHash
+ * @param blockCount
+ * @return Block
+ *
+ * This is where blocks are generated for the entire blockchain. Since this is a
+ * proof of stake blockchain, transactions will always be the created by a forger
+ * determined by the prof of stake algorithm. Called from Blockchain::createBlock()
+ * inside of Node.cpp.
+ */
 Block Wallet::createBlock(vector<Transaction> transactions,
                           std::string lastHash,
                           long blockCount) const {
-    Block block(transactions, lastHash, blockCount);
+    Block block(std::move(transactions), std::move(lastHash), blockCount);
     block.hash = utils::hash(block.payload());
     block._id = block.hash;
     block.forgerAddress = address;
@@ -236,6 +294,12 @@ Block Wallet::createBlock(vector<Transaction> transactions,
     return block;
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Stringified json representation of wallet.
+ */
 std::string Wallet::toJson() {
     nlohmann::json j;
 

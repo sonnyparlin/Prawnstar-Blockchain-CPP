@@ -3,14 +3,18 @@
 #include <iostream>
 #include <string>
 
+/*!
+ * SocketConnector class
+ * Just the IP and Port of this node.
+ */
 class SocketConnector {
 public:
-    std::string ip{};
-    int port{};
-
     SocketConnector(std::string, int);
     SocketConnector();
     ~SocketConnector();
+
+    std::string ip{}; /*!< Ip address */
+    int port{}; /*!< Port */
 };
 
 #endif // _SOCKETCONNECTOR_H_

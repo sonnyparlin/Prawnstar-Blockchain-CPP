@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['sc_0',['sc',['../class_message.html#aa76d00df50848996367063767ea470cf',1,'Message']]],
-  ['sign_1',['sign',['../class_block.html#a7e1496b05fa44208e34a220649dd57a4',1,'Block']]],
-  ['signature_2',['signature',['../class_block.html#aecdc5380b6dd3833840ea28a504ea3aa',1,'Block']]],
-  ['signature_3',['Signature',['../structutils_1_1_signature.html',1,'utils']]],
-  ['signaturelength_4',['signatureLength',['../class_block.html#a85544ce2b95f47fe32283fef37869e64',1,'Block']]],
-  ['socketcommunication_5',['SocketCommunication',['../class_socket_communication.html',1,'']]],
-  ['socketconnector_6',['SocketConnector',['../class_socket_connector.html',1,'']]],
-  ['startp2poperations_7',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_8',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
-  ['startservers_9',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]]
+  ['receive_5fnode_5fmessage_0',['receive_node_message',['../class_socket_communication.html#a7188bf352145f177efe93a64fa20ff7a',1,'SocketCommunication']]],
+  ['receiveraddress_1',['receiverAddress',['../class_transaction.html#a5bb3521aa76bee56850f203bec06cb8c',1,'Transaction']]],
+  ['receiverpublickey_2',['receiverPublicKey',['../class_transaction.html#aee8367335bc186afce178e3f813711ad',1,'Transaction']]],
+  ['removefrompool_3',['removeFromPool',['../class_transaction_pool.html#a4c66a1487083927debc057a94fdf743e',1,'TransactionPool']]],
+  ['requestchain_4',['requestChain',['../class_node.html#af7afdfcb0f02875839812b4c0a44b981',1,'Node']]]
 ];

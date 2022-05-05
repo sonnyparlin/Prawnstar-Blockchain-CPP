@@ -1,14 +1,26 @@
 #include "NodeApi.hpp"
 #include "Wallet.hpp"
 
+/*!
+ *
+ * @param node
+ *
+ * Constructor for NodeApi
+ */
 NodeApi::NodeApi(Node *node) {
     this->node = node;
 }
 
 NodeApi::~NodeApi()=default;
 
-void NodeApi::start(std::string &po) {
-    long port = stol(po);
+/*!
+ *
+ * @param _port
+ *
+ * Starts the Node APU on port _port and contains all the routes for the APU.
+ */
+void NodeApi::start(std::string &_port) {
+    long port = stol(_port);
 
     crow::SimpleApp app;
 

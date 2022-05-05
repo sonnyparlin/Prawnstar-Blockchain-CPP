@@ -2,6 +2,14 @@
 
 namespace p2putils {
 
+/*!
+ *
+ * @param ipAddress
+ * @return bool
+ *
+ * Checks to make sure passed in ip address is valid using
+ * inet_pton()
+ */
 bool isValidIpAddress(const std::string &ipAddress)
 {
     struct sockaddr_in sa{};
@@ -9,6 +17,12 @@ bool isValidIpAddress(const std::string &ipAddress)
     return result != 0;
 }
 
+/*!
+ *
+ * @return int
+ *
+ * Method to create a new socket.
+ */
 int createSocket() {
     int opted=1;
     int obj_server;
@@ -33,6 +47,15 @@ int createSocket() {
     return obj_server;
 }
 
+/*!
+ *
+ * @param server
+ * @param address
+ * @param PORT
+ * @return bool
+ *
+ * Method for binding the server to the address and port.
+ */
 bool Bind(int server, struct sockaddr_in address, int PORT) {
     address.sin_port = htons( PORT );
 
@@ -59,6 +82,14 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
     return true;
 }
 
+/*!
+ *
+ * @param ipaddress
+ * @param port
+ * @return int
+ *
+ * Set up outgoing connection.
+ */
 int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
     int outgoingSocket;
 

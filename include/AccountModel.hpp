@@ -6,6 +6,9 @@
 #include <mutex>
 #include <algorithm>
 
+/*!
+ * Account Model class, used for holding account information about users.
+ */
 class AccountModel {
 public:
     AccountModel();

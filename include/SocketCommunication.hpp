@@ -9,6 +9,9 @@
 
 //class Node;
 
+/*!
+ * SocketCommunication class for network and peer to peer communication.
+ */
 class SocketCommunication {
 private:
     Node *node;
@@ -34,11 +37,11 @@ public:
     std::string handshakeMessage() const;
     void peerDiscoveryHandleMessage(const char *message);
 
-    std::vector<std::string> peers;
-    std::vector<std::string> inactivePeers;
-    const int MESSAGELENGTH = 20;
-    std::string id;
-    SocketConnector sc;
+    std::vector<std::string> peers; /*!< List of peers connected to this node. */
+    std::vector<std::string> inactivePeers; /*!< list of inactive peers, used for temporary storage */
+    const int MESSAGELENGTH = 20; /*!< Our predetermined message length for discovery messages */
+    std::string id; /*!< peer to peer server id */
+    SocketConnector sc; /*!< this node's socket connecter (ip and port) */
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

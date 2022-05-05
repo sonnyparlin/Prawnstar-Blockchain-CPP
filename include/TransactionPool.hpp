@@ -9,11 +9,11 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 
+/*!
+ * TransactionPool, this is where transactions go before they land in a block.
+ */
 class TransactionPool {
 public:
-    std::vector<Transaction> transactions;
-    std::mutex tpoolMutex;
-
     TransactionPool();           // Constructor
     ~TransactionPool();          // Destructor
 
@@ -22,6 +22,9 @@ public:
     void removeFromPool(const vector<Transaction>&);
     std::string getPoolTransactionsJsonString();
     bool forgerRequired();
+
+    std::vector<Transaction> transactions; /*!< Pool transaction list */
+    std::mutex tpoolMutex; /*!< mutex for protecting the pool transactions */
 };
 
 #endif // _TRANSACTIONPOOL_H_

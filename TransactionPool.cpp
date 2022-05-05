@@ -3,11 +3,24 @@
 TransactionPool::TransactionPool()=default;
 TransactionPool::~TransactionPool()=default;
 
+/*!
+ *
+ * @param transaction
+ *
+ * Add a transaction to the transaction pool.
+ */
 void TransactionPool::addTransaction(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     transactions.push_back(transaction);
 }
 
+/*!
+ *
+ * @param transaction
+ * @return bool
+ *
+ * Check if the transaction already exists in the pool.
+ */
 bool TransactionPool::transactionExists(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     for (auto const &itx : transactions) {
@@ -19,6 +32,12 @@ bool TransactionPool::transactionExists(const Transaction &transaction) {
     return false;
 }
 
+/*!
+ *
+ * @param txs
+ *
+ * Remove the list of given transactions from the transaction pool.
+ */
 void TransactionPool::removeFromPool(const vector<Transaction> &txs) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     vector<Transaction> newPoolTransactions;
@@ -34,6 +53,12 @@ void TransactionPool::removeFromPool(const vector<Transaction> &txs) {
     transactions = newPoolTransactions;
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Stringified json representation of the transactions in the pool.
+ */
 std::string TransactionPool::getPoolTransactionsJsonString() {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     nlohmann::json j;
@@ -48,6 +73,14 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
     return jsonDump;
 }
 
+/*!
+ *
+ * @return bool
+ *
+ * Check to see if a forger is required. We require a forger after 20 transactions
+ * have been added to the pool or if 300 seconds has passed, see
+ * SocketCommunication::blockForger().
+ */
 bool TransactionPool::forgerRequired() {
     for (auto const &itx : transactions) {
         if (itx.type == "EXCHANGE" || itx.type == "STAKE")

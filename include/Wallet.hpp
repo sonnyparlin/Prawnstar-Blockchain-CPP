@@ -10,14 +10,12 @@
 
 class Node;
 
+/*!
+ * Wallet class.
+ */
 class Wallet {
 
 public:
-    std::vector<std::string> walletKeyPair;
-    std::string walletPrivateKey;
-    std::string walletPublicKey;
-    std::string address;
-
     Wallet(Node *node, const char *filename);
     explicit Wallet(Node *node);
     Wallet(const char *address, Node *node);
@@ -30,6 +28,11 @@ public:
     static std::string generateAddress(const std::string &str);
     std::string toJson();
     void fromKey(const char *file);
+
+    std::vector<std::string> walletKeyPair; /*!< vector of keypair */
+    std::string walletPrivateKey; /*!< private key */
+    std::string walletPublicKey; /*!< public key */
+    std::string address; /*!< address */
 };
 
 #endif // _WALLET_H_

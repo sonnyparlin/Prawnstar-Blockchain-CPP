@@ -10,26 +10,26 @@
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <mutex>}}
 \DoxyCodeLine{7 \textcolor{preprocessor}{\#include <algorithm>}}
 \DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_account_model}{AccountModel}} \{}
-\DoxyCodeLine{10 \textcolor{keyword}{public}:}
-\DoxyCodeLine{11     \mbox{\hyperlink{class_account_model}{AccountModel}}();}
-\DoxyCodeLine{12     \mbox{\hyperlink{class_account_model}{\string~AccountModel}}();}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_account_model_a08b066221ebe83d70f35b0e5ae890937}{accountExists}}(\textcolor{keyword}{const} std::string \&walletAddress);}
-\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a87e1ed72c7378037c03e1022d4431df8}{addAccount}}(\textcolor{keyword}{const} std::string \&walletAddress,}
-\DoxyCodeLine{16                     \textcolor{keyword}{const} std::string \&pubKey,}
-\DoxyCodeLine{17                     \textcolor{keyword}{const} std::string \&privKey);}
-\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a87e1ed72c7378037c03e1022d4431df8}{addAccount}}(\textcolor{keyword}{const} std::string \&walletAddress, \textcolor{keyword}{const} std::string \&pubKey);}
-\DoxyCodeLine{19     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}{getBalance}}(\textcolor{keyword}{const} std::string \&walletAddress);}
-\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}{updateBalance}}(\textcolor{keyword}{const} std::string \&walletAddress, \textcolor{keywordtype}{double} amount);}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22     std::vector<std::string> \mbox{\hyperlink{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}{accounts}}; }
-\DoxyCodeLine{23     std::unordered\_map<std::string, std::string> \mbox{\hyperlink{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}{addressToPublicKey}}; }
-\DoxyCodeLine{24     std::unordered\_map<std::string, std::string> \mbox{\hyperlink{class_account_model_a2589dcd424d7a700886527bc078a734b}{addressToPrivateKey}}; }
-\DoxyCodeLine{25     std::unordered\_map<std::string, double> \mbox{\hyperlink{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}{balances}}; }
-\DoxyCodeLine{26     std::mutex \mbox{\hyperlink{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}{acMutex}}; }
-\DoxyCodeLine{27 \};}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_ACCOUNTMODEL\_H\_}}
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_account_model}{AccountModel}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{14     \mbox{\hyperlink{class_account_model}{AccountModel}}();}
+\DoxyCodeLine{15     \mbox{\hyperlink{class_account_model}{\string~AccountModel}}();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_account_model_a08b066221ebe83d70f35b0e5ae890937}{accountExists}}(\textcolor{keyword}{const} std::string \&walletAddress);}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a87e1ed72c7378037c03e1022d4431df8}{addAccount}}(\textcolor{keyword}{const} std::string \&walletAddress,}
+\DoxyCodeLine{19                     \textcolor{keyword}{const} std::string \&pubKey,}
+\DoxyCodeLine{20                     \textcolor{keyword}{const} std::string \&privKey);}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a87e1ed72c7378037c03e1022d4431df8}{addAccount}}(\textcolor{keyword}{const} std::string \&walletAddress, \textcolor{keyword}{const} std::string \&pubKey);}
+\DoxyCodeLine{22     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_account_model_a1b461e5d30dfc42b628efed78a6c7748}{getBalance}}(\textcolor{keyword}{const} std::string \&walletAddress);}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}{updateBalance}}(\textcolor{keyword}{const} std::string \&walletAddress, \textcolor{keywordtype}{double} amount);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     std::vector<std::string> \mbox{\hyperlink{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}{accounts}}; }
+\DoxyCodeLine{26     std::unordered\_map<std::string, std::string> \mbox{\hyperlink{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}{addressToPublicKey}}; }
+\DoxyCodeLine{27     std::unordered\_map<std::string, std::string> \mbox{\hyperlink{class_account_model_a2589dcd424d7a700886527bc078a734b}{addressToPrivateKey}}; }
+\DoxyCodeLine{28     std::unordered\_map<std::string, double> \mbox{\hyperlink{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}{balances}}; }
+\DoxyCodeLine{29     std::mutex \mbox{\hyperlink{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}{acMutex}}; }
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_ACCOUNTMODEL\_H\_}}
 
 \end{DoxyCode}

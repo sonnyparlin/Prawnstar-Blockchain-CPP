@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nextforger_0',['nextForger',['../class_blockchain.html#a846fbcfc5132f7bbd9bd6a6ec79e4d22',1,'Blockchain']]],
-  ['node_1',['Node',['../class_node.html#a1e1fb2f1f7689f7aa4b19787093fcb76',1,'Node']]]
+  ['message_0',['Message',['../class_message.html#adacb8e263f64f1dc767fd273326e0cc4',1,'Message::Message(const SocketConnector &amp;sc, std::string messageType, std::vector&lt; std::string &gt; peers)'],['../class_message.html#a48218400d16f61ae8fea42b748062faf',1,'Message::Message(std::string messageType, std::string data)']]]
 ];

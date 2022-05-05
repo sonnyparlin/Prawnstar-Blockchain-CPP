@@ -1,55 +1,90 @@
 \hypertarget{class_wallet}{}\doxysection{Wallet Class Reference}
 \label{class_wallet}\index{Wallet@{Wallet}}
+
+
+{\ttfamily \#include $<$Wallet.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_wallet_ae21d07774a6003a7409023ca4b9e9b2b}\label{class_wallet_ae21d07774a6003a7409023ca4b9e9b2b}} 
-{\bfseries Wallet} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, const char $\ast$filename)
+\mbox{\hyperlink{class_wallet_ae21d07774a6003a7409023ca4b9e9b2b}{Wallet}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, const char $\ast$filename)
 \item 
-\mbox{\Hypertarget{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}\label{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}} 
-{\bfseries Wallet} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\mbox{\hyperlink{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}{Wallet}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}\label{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}} 
-{\bfseries Wallet} (const char $\ast$address, \mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\mbox{\hyperlink{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}{Wallet}} (const char $\ast$\mbox{\hyperlink{class_wallet_acb84b316931574393a098f16bf79a19d}{address}}, \mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_wallet_ab783113deae4bb8f811050f316623509}\label{class_wallet_ab783113deae4bb8f811050f316623509}} 
-void {\bfseries gen\+Key\+Pair} ()
+void \mbox{\hyperlink{class_wallet_ab783113deae4bb8f811050f316623509}{gen\+Key\+Pair}} ()
 \item 
-\mbox{\Hypertarget{class_wallet_a4ee4ef7c5ec46c1ac9e1398af957d8f9}\label{class_wallet_a4ee4ef7c5ec46c1ac9e1398af957d8f9}} 
-\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}} {\bfseries sign} (const std\+::string \&) const
+\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}} \mbox{\hyperlink{class_wallet_a4ee4ef7c5ec46c1ac9e1398af957d8f9}{sign}} (const std\+::string \&) const
 \item 
 \mbox{\hyperlink{class_transaction}{Transaction}} \mbox{\hyperlink{class_wallet_a47962a946675e2b56d02a7968919a24d}{create\+Transaction}} (std\+::string receiver\+Address, double amount, std\+::string type) const
 \item 
 \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}{create\+Block}} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, std\+::string last\+Hash, long block\+Count) const
 \item 
-\mbox{\Hypertarget{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}\label{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}} 
-std\+::string {\bfseries to\+Json} ()
+std\+::string \mbox{\hyperlink{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}{to\+Json}} ()
 \item 
-\mbox{\Hypertarget{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}\label{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}} 
-void {\bfseries from\+Key} (const char $\ast$file)
+void \mbox{\hyperlink{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}{from\+Key}} (const char $\ast$file)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_wallet_aa6354c03cad74cc7d325a4a9dd55a2f1}\label{class_wallet_aa6354c03cad74cc7d325a4a9dd55a2f1}} 
-static std\+::string {\bfseries generate\+Address} (const std\+::string \&str)
+static std\+::string \mbox{\hyperlink{class_wallet_aa6354c03cad74cc7d325a4a9dd55a2f1}{generate\+Address}} (const std\+::string \&str)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_wallet_ab74e1cf9908b046cab12c520343bc04b}\label{class_wallet_ab74e1cf9908b046cab12c520343bc04b}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries wallet\+Key\+Pair}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_wallet_ab74e1cf9908b046cab12c520343bc04b}{wallet\+Key\+Pair}}
 \item 
-\mbox{\Hypertarget{class_wallet_abe298647e46a2b9872ccff4064dd94a2}\label{class_wallet_abe298647e46a2b9872ccff4064dd94a2}} 
-std\+::string {\bfseries wallet\+Private\+Key}
+std\+::string \mbox{\hyperlink{class_wallet_abe298647e46a2b9872ccff4064dd94a2}{wallet\+Private\+Key}}
 \item 
-\mbox{\Hypertarget{class_wallet_ad6d6d9c660faca4623bea7873244e755}\label{class_wallet_ad6d6d9c660faca4623bea7873244e755}} 
-std\+::string {\bfseries wallet\+Public\+Key}
+std\+::string \mbox{\hyperlink{class_wallet_ad6d6d9c660faca4623bea7873244e755}{wallet\+Public\+Key}}
 \item 
-\mbox{\Hypertarget{class_wallet_acb84b316931574393a098f16bf79a19d}\label{class_wallet_acb84b316931574393a098f16bf79a19d}} 
-std\+::string {\bfseries address}
+std\+::string \mbox{\hyperlink{class_wallet_acb84b316931574393a098f16bf79a19d}{address}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_wallet}{Wallet}} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_wallet_ae21d07774a6003a7409023ca4b9e9b2b}\label{class_wallet_ae21d07774a6003a7409023ca4b9e9b2b}} 
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{Wallet()}{Wallet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Wallet\+::\+Wallet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node,  }\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+{\em filename} & \\
+\hline
+\end{DoxyParams}
+\mbox{\hyperlink{class_wallet}{Wallet}} constructor for wallets on disk. \mbox{\Hypertarget{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}\label{class_wallet_aa51123d3d825f9c1f8738aa588c17ac9}} 
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{Wallet()}{Wallet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Wallet\+::\+Wallet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+Generate a new wallet (elliptical curve key pair) \mbox{\Hypertarget{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}\label{class_wallet_a14d634927aef94cd6cc78fe6ace8f4e1}} 
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\index{Wallet@{Wallet}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{Wallet()}{Wallet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Wallet\+::\+Wallet (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+address,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+address} & \\
+\hline
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\mbox{\hyperlink{class_wallet}{Wallet}} constructor that finds wallet by address. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}\label{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}} 
@@ -58,13 +93,118 @@ std\+::string {\bfseries address}
 \doxysubsubsection{\texorpdfstring{createBlock()}{createBlock()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Wallet\+::create\+Block (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{long}]{block\+Count }\end{DoxyParamCaption}) const}
 
+
+\begin{DoxyParams}{Parameters}
+{\em transactions} & \\
+\hline
+{\em last\+Hash} & \\
+\hline
+{\em block\+Count} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_block}{Block}}
+\end{DoxyReturn}
 This is where blocks are generated for the entire blockchain. Since this is a proof of stake blockchain, transactions will always be the created by a forger determined by the prof of stake algorithm. Called from \mbox{\hyperlink{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}{Blockchain\+::create\+Block()}} inside of Node.\+cpp. \mbox{\Hypertarget{class_wallet_a47962a946675e2b56d02a7968919a24d}\label{class_wallet_a47962a946675e2b56d02a7968919a24d}} 
 \index{Wallet@{Wallet}!createTransaction@{createTransaction}}
 \index{createTransaction@{createTransaction}!Wallet@{Wallet}}
 \doxysubsubsection{\texorpdfstring{createTransaction()}{createTransaction()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_transaction}{Transaction}} Wallet\+::create\+Transaction (\begin{DoxyParamCaption}\item[{std\+::string}]{receiver\+Address,  }\item[{double}]{amount,  }\item[{std\+::string}]{type }\end{DoxyParamCaption}) const}
 
-This is where transactions originate. Right now there are no checks and balances to verify a user\textquotesingle{}s identity. This will change with the implementation of a user interface. 
+
+\begin{DoxyParams}{Parameters}
+{\em receiver\+Address} & \\
+\hline
+{\em amount} & \\
+\hline
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_transaction}{Transaction}}
+\end{DoxyReturn}
+This is where transactions originate. Right now there are no checks and balances to verify a user\textquotesingle{}s identity. This will change with the implementation of a user interface. \mbox{\Hypertarget{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}\label{class_wallet_a0dda508363e6daecd31e2df25bfb4ade}} 
+\index{Wallet@{Wallet}!fromKey@{fromKey}}
+\index{fromKey@{fromKey}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{fromKey()}{fromKey()}}
+{\footnotesize\ttfamily void Wallet\+::from\+Key (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & \\
+\hline
+\end{DoxyParams}
+Method for opening wallet from file \mbox{\Hypertarget{class_wallet_aa6354c03cad74cc7d325a4a9dd55a2f1}\label{class_wallet_aa6354c03cad74cc7d325a4a9dd55a2f1}} 
+\index{Wallet@{Wallet}!generateAddress@{generateAddress}}
+\index{generateAddress@{generateAddress}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{generateAddress()}{generateAddress()}}
+{\footnotesize\ttfamily std\+::string Wallet\+::generate\+Address (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+The public crypto address is a SHA1 hex encoded string of the wallet\+Public\+Key. \mbox{\Hypertarget{class_wallet_ab783113deae4bb8f811050f316623509}\label{class_wallet_ab783113deae4bb8f811050f316623509}} 
+\index{Wallet@{Wallet}!genKeyPair@{genKeyPair}}
+\index{genKeyPair@{genKeyPair}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{genKeyPair()}{genKeyPair()}}
+{\footnotesize\ttfamily void Wallet\+::gen\+Key\+Pair (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method for generating an elliptic curve key pair using openssl. \mbox{\Hypertarget{class_wallet_a4ee4ef7c5ec46c1ac9e1398af957d8f9}\label{class_wallet_a4ee4ef7c5ec46c1ac9e1398af957d8f9}} 
+\index{Wallet@{Wallet}!sign@{sign}}
+\index{sign@{sign}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}} Wallet\+::sign (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}}
+\end{DoxyReturn}
+Creates a signature by signing the passed in data (str). \mbox{\Hypertarget{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}\label{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}} 
+\index{Wallet@{Wallet}!toJson@{toJson}}
+\index{toJson@{toJson}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
+{\footnotesize\ttfamily std\+::string Wallet\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Stringified json representation of wallet. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_wallet_acb84b316931574393a098f16bf79a19d}\label{class_wallet_acb84b316931574393a098f16bf79a19d}} 
+\index{Wallet@{Wallet}!address@{address}}
+\index{address@{address}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily std\+::string Wallet\+::address}
+
+address \mbox{\Hypertarget{class_wallet_ab74e1cf9908b046cab12c520343bc04b}\label{class_wallet_ab74e1cf9908b046cab12c520343bc04b}} 
+\index{Wallet@{Wallet}!walletKeyPair@{walletKeyPair}}
+\index{walletKeyPair@{walletKeyPair}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{walletKeyPair}{walletKeyPair}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Wallet\+::wallet\+Key\+Pair}
+
+vector of keypair \mbox{\Hypertarget{class_wallet_abe298647e46a2b9872ccff4064dd94a2}\label{class_wallet_abe298647e46a2b9872ccff4064dd94a2}} 
+\index{Wallet@{Wallet}!walletPrivateKey@{walletPrivateKey}}
+\index{walletPrivateKey@{walletPrivateKey}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{walletPrivateKey}{walletPrivateKey}}
+{\footnotesize\ttfamily std\+::string Wallet\+::wallet\+Private\+Key}
+
+private key \mbox{\Hypertarget{class_wallet_ad6d6d9c660faca4623bea7873244e755}\label{class_wallet_ad6d6d9c660faca4623bea7873244e755}} 
+\index{Wallet@{Wallet}!walletPublicKey@{walletPublicKey}}
+\index{walletPublicKey@{walletPublicKey}!Wallet@{Wallet}}
+\doxysubsubsection{\texorpdfstring{walletPublicKey}{walletPublicKey}}
+{\footnotesize\ttfamily std\+::string Wallet\+::wallet\+Public\+Key}
+
+public key 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

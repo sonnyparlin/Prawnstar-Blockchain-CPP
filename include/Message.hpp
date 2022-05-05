@@ -6,6 +6,9 @@
 #include <unordered_map>
 #include <nlohmann/json.hpp>
 
+/*!
+ * Message class for sending messages on the peer to peer network.
+ */
 class Message {
 public:
     SocketConnector sc; /*!< Socket connector */

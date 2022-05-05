@@ -68,6 +68,7 @@ $(function() {
 <li>accountExists()&#160;:&#160;<a class="el" href="class_account_model.html#a08b066221ebe83d70f35b0e5ae890937">AccountModel</a></li>
 <li>addAccount()&#160;:&#160;<a class="el" href="class_account_model.html#a87e1ed72c7378037c03e1022d4431df8">AccountModel</a></li>
 <li>addBlock()&#160;:&#160;<a class="el" href="class_blockchain.html#a89948907068998a0d48ef911a4cc9e40">Blockchain</a></li>
+<li>addTransaction()&#160;:&#160;<a class="el" href="class_transaction_pool.html#aee7cf6e6e62fceb74114eecca82588b9">TransactionPool</a></li>
 </ul>
 
 
@@ -75,8 +76,11 @@ $(function() {
 <li>Block()&#160;:&#160;<a class="el" href="class_block.html#ad6559d71520043bfaa31b6f9bc47ec98">Block</a></li>
 <li>Blockchain()&#160;:&#160;<a class="el" href="class_blockchain.html#a8b2d507929548019ed2c73b1956317b1">Blockchain</a></li>
 <li>blockCountValid()&#160;:&#160;<a class="el" href="class_blockchain.html#afcd7f1987327abfc8880d132e26d0744">Blockchain</a></li>
+<li>blockForger()&#160;:&#160;<a class="el" href="class_socket_communication.html#aa3617c8c0be10e00130852719ec5fc00">SocketCommunication</a></li>
 <li>blockHasTransactions()&#160;:&#160;<a class="el" href="class_blockchain.html#a56d993d8f29c4aa68476ed115a263d8c">Blockchain</a></li>
 <li>blockList()&#160;:&#160;<a class="el" href="class_blockchain.html#a1c654d2336b7691abe31fb31ec2bf7ec">Blockchain</a></li>
+<li>broadcast()&#160;:&#160;<a class="el" href="class_socket_communication.html#a4f319adf1c03deb69716a320e10e3727">SocketCommunication</a></li>
+<li>broadcastPeerDiscovery()&#160;:&#160;<a class="el" href="class_socket_communication.html#a556f923e6a6346454f8055400668ef27">SocketCommunication</a></li>
 </ul>
 
 
@@ -95,17 +99,25 @@ $(function() {
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
+<li>fnv1a()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#a7c085fef5384a0389935a6eed49979e4">ProofOfStake</a></li>
 <li>forge()&#160;:&#160;<a class="el" href="class_node.html#ac08fe080956d22ded0226fd3b47a4fdc">Node</a></li>
+<li>forger()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#ab26da4a7bdcd9a1cd41a8f712f0bfcaf">ProofOfStake</a></li>
+<li>forgerRequired()&#160;:&#160;<a class="el" href="class_transaction_pool.html#ae130e06b22129b1608d0f691b516a2a7">TransactionPool</a></li>
 <li>forgerValid()&#160;:&#160;<a class="el" href="class_blockchain.html#a3839678f351a8973eb5f75a04beb1f0f">Blockchain</a></li>
+<li>fromKey()&#160;:&#160;<a class="el" href="class_wallet.html#a0dda508363e6daecd31e2df25bfb4ade">Wallet</a></li>
 </ul>
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>generateAddress()&#160;:&#160;<a class="el" href="class_wallet.html#aa6354c03cad74cc7d325a4a9dd55a2f1">Wallet</a></li>
 <li>genesis()&#160;:&#160;<a class="el" href="class_blockchain.html#af95ef0f76e085ca5b4aa20fbacdd68d4">Blockchain</a></li>
+<li>genKeyPair()&#160;:&#160;<a class="el" href="class_wallet.html#ab783113deae4bb8f811050f316623509">Wallet</a></li>
 <li>getBalance()&#160;:&#160;<a class="el" href="class_account_model.html#a1b461e5d30dfc42b628efed78a6c7748">AccountModel</a></li>
 <li>getConsoleLog()&#160;:&#160;<a class="el" href="class_node.html#ab3291bce63c6c99090e49abcbb4c29b5">Node</a></li>
 <li>getCoveredTransactionSet()&#160;:&#160;<a class="el" href="class_blockchain.html#aa4e6bb083bde20f6ad2a60f80fbd4655">Blockchain</a></li>
 <li>getNodeID()&#160;:&#160;<a class="el" href="class_node.html#a85f2a46bd337dea9c67d907430a45edc">Node</a></li>
+<li>getPoolTransactionsJsonString()&#160;:&#160;<a class="el" href="class_transaction_pool.html#a75d388012cc9b8ac636f4314bef8ab2f">TransactionPool</a></li>
+<li>getStake()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#aaae5f1b8f8fca2a4715d26797a9d54af">ProofOfStake</a></li>
 <li>getTransaction()&#160;:&#160;<a class="el" href="class_blockchain.html#af1235ef58b69abb44d002454c97e91d6">Blockchain</a></li>
 </ul>
 
@@ -115,6 +127,13 @@ $(function() {
 <li>handleBlockchain()&#160;:&#160;<a class="el" href="class_node.html#afca81a037e9e4fe4cbacf0a0637b7ce2">Node</a></li>
 <li>handleBlockchainRequest()&#160;:&#160;<a class="el" href="class_node.html#af25a469a96f939eb8a2bde8de080a2cb">Node</a></li>
 <li>handleTransaction()&#160;:&#160;<a class="el" href="class_node.html#a308b10eb07ee09df6bef85ecd67d4e85">Node</a></li>
+<li>handshake()&#160;:&#160;<a class="el" href="class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b">SocketCommunication</a></li>
+<li>handshakeMessage()&#160;:&#160;<a class="el" href="class_socket_communication.html#abeeeace94685bcea0f46de641c953d2a">SocketCommunication</a></li>
+</ul>
+
+
+<h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>inbound_node_connected()&#160;:&#160;<a class="el" href="class_socket_communication.html#a0db5173cd70769ce6aa318cb4c389211">SocketCommunication</a></li>
 </ul>
 
 
@@ -125,6 +144,7 @@ $(function() {
 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
 <li>lastBlockHashValid()&#160;:&#160;<a class="el" href="class_blockchain.html#aff4479e0d60e2178e5990791003b7d2f">Blockchain</a></li>
+<li>lcg_rand()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#a3ea36e15943830944d455cb700d4106c">ProofOfStake</a></li>
 <li>log()&#160;:&#160;<a class="el" href="class_node.html#af77a45d7a2a00d69259dd54a8dee2671">Node</a></li>
 <li>Lot()&#160;:&#160;<a class="el" href="class_lot.html#a5ff762c7e7dc966615ca3c483cf95b98">Lot</a></li>
 </ul>
@@ -138,33 +158,53 @@ $(function() {
 <h3><a id="index_n" name="index_n"></a>- n -</h3><ul>
 <li>nextForger()&#160;:&#160;<a class="el" href="class_blockchain.html#a846fbcfc5132f7bbd9bd6a6ec79e4d22">Blockchain</a></li>
 <li>Node()&#160;:&#160;<a class="el" href="class_node.html#a1e1fb2f1f7689f7aa4b19787093fcb76">Node</a></li>
+<li>NodeApi()&#160;:&#160;<a class="el" href="class_node_api.html#a8f8ca55afbdbd5f3a3e087e722dad0dd">NodeApi</a></li>
+</ul>
+
+
+<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
+<li>outbound_node_connected()&#160;:&#160;<a class="el" href="class_socket_communication.html#abbf1ab3002a9467f8cd2930177671310">SocketCommunication</a></li>
 </ul>
 
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>payload()&#160;:&#160;<a class="el" href="class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1">Block</a></li>
+<li>payload()&#160;:&#160;<a class="el" href="class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1">Block</a>, <a class="el" href="class_transaction.html#a2711b335f673a115279100dcd759bf20">Transaction</a></li>
+<li>peerDiscovery()&#160;:&#160;<a class="el" href="class_socket_communication.html#a9e8960f26eb68748370433d1410cd92d">SocketCommunication</a></li>
+<li>peerDiscoveryHandleMessage()&#160;:&#160;<a class="el" href="class_socket_communication.html#a60521ddaf06d64f669a5ce84eb28ee3d">SocketCommunication</a></li>
+<li>peerDiscoveryStatus()&#160;:&#160;<a class="el" href="class_socket_communication.html#a853380083a5e1450551e3d238dc656b4">SocketCommunication</a></li>
+<li>processArgs()&#160;:&#160;<a class="el" href="class_socket_communication.html#af0bd2836102b0b03bdd7254203160dd5">SocketCommunication</a></li>
+<li>ProofOfStake()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#a48be725a43b54e7e5e7acdeb50e5f275">ProofOfStake</a></li>
 </ul>
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>receive_node_message()&#160;:&#160;<a class="el" href="class_socket_communication.html#a7188bf352145f177efe93a64fa20ff7a">SocketCommunication</a></li>
+<li>removeFromPool()&#160;:&#160;<a class="el" href="class_transaction_pool.html#a4c66a1487083927debc057a94fdf743e">TransactionPool</a></li>
 <li>requestChain()&#160;:&#160;<a class="el" href="class_node.html#af7afdfcb0f02875839812b4c0a44b981">Node</a></li>
 </ul>
 
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>sign()&#160;:&#160;<a class="el" href="class_block.html#a7e1496b05fa44208e34a220649dd57a4">Block</a></li>
+<li>send_node_message()&#160;:&#160;<a class="el" href="class_socket_communication.html#a1bb5ebcc2231b67d0128280dd02ddb3d">SocketCommunication</a></li>
+<li>setGenesisNodeStake()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#aa1c30dfae8c37a570cb912e36c0d54da">ProofOfStake</a></li>
+<li>sign()&#160;:&#160;<a class="el" href="class_block.html#a7e1496b05fa44208e34a220649dd57a4">Block</a>, <a class="el" href="class_transaction.html#a8fc44a24bfca6202ca05113e31e7f1b5">Transaction</a>, <a class="el" href="class_wallet.html#a4ee4ef7c5ec46c1ac9e1398af957d8f9">Wallet</a></li>
+<li>SocketCommunication()&#160;:&#160;<a class="el" href="class_socket_communication.html#aa40ba4027fb0197430a3bb3c8721cb91">SocketCommunication</a></li>
+<li>SocketConnector()&#160;:&#160;<a class="el" href="class_socket_connector.html#a03065d04a1d48af4f790316b7b3ca57e">SocketConnector</a></li>
+<li>start()&#160;:&#160;<a class="el" href="class_node_api.html#a19fdf7a6016abcdfc3b64552adcd8c8a">NodeApi</a></li>
 <li>startP2POperations()&#160;:&#160;<a class="el" href="class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813">SocketCommunication</a></li>
 <li>startP2PServer()&#160;:&#160;<a class="el" href="class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f">SocketCommunication</a></li>
 <li>startServers()&#160;:&#160;<a class="el" href="class_node.html#a92ae2118238f692dee64f2dcb0406ec9">Node</a></li>
+<li>startSocketCommunication()&#160;:&#160;<a class="el" href="class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393">SocketCommunication</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>toJson()&#160;:&#160;<a class="el" href="class_block.html#a0b652be63a2ee5c05c520a28907bd6d0">Block</a>, <a class="el" href="class_blockchain.html#a5e11301b46481d5a4d2e0bf517bf6989">Blockchain</a>, <a class="el" href="class_message.html#a11439e2268c1fefb5ffa20512a9222f4">Message</a></li>
+<li>toJson()&#160;:&#160;<a class="el" href="class_block.html#a0b652be63a2ee5c05c520a28907bd6d0">Block</a>, <a class="el" href="class_blockchain.html#a5e11301b46481d5a4d2e0bf517bf6989">Blockchain</a>, <a class="el" href="class_message.html#a11439e2268c1fefb5ffa20512a9222f4">Message</a>, <a class="el" href="class_transaction.html#a6a57b62f03c662b094b27ab7245666a6">Transaction</a>, <a class="el" href="class_wallet.html#a369255d696afbc1ea9d2b1fdfae07ad4">Wallet</a></li>
 <li>toJsonString()&#160;:&#160;<a class="el" href="class_blockchain.html#a8956b2548c67d722a0d1194a2213a89c">Blockchain</a></li>
 <li>toJsonWebView()&#160;:&#160;<a class="el" href="class_blockchain.html#a829f0552d41c8078f336c63c768e8bbb">Blockchain</a></li>
+<li>Transaction()&#160;:&#160;<a class="el" href="class_transaction.html#aa79b30343f7bd6ef94981e4437116f22">Transaction</a></li>
 <li>transactionCovered()&#160;:&#160;<a class="el" href="class_blockchain.html#a313ff824d102d675c08e902ac72468ae">Blockchain</a></li>
-<li>transactionExists()&#160;:&#160;<a class="el" href="class_blockchain.html#a0dcd65d602435ffe46498dabd901648d">Blockchain</a></li>
+<li>transactionExists()&#160;:&#160;<a class="el" href="class_blockchain.html#a0dcd65d602435ffe46498dabd901648d">Blockchain</a>, <a class="el" href="class_transaction_pool.html#ad8dcb46849bb911dabe965b9e1ad92a5">TransactionPool</a></li>
 <li>transactionList()&#160;:&#160;<a class="el" href="class_block.html#a7da47ddd87bb54b88cc14e5d0ee53ec8">Block</a></li>
 <li>transactionValid()&#160;:&#160;<a class="el" href="class_blockchain.html#a87c06155afda5057358a20a6cf95bb4d">Blockchain</a></li>
 <li>txsByAddress()&#160;:&#160;<a class="el" href="class_blockchain.html#a1fc23150b5e1cedf6942aade929ec775">Blockchain</a></li>
@@ -172,7 +212,19 @@ $(function() {
 
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>update()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#a7450b27f25066f7d58ed1457a28c5882">ProofOfStake</a></li>
 <li>updateBalance()&#160;:&#160;<a class="el" href="class_account_model.html#a2d1f5efc7d66615e5ec51e0f8ee788c1">AccountModel</a></li>
+</ul>
+
+
+<h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
+<li>validatorLots()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#ab40dabdee4512c01652a90fa0286c536">ProofOfStake</a></li>
+</ul>
+
+
+<h3><a id="index_w" name="index_w"></a>- w -</h3><ul>
+<li>Wallet()&#160;:&#160;<a class="el" href="class_wallet.html#ae21d07774a6003a7409023ca4b9e9b2b">Wallet</a></li>
+<li>winnerLot()&#160;:&#160;<a class="el" href="class_proof_of_stake.html#ac16b760356071b95f058ade60600520d">ProofOfStake</a></li>
 </ul>
 
 

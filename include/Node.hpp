@@ -20,6 +20,9 @@ class Wallet;
 class ProofOfStake;
 class AccountModel;
 
+/*!
+ * Our primary interface between our peer to peer network and API.
+ */
 class Node {
 private:
     static Node *node;

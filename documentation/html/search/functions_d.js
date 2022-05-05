@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['sign_0',['sign',['../class_block.html#a7e1496b05fa44208e34a220649dd57a4',1,'Block']]],
-  ['startp2poperations_1',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_2',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
-  ['startservers_3',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]]
+  ['payload_0',['payload',['../class_block.html#aedb6bc67d5334b5d2b18910818ae1ae1',1,'Block::payload()'],['../class_transaction.html#a2711b335f673a115279100dcd759bf20',1,'Transaction::payload()']]],
+  ['peerdiscovery_1',['peerDiscovery',['../class_socket_communication.html#a9e8960f26eb68748370433d1410cd92d',1,'SocketCommunication']]],
+  ['peerdiscoveryhandlemessage_2',['peerDiscoveryHandleMessage',['../class_socket_communication.html#a60521ddaf06d64f669a5ce84eb28ee3d',1,'SocketCommunication']]],
+  ['peerdiscoverystatus_3',['peerDiscoveryStatus',['../class_socket_communication.html#a853380083a5e1450551e3d238dc656b4',1,'SocketCommunication']]],
+  ['processargs_4',['processArgs',['../class_socket_communication.html#af0bd2836102b0b03bdd7254203160dd5',1,'SocketCommunication']]],
+  ['proofofstake_5',['ProofOfStake',['../class_proof_of_stake.html#a48be725a43b54e7e5e7acdeb50e5f275',1,'ProofOfStake']]]
 ];

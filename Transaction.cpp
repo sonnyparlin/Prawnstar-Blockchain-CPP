@@ -4,6 +4,15 @@
 #include <utility>
 #include "utils.hpp"
 
+/*!
+ *
+ * @param senderAddress
+ * @param receiverAddress
+ * @param amount
+ * @param type
+ *
+ * Transaction constructor
+ */
 Transaction::Transaction(string senderAddress, 
                          string receiverAddress, 
                          double amount, 
@@ -19,11 +28,25 @@ Transaction::Transaction(string senderAddress,
 Transaction::Transaction()=default;
 Transaction::~Transaction()=default;
 
+/*!
+ *
+ * @param lhs
+ * @param rhs
+ * @return bool
+ *
+ * Overloaded == operator for comparing transactions using their id.
+ */
 bool operator==(const Transaction &lhs, const Transaction &rhs) {
     return lhs.id == rhs.id;
 }
 
-string Transaction::toJson() {
+/*!
+ *
+ * @return std::string
+ *
+ * Stringified json representation of a transaction.
+ */
+std::string Transaction::toJson() {
     nlohmann::json j;
     
     j["senderAddress"] = senderAddress;
@@ -38,7 +61,13 @@ string Transaction::toJson() {
     return j.dump();
 }
 
-string Transaction::payload() {
+/*!
+ *
+ * @return std::string
+ *
+ * stringified json repsentation of the transaction's payload, used for signing.
+ */
+std::string Transaction::payload() {
     nlohmann::json j;
     
     j["senderAddress"] = senderAddress;
@@ -52,6 +81,12 @@ string Transaction::payload() {
     return to_string(j);
 }
 
-void Transaction::sign(std::string sig) {
-    signature = std::move(sig);
+/*!
+ *
+ * @param _signature
+ *
+ * Add signature to the transaction.
+ */
+void Transaction::sign(std::string _signature) {
+    signature = std::move(_signature);
 }

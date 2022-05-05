@@ -1,48 +1,186 @@
 \hypertarget{class_proof_of_stake}{}\doxysection{Proof\+Of\+Stake Class Reference}
 \label{class_proof_of_stake}\index{ProofOfStake@{ProofOfStake}}
+
+
+{\ttfamily \#include $<$Proof\+Of\+Stake.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}\label{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}} 
-{\bfseries Proof\+Of\+Stake} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\mbox{\hyperlink{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}{Proof\+Of\+Stake}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}\label{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}} 
-void {\bfseries update} (const std\+::string \&, double stake)
+void \mbox{\hyperlink{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}{update}} (const std\+::string \&, double stake)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}\label{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}} 
-double {\bfseries get\+Stake} (const std\+::string \&)
+double \mbox{\hyperlink{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}{get\+Stake}} (const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}\label{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}} 
-std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ {\bfseries validator\+Lots} (const std\+::string \&seed)
+std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \mbox{\hyperlink{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}{validator\+Lots}} (const std\+::string \&seed)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}\label{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}} 
-std\+::string {\bfseries forger} (const std\+::string \&)
+std\+::string \mbox{\hyperlink{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}{forger}} (const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}\label{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}} 
-void {\bfseries set\+Genesis\+Node\+Stake} (const std\+::string \&)
+void \mbox{\hyperlink{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}{set\+Genesis\+Node\+Stake}} (const std\+::string \&)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_ac16b760356071b95f058ade60600520d}\label{class_proof_of_stake_ac16b760356071b95f058ade60600520d}} 
-static \mbox{\hyperlink{class_lot}{Lot}} {\bfseries winner\+Lot} (const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&, const std\+::string \&)
+static \mbox{\hyperlink{class_lot}{Lot}} \mbox{\hyperlink{class_proof_of_stake_ac16b760356071b95f058ade60600520d}{winner\+Lot}} (const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&, const std\+::string \&)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}\label{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}} 
-static uint32\+\_\+t {\bfseries fnv1a} (const std\+::string \&text)
+static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}{fnv1a}} (const std\+::string \&text)
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}\label{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}} 
-static uint32\+\_\+t {\bfseries lcg\+\_\+rand} (uint32\+\_\+t $\ast$state)
+static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}{lcg\+\_\+rand}} (uint32\+\_\+t $\ast$state)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}\label{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}} 
-std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries stakers}
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}{stakers}}
 \item 
-\mbox{\Hypertarget{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}\label{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}} 
-std\+::mutex {\bfseries pos\+Mutex}
+std\+::mutex \mbox{\hyperlink{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}{pos\+Mutex}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Proof of Stake, our blockchain\textquotesingle{}s consensus algorithm. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}\label{class_proof_of_stake_a48be725a43b54e7e5e7acdeb50e5f275}} 
+\index{ProofOfStake@{ProofOfStake}!ProofOfStake@{ProofOfStake}}
+\index{ProofOfStake@{ProofOfStake}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{ProofOfStake()}{ProofOfStake()}}
+{\footnotesize\ttfamily Proof\+Of\+Stake\+::\+Proof\+Of\+Stake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{passed\+In\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em passed\+In\+Node} & \\
+\hline
+\end{DoxyParams}
+Constructor for the \mbox{\hyperlink{class_proof_of_stake}{Proof\+Of\+Stake}} class, starts genesis node sets up this node\textquotesingle{}s wallet as a staker so the system will run. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}\label{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}} 
+\index{ProofOfStake@{ProofOfStake}!fnv1a@{fnv1a}}
+\index{fnv1a@{fnv1a}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{fnv1a()}{fnv1a()}}
+{\footnotesize\ttfamily uint32\+\_\+t Proof\+Of\+Stake\+::fnv1a (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t
+\end{DoxyReturn}
+Hashing function that is platform independant. \mbox{\Hypertarget{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}\label{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}} 
+\index{ProofOfStake@{ProofOfStake}!forger@{forger}}
+\index{forger@{forger}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{forger()}{forger()}}
+{\footnotesize\ttfamily std\+::string Proof\+Of\+Stake\+::forger (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{last\+Block\+Hash }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em last\+Block\+Hash} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+forger gets a list of all the validator Lots and selects one at random. The number of validator lots corresponds to the amount of tokens that are staked by a staker/validator. \mbox{\Hypertarget{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}\label{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}} 
+\index{ProofOfStake@{ProofOfStake}!getStake@{getStake}}
+\index{getStake@{getStake}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{getStake()}{getStake()}}
+{\footnotesize\ttfamily double Proof\+Of\+Stake\+::get\+Stake (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{public\+Key\+String }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em public\+Key\+String} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double
+\end{DoxyReturn}
+Get the stake of the user with public\+Key\+String \mbox{\Hypertarget{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}\label{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}} 
+\index{ProofOfStake@{ProofOfStake}!lcg\_rand@{lcg\_rand}}
+\index{lcg\_rand@{lcg\_rand}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{lcg\_rand()}{lcg\_rand()}}
+{\footnotesize\ttfamily uint32\+\_\+t Proof\+Of\+Stake\+::lcg\+\_\+rand (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t
+\end{DoxyReturn}
+A linear congruential generator (LCG) is an algorithm that yields a sequence of pseudo-\/randomized numbers calculated with a discontinuous piecewise linear equation. The method represents one of the oldest and best-\/known pseudorandom number generator algorithms. \mbox{\Hypertarget{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}\label{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}} 
+\index{ProofOfStake@{ProofOfStake}!setGenesisNodeStake@{setGenesisNodeStake}}
+\index{setGenesisNodeStake@{setGenesisNodeStake}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{setGenesisNodeStake()}{setGenesisNodeStake()}}
+{\footnotesize\ttfamily void Proof\+Of\+Stake\+::set\+Genesis\+Node\+Stake (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{genesis\+Public\+Key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em genesis\+Public\+Key} & \\
+\hline
+\end{DoxyParams}
+Set up the genesis node stake so the system will run before real stakers show up. \mbox{\Hypertarget{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}\label{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}} 
+\index{ProofOfStake@{ProofOfStake}!update@{update}}
+\index{update@{update}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Proof\+Of\+Stake\+::update (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{public\+Key\+String,  }\item[{double}]{stake }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em public\+Key\+String} & \\
+\hline
+{\em stake} & \\
+\hline
+\end{DoxyParams}
+Update the stake of the user with public\+Key\+String to the new amount specified in stake. \mbox{\Hypertarget{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}\label{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}} 
+\index{ProofOfStake@{ProofOfStake}!validatorLots@{validatorLots}}
+\index{validatorLots@{validatorLots}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{validatorLots()}{validatorLots()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ Proof\+Of\+Stake\+::validator\+Lots (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Lot$>$
+\end{DoxyReturn}
+Create lottery tickets for the stakers to be chosen at random to decide who the next forger is. The number of lottery tickets for each staker corresponds to the amount of tokens they are staking. \mbox{\Hypertarget{class_proof_of_stake_ac16b760356071b95f058ade60600520d}\label{class_proof_of_stake_ac16b760356071b95f058ade60600520d}} 
+\index{ProofOfStake@{ProofOfStake}!winnerLot@{winnerLot}}
+\index{winnerLot@{winnerLot}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{winnerLot()}{winnerLot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_lot}{Lot}} Proof\+Of\+Stake\+::winner\+Lot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&}]{lots,  }\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lots} & \\
+\hline
+{\em seed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_lot}{Lot}}
+\end{DoxyReturn}
+Chooses a winner for the forger lottery based on the random selection of Lots. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}\label{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}} 
+\index{ProofOfStake@{ProofOfStake}!posMutex@{posMutex}}
+\index{posMutex@{posMutex}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{posMutex}{posMutex}}
+{\footnotesize\ttfamily std\+::mutex Proof\+Of\+Stake\+::pos\+Mutex}
+
+mutext for guarding shared data (stakers list) \mbox{\Hypertarget{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}\label{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}} 
+\index{ProofOfStake@{ProofOfStake}!stakers@{stakers}}
+\index{stakers@{stakers}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{stakers}{stakers}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Proof\+Of\+Stake\+::stakers}
+
+list of stakers 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

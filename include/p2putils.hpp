@@ -28,6 +28,9 @@
 #include <future>
 #include <nlohmann/json.hpp>
 
+/*!
+ * p2putils for random functions related to the peer to peer network.
+ */
 namespace p2putils {
     bool isValidIpAddress(const std::string&);
     int createSocket();

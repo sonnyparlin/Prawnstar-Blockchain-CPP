@@ -70,81 +70,436 @@ $(function() {
   <div class="headertitle"><div class="title">SocketCommunication Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_socket_communication_8hpp_source.html">SocketCommunication.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa40ba4027fb0197430a3bb3c8721cb91"><td class="memItemLeft" align="right" valign="top"><a id="aa40ba4027fb0197430a3bb3c8721cb91" name="aa40ba4027fb0197430a3bb3c8721cb91"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SocketCommunication</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:aa40ba4027fb0197430a3bb3c8721cb91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#aa40ba4027fb0197430a3bb3c8721cb91">SocketCommunication</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
 <tr class="separator:aa40ba4027fb0197430a3bb3c8721cb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada488d9ffe321ae2275c12e9b4656393"><td class="memItemLeft" align="right" valign="top"><a id="ada488d9ffe321ae2275c12e9b4656393" name="ada488d9ffe321ae2275c12e9b4656393"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startSocketCommunication</b> (int argc, char *argv[])</td></tr>
+<tr class="memitem:ada488d9ffe321ae2275c12e9b4656393"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393">startSocketCommunication</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:ada488d9ffe321ae2275c12e9b4656393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813">startP2POperations</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a5d83e3c33eb5a109d2d3ddbd1e7b2813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac76c9fff0528a7f72726072a49a7109f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f">startP2PServer</a> (int argc, char **argv)</td></tr>
 <tr class="separator:ac76c9fff0528a7f72726072a49a7109f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a556f923e6a6346454f8055400668ef27"><td class="memItemLeft" align="right" valign="top"><a id="a556f923e6a6346454f8055400668ef27" name="a556f923e6a6346454f8055400668ef27"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcastPeerDiscovery</b> (const char *message)</td></tr>
+<tr class="memitem:a556f923e6a6346454f8055400668ef27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a556f923e6a6346454f8055400668ef27">broadcastPeerDiscovery</a> (const char *message)</td></tr>
 <tr class="separator:a556f923e6a6346454f8055400668ef27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f319adf1c03deb69716a320e10e3727"><td class="memItemLeft" align="right" valign="top"><a id="a4f319adf1c03deb69716a320e10e3727" name="a4f319adf1c03deb69716a320e10e3727"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>broadcast</b> (const char *message) const</td></tr>
+<tr class="memitem:a4f319adf1c03deb69716a320e10e3727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a4f319adf1c03deb69716a320e10e3727">broadcast</a> (const char *message) const</td></tr>
 <tr class="separator:a4f319adf1c03deb69716a320e10e3727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0db5173cd70769ce6aa318cb4c389211"><td class="memItemLeft" align="right" valign="top"><a id="a0db5173cd70769ce6aa318cb4c389211" name="a0db5173cd70769ce6aa318cb4c389211"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>inbound_node_connected</b> (int sock)</td></tr>
+<tr class="memitem:a0db5173cd70769ce6aa318cb4c389211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a0db5173cd70769ce6aa318cb4c389211">inbound_node_connected</a> (int sock)</td></tr>
 <tr class="separator:a0db5173cd70769ce6aa318cb4c389211"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf1ab3002a9467f8cd2930177671310"><td class="memItemLeft" align="right" valign="top"><a id="abbf1ab3002a9467f8cd2930177671310" name="abbf1ab3002a9467f8cd2930177671310"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>outbound_node_connected</b> (int sock) const</td></tr>
+<tr class="memitem:abbf1ab3002a9467f8cd2930177671310"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#abbf1ab3002a9467f8cd2930177671310">outbound_node_connected</a> (int sock) const</td></tr>
 <tr class="separator:abbf1ab3002a9467f8cd2930177671310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7188bf352145f177efe93a64fa20ff7a"><td class="memItemLeft" align="right" valign="top"><a id="a7188bf352145f177efe93a64fa20ff7a" name="a7188bf352145f177efe93a64fa20ff7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>receive_node_message</b> (int sock)</td></tr>
+<tr class="memitem:a7188bf352145f177efe93a64fa20ff7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a7188bf352145f177efe93a64fa20ff7a">receive_node_message</a> (int sock)</td></tr>
 <tr class="separator:a7188bf352145f177efe93a64fa20ff7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3617c8c0be10e00130852719ec5fc00"><td class="memItemLeft" align="right" valign="top"><a id="aa3617c8c0be10e00130852719ec5fc00" name="aa3617c8c0be10e00130852719ec5fc00"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>blockForger</b> ()</td></tr>
+<tr class="memitem:aa3617c8c0be10e00130852719ec5fc00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#aa3617c8c0be10e00130852719ec5fc00">blockForger</a> ()</td></tr>
 <tr class="separator:aa3617c8c0be10e00130852719ec5fc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a853380083a5e1450551e3d238dc656b4"><td class="memItemLeft" align="right" valign="top"><a id="a853380083a5e1450551e3d238dc656b4" name="a853380083a5e1450551e3d238dc656b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>peerDiscoveryStatus</b> ()</td></tr>
+<tr class="memitem:a853380083a5e1450551e3d238dc656b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a853380083a5e1450551e3d238dc656b4">peerDiscoveryStatus</a> ()</td></tr>
 <tr class="separator:a853380083a5e1450551e3d238dc656b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e8960f26eb68748370433d1410cd92d"><td class="memItemLeft" align="right" valign="top"><a id="a9e8960f26eb68748370433d1410cd92d" name="a9e8960f26eb68748370433d1410cd92d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>peerDiscovery</b> ()</td></tr>
+<tr class="memitem:a9e8960f26eb68748370433d1410cd92d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a9e8960f26eb68748370433d1410cd92d">peerDiscovery</a> ()</td></tr>
 <tr class="separator:a9e8960f26eb68748370433d1410cd92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92bd91aac8ca628001433ac06f90919b"><td class="memItemLeft" align="right" valign="top"><a id="a92bd91aac8ca628001433ac06f90919b" name="a92bd91aac8ca628001433ac06f90919b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handshake</b> (int sock) const</td></tr>
+<tr class="memitem:a92bd91aac8ca628001433ac06f90919b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b">handshake</a> (int sock) const</td></tr>
 <tr class="separator:a92bd91aac8ca628001433ac06f90919b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeeeace94685bcea0f46de641c953d2a"><td class="memItemLeft" align="right" valign="top"><a id="abeeeace94685bcea0f46de641c953d2a" name="abeeeace94685bcea0f46de641c953d2a"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handshakeMessage</b> () const</td></tr>
+<tr class="memitem:abeeeace94685bcea0f46de641c953d2a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#abeeeace94685bcea0f46de641c953d2a">handshakeMessage</a> () const</td></tr>
 <tr class="separator:abeeeace94685bcea0f46de641c953d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60521ddaf06d64f669a5ce84eb28ee3d"><td class="memItemLeft" align="right" valign="top"><a id="a60521ddaf06d64f669a5ce84eb28ee3d" name="a60521ddaf06d64f669a5ce84eb28ee3d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>peerDiscoveryHandleMessage</b> (const char *message)</td></tr>
+<tr class="memitem:a60521ddaf06d64f669a5ce84eb28ee3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a60521ddaf06d64f669a5ce84eb28ee3d">peerDiscoveryHandleMessage</a> (const char *message)</td></tr>
 <tr class="separator:a60521ddaf06d64f669a5ce84eb28ee3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af0bd2836102b0b03bdd7254203160dd5"><td class="memItemLeft" align="right" valign="top"><a id="af0bd2836102b0b03bdd7254203160dd5" name="af0bd2836102b0b03bdd7254203160dd5"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>processArgs</b> (int argc, char **argv)</td></tr>
+<tr class="memitem:af0bd2836102b0b03bdd7254203160dd5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#af0bd2836102b0b03bdd7254203160dd5">processArgs</a> (int argc, char **argv)</td></tr>
 <tr class="separator:af0bd2836102b0b03bdd7254203160dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bb5ebcc2231b67d0128280dd02ddb3d"><td class="memItemLeft" align="right" valign="top"><a id="a1bb5ebcc2231b67d0128280dd02ddb3d" name="a1bb5ebcc2231b67d0128280dd02ddb3d"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>send_node_message</b> (int sock, const char *message)</td></tr>
+<tr class="memitem:a1bb5ebcc2231b67d0128280dd02ddb3d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a1bb5ebcc2231b67d0128280dd02ddb3d">send_node_message</a> (int sock, const char *message)</td></tr>
 <tr class="separator:a1bb5ebcc2231b67d0128280dd02ddb3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a31ff5de39a5c7bbebcdf3620d4a685ff"><td class="memItemLeft" align="right" valign="top"><a id="a31ff5de39a5c7bbebcdf3620d4a685ff" name="a31ff5de39a5c7bbebcdf3620d4a685ff"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>peers</b></td></tr>
+<tr class="memitem:a31ff5de39a5c7bbebcdf3620d4a685ff"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a31ff5de39a5c7bbebcdf3620d4a685ff">peers</a></td></tr>
 <tr class="separator:a31ff5de39a5c7bbebcdf3620d4a685ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d21cc6c159cfa512e7a9fe3141903b3"><td class="memItemLeft" align="right" valign="top"><a id="a6d21cc6c159cfa512e7a9fe3141903b3" name="a6d21cc6c159cfa512e7a9fe3141903b3"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inactivePeers</b></td></tr>
+<tr class="memitem:a6d21cc6c159cfa512e7a9fe3141903b3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a6d21cc6c159cfa512e7a9fe3141903b3">inactivePeers</a></td></tr>
 <tr class="separator:a6d21cc6c159cfa512e7a9fe3141903b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add89471d518b7d3b06241e3ca73be47d"><td class="memItemLeft" align="right" valign="top"><a id="add89471d518b7d3b06241e3ca73be47d" name="add89471d518b7d3b06241e3ca73be47d"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>MESSAGELENGTH</b> = 20</td></tr>
+<tr class="memitem:add89471d518b7d3b06241e3ca73be47d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#add89471d518b7d3b06241e3ca73be47d">MESSAGELENGTH</a> = 20</td></tr>
 <tr class="separator:add89471d518b7d3b06241e3ca73be47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed0bf268dcd36dd61540f319f6c1ee30"><td class="memItemLeft" align="right" valign="top"><a id="aed0bf268dcd36dd61540f319f6c1ee30" name="aed0bf268dcd36dd61540f319f6c1ee30"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="memitem:aed0bf268dcd36dd61540f319f6c1ee30"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#aed0bf268dcd36dd61540f319f6c1ee30">id</a></td></tr>
 <tr class="separator:aed0bf268dcd36dd61540f319f6c1ee30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f06d9bb957d12517468379feb5530a"><td class="memItemLeft" align="right" valign="top"><a id="a30f06d9bb957d12517468379feb5530a" name="a30f06d9bb957d12517468379feb5530a"></a>
-<a class="el" href="class_socket_connector.html">SocketConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sc</b></td></tr>
+<tr class="memitem:a30f06d9bb957d12517468379feb5530a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_socket_connector.html">SocketConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_communication.html#a30f06d9bb957d12517468379feb5530a">sc</a></td></tr>
 <tr class="separator:a30f06d9bb957d12517468379feb5530a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p ><a class="el" href="class_socket_communication.html">SocketCommunication</a> class for network and peer to peer communication. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa40ba4027fb0197430a3bb3c8721cb91" name="aa40ba4027fb0197430a3bb3c8721cb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa40ba4027fb0197430a3bb3c8721cb91">&#9670;&nbsp;</a></span>SocketCommunication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SocketCommunication::SocketCommunication </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Constructor for <a class="el" href="class_socket_communication.html">SocketCommunication</a> class </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa3617c8c0be10e00130852719ec5fc00" name="aa3617c8c0be10e00130852719ec5fc00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3617c8c0be10e00130852719ec5fc00">&#9670;&nbsp;</a></span>blockForger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::blockForger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >blockforger polls the transaction pool once every 300 seconds and if there are transactions in the pool, it calls forge() so they are dealt with. </p>
+
+</div>
+</div>
+<a id="a4f319adf1c03deb69716a320e10e3727" name="a4f319adf1c03deb69716a320e10e3727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f319adf1c03deb69716a320e10e3727">&#9670;&nbsp;</a></span>broadcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::broadcast </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Broadcast a message to all known peers </p>
+
+</div>
+</div>
+<a id="a556f923e6a6346454f8055400668ef27" name="a556f923e6a6346454f8055400668ef27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556f923e6a6346454f8055400668ef27">&#9670;&nbsp;</a></span>broadcastPeerDiscovery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::broadcastPeerDiscovery </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Peer dscovery thread for discovering other nodes on the network. </p>
+
+</div>
+</div>
+<a id="a92bd91aac8ca628001433ac06f90919b" name="a92bd91aac8ca628001433ac06f90919b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92bd91aac8ca628001433ac06f90919b">&#9670;&nbsp;</a></span>handshake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::handshake </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sock</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sock</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Send the actual handshake to the node comnected to our socket. </p>
+
+</div>
+</div>
+<a id="abeeeace94685bcea0f46de641c953d2a" name="abeeeace94685bcea0f46de641c953d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeeeace94685bcea0f46de641c953d2a">&#9670;&nbsp;</a></span>handshakeMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string SocketCommunication::handshakeMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
+<p>Create the handshakeMessage for peer discovery. </p>
+
+</div>
+</div>
+<a id="a0db5173cd70769ce6aa318cb4c389211" name="a0db5173cd70769ce6aa318cb4c389211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db5173cd70769ce6aa318cb4c389211">&#9670;&nbsp;</a></span>inbound_node_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::inbound_node_connected </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sock</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>When an incoming message arrives we call <a class="el" href="class_socket_communication.html#a7188bf352145f177efe93a64fa20ff7a">receive_node_message()</a> with the passed in socket. </p>
+
+</div>
+</div>
+<a id="abbf1ab3002a9467f8cd2930177671310" name="abbf1ab3002a9467f8cd2930177671310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbf1ab3002a9467f8cd2930177671310">&#9670;&nbsp;</a></span>outbound_node_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::outbound_node_connected </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sock</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sock</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>When an outbound connection is made, <a class="el" href="class_socket_communication.html#abbf1ab3002a9467f8cd2930177671310">outbound_node_connected()</a> is called, which in turn calls <a class="el" href="class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b">handshake()</a> with the passed in socket. This is only used by the peer discovery system to hansshake with new nodes found on the network. </p>
+
+</div>
+</div>
+<a id="a9e8960f26eb68748370433d1410cd92d" name="a9e8960f26eb68748370433d1410cd92d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8960f26eb68748370433d1410cd92d">&#9670;&nbsp;</a></span>peerDiscovery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::peerDiscovery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >The actual peer discovery system. It creates a handshake message and broadcasts it. </p>
+
+</div>
+</div>
+<a id="a60521ddaf06d64f669a5ce84eb28ee3d" name="a60521ddaf06d64f669a5ce84eb28ee3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60521ddaf06d64f669a5ce84eb28ee3d">&#9670;&nbsp;</a></span>peerDiscoveryHandleMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::peerDiscoveryHandleMessage </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Handle the incoming peer discovery message. </p>
+
+</div>
+</div>
+<a id="a853380083a5e1450551e3d238dc656b4" name="a853380083a5e1450551e3d238dc656b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a853380083a5e1450551e3d238dc656b4">&#9670;&nbsp;</a></span>peerDiscoveryStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::peerDiscoveryStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >PeerDiscoveryStatus is used to display connected nodes. </p>
+
+</div>
+</div>
+<a id="af0bd2836102b0b03bdd7254203160dd5" name="af0bd2836102b0b03bdd7254203160dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bd2836102b0b03bdd7254203160dd5">&#9670;&nbsp;</a></span>processArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SocketCommunication::processArgs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int</dd></dl>
+<p>Process command line arguments </p>
+
+</div>
+</div>
+<a id="a7188bf352145f177efe93a64fa20ff7a" name="a7188bf352145f177efe93a64fa20ff7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7188bf352145f177efe93a64fa20ff7a">&#9670;&nbsp;</a></span>receive_node_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::receive_node_message </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sock</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Recieves a message sent from the node connected to our socket. We make two calls to recv(), the first call gets the message length, the second call gets the message. </p>
+
+</div>
+</div>
+<a id="a1bb5ebcc2231b67d0128280dd02ddb3d" name="a1bb5ebcc2231b67d0128280dd02ddb3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb5ebcc2231b67d0128280dd02ddb3d">&#9670;&nbsp;</a></span>send_node_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::send_node_message </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sock</td><td></td></tr>
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Used for sending a specific node (connected via our socket) a message. </p>
+
+</div>
+</div>
 <a id="a5d83e3c33eb5a109d2d3ddbd1e7b2813" name="a5d83e3c33eb5a109d2d3ddbd1e7b2813"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d83e3c33eb5a109d2d3ddbd1e7b2813">&#9670;&nbsp;</a></span>startP2POperations()</h2>
 
@@ -170,7 +525,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p >This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it's missing (if any) from the blockchain on the master node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is where everything starts up in terms of a single node. We start with our p2p server, our peer discovery status thread as well as our actual peer discovery thread. We also check to see if this is a master node or not, if not, it will grab the blocks it's missing (if any) from the blockchain on the master node. </p>
 
 </div>
 </div>
@@ -199,7 +561,127 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></t
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Starts the peer to peer server. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>open db and if it has no data, write the genesis block to our mongodb instance </dd></dl>
+
+</div>
+</div>
+<a id="ada488d9ffe321ae2275c12e9b4656393" name="ada488d9ffe321ae2275c12e9b4656393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada488d9ffe321ae2275c12e9b4656393">&#9670;&nbsp;</a></span>startSocketCommunication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketCommunication::startSocketCommunication </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Calls processArgs and then starts peer to peer operations. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aed0bf268dcd36dd61540f319f6c1ee30" name="aed0bf268dcd36dd61540f319f6c1ee30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed0bf268dcd36dd61540f319f6c1ee30">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string SocketCommunication::id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >peer to peer server id </p>
+
+</div>
+</div>
+<a id="a6d21cc6c159cfa512e7a9fe3141903b3" name="a6d21cc6c159cfa512e7a9fe3141903b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d21cc6c159cfa512e7a9fe3141903b3">&#9670;&nbsp;</a></span>inactivePeers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; SocketCommunication::inactivePeers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >list of inactive peers, used for temporary storage </p>
+
+</div>
+</div>
+<a id="add89471d518b7d3b06241e3ca73be47d" name="add89471d518b7d3b06241e3ca73be47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add89471d518b7d3b06241e3ca73be47d">&#9670;&nbsp;</a></span>MESSAGELENGTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SocketCommunication::MESSAGELENGTH = 20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Our predetermined message length for discovery messages </p>
+
+</div>
+</div>
+<a id="a31ff5de39a5c7bbebcdf3620d4a685ff" name="a31ff5de39a5c7bbebcdf3620d4a685ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ff5de39a5c7bbebcdf3620d4a685ff">&#9670;&nbsp;</a></span>peers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; SocketCommunication::peers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >List of peers connected to this node. </p>
+
+</div>
+</div>
+<a id="a30f06d9bb957d12517468379feb5530a" name="a30f06d9bb957d12517468379feb5530a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f06d9bb957d12517468379feb5530a">&#9670;&nbsp;</a></span>sc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_socket_connector.html">SocketConnector</a> SocketCommunication::sc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >this node's socket connecter (ip and port) </p>
 
 </div>
 </div>

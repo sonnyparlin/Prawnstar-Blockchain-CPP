@@ -1,0 +1,77 @@
+\hypertarget{namespacep2putils}{}\doxysection{p2putils Namespace Reference}
+\label{namespacep2putils}\index{p2putils@{p2putils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacep2putils_af46683e09cca49b136c8befa358b00da}{is\+Valid\+Ip\+Address}} (const std\+::string \&ip\+Address)
+\item 
+int \mbox{\hyperlink{namespacep2putils_a74b0c45cdbea73d9c22287b606db00b1}{create\+Socket}} ()
+\item 
+bool \mbox{\hyperlink{namespacep2putils_ae9e1daac4ed670a03f68296383ae3880}{Bind}} (int server, struct sockaddr\+\_\+in address, int PORT)
+\item 
+int \mbox{\hyperlink{namespacep2putils_aa7452a5aadefeadca18d426cfa964ef3}{set\+Outgoing\+Node\+Connection}} (const std\+::string \&ipaddress, int port)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespacep2putils}{p2putils}} for random functions related to the peer to peer network. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacep2putils_ae9e1daac4ed670a03f68296383ae3880}\label{namespacep2putils_ae9e1daac4ed670a03f68296383ae3880}} 
+\index{p2putils@{p2putils}!Bind@{Bind}}
+\index{Bind@{Bind}!p2putils@{p2putils}}
+\doxysubsubsection{\texorpdfstring{Bind()}{Bind()}}
+{\footnotesize\ttfamily bool p2putils\+::\+Bind (\begin{DoxyParamCaption}\item[{int}]{server,  }\item[{struct sockaddr\+\_\+in}]{address,  }\item[{int}]{PORT }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+{\em address} & \\
+\hline
+{\em PORT} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Method for binding the server to the address and port. \mbox{\Hypertarget{namespacep2putils_a74b0c45cdbea73d9c22287b606db00b1}\label{namespacep2putils_a74b0c45cdbea73d9c22287b606db00b1}} 
+\index{p2putils@{p2putils}!createSocket@{createSocket}}
+\index{createSocket@{createSocket}!p2putils@{p2putils}}
+\doxysubsubsection{\texorpdfstring{createSocket()}{createSocket()}}
+{\footnotesize\ttfamily int p2putils\+::create\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Method to create a new socket. \mbox{\Hypertarget{namespacep2putils_af46683e09cca49b136c8befa358b00da}\label{namespacep2putils_af46683e09cca49b136c8befa358b00da}} 
+\index{p2putils@{p2putils}!isValidIpAddress@{isValidIpAddress}}
+\index{isValidIpAddress@{isValidIpAddress}!p2putils@{p2putils}}
+\doxysubsubsection{\texorpdfstring{isValidIpAddress()}{isValidIpAddress()}}
+{\footnotesize\ttfamily bool p2putils\+::is\+Valid\+Ip\+Address (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip\+Address }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip\+Address} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Checks to make sure passed in ip address is valid using inet\+\_\+pton() \mbox{\Hypertarget{namespacep2putils_aa7452a5aadefeadca18d426cfa964ef3}\label{namespacep2putils_aa7452a5aadefeadca18d426cfa964ef3}} 
+\index{p2putils@{p2putils}!setOutgoingNodeConnection@{setOutgoingNodeConnection}}
+\index{setOutgoingNodeConnection@{setOutgoingNodeConnection}!p2putils@{p2putils}}
+\doxysubsubsection{\texorpdfstring{setOutgoingNodeConnection()}{setOutgoingNodeConnection()}}
+{\footnotesize\ttfamily int p2putils\+::set\+Outgoing\+Node\+Connection (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ipaddress,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ipaddress} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Set up outgoing connection. 

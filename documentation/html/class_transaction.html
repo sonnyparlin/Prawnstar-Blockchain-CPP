@@ -70,61 +70,362 @@ $(function() {
   <div class="headertitle"><div class="title">Transaction Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_transaction_8hpp_source.html">Transaction.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae01553f02698dbb78e6e5c4aca160cfa"><td class="memItemLeft" align="right" valign="top"><a id="ae01553f02698dbb78e6e5c4aca160cfa" name="ae01553f02698dbb78e6e5c4aca160cfa"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>toJson</b> ()</td></tr>
-<tr class="separator:ae01553f02698dbb78e6e5c4aca160cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25f7b59f7c4aee49718bd0a03cec951a"><td class="memItemLeft" align="right" valign="top"><a id="a25f7b59f7c4aee49718bd0a03cec951a" name="a25f7b59f7c4aee49718bd0a03cec951a"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>payload</b> ()</td></tr>
-<tr class="separator:a25f7b59f7c4aee49718bd0a03cec951a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fc44a24bfca6202ca05113e31e7f1b5"><td class="memItemLeft" align="right" valign="top"><a id="a8fc44a24bfca6202ca05113e31e7f1b5" name="a8fc44a24bfca6202ca05113e31e7f1b5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sign</b> (std::string sig)</td></tr>
+<tr class="memitem:a6a57b62f03c662b094b27ab7245666a6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a6a57b62f03c662b094b27ab7245666a6">toJson</a> ()</td></tr>
+<tr class="separator:a6a57b62f03c662b094b27ab7245666a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2711b335f673a115279100dcd759bf20"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a2711b335f673a115279100dcd759bf20">payload</a> ()</td></tr>
+<tr class="separator:a2711b335f673a115279100dcd759bf20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fc44a24bfca6202ca05113e31e7f1b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a8fc44a24bfca6202ca05113e31e7f1b5">sign</a> (std::string sig)</td></tr>
 <tr class="separator:a8fc44a24bfca6202ca05113e31e7f1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa79b30343f7bd6ef94981e4437116f22"><td class="memItemLeft" align="right" valign="top"><a id="aa79b30343f7bd6ef94981e4437116f22" name="aa79b30343f7bd6ef94981e4437116f22"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Transaction</b> (string senderAddress, string receiverAddress, double amount, string type)</td></tr>
+<tr class="memitem:aa79b30343f7bd6ef94981e4437116f22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#aa79b30343f7bd6ef94981e4437116f22">Transaction</a> (string <a class="el" href="class_transaction.html#ac0e72f4339c637961607896f591d0eb2">senderAddress</a>, string <a class="el" href="class_transaction.html#a5bb3521aa76bee56850f203bec06cb8c">receiverAddress</a>, double <a class="el" href="class_transaction.html#a79d18292be964d9196985f20474abe64">amount</a>, string <a class="el" href="class_transaction.html#af295af302feb2c12bd88c1af30c358b3">type</a>)</td></tr>
 <tr class="separator:aa79b30343f7bd6ef94981e4437116f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac0e72f4339c637961607896f591d0eb2"><td class="memItemLeft" align="right" valign="top"><a id="ac0e72f4339c637961607896f591d0eb2" name="ac0e72f4339c637961607896f591d0eb2"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>senderAddress</b></td></tr>
+<tr class="memitem:ac0e72f4339c637961607896f591d0eb2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#ac0e72f4339c637961607896f591d0eb2">senderAddress</a></td></tr>
 <tr class="separator:ac0e72f4339c637961607896f591d0eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a477bb1b0ddc439155aee18705c8bb5"><td class="memItemLeft" align="right" valign="top"><a id="a6a477bb1b0ddc439155aee18705c8bb5" name="a6a477bb1b0ddc439155aee18705c8bb5"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>senderPublicKey</b></td></tr>
+<tr class="memitem:a6a477bb1b0ddc439155aee18705c8bb5"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a6a477bb1b0ddc439155aee18705c8bb5">senderPublicKey</a></td></tr>
 <tr class="separator:a6a477bb1b0ddc439155aee18705c8bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bb3521aa76bee56850f203bec06cb8c"><td class="memItemLeft" align="right" valign="top"><a id="a5bb3521aa76bee56850f203bec06cb8c" name="a5bb3521aa76bee56850f203bec06cb8c"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>receiverAddress</b></td></tr>
+<tr class="memitem:a5bb3521aa76bee56850f203bec06cb8c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a5bb3521aa76bee56850f203bec06cb8c">receiverAddress</a></td></tr>
 <tr class="separator:a5bb3521aa76bee56850f203bec06cb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee8367335bc186afce178e3f813711ad"><td class="memItemLeft" align="right" valign="top"><a id="aee8367335bc186afce178e3f813711ad" name="aee8367335bc186afce178e3f813711ad"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>receiverPublicKey</b></td></tr>
+<tr class="memitem:aee8367335bc186afce178e3f813711ad"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#aee8367335bc186afce178e3f813711ad">receiverPublicKey</a></td></tr>
 <tr class="separator:aee8367335bc186afce178e3f813711ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79d18292be964d9196985f20474abe64"><td class="memItemLeft" align="right" valign="top"><a id="a79d18292be964d9196985f20474abe64" name="a79d18292be964d9196985f20474abe64"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>amount</b> {}</td></tr>
+<tr class="memitem:a79d18292be964d9196985f20474abe64"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a79d18292be964d9196985f20474abe64">amount</a> {}</td></tr>
 <tr class="separator:a79d18292be964d9196985f20474abe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af295af302feb2c12bd88c1af30c358b3"><td class="memItemLeft" align="right" valign="top"><a id="af295af302feb2c12bd88c1af30c358b3" name="af295af302feb2c12bd88c1af30c358b3"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:af295af302feb2c12bd88c1af30c358b3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#af295af302feb2c12bd88c1af30c358b3">type</a></td></tr>
 <tr class="separator:af295af302feb2c12bd88c1af30c358b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44b7c4fe4086933c4f948d91912314db"><td class="memItemLeft" align="right" valign="top"><a id="a44b7c4fe4086933c4f948d91912314db" name="a44b7c4fe4086933c4f948d91912314db"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="memitem:a44b7c4fe4086933c4f948d91912314db"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a44b7c4fe4086933c4f948d91912314db">id</a></td></tr>
 <tr class="separator:a44b7c4fe4086933c4f948d91912314db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23f8b9f7264a97cd5abaaeb103c2a85"><td class="memItemLeft" align="right" valign="top"><a id="ae23f8b9f7264a97cd5abaaeb103c2a85" name="ae23f8b9f7264a97cd5abaaeb103c2a85"></a>
-time_t&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp</b> {}</td></tr>
+<tr class="memitem:ae23f8b9f7264a97cd5abaaeb103c2a85"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#ae23f8b9f7264a97cd5abaaeb103c2a85">timestamp</a> {}</td></tr>
 <tr class="separator:ae23f8b9f7264a97cd5abaaeb103c2a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66d7bde825c74dc38a3de06545b8775e"><td class="memItemLeft" align="right" valign="top"><a id="a66d7bde825c74dc38a3de06545b8775e" name="a66d7bde825c74dc38a3de06545b8775e"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>signature</b></td></tr>
+<tr class="memitem:a66d7bde825c74dc38a3de06545b8775e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a66d7bde825c74dc38a3de06545b8775e">signature</a></td></tr>
 <tr class="separator:a66d7bde825c74dc38a3de06545b8775e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a6940e85f9cba6c8f331e1ce6e4d65c"><td class="memItemLeft" align="right" valign="top"><a id="a9a6940e85f9cba6c8f331e1ce6e4d65c" name="a9a6940e85f9cba6c8f331e1ce6e4d65c"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>signatureLength</b> {}</td></tr>
+<tr class="memitem:a9a6940e85f9cba6c8f331e1ce6e4d65c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a9a6940e85f9cba6c8f331e1ce6e4d65c">signatureLength</a> {}</td></tr>
 <tr class="separator:a9a6940e85f9cba6c8f331e1ce6e4d65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a7d309437514ff230646f8dbcd9a2fa06"><td class="memItemLeft" align="right" valign="top"><a id="a7d309437514ff230646f8dbcd9a2fa06" name="a7d309437514ff230646f8dbcd9a2fa06"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;lhs, const <a class="el" href="class_transaction.html">Transaction</a> &amp;rhs)</td></tr>
+<tr class="memitem:a7d309437514ff230646f8dbcd9a2fa06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transaction.html#a7d309437514ff230646f8dbcd9a2fa06">operator==</a> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;lhs, const <a class="el" href="class_transaction.html">Transaction</a> &amp;rhs)</td></tr>
 <tr class="separator:a7d309437514ff230646f8dbcd9a2fa06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Our transaction class. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa79b30343f7bd6ef94981e4437116f22" name="aa79b30343f7bd6ef94981e4437116f22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa79b30343f7bd6ef94981e4437116f22">&#9670;&nbsp;</a></span>Transaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transaction::Transaction </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>senderAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>receiverAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>amount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">senderAddress</td><td></td></tr>
+    <tr><td class="paramname">receiverAddress</td><td></td></tr>
+    <tr><td class="paramname">amount</td><td></td></tr>
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p><a class="el" href="class_transaction.html">Transaction</a> constructor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2711b335f673a115279100dcd759bf20" name="a2711b335f673a115279100dcd759bf20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2711b335f673a115279100dcd759bf20">&#9670;&nbsp;</a></span>payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Transaction::payload </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
+<p>stringified json repsentation of the transaction's payload, used for signing. </p>
+
+</div>
+</div>
+<a id="a8fc44a24bfca6202ca05113e31e7f1b5" name="a8fc44a24bfca6202ca05113e31e7f1b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc44a24bfca6202ca05113e31e7f1b5">&#9670;&nbsp;</a></span>sign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Transaction::sign </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>_signature</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_signature</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Add signature to the transaction. </p>
+
+</div>
+</div>
+<a id="a6a57b62f03c662b094b27ab7245666a6" name="a6a57b62f03c662b094b27ab7245666a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a57b62f03c662b094b27ab7245666a6">&#9670;&nbsp;</a></span>toJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Transaction::toJson </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
+<p>Stringified json representation of a transaction. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a7d309437514ff230646f8dbcd9a2fa06" name="a7d309437514ff230646f8dbcd9a2fa06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d309437514ff230646f8dbcd9a2fa06">&#9670;&nbsp;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_transaction.html">Transaction</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_transaction.html">Transaction</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td></td></tr>
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<p>Overloaded == operator for comparing transactions using their id. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a79d18292be964d9196985f20474abe64" name="a79d18292be964d9196985f20474abe64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d18292be964d9196985f20474abe64">&#9670;&nbsp;</a></span>amount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Transaction::amount {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >transaction amount </p>
+
+</div>
+</div>
+<a id="a44b7c4fe4086933c4f948d91912314db" name="a44b7c4fe4086933c4f948d91912314db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b7c4fe4086933c4f948d91912314db">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p ><a class="el" href="class_transaction.html">Transaction</a> id </p>
+
+</div>
+</div>
+<a id="a5bb3521aa76bee56850f203bec06cb8c" name="a5bb3521aa76bee56850f203bec06cb8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb3521aa76bee56850f203bec06cb8c">&#9670;&nbsp;</a></span>receiverAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::receiverAddress</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >receiver's address </p>
+
+</div>
+</div>
+<a id="aee8367335bc186afce178e3f813711ad" name="aee8367335bc186afce178e3f813711ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8367335bc186afce178e3f813711ad">&#9670;&nbsp;</a></span>receiverPublicKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::receiverPublicKey</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >receiver's public key </p>
+
+</div>
+</div>
+<a id="ac0e72f4339c637961607896f591d0eb2" name="ac0e72f4339c637961607896f591d0eb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0e72f4339c637961607896f591d0eb2">&#9670;&nbsp;</a></span>senderAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::senderAddress</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >sending address </p>
+
+</div>
+</div>
+<a id="a6a477bb1b0ddc439155aee18705c8bb5" name="a6a477bb1b0ddc439155aee18705c8bb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a477bb1b0ddc439155aee18705c8bb5">&#9670;&nbsp;</a></span>senderPublicKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::senderPublicKey</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >sender's public key </p>
+
+</div>
+</div>
+<a id="a66d7bde825c74dc38a3de06545b8775e" name="a66d7bde825c74dc38a3de06545b8775e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d7bde825c74dc38a3de06545b8775e">&#9670;&nbsp;</a></span>signature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::signature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p ><a class="el" href="class_transaction.html">Transaction</a>'s signature. </p>
+
+</div>
+</div>
+<a id="a9a6940e85f9cba6c8f331e1ce6e4d65c" name="a9a6940e85f9cba6c8f331e1ce6e4d65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6940e85f9cba6c8f331e1ce6e4d65c">&#9670;&nbsp;</a></span>signatureLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Transaction::signatureLength {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Signature length </p>
+
+</div>
+</div>
+<a id="ae23f8b9f7264a97cd5abaaeb103c2a85" name="ae23f8b9f7264a97cd5abaaeb103c2a85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23f8b9f7264a97cd5abaaeb103c2a85">&#9670;&nbsp;</a></span>timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">time_t Transaction::timestamp {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p ><a class="el" href="class_transaction.html">Transaction</a> timestamp </p>
+
+</div>
+</div>
+<a id="af295af302feb2c12bd88c1af30c358b3" name="af295af302feb2c12bd88c1af30c358b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af295af302feb2c12bd88c1af30c358b3">&#9670;&nbsp;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Transaction::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >type (EXCHANGE, TRANSFER, STAKE, REWARD) </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="_transaction_8hpp_source.html">Transaction.hpp</a></li>
 <li>Transaction.cpp</li>

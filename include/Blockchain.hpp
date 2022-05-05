@@ -9,6 +9,9 @@
 
 class Node;
 
+/*!
+ * Blockchain class.
+ */
 class Blockchain {
 private:
     Node *node;

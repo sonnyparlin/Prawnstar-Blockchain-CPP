@@ -8,6 +8,9 @@
 #include <nlohmann/json.hpp>
 #include "utils.hpp"
 
+/*!
+ * Block, class for holding block info.
+ */
 class Block {
 public:
     // Constructors

@@ -1,33 +1,105 @@
 \hypertarget{class_transaction_pool}{}\doxysection{Transaction\+Pool Class Reference}
 \label{class_transaction_pool}\index{TransactionPool@{TransactionPool}}
+
+
+{\ttfamily \#include $<$Transaction\+Pool.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}\label{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}} 
-void {\bfseries add\+Transaction} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
+void \mbox{\hyperlink{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}{add\+Transaction}} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}\label{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}} 
-bool {\bfseries transaction\+Exists} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
+bool \mbox{\hyperlink{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}{transaction\+Exists}} (const \mbox{\hyperlink{class_transaction}{Transaction}} \&)
 \item 
-\mbox{\Hypertarget{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}\label{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}} 
-void {\bfseries remove\+From\+Pool} (const vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
+void \mbox{\hyperlink{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}{remove\+From\+Pool}} (const vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&)
 \item 
-\mbox{\Hypertarget{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}\label{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}} 
-std\+::string {\bfseries get\+Pool\+Transactions\+Json\+String} ()
+std\+::string \mbox{\hyperlink{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}{get\+Pool\+Transactions\+Json\+String}} ()
 \item 
-\mbox{\Hypertarget{class_transaction_pool_ae130e06b22129b1608d0f691b516a2a7}\label{class_transaction_pool_ae130e06b22129b1608d0f691b516a2a7}} 
-bool {\bfseries forger\+Required} ()
+bool \mbox{\hyperlink{class_transaction_pool_ae130e06b22129b1608d0f691b516a2a7}{forger\+Required}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_transaction_pool_ac92a3117c5069ea077beb78c73365127}\label{class_transaction_pool_ac92a3117c5069ea077beb78c73365127}} 
-std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ {\bfseries transactions}
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \mbox{\hyperlink{class_transaction_pool_ac92a3117c5069ea077beb78c73365127}{transactions}}
 \item 
-\mbox{\Hypertarget{class_transaction_pool_a23c10159c39db80016b4911d54d5a79f}\label{class_transaction_pool_a23c10159c39db80016b4911d54d5a79f}} 
-std\+::mutex {\bfseries tpool\+Mutex}
+std\+::mutex \mbox{\hyperlink{class_transaction_pool_a23c10159c39db80016b4911d54d5a79f}{tpool\+Mutex}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_transaction_pool}{Transaction\+Pool}}, this is where transactions go before they land in a block. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}\label{class_transaction_pool_aee7cf6e6e62fceb74114eecca82588b9}} 
+\index{TransactionPool@{TransactionPool}!addTransaction@{addTransaction}}
+\index{addTransaction@{addTransaction}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{addTransaction()}{addTransaction()}}
+{\footnotesize\ttfamily void Transaction\+Pool\+::add\+Transaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transaction}{Transaction}} \&}]{transaction }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em transaction} & \\
+\hline
+\end{DoxyParams}
+Add a transaction to the transaction pool. \mbox{\Hypertarget{class_transaction_pool_ae130e06b22129b1608d0f691b516a2a7}\label{class_transaction_pool_ae130e06b22129b1608d0f691b516a2a7}} 
+\index{TransactionPool@{TransactionPool}!forgerRequired@{forgerRequired}}
+\index{forgerRequired@{forgerRequired}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{forgerRequired()}{forgerRequired()}}
+{\footnotesize\ttfamily bool Transaction\+Pool\+::forger\+Required (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Check to see if a forger is required. We require a forger after 20 transactions have been added to the pool or if 300 seconds has passed, see \mbox{\hyperlink{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}{Socket\+Communication\+::block\+Forger()}}. \mbox{\Hypertarget{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}\label{class_transaction_pool_a75d388012cc9b8ac636f4314bef8ab2f}} 
+\index{TransactionPool@{TransactionPool}!getPoolTransactionsJsonString@{getPoolTransactionsJsonString}}
+\index{getPoolTransactionsJsonString@{getPoolTransactionsJsonString}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{getPoolTransactionsJsonString()}{getPoolTransactionsJsonString()}}
+{\footnotesize\ttfamily std\+::string Transaction\+Pool\+::get\+Pool\+Transactions\+Json\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Stringified json representation of the transactions in the pool. \mbox{\Hypertarget{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}\label{class_transaction_pool_a4c66a1487083927debc057a94fdf743e}} 
+\index{TransactionPool@{TransactionPool}!removeFromPool@{removeFromPool}}
+\index{removeFromPool@{removeFromPool}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{removeFromPool()}{removeFromPool()}}
+{\footnotesize\ttfamily void Transaction\+Pool\+::remove\+From\+Pool (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \&}]{txs }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em txs} & \\
+\hline
+\end{DoxyParams}
+Remove the list of given transactions from the transaction pool. \mbox{\Hypertarget{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}\label{class_transaction_pool_ad8dcb46849bb911dabe965b9e1ad92a5}} 
+\index{TransactionPool@{TransactionPool}!transactionExists@{transactionExists}}
+\index{transactionExists@{transactionExists}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{transactionExists()}{transactionExists()}}
+{\footnotesize\ttfamily bool Transaction\+Pool\+::transaction\+Exists (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transaction}{Transaction}} \&}]{transaction }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em transaction} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool
+\end{DoxyReturn}
+Check if the transaction already exists in the pool. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_transaction_pool_a23c10159c39db80016b4911d54d5a79f}\label{class_transaction_pool_a23c10159c39db80016b4911d54d5a79f}} 
+\index{TransactionPool@{TransactionPool}!tpoolMutex@{tpoolMutex}}
+\index{tpoolMutex@{tpoolMutex}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{tpoolMutex}{tpoolMutex}}
+{\footnotesize\ttfamily std\+::mutex Transaction\+Pool\+::tpool\+Mutex}
+
+mutex for protecting the pool transactions \mbox{\Hypertarget{class_transaction_pool_ac92a3117c5069ea077beb78c73365127}\label{class_transaction_pool_ac92a3117c5069ea077beb78c73365127}} 
+\index{TransactionPool@{TransactionPool}!transactions@{transactions}}
+\index{transactions@{transactions}!TransactionPool@{TransactionPool}}
+\doxysubsubsection{\texorpdfstring{transactions}{transactions}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_transaction}{Transaction}}$>$ Transaction\+Pool\+::transactions}
+
+Pool transaction list 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

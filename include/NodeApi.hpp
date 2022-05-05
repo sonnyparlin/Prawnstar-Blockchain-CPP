@@ -8,6 +8,9 @@
 
 class Node;
 
+/*!
+ * The API class
+ */
 class NodeApi {
 private:
     Node *node;
