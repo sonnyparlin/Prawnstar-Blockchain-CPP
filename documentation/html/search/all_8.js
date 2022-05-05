@@ -6,6 +6,6 @@ var searchData=
   ['handletransaction_3',['handleTransaction',['../class_node.html#a308b10eb07ee09df6bef85ecd67d4e85',1,'Node']]],
   ['handshake_4',['handshake',['../class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b',1,'SocketCommunication']]],
   ['handshakemessage_5',['handshakeMessage',['../class_socket_communication.html#abeeeace94685bcea0f46de641c953d2a',1,'SocketCommunication']]],
-  ['hash_6',['hash',['../class_block.html#ad81167700ff115ff348eba6b22d97fb1',1,'Block']]],
+  ['hash_6',['hash',['../class_block.html#ad81167700ff115ff348eba6b22d97fb1',1,'Block::hash()'],['../namespaceutils.html#a32ab6c1e274f5560f73b881c0eeafe1f',1,'utils::hash()']]],
   ['hexsig_7',['hexsig',['../structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d',1,'utils::Signature']]]
 ];

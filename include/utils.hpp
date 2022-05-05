@@ -14,6 +14,9 @@
 #include <vector>
 #include <random>
 
+/*!
+ * Namespace utils
+ */
 namespace utils {
     /*!
      * Signature struct
@@ -37,6 +40,7 @@ namespace utils {
     std::vector<std::string> split(std::string &str, const char *seperator);
     std::string generateAddress(const std::string &str);
     std::string get_uuid();
+    inline uint32_t lcg_rand(uint32_t *state);
     std::string gen_random_str(int len);
     time_t timeSinceEpoch();
 

@@ -1,0 +1,200 @@
+\hypertarget{namespaceutils}{}\doxysection{utils Namespace Reference}
+\label{namespaceutils}\index{utils@{utils}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structutils_1_1_signature}{Signature}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceutils_ae0e7c1a01a455773aae690dfb871566f}{get\+\_\+ip\+\_\+and\+\_\+port\+\_\+from\+\_\+config}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespaceutils_a37796cd7c559a004914f5e1073cfc725}{get\+\_\+master\+\_\+node\+\_\+ip}} ()
+\item 
+int \mbox{\hyperlink{namespaceutils_a46c2725f78ada7ce603dc64f68352b4a}{get\+\_\+master\+\_\+node\+\_\+port}} ()
+\item 
+void \mbox{\hyperlink{namespaceutils_a4896f4b0408bd63b0c4d4f70f091b1e7}{start\+Utils}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespaceutils_a32ab6c1e274f5560f73b881c0eeafe1f}{hash}} (const std\+::string \&)
+\item 
+int \mbox{\hyperlink{namespaceutils_ac2805766215e1930869f060c9c24fdc5}{verify\+Signature}} (const std\+::string \&, const std\+::string \&, size\+\_\+t \&, const std\+::string \&)
+\item 
+int \mbox{\hyperlink{namespaceutils_aa362c0052e677799768436cbd640e906}{get\+Port}} (char $\ast$port\+String)
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceutils_a74081e5f7593ba99957955c6c7ea3608}{split}} (std\+::string \&str, const char $\ast$seperator)
+\item 
+std\+::string \mbox{\hyperlink{namespaceutils_a669a63854d14ad6cac29d90eb13de1dc}{generate\+Address}} (const std\+::string \&str)
+\item 
+std\+::string \mbox{\hyperlink{namespaceutils_aaa6b075e5e79b666a2c04271d86545dc}{get\+\_\+uuid}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{namespaceutils_a1dd5415d2114d1d0b9f8b78baebf626b}{lcg\+\_\+rand}} (uint32\+\_\+t $\ast$state)
+\item 
+std\+::string \mbox{\hyperlink{namespaceutils_a62e18f2badb6ce39474c62320bd7fa8b}{gen\+\_\+random\+\_\+str}} (int len)
+\item 
+time\+\_\+t \mbox{\hyperlink{namespaceutils_a27e7fca1e1cb512f83e24736311679e0}{time\+Since\+Epoch}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace utils 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceutils_a62e18f2badb6ce39474c62320bd7fa8b}\label{namespaceutils_a62e18f2badb6ce39474c62320bd7fa8b}} 
+\index{utils@{utils}!gen\_random\_str@{gen\_random\_str}}
+\index{gen\_random\_str@{gen\_random\_str}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{gen\_random\_str()}{gen\_random\_str()}}
+{\footnotesize\ttfamily std\+::string utils\+::gen\+\_\+random\+\_\+str (\begin{DoxyParamCaption}\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Function used for testing purposes. \mbox{\Hypertarget{namespaceutils_a669a63854d14ad6cac29d90eb13de1dc}\label{namespaceutils_a669a63854d14ad6cac29d90eb13de1dc}} 
+\index{utils@{utils}!generateAddress@{generateAddress}}
+\index{generateAddress@{generateAddress}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{generateAddress()}{generateAddress()}}
+{\footnotesize\ttfamily std\+::string utils\+::generate\+Address (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Generates a crypto address from a public key by hashing the public key with a SHA1 hash. SHA1 is shorter than SHA256 and therefore better suited for a public crypto address. \mbox{\Hypertarget{namespaceutils_ae0e7c1a01a455773aae690dfb871566f}\label{namespaceutils_ae0e7c1a01a455773aae690dfb871566f}} 
+\index{utils@{utils}!get\_ip\_and\_port\_from\_config@{get\_ip\_and\_port\_from\_config}}
+\index{get\_ip\_and\_port\_from\_config@{get\_ip\_and\_port\_from\_config}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{get\_ip\_and\_port\_from\_config()}{get\_ip\_and\_port\_from\_config()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ utils\+::get\+\_\+ip\+\_\+and\+\_\+port\+\_\+from\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+vector
+\end{DoxyReturn}
+Gets the IP and PORT of this node from config.\+json. \mbox{\Hypertarget{namespaceutils_a37796cd7c559a004914f5e1073cfc725}\label{namespaceutils_a37796cd7c559a004914f5e1073cfc725}} 
+\index{utils@{utils}!get\_master\_node\_ip@{get\_master\_node\_ip}}
+\index{get\_master\_node\_ip@{get\_master\_node\_ip}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{get\_master\_node\_ip()}{get\_master\_node\_ip()}}
+{\footnotesize\ttfamily std\+::string utils\+::get\+\_\+master\+\_\+node\+\_\+ip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+string
+\end{DoxyReturn}
+Getter for master node\textquotesingle{}s ip \mbox{\Hypertarget{namespaceutils_a46c2725f78ada7ce603dc64f68352b4a}\label{namespaceutils_a46c2725f78ada7ce603dc64f68352b4a}} 
+\index{utils@{utils}!get\_master\_node\_port@{get\_master\_node\_port}}
+\index{get\_master\_node\_port@{get\_master\_node\_port}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{get\_master\_node\_port()}{get\_master\_node\_port()}}
+{\footnotesize\ttfamily int utils\+::get\+\_\+master\+\_\+node\+\_\+port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Getter for master node\textquotesingle{}s port. \mbox{\Hypertarget{namespaceutils_aaa6b075e5e79b666a2c04271d86545dc}\label{namespaceutils_aaa6b075e5e79b666a2c04271d86545dc}} 
+\index{utils@{utils}!get\_uuid@{get\_uuid}}
+\index{get\_uuid@{get\_uuid}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{get\_uuid()}{get\_uuid()}}
+{\footnotesize\ttfamily std\+::string utils\+::get\+\_\+uuid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+UUID generator, found on stack overflow. \mbox{\Hypertarget{namespaceutils_aa362c0052e677799768436cbd640e906}\label{namespaceutils_aa362c0052e677799768436cbd640e906}} 
+\index{utils@{utils}!getPort@{getPort}}
+\index{getPort@{getPort}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily int utils\+::get\+Port (\begin{DoxyParamCaption}\item[{char $\ast$}]{port\+String }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+String} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+\mbox{\hyperlink{namespaceutils_aa362c0052e677799768436cbd640e906}{get\+Port()}} takes a string and does some checking to see if it can be a valid port. It converts the string to an int. \mbox{\Hypertarget{namespaceutils_a32ab6c1e274f5560f73b881c0eeafe1f}\label{namespaceutils_a32ab6c1e274f5560f73b881c0eeafe1f}} 
+\index{utils@{utils}!hash@{hash}}
+\index{hash@{hash}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily std\+::string utils\+::hash (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+SHA256 hash function. \mbox{\Hypertarget{namespaceutils_a1dd5415d2114d1d0b9f8b78baebf626b}\label{namespaceutils_a1dd5415d2114d1d0b9f8b78baebf626b}} 
+\index{utils@{utils}!lcg\_rand@{lcg\_rand}}
+\index{lcg\_rand@{lcg\_rand}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{lcg\_rand()}{lcg\_rand()}}
+{\footnotesize\ttfamily uint32\+\_\+t utils\+::lcg\+\_\+rand (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t
+\end{DoxyReturn}
+A linear congruential generator (LCG) is an algorithm that yields a sequence of pseudo-\/randomized numbers calculated with a discontinuous piecewise linear equation. The method represents one of the oldest and best-\/known pseudorandom number generator algorithms. \mbox{\Hypertarget{namespaceutils_a74081e5f7593ba99957955c6c7ea3608}\label{namespaceutils_a74081e5f7593ba99957955c6c7ea3608}} 
+\index{utils@{utils}!split@{split}}
+\index{split@{split}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ utils\+::split (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{const char $\ast$}]{seperator }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+{\em seperator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$
+\end{DoxyReturn}
+string split function, returns a vector of strings split by $<$seperator$>$ \mbox{\Hypertarget{namespaceutils_a4896f4b0408bd63b0c4d4f70f091b1e7}\label{namespaceutils_a4896f4b0408bd63b0c4d4f70f091b1e7}} 
+\index{utils@{utils}!startUtils@{startUtils}}
+\index{startUtils@{startUtils}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{startUtils()}{startUtils()}}
+{\footnotesize\ttfamily void utils\+::start\+Utils (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Grabs config info and puts it into ip\+\_\+port\+\_\+vec. \mbox{\Hypertarget{namespaceutils_a27e7fca1e1cb512f83e24736311679e0}\label{namespaceutils_a27e7fca1e1cb512f83e24736311679e0}} 
+\index{utils@{utils}!timeSinceEpoch@{timeSinceEpoch}}
+\index{timeSinceEpoch@{timeSinceEpoch}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{timeSinceEpoch()}{timeSinceEpoch()}}
+{\footnotesize\ttfamily time\+\_\+t utils\+::time\+Since\+Epoch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+time\+\_\+t
+\end{DoxyReturn}
+Return current time in unix format. \mbox{\Hypertarget{namespaceutils_ac2805766215e1930869f060c9c24fdc5}\label{namespaceutils_ac2805766215e1930869f060c9c24fdc5}} 
+\index{utils@{utils}!verifySignature@{verifySignature}}
+\index{verifySignature@{verifySignature}!utils@{utils}}
+\doxysubsubsection{\texorpdfstring{verifySignature()}{verifySignature()}}
+{\footnotesize\ttfamily int utils\+::verify\+Signature (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message,  }\item[{const std\+::string \&}]{signature,  }\item[{size\+\_\+t \&}]{signature\+Size,  }\item[{const std\+::string \&}]{public\+Key\+String }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+{\em signature} & \\
+\hline
+{\em signature\+Size} & \\
+\hline
+{\em public\+Key\+String} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Verify $<$message$>$ with $<$signature$>$ of $<$signature\+Size$>$ against the $<$public\+Key\+String$>$ Function uses Open\+SSL 3. 

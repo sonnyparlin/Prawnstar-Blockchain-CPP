@@ -2,6 +2,13 @@
 
 using namespace utils;
 
+/*!
+ *
+ * @param str
+ * @return std::string
+ *
+ * SHA256 hash function.
+ */
 std::string utils::hash(const std::string &str)
 {
     unsigned char hash[SHA256_DIGEST_LENGTH];
@@ -11,6 +18,12 @@ std::string utils::hash(const std::string &str)
     return ss.str();
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * UUID generator, found on stack overflow.
+ */
 std::string utils::get_uuid() {
     static std::random_device dev;
     static std::mt19937 rng(dev());
@@ -47,6 +60,17 @@ std::string utils::get_uuid() {
     return res;
 }
 
+/*!
+ *
+ * @param message
+ * @param signature
+ * @param signatureSize
+ * @param publicKeyString
+ * @return int
+ *
+ * Verify <message> with <signature> of <signatureSize> against the <publicKeyString>
+ * Function uses OpenSSL 3.
+ */
 int utils::verifySignature(const std::string &message,
                     const std::string &signature,
                     size_t &signatureSize,
@@ -99,6 +123,14 @@ int utils::verifySignature(const std::string &message,
     return ret;
 }
 
+/*!
+ *
+ * @param str
+ * @param seperator
+ * @return std::vector<std::string>
+ *
+ * string split function, returns a vector of strings split by <seperator>
+ */
 std::vector<std::string> utils::split(std::string &str, const char *seperator)
 {
     char *token = strtok((char *)str.c_str(), seperator);
@@ -113,6 +145,14 @@ std::vector<std::string> utils::split(std::string &str, const char *seperator)
     return vec;
 }
 
+/*!
+ *
+ * @param portString
+ * @return int
+ *
+ * getPort() takes a string and does some checking to see if it can be a valid port.
+ * It converts the string to an int.
+ */
 int utils::getPort(char *portString) {
     char* p;
     errno = 0; // not 'int errno', because the '#include' already defined it
@@ -131,6 +171,15 @@ int utils::getPort(char *portString) {
     return port;
 }
 
+/*!
+ *
+ * @param str
+ * @return std::string
+ *
+ * Generates a crypto address from a public key by hashing the
+ * public key with a SHA1 hash. SHA1 is shorter than SHA256
+ * and therefore better suited for a public crypto address.
+ */
 std::string utils::generateAddress(const std::string &str) {
 
     // The public crypto address is a SHA1
@@ -143,6 +192,12 @@ std::string utils::generateAddress(const std::string &str) {
     return ss.str();
 }
 
+/*!
+ *
+ * @return vector
+ *
+ * Gets the IP and PORT of this node from config.json.
+ */
 std::vector<std::string> utils::get_ip_and_port_from_config() {
     try {
         std::ifstream config_file("../config.json");
@@ -161,19 +216,29 @@ std::vector<std::string> utils::get_ip_and_port_from_config() {
     }
 }
 
-// random number generator
-uint32_t nLehmer = 0;
-uint32_t lehmer()
+/*!
+ *
+ * @param state
+ * @return uint32_t
+ *
+ * A linear congruential generator (LCG) is an algorithm that
+ * yields a sequence of pseudo-randomized numbers calculated
+ * with a discontinuous piecewise linear equation. The method
+ * represents one of the oldest and best-known pseudorandom
+ * number generator algorithms.
+ */
+inline uint32_t utils::lcg_rand(uint32_t *state)
 {
-    nLehmer += 0xe120fc15;
-    uint64_t tmp;
-    tmp = (uint64_t)nLehmer * 0x4a39b70d;
-    uint32_t m1 = (tmp >> 32) ^ tmp;
-    tmp = (uint64_t)m1 * 0x12fad5c9;
-    uint32_t m2 = (tmp >> 32) ^ tmp;
-    return m2;
+    return *state = (uint64_t)*state * 279470273u % 0xfffffffb;
 }
 
+/*!
+ *
+ * @param len
+ * @return std::string
+ *
+ * Function used for testing purposes.
+ */
 std::string utils::gen_random_str(int len) {
     static const char alphanum[] =
             "0123456789"
@@ -182,29 +247,50 @@ std::string utils::gen_random_str(int len) {
     std::string tmp_s;
     tmp_s.reserve(len);
 
-    nLehmer = 937162211; // seed our random number generator
+    uint32_t seed = 937162211; // seed our random number generator
     for (int i = 0; i < len; ++i) {
-        tmp_s += alphanum[lehmer() % (sizeof(alphanum) - 1)];
+        tmp_s += alphanum[lcg_rand(&seed) % (sizeof(alphanum) - 1)];
     }
 
     return tmp_s;
 }
 
+/*!
+ * Grabs config info and puts it into ip_port_vec.
+ */
 void utils::startUtils()
 {
     ip_port_vec = get_ip_and_port_from_config();
 }
 
+/*!
+ *
+ * @return string
+ *
+ * Getter for master node's ip
+ */
 std::string utils::get_master_node_ip() {
     std::string ip = ip_port_vec.at(0);
     return ip;
 }
 
+/*!
+ *
+ * @return int
+ *
+ * Getter for master node's port.
+ */
 int utils::get_master_node_port() {
     auto port = (int)stol(ip_port_vec.at(1));
     return port;
 }
 
+/*!
+ *
+ * @return time_t
+ *
+ * Return current time in unix format.
+ */
 time_t utils::timeSinceEpoch()
 {
     auto now = std::chrono::system_clock::now();

@@ -12,10 +12,12 @@ var searchData=
   ['signaturelength_9',['signatureLength',['../class_block.html#a85544ce2b95f47fe32283fef37869e64',1,'Block::signatureLength()'],['../class_transaction.html#a9a6940e85f9cba6c8f331e1ce6e4d65c',1,'Transaction::signatureLength()']]],
   ['socketcommunication_10',['SocketCommunication',['../class_socket_communication.html',1,'SocketCommunication'],['../class_socket_communication.html#aa40ba4027fb0197430a3bb3c8721cb91',1,'SocketCommunication::SocketCommunication()']]],
   ['socketconnector_11',['SocketConnector',['../class_socket_connector.html',1,'SocketConnector'],['../class_socket_connector.html#a03065d04a1d48af4f790316b7b3ca57e',1,'SocketConnector::SocketConnector()']]],
-  ['stakers_12',['stakers',['../class_proof_of_stake.html#a3d8e09fd4ecaa0bbf68602fe57e5a567',1,'ProofOfStake']]],
-  ['start_13',['start',['../class_node_api.html#a19fdf7a6016abcdfc3b64552adcd8c8a',1,'NodeApi']]],
-  ['startp2poperations_14',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_15',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
-  ['startservers_16',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]],
-  ['startsocketcommunication_17',['startSocketCommunication',['../class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393',1,'SocketCommunication']]]
+  ['split_12',['split',['../namespaceutils.html#a74081e5f7593ba99957955c6c7ea3608',1,'utils']]],
+  ['stakers_13',['stakers',['../class_proof_of_stake.html#a3d8e09fd4ecaa0bbf68602fe57e5a567',1,'ProofOfStake']]],
+  ['start_14',['start',['../class_node_api.html#a19fdf7a6016abcdfc3b64552adcd8c8a',1,'NodeApi']]],
+  ['startp2poperations_15',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
+  ['startp2pserver_16',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
+  ['startservers_17',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]],
+  ['startsocketcommunication_18',['startSocketCommunication',['../class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393',1,'SocketCommunication']]],
+  ['startutils_19',['startUtils',['../namespaceutils.html#a4896f4b0408bd63b0c4d4f70f091b1e7',1,'utils']]]
 ];
