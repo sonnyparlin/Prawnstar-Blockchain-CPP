@@ -62,7 +62,6 @@ public:
     AccountModel *accountModel {}; /*!< Node's accountModel */
     SocketCommunication *p2p {}; /*!< Node's SocketCommunication */
     ProofOfStake *proofOfStake {}; /*!< Node's proofOfStake */
-    // std::mutex nodeMutex; /*!< Mutex for */
     std::mutex logMutex {}; /*!< mutex for accessing shared log file */
 };
 

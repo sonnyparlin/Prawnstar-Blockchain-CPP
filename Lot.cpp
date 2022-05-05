@@ -10,6 +10,8 @@ Lot::Lot()=default;
  * @param _publicKeyString
  * @param _iteration
  * @param _lastBlockHash
+ *
+ * Used to create lottery tickets for the next forger.
  */
 Lot::Lot(std::string _publicKeyString, int _iteration, std::string _lastBlockHash) {
     publicKeyString = std::move(_publicKeyString);
