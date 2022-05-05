@@ -23,8 +23,8 @@ public:
     std::string getPoolTransactionsJsonString();
     bool forgerRequired();
 
-    std::vector<Transaction> transactions; /*!< Pool transaction list */
-    std::mutex tpoolMutex; /*!< mutex for protecting the pool transactions */
+    std::vector<Transaction> transactions {}; /*!< Pool transaction list */
+    std::mutex tpoolMutex {}; /*!< mutex for protecting the pool transactions */
 };
 
 #endif // _TRANSACTIONPOOL_H_

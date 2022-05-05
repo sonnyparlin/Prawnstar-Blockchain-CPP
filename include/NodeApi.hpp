@@ -13,7 +13,7 @@ class Node;
  */
 class NodeApi {
 private:
-    Node *node;
+    Node *node {};
 public:
     explicit NodeApi(Node *node);
     ~NodeApi();

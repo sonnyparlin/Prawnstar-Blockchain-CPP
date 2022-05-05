@@ -29,10 +29,10 @@ public:
     std::string toJson();
     void fromKey(const char *file);
 
-    std::vector<std::string> walletKeyPair; /*!< vector of keypair */
-    std::string walletPrivateKey; /*!< private key */
-    std::string walletPublicKey; /*!< public key */
-    std::string address; /*!< address */
+    std::vector<std::string> walletKeyPair {}; /*!< vector of keypair */
+    std::string walletPrivateKey {}; /*!< private key */
+    std::string walletPublicKey {}; /*!< public key */
+    std::string address {}; /*!< address */
 };
 
 #endif // _WALLET_H_

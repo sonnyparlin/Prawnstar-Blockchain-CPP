@@ -87,8 +87,8 @@ $(function() {
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span>utils {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html">   22</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structutils_1_1_signature.html">Signature</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html#a7b7d8413d39ccfd744b3b535b720f0ec">   23</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structutils_1_1_signature.html#a7b7d8413d39ccfd744b3b535b720f0ec">_size</a>; </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d">   24</a></span>        std::string <a class="code hl_variable" href="structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d">hexsig</a>; </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html#a7b7d8413d39ccfd744b3b535b720f0ec">   23</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structutils_1_1_signature.html#a7b7d8413d39ccfd744b3b535b720f0ec">_size</a> {}; </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d">   24</a></span>        std::string <a class="code hl_variable" href="structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d">hexsig</a> {}; </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    };</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::vector&lt;std::string&gt; get_ip_and_port_from_config();</div>
@@ -107,7 +107,7 @@ $(function() {
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::string gen_random_str(<span class="keywordtype">int</span> len);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    time_t timeSinceEpoch();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; ip_port_vec;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; ip_port_vec {};</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif </span><span class="comment">// _UTILS_H_</span></div>

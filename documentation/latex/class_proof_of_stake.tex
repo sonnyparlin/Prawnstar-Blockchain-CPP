@@ -31,9 +31,9 @@ static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a3ea36e15943830944d45
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}{stakers}}
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}{stakers}} \{\}
 \item 
-std\+::mutex \mbox{\hyperlink{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}{pos\+Mutex}}
+std\+::mutex \mbox{\hyperlink{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}{pos\+Mutex}} \{\}
 \end{DoxyCompactItemize}
 
 
@@ -172,13 +172,13 @@ Chooses a winner for the forger lottery based on the random selection of Lots.
 \index{ProofOfStake@{ProofOfStake}!posMutex@{posMutex}}
 \index{posMutex@{posMutex}!ProofOfStake@{ProofOfStake}}
 \doxysubsubsection{\texorpdfstring{posMutex}{posMutex}}
-{\footnotesize\ttfamily std\+::mutex Proof\+Of\+Stake\+::pos\+Mutex}
+{\footnotesize\ttfamily std\+::mutex Proof\+Of\+Stake\+::pos\+Mutex \{\}}
 
 mutext for guarding shared data (stakers list) \mbox{\Hypertarget{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}\label{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}} 
 \index{ProofOfStake@{ProofOfStake}!stakers@{stakers}}
 \index{stakers@{stakers}!ProofOfStake@{ProofOfStake}}
 \doxysubsubsection{\texorpdfstring{stakers}{stakers}}
-{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Proof\+Of\+Stake\+::stakers}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Proof\+Of\+Stake\+::stakers \{\}}
 
 list of stakers 
 

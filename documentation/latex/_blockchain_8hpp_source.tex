@@ -15,7 +15,7 @@
 \DoxyCodeLine{11 }
 \DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_blockchain}{Blockchain}} \{}
 \DoxyCodeLine{16 \textcolor{keyword}{private}:}
-\DoxyCodeLine{17     \mbox{\hyperlink{class_node}{Node}} *node;}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_node}{Node}} *node = \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{18 }
 \DoxyCodeLine{19 \textcolor{keyword}{public}:}
 \DoxyCodeLine{20     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_blockchain_a8b2d507929548019ed2c73b1956317b1}{Blockchain}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
@@ -43,8 +43,8 @@
 \DoxyCodeLine{42     nlohmann::json \mbox{\hyperlink{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}{toJson}}();}
 \DoxyCodeLine{43     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}{toJsonString}}(std::vector<Block>);}
 \DoxyCodeLine{44 }
-\DoxyCodeLine{45     std::vector<Block> \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}}; }
-\DoxyCodeLine{46     std::mutex \mbox{\hyperlink{class_blockchain_a4797856382c3260becf198bd29693513}{blockchainMutex}}; }
+\DoxyCodeLine{45     std::vector<Block> \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}} \{\}; }
+\DoxyCodeLine{46     std::mutex \mbox{\hyperlink{class_blockchain_a4797856382c3260becf198bd29693513}{blockchainMutex}} \{\}; }
 \DoxyCodeLine{47 \};}
 \DoxyCodeLine{48 }
 \DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCKCHAIN\_H\_}}

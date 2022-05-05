@@ -29,23 +29,23 @@ static vector$<$ nlohmann\+::json $>$ \mbox{\hyperlink{class_block_a7da47ddd87bb
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \mbox{\hyperlink{class_block_a5413ec173e6e040beeb84148145e8d33}{transactions}}
+std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ \mbox{\hyperlink{class_block_a5413ec173e6e040beeb84148145e8d33}{transactions}} \{\}
 \item 
-std\+::string \mbox{\hyperlink{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}{last\+Hash}}
+std\+::string \mbox{\hyperlink{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}{last\+Hash}} \{\}
 \item 
-std\+::string \mbox{\hyperlink{class_block_ad81167700ff115ff348eba6b22d97fb1}{hash}}
+std\+::string \mbox{\hyperlink{class_block_ad81167700ff115ff348eba6b22d97fb1}{hash}} \{\}
 \item 
-std\+::string \mbox{\hyperlink{class_block_a663b3e363c8a2c4f35da197029cc2db2}{forger\+Address}}
+std\+::string \mbox{\hyperlink{class_block_a663b3e363c8a2c4f35da197029cc2db2}{forger\+Address}} \{\}
 \item 
 time\+\_\+t \mbox{\hyperlink{class_block_a6f48203d2b976b8857b22e5981c8f943}{timestamp}} = utils\+::time\+Since\+Epoch()
 \item 
-long \mbox{\hyperlink{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}{block\+Count}} \{0\}
+long \mbox{\hyperlink{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}{block\+Count}} \{\}
 \item 
-std\+::string \mbox{\hyperlink{class_block_aecdc5380b6dd3833840ea28a504ea3aa}{signature}}
+std\+::string \mbox{\hyperlink{class_block_aecdc5380b6dd3833840ea28a504ea3aa}{signature}} \{\}
 \item 
-std\+::string \mbox{\hyperlink{class_block_a486a311467e1fbff47ef14e428231860}{\+\_\+id}}
+std\+::string \mbox{\hyperlink{class_block_a486a311467e1fbff47ef14e428231860}{\+\_\+id}} \{\}
 \item 
-size\+\_\+t \mbox{\hyperlink{class_block_a85544ce2b95f47fe32283fef37869e64}{signature\+Length}} \{0\}
+size\+\_\+t \mbox{\hyperlink{class_block_a85544ce2b95f47fe32283fef37869e64}{signature\+Length}} \{\}
 \end{DoxyCompactItemize}
 
 
@@ -153,43 +153,43 @@ Create a json representation for a list of given transactions
 \index{Block@{Block}!\_id@{\_id}}
 \index{\_id@{\_id}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{\_id}{\_id}}
-{\footnotesize\ttfamily std\+::string Block\+::\+\_\+id}
+{\footnotesize\ttfamily std\+::string Block\+::\+\_\+id \{\}}
 
 \+\_\+id for use with mongodb if functionality is added \mbox{\Hypertarget{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}\label{class_block_affd8bb7f05f0985ab78bc21c04eb6f29}} 
 \index{Block@{Block}!blockCount@{blockCount}}
 \index{blockCount@{blockCount}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{blockCount}{blockCount}}
-{\footnotesize\ttfamily long Block\+::block\+Count \{0\}}
+{\footnotesize\ttfamily long Block\+::block\+Count \{\}}
 
 block count \mbox{\Hypertarget{class_block_a663b3e363c8a2c4f35da197029cc2db2}\label{class_block_a663b3e363c8a2c4f35da197029cc2db2}} 
 \index{Block@{Block}!forgerAddress@{forgerAddress}}
 \index{forgerAddress@{forgerAddress}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{forgerAddress}{forgerAddress}}
-{\footnotesize\ttfamily std\+::string Block\+::forger\+Address}
+{\footnotesize\ttfamily std\+::string Block\+::forger\+Address \{\}}
 
 forger address of current block\textquotesingle{}s forger \mbox{\Hypertarget{class_block_ad81167700ff115ff348eba6b22d97fb1}\label{class_block_ad81167700ff115ff348eba6b22d97fb1}} 
 \index{Block@{Block}!hash@{hash}}
 \index{hash@{hash}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{hash}{hash}}
-{\footnotesize\ttfamily std\+::string Block\+::hash}
+{\footnotesize\ttfamily std\+::string Block\+::hash \{\}}
 
 current block hash \mbox{\Hypertarget{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}\label{class_block_aaca2fd6381f0460c3b8a5b7afe55e0d4}} 
 \index{Block@{Block}!lastHash@{lastHash}}
 \index{lastHash@{lastHash}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{lastHash}{lastHash}}
-{\footnotesize\ttfamily std\+::string Block\+::last\+Hash}
+{\footnotesize\ttfamily std\+::string Block\+::last\+Hash \{\}}
 
 block last hash \mbox{\Hypertarget{class_block_aecdc5380b6dd3833840ea28a504ea3aa}\label{class_block_aecdc5380b6dd3833840ea28a504ea3aa}} 
 \index{Block@{Block}!signature@{signature}}
 \index{signature@{signature}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{signature}{signature}}
-{\footnotesize\ttfamily std\+::string Block\+::signature}
+{\footnotesize\ttfamily std\+::string Block\+::signature \{\}}
 
 block signature \mbox{\Hypertarget{class_block_a85544ce2b95f47fe32283fef37869e64}\label{class_block_a85544ce2b95f47fe32283fef37869e64}} 
 \index{Block@{Block}!signatureLength@{signatureLength}}
 \index{signatureLength@{signatureLength}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{signatureLength}{signatureLength}}
-{\footnotesize\ttfamily size\+\_\+t Block\+::signature\+Length \{0\}}
+{\footnotesize\ttfamily size\+\_\+t Block\+::signature\+Length \{\}}
 
 signature length \mbox{\Hypertarget{class_block_a6f48203d2b976b8857b22e5981c8f943}\label{class_block_a6f48203d2b976b8857b22e5981c8f943}} 
 \index{Block@{Block}!timestamp@{timestamp}}
@@ -201,7 +201,7 @@ timestamp of block \mbox{\Hypertarget{class_block_a5413ec173e6e040beeb84148145e8
 \index{Block@{Block}!transactions@{transactions}}
 \index{transactions@{transactions}!Block@{Block}}
 \doxysubsubsection{\texorpdfstring{transactions}{transactions}}
-{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_transaction}{Transaction}}$>$ Block\+::transactions}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_transaction}{Transaction}}$>$ Block\+::transactions \{\}}
 
 list of block transactions 
 

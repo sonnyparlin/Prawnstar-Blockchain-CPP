@@ -24,16 +24,16 @@ public:
     Transaction(); // ctor
     ~Transaction(); // dtor
 
-    string senderAddress; /*!< sending address */
-    string senderPublicKey; /*!< sender's public key */
-    string receiverAddress; /*!< receiver's address */
-    string receiverPublicKey; /*!< receiver's public key */
+    string senderAddress {}; /*!< sending address */
+    string senderPublicKey {}; /*!< sender's public key */
+    string receiverAddress {}; /*!< receiver's address */
+    string receiverPublicKey {}; /*!< receiver's public key */
     double amount{}; /*!< transaction amount */
-    string type; /*!< type (EXCHANGE, TRANSFER, STAKE, REWARD) */
-    string id; /*!< Transaction id */
+    string type {}; /*!< type (EXCHANGE, TRANSFER, STAKE, REWARD) */
+    string id {}; /*!< Transaction id */
     time_t timestamp{}; /*!< Transaction timestamp */
-    string signature; /*!< Transaction's signature. */
-    size_t signatureLength{}; /*!< Signature length */
+    string signature {}; /*!< Transaction's signature. */
+    size_t signatureLength {}; /*!< Signature length */
 };
 
 #endif // _TRANSACTION_H_

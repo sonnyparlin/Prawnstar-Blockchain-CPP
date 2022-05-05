@@ -20,15 +20,15 @@ void \mbox{\hyperlink{class_account_model_a2d1f5efc7d66615e5ec51e0f8ee788c1}{upd
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}{accounts}}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_account_model_a4ed9656cc98cb56146ca8c111ebb8c10}{accounts}} \{\}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}{address\+To\+Public\+Key}}
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}{address\+To\+Public\+Key}} \{\}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_a2589dcd424d7a700886527bc078a734b}{address\+To\+Private\+Key}}
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_account_model_a2589dcd424d7a700886527bc078a734b}{address\+To\+Private\+Key}} \{\}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}{balances}}
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}{balances}} \{\}
 \item 
-std\+::mutex \mbox{\hyperlink{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}{ac\+Mutex}}
+std\+::mutex \mbox{\hyperlink{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}{ac\+Mutex}} \{\}
 \end{DoxyCompactItemize}
 
 
@@ -112,31 +112,31 @@ Updates the balance of an account in the account\+Model
 \index{AccountModel@{AccountModel}!accounts@{accounts}}
 \index{accounts@{accounts}!AccountModel@{AccountModel}}
 \doxysubsubsection{\texorpdfstring{accounts}{accounts}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Account\+Model\+::accounts}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Account\+Model\+::accounts \{\}}
 
 list of accounts \mbox{\Hypertarget{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}\label{class_account_model_aacddbf9c18aad59b7f476668eaaebacf}} 
 \index{AccountModel@{AccountModel}!acMutex@{acMutex}}
 \index{acMutex@{acMutex}!AccountModel@{AccountModel}}
 \doxysubsubsection{\texorpdfstring{acMutex}{acMutex}}
-{\footnotesize\ttfamily std\+::mutex Account\+Model\+::ac\+Mutex}
+{\footnotesize\ttfamily std\+::mutex Account\+Model\+::ac\+Mutex \{\}}
 
 mutex for locking shared data \mbox{\Hypertarget{class_account_model_a2589dcd424d7a700886527bc078a734b}\label{class_account_model_a2589dcd424d7a700886527bc078a734b}} 
 \index{AccountModel@{AccountModel}!addressToPrivateKey@{addressToPrivateKey}}
 \index{addressToPrivateKey@{addressToPrivateKey}!AccountModel@{AccountModel}}
 \doxysubsubsection{\texorpdfstring{addressToPrivateKey}{addressToPrivateKey}}
-{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Private\+Key}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Private\+Key \{\}}
 
 address to private key map \mbox{\Hypertarget{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}\label{class_account_model_adaed9f334c1e1f6c7c54194071e090f9}} 
 \index{AccountModel@{AccountModel}!addressToPublicKey@{addressToPublicKey}}
 \index{addressToPublicKey@{addressToPublicKey}!AccountModel@{AccountModel}}
 \doxysubsubsection{\texorpdfstring{addressToPublicKey}{addressToPublicKey}}
-{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Public\+Key}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ Account\+Model\+::address\+To\+Public\+Key \{\}}
 
 address to Public Key map \mbox{\Hypertarget{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}\label{class_account_model_a853ab908a4f877cf4c2cd0d8fb3f575a}} 
 \index{AccountModel@{AccountModel}!balances@{balances}}
 \index{balances@{balances}!AccountModel@{AccountModel}}
 \doxysubsubsection{\texorpdfstring{balances}{balances}}
-{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Account\+Model\+::balances}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, double$>$ Account\+Model\+::balances \{\}}
 
 address to balances map 
 

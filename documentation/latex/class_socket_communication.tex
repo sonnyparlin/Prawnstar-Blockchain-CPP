@@ -47,15 +47,15 @@ static void \mbox{\hyperlink{class_socket_communication_a1bb5ebcc2231b67d0128280
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}{peers}}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a31ff5de39a5c7bbebcdf3620d4a685ff}{peers}} \{\}
 \item 
-std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}{inactive\+Peers}}
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}{inactive\+Peers}} \{\}
 \item 
 const int \mbox{\hyperlink{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}{MESSAGELENGTH}} = 20
 \item 
-std\+::string \mbox{\hyperlink{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}{id}}
+std\+::string \mbox{\hyperlink{class_socket_communication_aed0bf268dcd36dd61540f319f6c1ee30}{id}} \{\}
 \item 
-\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \mbox{\hyperlink{class_socket_communication_a30f06d9bb957d12517468379feb5530a}{sc}}
+\mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} \mbox{\hyperlink{class_socket_communication_a30f06d9bb957d12517468379feb5530a}{sc}} \{\}
 \end{DoxyCompactItemize}
 
 
@@ -258,13 +258,13 @@ Calls process\+Args and then starts peer to peer operations.
 \index{SocketCommunication@{SocketCommunication}!id@{id}}
 \index{id@{id}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{id}{id}}
-{\footnotesize\ttfamily std\+::string Socket\+Communication\+::id}
+{\footnotesize\ttfamily std\+::string Socket\+Communication\+::id \{\}}
 
 peer to peer server id \mbox{\Hypertarget{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}\label{class_socket_communication_a6d21cc6c159cfa512e7a9fe3141903b3}} 
 \index{SocketCommunication@{SocketCommunication}!inactivePeers@{inactivePeers}}
 \index{inactivePeers@{inactivePeers}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{inactivePeers}{inactivePeers}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::inactive\+Peers}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::inactive\+Peers \{\}}
 
 list of inactive peers, used for temporary storage \mbox{\Hypertarget{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}\label{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}} 
 \index{SocketCommunication@{SocketCommunication}!MESSAGELENGTH@{MESSAGELENGTH}}
@@ -276,13 +276,13 @@ Our predetermined message length for discovery messages \mbox{\Hypertarget{class
 \index{SocketCommunication@{SocketCommunication}!peers@{peers}}
 \index{peers@{peers}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{peers}{peers}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::peers}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Socket\+Communication\+::peers \{\}}
 
 List of peers connected to this node. \mbox{\Hypertarget{class_socket_communication_a30f06d9bb957d12517468379feb5530a}\label{class_socket_communication_a30f06d9bb957d12517468379feb5530a}} 
 \index{SocketCommunication@{SocketCommunication}!sc@{sc}}
 \index{sc@{sc}!SocketCommunication@{SocketCommunication}}
 \doxysubsubsection{\texorpdfstring{sc}{sc}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} Socket\+Communication\+::sc}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_socket_connector}{Socket\+Connector}} Socket\+Communication\+::sc \{\}}
 
 this node\textquotesingle{}s socket connecter (ip and port) 
 

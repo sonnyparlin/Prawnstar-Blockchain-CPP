@@ -20,8 +20,8 @@ namespace utils {
      * size_t signatureLength, std::string hexStringSignature
      */
     struct Signature {
-        size_t _size; /*!< signature length */
-        std::string hexsig; /*!< hexSignature */
+        size_t _size {}; /*!< signature length */
+        std::string hexsig {}; /*!< hexSignature */
     };
 
     std::vector<std::string> get_ip_and_port_from_config();
@@ -40,7 +40,7 @@ namespace utils {
     std::string gen_random_str(int len);
     time_t timeSinceEpoch();
 
-    static std::vector<std::string> ip_port_vec;
+    static std::vector<std::string> ip_port_vec {};
 }
 
 #endif // _UTILS_H_

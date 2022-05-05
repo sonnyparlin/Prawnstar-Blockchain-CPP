@@ -11,11 +11,6 @@
  */
 class Message {
 public:
-    SocketConnector sc; /*!< Socket connector */
-    std::string messageType; /*!< Message type */
-    std::vector<std::string> peers; /*!< List of peers to send message to if it's a broadcast message */
-    std::string data; /*!< message data */
-    
     Message(const SocketConnector &sc,
             std::string messageType,
             std::vector<std::string> peers);
@@ -24,8 +19,12 @@ public:
             std::string data);
     ~Message();
 
-    // Write a toJson method for this
     std::string toJson();
+
+    SocketConnector sc; /*!< Socket connector */
+    std::string messageType; /*!< Message type */
+    std::vector<std::string> peers; /*!< List of peers to send message to if it's a broadcast message */
+    std::string data; /*!< message data */
 };
 
 #endif // _MESSAGE_H_
