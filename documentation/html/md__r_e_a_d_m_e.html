@@ -99,6 +99,7 @@ Windows</h2>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Running the app</h2>
 <ul>
+<li>Edit <code>config.json</code> and add your master ip address and port.</li>
 <li><a class="el" href="class_node.html">Node</a> 1 (master node): ./Prawnstar 127.0.0.1 10001 8001</li>
 <li><a class="el" href="class_node.html">Node</a> 2: ./Prawnstar 127.0.0.1 10002 127.0.0.1 8002</li>
 <li><a class="el" href="class_node.html">Node</a> 3: ./Prawnstar 127.0.0.1 10003 127.0.0.1 8003</li>
@@ -110,7 +111,6 @@ Running the app</h2>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Testing</h2>
 <ol type="1">
-<li>Edit <code>config.json</code> and add your ip address.</li>
 <li><code>python ApiTest.py &lt;number_of_transactions&gt;</code></li>
 <li><code>build/tests/RunTests</code> (Google test suite) </li>
 </ol>

@@ -29,6 +29,8 @@
 
 ### Running the app
 
+* Edit `config.json` and add your master ip address and port.
+
 * Node 1 (master node): ./Prawnstar 127.0.0.1 10001 8001
 
 * Node 2: ./Prawnstar 127.0.0.1 10002 127.0.0.1 8002
@@ -44,6 +46,5 @@ The format of all client nodes:
 ./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
 
 ### Testing
-1. Edit `config.json` and add your ip address.
 2. `python ApiTest.py <number_of_transactions>`
 3. `build/tests/RunTests` (Google test suite)

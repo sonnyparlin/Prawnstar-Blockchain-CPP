@@ -30,6 +30,7 @@
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Running the app}\label{md__r_e_a_d_m_e_autotoc_md4}
 
 \begin{DoxyItemize}
+\item Edit {\ttfamily config.\+json} and add your master ip address and port.
 \item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10001 8001
 \item \mbox{\hyperlink{class_node}{Node}} 2\+: ./\+Prawnstar 127.\+0.\+0.\+1 10002 127.\+0.\+0.\+1 8002
 \item \mbox{\hyperlink{class_node}{Node}} 3\+: ./\+Prawnstar 127.\+0.\+0.\+1 10003 127.\+0.\+0.\+1 8003
@@ -44,7 +45,6 @@ The format of all client nodes\+:
 ./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing}\label{md__r_e_a_d_m_e_autotoc_md5}
 
 \begin{DoxyEnumerate}
-\item Edit {\ttfamily config.\+json} and add your ip address.
 \item {\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}}
 \item {\ttfamily build/tests/\+Run\+Tests} (Google test suite) 
 \end{DoxyEnumerate}
