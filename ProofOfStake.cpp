@@ -11,8 +11,8 @@
  * Constructor for the ProofOfStake class, starts genesis node
  * sets up this node's wallet as a staker so the system will run.
  */
-ProofOfStake::ProofOfStake(Node *passedInNode) {
-    node = passedInNode;
+ProofOfStake::ProofOfStake(Node *passedInNode)
+    : node(passedInNode) {
 
     Wallet genesisNodeWallet(node);
     genesisNodeWallet.fromKey("genesisNode.pem");
