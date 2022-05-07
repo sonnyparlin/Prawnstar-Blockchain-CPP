@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 #include <random>
+#include <chrono>
 
 /*!
  * Namespace utils
