@@ -330,6 +330,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Transaction&gt;</dd></dl>
 <p>Calculate the forger reward and set new balances accordingly. Forgers get paid by the senders. </p>
+<p >No forger reward for STAKE or REWARD transactions. We don't need to add REWARD transactions to the if statement above because REWARD transactions are only created after the above check is performed.</p>
 
 </div>
 </div>
