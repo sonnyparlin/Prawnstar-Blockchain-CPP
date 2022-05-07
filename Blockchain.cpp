@@ -80,9 +80,8 @@ std::vector<Transaction> Blockchain::calculateForgerReward(
             continue;
         }
 
-        auto tmpReward = (itx.amount * 0.005);
-        reward += tmpReward;
-        itx.amount -= tmpReward;
+        reward += (itx.amount * 0.005);
+        itx.amount -= (itx.amount * 0.005);
         resultTransactions.push_back(itx);
 
         auto t = std::time(nullptr);
