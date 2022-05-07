@@ -42,9 +42,9 @@ with requests.Session() as s:
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.5)
 
-print(f"{sys.argv[1]} transactions complete: getting final balances...")
+#print(f"{sys.argv[1]} transactions complete: getting final balances...")
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
-time.sleep(1)
+#time.sleep(1)
 
 print("Alice's wallet should be 18905: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")
@@ -52,7 +52,7 @@ aw = json.loads(x.text)
 if float(aw['amount']) == 18905:
     print("TRUE")
 else:
-    print("FALSE")
+    print(f"FALSE, got {aw['amount']} instead")
 
 print("Bob's wallet should be 995: ")
 x = requests.get(f"http://{ip}:8001/wallet/{bob}")
@@ -60,7 +60,7 @@ bw = json.loads(x.text)
 if float(bw['amount']) == 995:
     print("TRUE")
 else:
-    print("FALSE")
+    print(f"FALSE, got {bw['amount']} instead")
 
 x = requests.get(f"http://{ip}:8001/wallet/{nodeWallet}")
 n1 = x
@@ -74,6 +74,6 @@ print("Combined rewards earned by node1 and node2 should be 107.00")
 if float(x1['amount']) + float(x2['amount']) == 107:
     print("TRUE")
 else:
-    print("FALSE")
+    print(f"FALSE, got {float(x1['amount']) + float(x2['amount'])} instead")
 
 print("\nPython test suite complete.")
