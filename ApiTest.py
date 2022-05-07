@@ -46,28 +46,34 @@ print(f"{sys.argv[1]} transactions complete: getting final balances...")
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 time.sleep(1)
 
-print("Alice's wallet: ")
+print("Alice's wallet should be 18905: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")
-print(x.text)
+aw = json.loads(x.text)
+if float(aw['amount']) == 18905:
+    print("TRUE")
+else:
+    print("FALSE")
 
-print("Bob's wallet: ")
+print("Bob's wallet should be 995: ")
 x = requests.get(f"http://{ip}:8001/wallet/{bob}")
-print(x.text)
+bw = json.loads(x.text)
+if float(bw['amount']) == 995:
+    print("TRUE")
+else:
+    print("FALSE")
 
-print("Node one wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{nodeWallet}")
-print(x.text)
 n1 = x
 
-print("Node two wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{node2}")
-print(x.text)
 n2 = x
 
 x1 = json.loads(n1.text)
 x2 = json.loads(n2.text)
-print("Node1 wallet + Node2 wallet == 107.00")
+print("Combined rewards earned by node1 and node2 should be 107.00")
 if float(x1['amount']) + float(x2['amount']) == 107:
     print("TRUE")
+else:
+    print("FALSE")
 
 print("\nPython test suite complete.")
