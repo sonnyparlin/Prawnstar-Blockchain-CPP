@@ -283,13 +283,13 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
               << (blockchain->blocks.size() - blockNumber)
               << " blocks.\n"
               << std::endl;
-    
+
     vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     std::string msgType = "BLOCKCHAIN";
     std::string msgBody = Blockchain::toJsonString(subvector);
     Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
-    
+
     auto num = (int)stol(receivingNode.at(1));
     int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {

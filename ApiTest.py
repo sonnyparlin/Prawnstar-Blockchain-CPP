@@ -44,7 +44,7 @@ with requests.Session() as s:
 
 #print(f"{sys.argv[1]} transactions complete: getting final balances...")
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
-#time.sleep(1)
+time.sleep(1)
 
 print("Alice's wallet should be 18905: ")
 x = requests.get(f"http://{ip}:8001/wallet/{alice}")
