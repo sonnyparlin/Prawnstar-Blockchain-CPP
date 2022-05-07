@@ -56,19 +56,35 @@ bool Blockchain::addBlock(const Block &block) {
  * @param transactions
  * @return std::vector<Transaction>
  *
- * Calculate the forger reward and set new balances accordingly. Forgers get paid by the senders.
+ * Calculate the forger reward and set new balances accordingly.
+ * Forgers get paid by the senders.
  */
-std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transaction> &transactions) {
+std::vector<Transaction> Blockchain::calculateForgerReward(
+        std::vector<Transaction> &transactions
+) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<Transaction> resultTransactions;
-    double reward;
+    double reward {};
 
     for (auto &itx : transactions) {
 
-        if (itx.type == "STAKE")
-            return transactions;
+        if (itx.type == "STAKE") {
+            resultTransactions.push_back(itx);
 
-        reward = (itx.amount * 0.005);
+            /*!
+             * No forger reward for STAKE or REWARD transactions.
+             * We don't need to add REWARD transactions to the
+             * if statement above because REWARD transactions are
+             * only created after the above check is performed.
+             */
+            continue;
+        }
+
+        auto tmpReward = (itx.amount * 0.005);
+        reward += tmpReward;
+        itx.amount -= tmpReward;
+        resultTransactions.push_back(itx);
+
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::ostringstream oss;
@@ -77,18 +93,16 @@ std::vector<Transaction> Blockchain::calculateForgerReward(std::vector<Transacti
         node->log(str);
         std::string r = "reward: " + std::to_string(reward);
         node->log(r);
-
-        try {
-            Transaction rewardTx = node->exchangeWallet->createTransaction(node->nodeWallet->address,
-                                                                           reward, "REWARD");
-            resultTransactions.push_back(rewardTx);
-        } catch(std::exception& e) {
-            std::cerr << "Error with createTransaction: " << e.what() << std::endl;
-        }
-        itx.amount -= reward;
-
-        resultTransactions.push_back(itx);
     }
+
+    try {
+        Transaction rewardTx = node->exchangeWallet->
+                createTransaction(node->nodeWallet->address, reward, "REWARD");
+        resultTransactions.push_back(rewardTx);
+    } catch(std::exception& e) {
+        std::cerr << "Error with createTransaction: " << e.what() << std::endl;
+    }
+
     return resultTransactions;
 }
 
@@ -141,7 +155,9 @@ bool Blockchain::transactionCovered(const Transaction &transaction) {
  *
  * Get covered transactions from list of transactions.
  */
-std::vector<Transaction> Blockchain::getCoveredTransactionSet(const vector<Transaction> &transactions) {
+std::vector<Transaction> Blockchain::getCoveredTransactionSet(
+        const vector<Transaction> &transactions
+        ) {
     std::vector<Transaction> coveredTransactions;
     for (auto const &transaction : transactions) {
         if (transactionCovered(transaction))
@@ -189,12 +205,16 @@ void Blockchain::executeTransaction(const Transaction &transaction) {
 
     if (transaction.type == "STAKE") {
         if (transaction.senderAddress == transaction.receiverAddress) {
-            node->proofOfStake->update(transaction.senderPublicKey, transaction.amount);
-            node->accountModel->updateBalance(transaction.senderAddress, -transaction.amount);
+            node->proofOfStake->
+                        update(transaction.senderPublicKey, transaction.amount);
+            node->accountModel->
+                        updateBalance(transaction.senderAddress, -transaction.amount);
         }
     } else {
-        node->accountModel->updateBalance(transaction.senderAddress, -transaction.amount);
-        node->accountModel->updateBalance(transaction.receiverAddress, transaction.amount);
+        node->accountModel->
+                    updateBalance(transaction.senderAddress, -transaction.amount);
+        node->accountModel->
+                    updateBalance(transaction.receiverAddress, transaction.amount);
     }
 }
 
@@ -234,7 +254,8 @@ Block Blockchain::createBlock(const std::vector<Transaction> &transactionsFromPo
 bool Blockchain::transactionExists(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     return std::any_of(blocks.begin(), blocks.end(), [&transaction](const Block &block){
-        if ( std::find(block.transactions.begin(), block.transactions.end(), transaction) != block.transactions.end() )
+        if ( std::find(block.transactions.begin(), block.transactions.end(),
+                                                transaction) != block.transactions.end() )
             return true;
         return false;
     });
@@ -250,7 +271,8 @@ bool Blockchain::transactionExists(const Transaction &transaction) {
 std::string Blockchain::getTransaction(const std::string &txid) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::string jsonString {};
-    auto result = std::any_of(blocks.begin(), blocks.end(), [&txid, &jsonString](const Block &block){
+    auto result = std::any_of(blocks.begin(), blocks.end(),
+                                                [&txid, &jsonString](const Block &block){
         for(Transaction transaction : block.transactions) {
             if (transaction.id == txid) {
                 jsonString = transaction.toJson();
@@ -299,10 +321,12 @@ bool Blockchain::forgerValid(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     Wallet proposedForger(block.forgerAddress.c_str(), this->node);
 
-    std::string forgerPublicKey = node->proofOfStake->forger(blocks[blocks.size()-1].lastHash);
+    std::string forgerPublicKey = node->proofOfStake->
+                            forger(blocks[blocks.size()-1].lastHash);
 
     if (forgerPublicKey != proposedForger.walletPublicKey) {
-        std::cout << "proposedForger: " << proposedForger.walletPublicKey << std::endl;
+        std::cout << "proposedForger: "
+                  << proposedForger.walletPublicKey << std::endl;
         std::cout << "actualForger  : " << forgerPublicKey << std::endl;
     }
     return forgerPublicKey == proposedForger.walletPublicKey;
@@ -318,7 +342,8 @@ bool Blockchain::forgerValid(const Block &block) {
  */
 bool Blockchain::transactionValid(const std::vector<Transaction> &transactions) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    std::vector<Transaction> coveredTransactions = this->node->blockchain->getCoveredTransactionSet(transactions);
+    std::vector<Transaction> coveredTransactions = this->node->blockchain->
+                                                getCoveredTransactionSet(transactions);
     return coveredTransactions.size() == transactions.size();
 }
 

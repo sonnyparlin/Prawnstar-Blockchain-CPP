@@ -214,10 +214,14 @@ void Node::handleBlock (Block &block, bool broadcast) {
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
     bool transactionValid = blockchain->transactionValid(block.transactions);
-    bool signatureValid = utils::verifySignature(block.payload(), block.signature, block.signatureLength, forger.walletPublicKey);
+    bool signatureValid = utils::verifySignature(block.payload(),
+                                                 block.signature,
+                                                 block.signatureLength,
+                                                 forger.walletPublicKey);
     bool blockHasTransactions = blockchain->blockHasTransactions(block);
 
-    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid && blockHasTransactions) {
+    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid &&
+                                                                blockHasTransactions) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
         

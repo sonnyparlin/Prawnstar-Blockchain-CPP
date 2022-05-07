@@ -112,6 +112,7 @@ namespace MasterTestSpace {
         std::string receiver = "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7"; // alice
         std::string type = "EXCHANGE"; // extract type
         double amount = 20000;
+        double rewardBalance{};
 
         Wallet senderWallet(sender.c_str(), node);
         EXPECT_EQ(senderWallet.address, "pv1403d478bfc4949c9c68af53bbaf8deb58c4eac");
@@ -121,6 +122,7 @@ namespace MasterTestSpace {
         EXPECT_TRUE(node->handleTransaction(tx));
         EXPECT_EQ(node->blockchain->blocks.size(), 2);
         EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
+        rewardBalance += 20000 * 0.005;
         EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
 
         GTEST_COUT << "Executing 1000 transactions, please wait..." << std::endl;
@@ -132,10 +134,14 @@ namespace MasterTestSpace {
             EXPECT_TRUE(node->handleTransaction(txi));
         }
 
+        rewardBalance += (1000 * 0.005);
         double expected = 18905;
         auto result = node->accountModel->getBalance(node->aliceWallet->address);
         result = roundf((float)result * 100) / 100;
         EXPECT_DOUBLE_EQ(expected, result);
+        double node1WalletAmount = node->accountModel->getBalance(node->nodeWallet->address);
+        double node2WalletAmount = node->accountModel->getBalance(node->node2Wallet->address);
+        EXPECT_DOUBLE_EQ(roundf(node1WalletAmount + node2WalletAmount), roundf(rewardBalance));
     }
 
     TEST_F(BlockchainTests, TransactionNotCovered) {

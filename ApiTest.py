@@ -34,18 +34,16 @@ with requests.Session() as s:
     print("Attempting to stake 3 tokens on Node #2")
     post_transaction(s, node2, node2, '3', 'STAKE')
 
-    print("Attempting 1000 transactions on network with at least two nodes running...")
-    for x in range(int(sys.argv[1])-1):
+    print(f"Attempting {sys.argv[1]} transactions on network with at least two nodes running...")
+    for x in range(int(sys.argv[1])):
         i += 1
         if i % 100 == 0:
             print(f"{i} transactions...")
         post_transaction(s, alice, bob, '1', 'TRANSFER')
         #time.sleep(0.5)
 
-print("1000 transactions complete: getting final balances...")
+print(f"{sys.argv[1]} transactions complete: getting final balances...")
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
-
-post_transaction(s, alice, bob, '1', 'TRANSFER')
 time.sleep(1)
 
 print("Alice's wallet: ")
@@ -59,9 +57,17 @@ print(x.text)
 print("Node one wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{nodeWallet}")
 print(x.text)
+n1 = x
 
 print("Node two wallet: ")
 x = requests.get(f"http://{ip}:8001/wallet/{node2}")
 print(x.text)
+n2 = x
+
+x1 = json.loads(n1.text)
+x2 = json.loads(n2.text)
+print("Node1 wallet + Node2 wallet == 107.00")
+if float(x1['amount']) + float(x2['amount']) == 107:
+    print("TRUE")
 
 print("\nPython test suite complete.")
