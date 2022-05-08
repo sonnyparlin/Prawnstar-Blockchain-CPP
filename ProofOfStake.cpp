@@ -82,7 +82,7 @@ inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
          * Note, it doesn't do you any good to stake
          * more than upperLimit tokens. (limit is for performance).
          */
-        int upperLimit = 100; // how many loops do you want to allow?
+        int upperLimit = 500; // how many loops do you want to allow?
         auto stake = static_cast<int>(validator.second);
 
         // Without this guard our network would get overloaded.
