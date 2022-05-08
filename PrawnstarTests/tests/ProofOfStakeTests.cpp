@@ -33,9 +33,9 @@ namespace MasterTestSpace {
     {
         ProofOfStake pos(node);
         // pos.update("bob", 1);
-        pos.update("alice", 100);
-        pos.update("phil", 500);
-        pos.update("jimmy", 1000);
+        pos.update("alice", 50);
+        pos.update("phil", 100);
+        pos.update("jimmy", 100000);
 
         int bobWins {0};
         int aliceWins {0};

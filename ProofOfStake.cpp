@@ -2,7 +2,6 @@
 #include "utils.hpp"
 #include "Wallet.hpp"
 #include <cstdint>
-#include <functional>
 
 /*!
  *
@@ -76,31 +75,22 @@ double ProofOfStake::getStake(const std::string &publicKeyString) {
  */
 inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
     std::vector<Lot> lots;
-    int stake;
 
     for ( const auto &validator : stakers ) {
 
         /*!
-         * Note, in this configuration it doesn't do you any good to stake
-         * more than 1000 tokens. At 1000, you are a tier 5 staker.
+         * Note, it doesn't do you any good to stake
+         * more than upperLimit tokens. (limit is for performance).
          */
-        if (getStake(validator.first) >= 1000) // tier 5
-            stake = 5;
+        int upperLimit = 100; // how many loops do you want to allow?
+        auto stake = static_cast<int>(validator.second);
 
-        if (getStake(validator.first) >= 500) // tier 4
-            stake = 4;
-
-        if (getStake(validator.first) >= 100) // tier 3
-            stake = 3;
-
-        if (getStake(validator.first) >= 50) // tier 2
-            stake = 2;
-
-        if (getStake(validator.first) >= 1) // tier 1
-            stake = 1;
+        // Without this guard our network would get overloaded.
+        if (stake > upperLimit)
+            stake = upperLimit;
 
         for (int i = 0; i < stake; i++) {
-            Lot l(validator.first, stake, seed);
+            Lot l(validator.first);
             lots.push_back(l);
         }
     }

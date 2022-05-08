@@ -1,11 +1,6 @@
 #include "Lot.hpp"
 
 /*!
- * Default constructor
- */
-Lot::Lot()=default;
-
-/*!
  *
  * @param _publicKeyString
  * @param _iteration
@@ -13,10 +8,8 @@ Lot::Lot()=default;
  *
  * Used to create lottery tickets for the next forger.
  */
-Lot::Lot(std::string _publicKeyString, int _iteration, std::string _lastBlockHash) {
+Lot::Lot(std::string _publicKeyString) {
     publicKeyString = std::move(_publicKeyString);
-    iteration = _iteration;
-    lastBlockHash = std::move(_lastBlockHash);
 }
 
 Lot::~Lot()=default;
