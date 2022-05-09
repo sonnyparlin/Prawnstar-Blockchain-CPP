@@ -10,7 +10,8 @@ var searchData=
   ['port_7',['port',['../class_socket_connector.html#a79d0487b330729276b0f6519906399a1',1,'SocketConnector']]],
   ['posmutex_8',['posMutex',['../class_proof_of_stake.html#a231de78a8b3da7b17ec779720b148358',1,'ProofOfStake']]],
   ['processargs_9',['processArgs',['../class_socket_communication.html#af0bd2836102b0b03bdd7254203160dd5',1,'SocketCommunication']]],
-  ['proofofstake_10',['ProofOfStake',['../class_proof_of_stake.html',1,'ProofOfStake'],['../class_proof_of_stake.html#a48be725a43b54e7e5e7acdeb50e5f275',1,'ProofOfStake::ProofOfStake()']]],
+  ['proofofstake_10',['ProofOfStake',['../class_proof_of_stake.html',1,'']]],
   ['proofofstake_11',['proofOfStake',['../class_node.html#a8924885855cec659830a99c46e0b190e',1,'Node']]],
-  ['publickeystring_12',['publicKeyString',['../class_lot.html#a7f553926f1bb5bfca511cf4b0d3b52b1',1,'Lot']]]
+  ['proofofstake_12',['ProofOfStake',['../class_proof_of_stake.html#a48be725a43b54e7e5e7acdeb50e5f275',1,'ProofOfStake']]],
+  ['publickeystring_13',['publicKeyString',['../class_lot.html#a7f553926f1bb5bfca511cf4b0d3b52b1',1,'Lot']]]
 ];
