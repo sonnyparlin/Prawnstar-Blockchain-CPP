@@ -19,11 +19,20 @@ namespace crow
     template<typename Adaptor, typename Handler, typename... Middlewares>
     class Connection;
 
+    namespace detail
+    {
+        template<typename F, typename App, typename... Middlewares>
+        struct handler_middleware_wrapper;
+    } // namespace detail
+
     /// HTTP response
     struct response
     {
         template<typename Adaptor, typename Handler, typename... Middlewares>
         friend class crow::Connection;
+
+        template<typename F, typename App, typename... Middlewares>
+        friend struct crow::detail::handler_middleware_wrapper;
 
         int code{200};    ///< The Status code for the response.
         std::string body; ///< The actual payload containing the response data.
@@ -32,7 +41,7 @@ namespace crow
 #ifdef CROW_ENABLE_COMPRESSION
         bool compressed = true; ///< If compression is enabled and this is false, the individual response will not be compressed.
 #endif
-        bool is_head_response = false;     ///< Whether this is a response to a HEAD request.
+        bool skip_body = false;            ///< Whether this is a response to a HEAD request.
         bool manual_length_header = false; ///< Whether Crow should automatically add a "Content-Length" header.
 
         /// Set the value of an existing header in the response.
@@ -171,7 +180,7 @@ namespace crow
             if (!completed_)
             {
                 completed_ = true;
-                if (is_head_response)
+                if (skip_body)
                 {
                     set_header("Content-Length", std::to_string(body.size()));
                     body = "";
@@ -214,10 +223,16 @@ namespace crow
             int statResult;
         };
 
-        ///Return a static file as the response body
+        /// Return a static file as the response body
         void set_static_file_info(std::string path)
         {
             utility::sanitize_filename(path);
+            set_static_file_info_unsafe(path);
+        }
+
+        /// Return a static file as the response body without sanitizing the path (use set_static_file_info instead)
+        void set_static_file_info_unsafe(std::string path)
+        {
             file_info.path = path;
             file_info.statResult = stat(file_info.path.c_str(), &file_info.statbuf);
 #ifdef CROW_ENABLE_COMPRESSION
@@ -227,22 +242,26 @@ namespace crow
             {
                 std::size_t last_dot = path.find_last_of(".");
                 std::string extension = path.substr(last_dot + 1);
-                std::string mimeType = "";
                 code = 200;
-                this->add_header("Content-length", std::to_string(file_info.statbuf.st_size));
+                this->add_header("Content-Length", std::to_string(file_info.statbuf.st_size));
 
-                if (extension != "")
+                if (!extension.empty())
                 {
-                    mimeType = mime_types.at(extension);
-                    if (mimeType != "")
-                        this->add_header("Content-Type", mimeType);
+                    const auto mimeType = mime_types.find(extension);
+                    if (mimeType != mime_types.end())
+                    {
+                        this->add_header("Content-Type", mimeType->second);
+                    }
                     else
-                        this->add_header("content-Type", "text/plain");
+                    {
+                        this->add_header("Content-Type", "text/plain");
+                    }
                 }
             }
             else
             {
                 code = 404;
+                file_info.path.clear();
                 this->end();
             }
         }
