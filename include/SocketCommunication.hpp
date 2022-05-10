@@ -30,9 +30,12 @@ public:
     void outbound_node_connected(int sock) const;
     void receive_node_message(int sock);
     static void send_node_message(int sock, const char *message);
-    void blockForger();
-    void peerDiscoveryStatus();
-    void peerDiscovery();
+
+    [[noreturn]] void blockForger();
+
+    [[noreturn]] void peerDiscoveryStatus();
+
+    [[noreturn]] void peerDiscovery();
     void handshake(int sock) const;
     std::string handshakeMessage() const;
     void peerDiscoveryHandleMessage(const char *message);

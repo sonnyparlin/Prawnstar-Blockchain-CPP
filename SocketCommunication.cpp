@@ -127,9 +127,9 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
         int incomingSocket;
 
         if ((argc == 5 && i !=0) || argc == 4) {
-            if ((incomingSocket = accept(serverSocket,
+            if ((incomingSocket = static_cast<int>(accept(serverSocket,
                                          (struct sockaddr *)&address,
-                                         (socklen_t*)&address_length)) < 0) {
+                                         (socklen_t*)&address_length))) < 0) {
                 #ifndef _WIN32
                 std::cout << "accept() error " << errno << std::endl;
                 #else
@@ -308,7 +308,7 @@ void SocketCommunication::outbound_node_connected(int sock) const {
  * Used for sending a specific node (connected via our socket) a message.
  */
 void SocketCommunication::send_node_message(int sock, const char *message) {
-    auto result = send(sock, message, strlen(message), 0);
+    auto result = send(sock, message, static_cast<int>(strlen(message)), 0);
     if (result < 0) {
         #ifndef _WIN32
         std::cout << "send() error " << errno << std::endl;
@@ -352,7 +352,7 @@ void SocketCommunication::receive_node_message(int sock) {
     char* buffer = new char[msgLength + 1]();
 
     // read socket data to the allocated buffer
-    reader = recv (sock, buffer, msgLength, MSG_WAITALL);
+    reader = recv (sock, buffer, static_cast<int>(msgLength), MSG_WAITALL);
     // std::cout << "reader => " << reader << std::endl;
     if (reader <= 0) {
         if (close(sock) == -1) {
@@ -451,7 +451,7 @@ void SocketCommunication::receive_node_message(int sock) {
  * blockforger polls the transaction pool once every 300 seconds and if there
  * are transactions in the pool, it calls forge() so they are dealt with.
  */
-void SocketCommunication::blockForger() {
+[[noreturn]] void SocketCommunication::blockForger() {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
 
@@ -467,7 +467,7 @@ void SocketCommunication::blockForger() {
 /*!
  * PeerDiscoveryStatus is used to display connected nodes.
  */
-void SocketCommunication::peerDiscoveryStatus() {
+[[noreturn]] void SocketCommunication::peerDiscoveryStatus() {
     for(;;) {
         std::cout << "Current connections: " << std::endl;
         if (!peers.empty()) {
@@ -485,7 +485,7 @@ void SocketCommunication::peerDiscoveryStatus() {
 /*!
  * The actual peer discovery system. It creates a handshake message and broadcasts it.
  */
-void SocketCommunication::peerDiscovery() {
+[[noreturn]] void SocketCommunication::peerDiscovery() {
     for(;;) {
         std::string message = handshakeMessage();
         broadcastPeerDiscovery(message.c_str());
