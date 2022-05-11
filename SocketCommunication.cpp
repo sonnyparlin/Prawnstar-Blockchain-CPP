@@ -558,8 +558,8 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
 
         // I commented out the two lines below because I can't think of
         // a valid reason to request the chain of a newly joined node.
-        // std::cout << "Requesting blockchain from network" << std::endl;
-        // node->requestChain();
+        std::cout << "Requesting blockchain from network" << std::endl;
+        node->requestChain();
     }
 
     if (j["Message"]["Peers"] != nullptr) {

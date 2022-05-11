@@ -310,10 +310,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
  * from the master server. How many blocks we ad is based on how many we requested.
  */
 void Node::handleBlockchain(const std::string &blockchainString) const {
-    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
+    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
         return;
-
+    
     nlohmann::json j;
     try {
         j = nlohmann::json::parse(blockchainString);
@@ -321,44 +321,38 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
         std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }
-    auto localBlockCount = static_cast<int>(blockchain->blocks[blockchain->blocks.size()-1].blockCount);
-    auto receivedBlockCount = static_cast<int>(j["blocks"].at(j["blocks"].size()-1)["blockCount"]);
+    auto localBlockCount = (int)blockchain->blocks[blockchain->blocks.size()-1].blockCount;
+    auto receivedBlockCount = (int)j["blocks"].size();
 
     std::cout << "localBlockCount: " << localBlockCount << std::endl;
     std::cout << "receivedBlockCount: " << receivedBlockCount << std::endl;
 
-    /*!
-    Ensure the incoming block count is greater than the local block count.
-    We can do this even when downloading a partial chain because we are using
-    the blockCount variable of the block itself rather than blocks.size().
-    */
-    if (receivedBlockCount > localBlockCount) {
-        std::cout << "importing " << receivedBlockCount << " blocks..." << std::endl;
-        
+    if (receivedBlockCount != localBlockCount) {
+        std::cout << "importing blocks" << std::endl;
+
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
-        std::vector<Block> blocks {j["blocks"]};
-        std::for_each(blocks.begin(), blocks.end(), [this, &blockNumber, &localBlockchainCopy](const Block& block) {
+        for (auto& element : j["blocks"]) {
             blockNumber++;
             Block b;
-            b.blockCount = block.blockCount;
-            b.forgerAddress = block.forgerAddress;
-            b.hash = block.hash;
-            b._id = block._id;
-            b.lastHash = block.lastHash;
-            b.signature = block.signature;
-            b.timestamp = block.timestamp;
+            b.blockCount = element["blockCount"];
+            b.forgerAddress = element["forgerAddress"];
+            b.hash = element["hash"];
+            b._id = element["_id"];
+            b.lastHash = element["lastHash"];
+            b.signature = element["signature"];
+            b.timestamp = element["timestamp"];
             std::vector<Transaction> transactions;
-            std::for_each(block.transactions.begin(), block.transactions.end(), [&transactions, this](const Transaction& itx){
+            for (auto& itx : element["transactions"]) {
                 Transaction t;
-                t.id = itx.id;
-                t.amount = itx.amount;
-                t.receiverAddress = itx.receiverAddress;
-                t.senderAddress = itx.senderAddress;
+                t.id = itx["id"];
+                t.amount = itx["amount"];
+                t.receiverAddress = itx["receiverAddress"];
+                t.senderAddress = itx["senderAddress"];
                 t.senderPublicKey = accountModel->addressToPublicKey[t.senderAddress];
-                t.signature = itx.signature;
-                t.timestamp = itx.timestamp;
-                t.type = itx.type;
+                t.signature = itx["signature"];
+                t.timestamp = itx["timestamp"];
+                t.type = itx["type"];
                 transactions.push_back(t);
 
                 if (t.type == "STAKE") {
@@ -368,13 +362,13 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
                     accountModel->updateBalance(t.senderAddress, -t.amount);
                     accountModel->updateBalance(t.receiverAddress, t.amount);
                 }
-            });
+            }
             b.transactions = transactions;
             localBlockchainCopy.push_back(b);
             /*! 
             \todo write the new block to our mongodb instance
             */
-        });
+        }
         blockchain->blocks = localBlockchainCopy;
     }
 }
@@ -395,12 +389,7 @@ std::string Node::getTimeStr()
 void Node::forge() {
     std::string forger = blockchain->nextForger();
     auto timeStr = getTimeStr();
-    if (forger != nodeWallet->walletPublicKey) {
-        log(timeStr);
-        log("i am not the next forger");
-        std::string address = utils::generateAddress(forger);
-        accountModel->addAccount(address, forger);
-    } else {
+    if (forger == nodeWallet->walletPublicKey) {
         log(timeStr);
         log("i am the next forger");
         Block block;
@@ -428,5 +417,10 @@ void Node::forge() {
         Message message(msgType, msgBody);
         std::string msgJson = message.toJson();
         p2p->broadcast(msgJson.c_str());
+    } else {
+        log(timeStr);
+        log("i am not the next forger");
+        std::string address = utils::generateAddress(forger);
+        accountModel->addAccount(address, forger);
     }
 }

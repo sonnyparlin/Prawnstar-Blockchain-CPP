@@ -185,7 +185,7 @@ bool Blockchain::blockHasTransactions(const Block &block) {
  *
  * Wrapper for executing each transaction.
  */
-void Blockchain::executeTransactions(const std::vector<Transaction> &transactions) {
+void Blockchain::executeTransactions(const std::vector<Transaction>& transactions) {
     std::for_each(transactions.begin(), transactions.end(), [this](const Transaction& transaction) {
         executeTransaction(transaction);
     });
@@ -197,7 +197,7 @@ void Blockchain::executeTransactions(const std::vector<Transaction> &transaction
  *
  * Execute the given transaction.
  */
-void Blockchain::executeTransaction(const Transaction &transaction) {
+void Blockchain::executeTransaction(const Transaction& transaction) {
 
     if (transaction.type == "STAKE") {
         if (transaction.senderAddress == transaction.receiverAddress) {
@@ -319,12 +319,11 @@ bool Blockchain::forgerValid(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     Wallet proposedForger(block.forgerAddress.c_str(), this->node);
 
-    std::string forgerPublicKey = node->proofOfStake->
-                            forger(blocks[blocks.size()-1].lastHash);
+    std::string lastBlockHash = blocks[blocks.size()-1].lastHash;
+    std::string forgerPublicKey = node->proofOfStake->forger(lastBlockHash);
 
     if (forgerPublicKey != proposedForger.walletPublicKey) {
-        std::cout << "proposedForger: "
-                  << proposedForger.walletPublicKey << std::endl;
+        std::cout << "proposedForger: " << proposedForger.walletPublicKey << std::endl;
         std::cout << "actualForger  : " << forgerPublicKey << std::endl;
     }
     return forgerPublicKey == proposedForger.walletPublicKey;
