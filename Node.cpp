@@ -310,10 +310,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
  * from the master server. How many blocks we ad is based on how many we requested.
  */
 void Node::handleBlockchain(const std::string &blockchainString) const {
-    // std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
+    std::lock_guard<std::mutex> guard(blockchain->blockchainMutex);
     if (blockchainString.empty())
         return;
-    
+
     nlohmann::json j;
     try {
         j = nlohmann::json::parse(blockchainString);
