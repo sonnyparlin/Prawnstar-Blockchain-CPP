@@ -18,7 +18,6 @@ NodeApi.cpp
 Transaction.cpp
 Lot.cpp
 ProofOfStake.cpp
-Staker.cpp
 TransactionPool.cpp
 p2putils.cpp)
 
