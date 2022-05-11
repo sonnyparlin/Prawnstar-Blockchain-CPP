@@ -66,8 +66,7 @@ std::vector<Transaction> Blockchain::calculateForgerReward(
     std::vector<Transaction> resultTransactions;
     double reward {};
 
-    for (auto &itx : transactions) {
-
+    std::for_each(transactions.begin(), transactions.end(), [this, &resultTransactions, &reward](Transaction &itx){
         if (itx.type == "STAKE") {
             resultTransactions.push_back(itx);
 
@@ -77,22 +76,19 @@ std::vector<Transaction> Blockchain::calculateForgerReward(
              * if statement above because REWARD transactions are
              * only created after the above check is performed.
              */
-            continue;
         }
 
-        reward += (itx.amount * 0.005);
-        itx.amount -= (itx.amount * 0.005);
-        resultTransactions.push_back(itx);
+        if (itx.type != "STAKE") {
+            reward += (itx.amount * 0.005);
+            itx.amount -= (itx.amount * 0.005);
+            resultTransactions.push_back(itx);
 
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);
-        std::ostringstream oss;
-        oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
-        auto str = oss.str();
-        node->log(str);
-        std::string r = "reward: " + std::to_string(reward);
-        node->log(r);
-    }
+            auto str = Node::getTimeStr();
+            node->log(str);
+            std::string r = "reward: " + std::to_string(reward);
+            node->log(r);
+        }
+    });
 
     try {
         Transaction rewardTx = node->exchangeWallet->
@@ -156,9 +152,10 @@ bool Blockchain::transactionCovered(const Transaction &transaction) {
  */
 std::vector<Transaction> Blockchain::getCoveredTransactionSet(
         const vector<Transaction> &transactions
-        ) {
+) {
     std::vector<Transaction> coveredTransactions;
-    for (auto const &transaction : transactions) {
+    std::for_each(transactions.begin(), transactions.end(), [this, &coveredTransactions]
+                                                                        (const Transaction& transaction) {
         if (transactionCovered(transaction))
             coveredTransactions.push_back(transaction);
         else {
@@ -166,7 +163,7 @@ std::vector<Transaction> Blockchain::getCoveredTransactionSet(
             std::vector<Transaction> transactionsToRemove {transaction};
             node->transactionPool.removeFromPool(transactionsToRemove);
         }
-    }
+    });
     return coveredTransactions;
 }
 
@@ -189,9 +186,9 @@ bool Blockchain::blockHasTransactions(const Block &block) {
  * Wrapper for executing each transaction.
  */
 void Blockchain::executeTransactions(const std::vector<Transaction> &transactions) {
-    for (auto const &transaction : transactions) {
+    std::for_each(transactions.begin(), transactions.end(), [this](const Transaction& transaction) {
         executeTransaction(transaction);
-    }
+    });
 }
 
 /*!
@@ -205,11 +202,13 @@ void Blockchain::executeTransaction(const Transaction &transaction) {
     if (transaction.type == "STAKE") {
         if (transaction.senderAddress == transaction.receiverAddress) {
             node->proofOfStake->
-                        update(transaction.senderPublicKey, transaction.amount);
+                    update(transaction.senderPublicKey, transaction.amount);
             node->accountModel->
-                        updateBalance(transaction.senderAddress, -transaction.amount);
+                    updateBalance(transaction.senderAddress, -transaction.amount);
         }
-    } else {
+    }
+
+    if (transaction.type != "STAKE") {
         node->accountModel->
                     updateBalance(transaction.senderAddress, -transaction.amount);
         node->accountModel->

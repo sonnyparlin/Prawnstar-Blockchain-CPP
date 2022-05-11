@@ -44,6 +44,7 @@ public:
     bool handleTransaction (Transaction&, bool broadcast=true);
     void handleBlock (Block &block, bool broadcast);
     void requestChain() const;
+    static std::string getTimeStr();
     void forge();
     void handleBlockchainRequest(std::string) const;
     void handleBlockchain(const std::string &blockchainString) const;

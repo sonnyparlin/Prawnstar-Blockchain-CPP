@@ -77,7 +77,6 @@ inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
     std::vector<Lot> lots;
 
     for ( const auto &validator : stakers ) {
-
         /*!
          * Note, it doesn't do you any good to stake
          * more than upperLimit tokens. (limit is for performance).

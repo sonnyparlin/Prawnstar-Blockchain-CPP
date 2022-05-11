@@ -30,11 +30,8 @@ public:
     void outbound_node_connected(int sock) const;
     void receive_node_message(int sock);
     static void send_node_message(int sock, const char *message);
-
     [[noreturn]] void blockForger();
-
     [[noreturn]] void peerDiscoveryStatus();
-
     [[noreturn]] void peerDiscovery();
     void handshake(int sock) const;
     std::string handshakeMessage() const;
@@ -45,6 +42,7 @@ public:
     const int MESSAGELENGTH = 20; /*!< Our predetermined message length for discovery messages */
     std::string id {}; /*!< peer to peer server id */
     SocketConnector sc {}; /*!< this node's socket connecter (ip and port) */
+    // std::map<std::string, std::string> serverStakerMap {}; /*!< map of the node id and node wallet's pub key */
 };
 
 #endif // _SOCKETCOMMUNICATION_H_

@@ -89,7 +89,7 @@ std::string Node::getNodeID() const {
  * @param lineCount
  * @return std::string
  *
- * Get the last 100 lines of log file
+ * Get the last 100 lines of log file, downloaded function.
  */
 std::string getLastLines( std::string const& filename, int lineCount )
 {
@@ -278,6 +278,10 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
 
     std::vector<std::string> receivingNode = utils::split(requestingNode, ":");
     auto blockNumber = stol(receivingNode.at(2));
+
+    if (blockNumber > static_cast<int>(blockchain->blocks.size()))
+        return;
+
     std::cout << "\n\n\tReceived blockchain download request from "
               << receivingNode.at(0) + " for "
               << (blockchain->blocks.size() - blockNumber)
@@ -290,7 +294,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
     Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
 
-    auto num = (int)stol(receivingNode.at(1));
+    auto num = static_cast<int>(stol(receivingNode.at(1)));
     int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {
         return;
@@ -333,27 +337,28 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
         
         int blockNumber {0};
         std::vector<Block> localBlockchainCopy = blockchain->blocks;
-        for (auto& element : j["blocks"]) {
+        std::vector<Block> blocks {j["blocks"]};
+        std::for_each(blocks.begin(), blocks.end(), [this, &blockNumber, &localBlockchainCopy](const Block& block) {
             blockNumber++;
             Block b;
-            b.blockCount = element["blockCount"];
-            b.forgerAddress = element["forgerAddress"];
-            b.hash = element["hash"];
-            b._id = element["_id"];
-            b.lastHash = element["lastHash"];
-            b.signature = element["signature"];
-            b.timestamp = element["timestamp"];
+            b.blockCount = block.blockCount;
+            b.forgerAddress = block.forgerAddress;
+            b.hash = block.hash;
+            b._id = block._id;
+            b.lastHash = block.lastHash;
+            b.signature = block.signature;
+            b.timestamp = block.timestamp;
             std::vector<Transaction> transactions;
-            for (auto& itx : element["transactions"]) {
+            std::for_each(block.transactions.begin(), block.transactions.end(), [&transactions, this](const Transaction& itx){
                 Transaction t;
-                t.id = itx["id"];
-                t.amount = itx["amount"];
-                t.receiverAddress = itx["receiverAddress"];
-                t.senderAddress = itx["senderAddress"];
+                t.id = itx.id;
+                t.amount = itx.amount;
+                t.receiverAddress = itx.receiverAddress;
+                t.senderAddress = itx.senderAddress;
                 t.senderPublicKey = accountModel->addressToPublicKey[t.senderAddress];
-                t.signature = itx["signature"];
-                t.timestamp = itx["timestamp"];
-                t.type = itx["type"];
+                t.signature = itx.signature;
+                t.timestamp = itx.timestamp;
+                t.type = itx.type;
                 transactions.push_back(t);
 
                 if (t.type == "STAKE") {
@@ -363,15 +368,25 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
                     accountModel->updateBalance(t.senderAddress, -t.amount);
                     accountModel->updateBalance(t.receiverAddress, t.amount);
                 }
-            }
+            });
             b.transactions = transactions;
             localBlockchainCopy.push_back(b);
             /*! 
             \todo write the new block to our mongodb instance
             */
-        }
+        });
         blockchain->blocks = localBlockchainCopy;
     }
+}
+
+std::string Node::getTimeStr()
+{
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
+    auto str = oss.str();
+    return str;
 }
 
 /*!
@@ -379,36 +394,29 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
  */
 void Node::forge() {
     std::string forger = blockchain->nextForger();
+    auto timeStr = getTimeStr();
     if (forger != nodeWallet->walletPublicKey) {
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);
-        std::ostringstream oss;
-        oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
-        auto str = oss.str();
-        log(str);
+        log(timeStr);
         log("i am not the next forger");
-        // std::cout << forger << std::endl;
         std::string address = utils::generateAddress(forger);
         accountModel->addAccount(address, forger);
     } else {
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);
-        std::ostringstream oss;
-        oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
-        auto str = oss.str();
-        log(str);
+        log(timeStr);
         log("i am the next forger");
         Block block;
         std::vector<Transaction> rewardedTransactions;
         
         try {
             rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
-        } catch (std::exception &e) {std::cerr << "reward trnsaction exception: " << e.what() << std::endl; }
+        } catch (std::exception &e) {
+            std::cerr << "reward transaction exception: " << e.what() << std::endl;
+        }
         
         try {
             block = blockchain->createBlock(rewardedTransactions, nodeWallet->address);
-        } catch (std::exception &e) {std::cerr << "creaate block exception: " << e.what() << std::endl; } 
-        
+        } catch (std::exception &e) {
+            std::cerr << "creaate block exception: " << e.what() << std::endl;
+        }
         transactionPool.removeFromPool(block.transactions);
         
         /*! 

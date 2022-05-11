@@ -39,3 +39,5 @@ creating transactions.
 * ~~Fix signature verification bug~~
 * Write more tests
 * Update React to get rid of security vulnerabilities in the dependancies
+* Set up ability for non-node addresses to stake and earn rewards.
+  * Fix problem with stake winner's node not being available.

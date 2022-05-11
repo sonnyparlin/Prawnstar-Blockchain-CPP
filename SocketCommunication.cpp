@@ -110,6 +110,8 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
 
+    // serverStakerMap.insert(std::pair<std::string, std::string>(id, node->nodeWallet->walletPublicKey));
+
     /*!
     \todo open db and if it has no data, write the genesis block to our mongodb instance
     */
@@ -400,7 +402,7 @@ void SocketCommunication::receive_node_message(int sock) {
             std::cerr << e.what() << std::endl;
         }
         
-        for (auto itx : jx["transactions"]) {
+        for (const auto& itx : jx["transactions"]) {
             Transaction tr;
             tr.id = itx["id"];
             tr.amount = itx["amount"];
@@ -454,7 +456,6 @@ void SocketCommunication::receive_node_message(int sock) {
 [[noreturn]] void SocketCommunication::blockForger() {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
-
         sleep(300); // 300 seconds between blocks
         if (!node->transactionPool.transactions.empty()) {
             std::cout << node->transactionPool.transactions.size() << " transactions" << std::endl;
@@ -554,8 +555,11 @@ void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
                   << peersSenderConnector.port << std::endl;
         newPeerToAdd = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
         peers.push_back(newPeerToAdd);
-        std::cout << "Requesting blockchain from network" << std::endl;
-        node->requestChain();
+
+        // I commented out the two lines below because I can't think of
+        // a valid reason to request the chain of a newly joined node.
+        // std::cout << "Requesting blockchain from network" << std::endl;
+        // node->requestChain();
     }
 
     if (j["Message"]["Peers"] != nullptr) {
