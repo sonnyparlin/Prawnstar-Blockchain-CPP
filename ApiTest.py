@@ -33,7 +33,7 @@ with requests.Session() as s:
     post_transaction(s, exchange, alice, '20000', 'EXCHANGE')
     print("Attempting to stake 3 tokens on Node #2")
     post_transaction(s, node2, node2, '3', 'STAKE')
-    #post_transaction(s, nodeWallet, nodeWallet, '4', 'EXCHANGE')
+    #post_transaction(s, nodeWallet, nodeWallet, '4', 'STAKE')
 
     print(f"Attempting {sys.argv[1]} transactions on network with at least two nodes running...")
     for x in range(int(sys.argv[1])):
