@@ -393,23 +393,46 @@ std::string Node::getTimeStr()
  * This is where new blocks are initiated for this forger.
  */
 void Node::forge() {
-
-    // if there are more than 100 transactions in the transaction pool
-    // assume we are having connection problems with the current staker's node
-    // and remove that staker from the stakers vector.
+    /*!
+     * Return the new block forger based on the proof of work algorithm.
+     */
     std::string forger = blockchain->nextForger();
-    if (transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
-        std::string addr = "pv1" + utils::generateAddress(forger);
 
+    /*! if there are more than 100 transactions in the transaction pool
+     * assume we are having connection problems with the current staker's node
+     * and remove that staker from the stakers vector.
+     */
+    if (transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
+
+        /*!
+         * 100 transactions in the transaction pool means thee is a clog in the system,
+         * such a clog will be in the form of a node that has staked prawn but the node is unreachable
+         * and so transactions are piling up in the transaction pool. So let's get the address of this
+         * staker, return the stake back to the staker's wallet and then remove the staker from the
+         * list of valid stakers. Then re-run the proof of stake lottery to find a new staker and proceed
+         * with forging the new block.
+         */
+        std::string addr = "pv1" + utils::generateAddress(forger);
         accountModel->updateBalance(addr, proofOfStake->stakers[forger]);
         proofOfStake->stakers.erase(forger);
 
-        // Don't let the transaction pool get out of control.
+        /*!
+         * At 500 transactions in the pool, we know it's time to clean up.
+         * There should never be this many transactions in the transaction pool.
+         * This can only happen if the node was identified as a staker but wasn't
+         * able to forge() new blocks, perhaps due to network connectivity issues
+         * or some other reason. Either way, we can safely assume these are dead
+         * transactions or they've been processed already.
+         */
         if (transactionPool.transactions.size() > 500) {
             if (proofOfStake->stakers.count(forger) == 0)
                 transactionPool.transactions.clear();
         }
 
+        /*!
+         * Okay now that we've removed the broken staker, let's try
+         * to pick a new staker.
+         */
         forger = blockchain->nextForger();
     }
 

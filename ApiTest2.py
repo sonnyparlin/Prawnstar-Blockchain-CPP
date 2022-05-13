@@ -13,10 +13,6 @@ def post_transaction(session, sender, receiver, amount, type):
     url = f"http://{ip}:8001/transact"
     json = '{"transaction": {"sender": "'+ sender +'","receiver": "'+ receiver +'", "amount": '+ amount +', "type": "'+ type +'"}}'
     r = session.post(url, data = json)
-    #if "Received" not in r.text:
-    #print(r.text)
-    
-    #time.sleep(2)
 
 start_time = time.time()
 
@@ -27,10 +23,11 @@ bob = 'pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42'
 node2 = 'pv17bf144b32a8522fece3261b0a9fb93a3e2255b42'
 
 with requests.Session() as s:
+    post_transaction(s, node2, node2, '3', 'STAKE')
     for x in range(int(sys.argv[1])):
-        print(x)            
+        if x > 0 and x % 100 == 0:
+            print(f"{x} transactions...")
         post_transaction(s, alice, bob, '1', 'TRANSFER')
-        #time.sleep(0.5)
 
 print("--- %s seconds ---\n\n" % (time.time() - start_time))
 
