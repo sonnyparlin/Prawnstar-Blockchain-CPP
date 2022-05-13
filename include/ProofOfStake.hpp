@@ -32,6 +32,8 @@ public:
 
     std::unordered_map<std::string, double>stakers {}; /*!< list of stakers */
     std::mutex posMutex {}; /*!< mutext for guarding shared data (stakers list) */
+    std::string genesisNodeStake {}; /*!< variable used to compare this node's
+                                      * public key to the master node wallet's public key */
 };
 
 #endif // _PROOFOFSTAKE_H_

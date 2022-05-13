@@ -31,6 +31,7 @@ ProofOfStake::~ProofOfStake()=default;
  */
 void ProofOfStake::setGenesisNodeStake(const std::string &genesisPublicKey) {
     stakers[genesisPublicKey] = 1;
+    genesisNodeStake = genesisPublicKey;
 }
 
 /*!

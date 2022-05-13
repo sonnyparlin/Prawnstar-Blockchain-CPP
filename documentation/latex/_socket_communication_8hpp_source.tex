@@ -31,9 +31,9 @@
 \DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_abbf1ab3002a9467f8cd2930177671310}{outbound\_node\_connected}}(\textcolor{keywordtype}{int} sock) \textcolor{keyword}{const};}
 \DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a7188bf352145f177efe93a64fa20ff7a}{receive\_node\_message}}(\textcolor{keywordtype}{int} sock);}
 \DoxyCodeLine{32     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a1bb5ebcc2231b67d0128280dd02ddb3d}{send\_node\_message}}(\textcolor{keywordtype}{int} sock, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *message);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}{blockForger}}();}
-\DoxyCodeLine{34     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a853380083a5e1450551e3d238dc656b4}{peerDiscoveryStatus}}();}
-\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}{peerDiscovery}}();}
+\DoxyCodeLine{33     [[noreturn]] \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_aa3617c8c0be10e00130852719ec5fc00}{blockForger}}();}
+\DoxyCodeLine{34     [[noreturn]] \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a853380083a5e1450551e3d238dc656b4}{peerDiscoveryStatus}}();}
+\DoxyCodeLine{35     [[noreturn]] \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a9e8960f26eb68748370433d1410cd92d}{peerDiscovery}}();}
 \DoxyCodeLine{36     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a92bd91aac8ca628001433ac06f90919b}{handshake}}(\textcolor{keywordtype}{int} sock) \textcolor{keyword}{const};}
 \DoxyCodeLine{37     std::string \mbox{\hyperlink{class_socket_communication_abeeeace94685bcea0f46de641c953d2a}{handshakeMessage}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_socket_communication_a60521ddaf06d64f669a5ce84eb28ee3d}{peerDiscoveryHandleMessage}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *message);}
@@ -43,8 +43,9 @@
 \DoxyCodeLine{42     \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_socket_communication_add89471d518b7d3b06241e3ca73be47d}{MESSAGELENGTH}} = 20; }
 \DoxyCodeLine{43     std::string \textcolor{keywordtype}{id} \{\}; }
 \DoxyCodeLine{44     \mbox{\hyperlink{class_socket_connector}{SocketConnector}} \mbox{\hyperlink{class_socket_communication_a30f06d9bb957d12517468379feb5530a}{sc}} \{\}; }
-\DoxyCodeLine{45 \};}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_SOCKETCOMMUNICATION\_H\_}}
+\DoxyCodeLine{45     \textcolor{comment}{// std::map<std::string, std::string> serverStakerMap \{\}; /*!< map of the node id and node wallet's pub key */}}
+\DoxyCodeLine{46 \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_SOCKETCOMMUNICATION\_H\_}}
 
 \end{DoxyCode}

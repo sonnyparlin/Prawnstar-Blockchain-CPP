@@ -34,6 +34,8 @@ static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a3ea36e15943830944d45
 std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \mbox{\hyperlink{class_proof_of_stake_a3d8e09fd4ecaa0bbf68602fe57e5a567}{stakers}} \{\}
 \item 
 std\+::mutex \mbox{\hyperlink{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}{pos\+Mutex}} \{\}
+\item 
+std\+::string \mbox{\hyperlink{class_proof_of_stake_a0fb0c3275d9069c1989e528f1926b92f}{genesis\+Node\+Stake}} \{\}
 \end{DoxyCompactItemize}
 
 
@@ -168,7 +170,13 @@ Create lottery tickets for the stakers to be chosen at random to decide who the 
 Chooses a winner for the forger lottery based on the random selection of Lots. 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}\label{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}} 
+\mbox{\Hypertarget{class_proof_of_stake_a0fb0c3275d9069c1989e528f1926b92f}\label{class_proof_of_stake_a0fb0c3275d9069c1989e528f1926b92f}} 
+\index{ProofOfStake@{ProofOfStake}!genesisNodeStake@{genesisNodeStake}}
+\index{genesisNodeStake@{genesisNodeStake}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{genesisNodeStake}{genesisNodeStake}}
+{\footnotesize\ttfamily std\+::string Proof\+Of\+Stake\+::genesis\+Node\+Stake \{\}}
+
+variable used to compare this node\textquotesingle{}s public key to the master node wallet\textquotesingle{}s public key \mbox{\Hypertarget{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}\label{class_proof_of_stake_a231de78a8b3da7b17ec779720b148358}} 
 \index{ProofOfStake@{ProofOfStake}!posMutex@{posMutex}}
 \index{posMutex@{posMutex}!ProofOfStake@{ProofOfStake}}
 \doxysubsubsection{\texorpdfstring{posMutex}{posMutex}}

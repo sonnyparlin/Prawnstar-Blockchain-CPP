@@ -100,6 +100,8 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a74ae879449651bf3658073b041d97f58"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a74ae879449651bf3658073b041d97f58">createNode</a> (char **argv)</td></tr>
 <tr class="separator:a74ae879449651bf3658073b041d97f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204be29a96288955c69ce5ee3942954e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a204be29a96288955c69ce5ee3942954e">getTimeStr</a> ()</td></tr>
+<tr class="separator:a204be29a96288955c69ce5ee3942954e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3291bce63c6c99090e49abcbb4c29b5"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ab3291bce63c6c99090e49abcbb4c29b5">getConsoleLog</a> ()</td></tr>
 <tr class="separator:ab3291bce63c6c99090e49abcbb4c29b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -264,6 +266,33 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a204be29a96288955c69ce5ee3942954e" name="a204be29a96288955c69ce5ee3942954e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a204be29a96288955c69ce5ee3942954e">&#9670;&nbsp;</a></span>getTimeStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Node::getTimeStr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
+<p>Return the current time as a string. </p>
+
+</div>
+</div>
 <a id="a3431dcfd8525b2eb4bc74262363d0465" name="a3431dcfd8525b2eb4bc74262363d0465"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3431dcfd8525b2eb4bc74262363d0465">&#9670;&nbsp;</a></span>handleBlock()</h2>
 
@@ -322,7 +351,6 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <p>This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. </p>
-<p >Ensure the incoming block count is greater than the local block count. We can do this even when downloading a partial chain because we are using the blockCount variable of the block itself rather than blocks.size().</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>write the new block to our mongodb instance </dd></dl>
 
 </div>

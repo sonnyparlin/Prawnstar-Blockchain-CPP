@@ -15,5 +15,6 @@ var searchData=
   ['getpooltransactionsjsonstring_12',['getPoolTransactionsJsonString',['../class_transaction_pool.html#a75d388012cc9b8ac636f4314bef8ab2f',1,'TransactionPool']]],
   ['getport_13',['getPort',['../namespaceutils.html#aa362c0052e677799768436cbd640e906',1,'utils']]],
   ['getstake_14',['getStake',['../class_proof_of_stake.html#aaae5f1b8f8fca2a4715d26797a9d54af',1,'ProofOfStake']]],
-  ['gettransaction_15',['getTransaction',['../class_blockchain.html#af1235ef58b69abb44d002454c97e91d6',1,'Blockchain']]]
+  ['gettimestr_15',['getTimeStr',['../class_node.html#a204be29a96288955c69ce5ee3942954e',1,'Node']]],
+  ['gettransaction_16',['getTransaction',['../class_blockchain.html#af1235ef58b69abb44d002454c97e91d6',1,'Blockchain']]]
 ];

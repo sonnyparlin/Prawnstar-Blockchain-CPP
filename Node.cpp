@@ -373,6 +373,12 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
     }
 }
 
+/*!
+ *
+ * @return std::string
+ *
+ * Return the current time as a string.
+ */
 std::string Node::getTimeStr()
 {
     auto t = std::time(nullptr);
@@ -387,7 +393,26 @@ std::string Node::getTimeStr()
  * This is where new blocks are initiated for this forger.
  */
 void Node::forge() {
+
+    // if there are more than 100 transactions in the transaction pool
+    // assume we are having connection problems with the current staker's node
+    // and remove that staker from the stakers vector.
     std::string forger = blockchain->nextForger();
+    if (transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
+        std::string addr = "pv1" + utils::generateAddress(forger);
+
+        accountModel->updateBalance(addr, proofOfStake->stakers[forger]);
+        proofOfStake->stakers.erase(forger);
+
+        // Don't let the transaction pool get out of control.
+        if (transactionPool.transactions.size() > 500) {
+            if (proofOfStake->stakers.count(forger) == 0)
+                transactionPool.transactions.clear();
+        }
+
+        forger = blockchain->nextForger();
+    }
+
     auto timeStr = getTimeStr();
     if (forger == nodeWallet->walletPublicKey) {
         log(timeStr);

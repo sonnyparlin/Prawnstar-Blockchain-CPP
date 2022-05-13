@@ -39,27 +39,28 @@
 \DoxyCodeLine{44     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_node_a308b10eb07ee09df6bef85ecd67d4e85}{handleTransaction}} (\mbox{\hyperlink{class_transaction}{Transaction}}\&, \textcolor{keywordtype}{bool} broadcast=\textcolor{keyword}{true});}
 \DoxyCodeLine{45     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_a3431dcfd8525b2eb4bc74262363d0465}{handleBlock}} (\mbox{\hyperlink{class_block}{Block}} \&block, \textcolor{keywordtype}{bool} broadcast);}
 \DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af7afdfcb0f02875839812b4c0a44b981}{requestChain}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
-\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af25a469a96f939eb8a2bde8de080a2cb}{handleBlockchainRequest}}(std::string) \textcolor{keyword}{const};}
-\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_afca81a037e9e4fe4cbacf0a0637b7ce2}{handleBlockchain}}(\textcolor{keyword}{const} std::string \&blockchainString) \textcolor{keyword}{const};}
-\DoxyCodeLine{50     std::string \mbox{\hyperlink{class_node_a85f2a46bd337dea9c67d907430a45edc}{getNodeID}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{51     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_node_ab3291bce63c6c99090e49abcbb4c29b5}{getConsoleLog}}();}
-\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af77a45d7a2a00d69259dd54a8dee2671}{log}}(std::string \textcolor{keyword}{const}\& msg);}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{54     \textcolor{comment}{// class members}}
-\DoxyCodeLine{55     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}} \mbox{\hyperlink{class_node_a8a04184423202651a3b807c6a2d0a508}{transactionPool}} \{\}; }
-\DoxyCodeLine{56     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a4eb8eec73c312bdf2509e30e3e059424}{nodeWallet}} \{\}; }
-\DoxyCodeLine{57     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a3c262e455d6332260f25a42b529b5906}{exchangeWallet}} \{\}; }
-\DoxyCodeLine{58     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a14a9758819bd22fe4a32478a08b88bf5}{bobWallet}} \{\}; }
-\DoxyCodeLine{59     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a15d9b97d824afee953bad4d38489afc5}{aliceWallet}} \{\}; }
-\DoxyCodeLine{60     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_aa241ae759578553f9167bfa9dc8ec901}{node2Wallet}} \{\}; }
-\DoxyCodeLine{61     \mbox{\hyperlink{class_blockchain}{Blockchain}} *\mbox{\hyperlink{class_node_adf4848690854c7c8470804626a57cf78}{blockchain}} \{\}; }
-\DoxyCodeLine{62     \mbox{\hyperlink{class_account_model}{AccountModel}} *\mbox{\hyperlink{class_node_ab9865ce71e40837c33c554aa3bb5260f}{accountModel}} \{\}; }
-\DoxyCodeLine{63     \mbox{\hyperlink{class_socket_communication}{SocketCommunication}} *\mbox{\hyperlink{class_node_a7094f5ca84e772165ce4ab369679853b}{p2p}} \{\}; }
-\DoxyCodeLine{64     \mbox{\hyperlink{class_proof_of_stake}{ProofOfStake}} *\mbox{\hyperlink{class_node_a8924885855cec659830a99c46e0b190e}{proofOfStake}} \{\}; }
-\DoxyCodeLine{65     std::mutex \mbox{\hyperlink{class_node_a527b390d6611ed21675b9930618916ec}{logMutex}} \{\}; }
-\DoxyCodeLine{66 \};}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODE\_H\_}}
+\DoxyCodeLine{47     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_node_a204be29a96288955c69ce5ee3942954e}{getTimeStr}}();}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge}}();}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af25a469a96f939eb8a2bde8de080a2cb}{handleBlockchainRequest}}(std::string) \textcolor{keyword}{const};}
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_afca81a037e9e4fe4cbacf0a0637b7ce2}{handleBlockchain}}(\textcolor{keyword}{const} std::string \&blockchainString) \textcolor{keyword}{const};}
+\DoxyCodeLine{51     std::string \mbox{\hyperlink{class_node_a85f2a46bd337dea9c67d907430a45edc}{getNodeID}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{52     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_node_ab3291bce63c6c99090e49abcbb4c29b5}{getConsoleLog}}();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_node_af77a45d7a2a00d69259dd54a8dee2671}{log}}(std::string \textcolor{keyword}{const}\& msg);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{comment}{// class members}}
+\DoxyCodeLine{56     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}} \mbox{\hyperlink{class_node_a8a04184423202651a3b807c6a2d0a508}{transactionPool}} \{\}; }
+\DoxyCodeLine{57     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a4eb8eec73c312bdf2509e30e3e059424}{nodeWallet}} \{\}; }
+\DoxyCodeLine{58     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a3c262e455d6332260f25a42b529b5906}{exchangeWallet}} \{\}; }
+\DoxyCodeLine{59     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a14a9758819bd22fe4a32478a08b88bf5}{bobWallet}} \{\}; }
+\DoxyCodeLine{60     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_a15d9b97d824afee953bad4d38489afc5}{aliceWallet}} \{\}; }
+\DoxyCodeLine{61     \mbox{\hyperlink{class_wallet}{Wallet}} *\mbox{\hyperlink{class_node_aa241ae759578553f9167bfa9dc8ec901}{node2Wallet}} \{\}; }
+\DoxyCodeLine{62     \mbox{\hyperlink{class_blockchain}{Blockchain}} *\mbox{\hyperlink{class_node_adf4848690854c7c8470804626a57cf78}{blockchain}} \{\}; }
+\DoxyCodeLine{63     \mbox{\hyperlink{class_account_model}{AccountModel}} *\mbox{\hyperlink{class_node_ab9865ce71e40837c33c554aa3bb5260f}{accountModel}} \{\}; }
+\DoxyCodeLine{64     \mbox{\hyperlink{class_socket_communication}{SocketCommunication}} *\mbox{\hyperlink{class_node_a7094f5ca84e772165ce4ab369679853b}{p2p}} \{\}; }
+\DoxyCodeLine{65     \mbox{\hyperlink{class_proof_of_stake}{ProofOfStake}} *\mbox{\hyperlink{class_node_a8924885855cec659830a99c46e0b190e}{proofOfStake}} \{\}; }
+\DoxyCodeLine{66     std::mutex \mbox{\hyperlink{class_node_a527b390d6611ed21675b9930618916ec}{logMutex}} \{\}; }
+\DoxyCodeLine{67 \};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_NODE\_H\_}}
 
 \end{DoxyCode}

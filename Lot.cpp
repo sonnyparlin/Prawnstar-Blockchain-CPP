@@ -3,8 +3,6 @@
 /*!
  *
  * @param _publicKeyString
- * @param _iteration
- * @param _lastBlockHash
  *
  * Used to create lottery tickets for the next forger.
  */

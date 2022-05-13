@@ -32,6 +32,8 @@ void \mbox{\hyperlink{class_node_af77a45d7a2a00d69259dd54a8dee2671}{log}} (std\+
 \item 
 static \mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_node_a74ae879449651bf3658073b041d97f58}{create\+Node}} (char $\ast$$\ast$argv)
 \item 
+static std\+::string \mbox{\hyperlink{class_node_a204be29a96288955c69ce5ee3942954e}{get\+Time\+Str}} ()
+\item 
 static std\+::string \mbox{\hyperlink{class_node_ab3291bce63c6c99090e49abcbb4c29b5}{get\+Console\+Log}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -119,7 +121,16 @@ Return last 10 lines of console.\+log \mbox{\Hypertarget{class_node_a85f2a46bd33
 \begin{DoxyReturn}{Returns}
 std\+::string
 \end{DoxyReturn}
-Return \mbox{\hyperlink{class_node}{Node}}\textquotesingle{}s peer to peer server id \mbox{\Hypertarget{class_node_a3431dcfd8525b2eb4bc74262363d0465}\label{class_node_a3431dcfd8525b2eb4bc74262363d0465}} 
+Return \mbox{\hyperlink{class_node}{Node}}\textquotesingle{}s peer to peer server id \mbox{\Hypertarget{class_node_a204be29a96288955c69ce5ee3942954e}\label{class_node_a204be29a96288955c69ce5ee3942954e}} 
+\index{Node@{Node}!getTimeStr@{getTimeStr}}
+\index{getTimeStr@{getTimeStr}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getTimeStr()}{getTimeStr()}}
+{\footnotesize\ttfamily std\+::string Node\+::get\+Time\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+std\+::string
+\end{DoxyReturn}
+Return the current time as a string. \mbox{\Hypertarget{class_node_a3431dcfd8525b2eb4bc74262363d0465}\label{class_node_a3431dcfd8525b2eb4bc74262363d0465}} 
 \index{Node@{Node}!handleBlock@{handleBlock}}
 \index{handleBlock@{handleBlock}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{handleBlock()}{handleBlock()}}
@@ -145,9 +156,7 @@ Return \mbox{\hyperlink{class_node}{Node}}\textquotesingle{}s peer to peer serve
 {\em blockchain\+String} & \\
 \hline
 \end{DoxyParams}
-This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. Ensure the incoming block count is greater than the local block count. We can do this even when downloading a partial chain because we are using the block\+Count variable of the block itself rather than blocks.\+size().
-
-\begin{DoxyRefDesc}{Todo}
+This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. \begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000002}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
 \mbox{\Hypertarget{class_node_af25a469a96f939eb8a2bde8de080a2cb}\label{class_node_af25a469a96f939eb8a2bde8de080a2cb}} 
 \index{Node@{Node}!handleBlockchainRequest@{handleBlockchainRequest}}
