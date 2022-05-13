@@ -1,4 +1,5 @@
 Prawnstar
+data/
 .idea/
 cmake-build-debug/
 dashboard/node_modules/*

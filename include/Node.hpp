@@ -21,14 +21,15 @@ class ProofOfStake;
 class AccountModel;
 
 /*!
- * Our primary interface between our peer to peer network and API.
+ * The node is the interface for both the API and the P2P network to interact with the
+ * blockchain. The node is where transactions and blocks are handled whether they come
+ * from the API or the P2P network.
  */
 class Node {
 private:
     static Node *node;
 
 public:
-    // constructors/destructors
     /*!
      *
      * @param argv
@@ -36,7 +37,7 @@ public:
      * Constructor for our main Node class (singleton)
      */
     explicit Node(char **argv); // Constructor
-    ~Node();                      // Destructor
+    ~Node();                    // Destructor
 
     // class methods
     static Node *createNode(char **argv);
