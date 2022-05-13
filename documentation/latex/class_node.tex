@@ -101,7 +101,17 @@ Our main singleton \mbox{\hyperlink{class_node}{Node}} for the application. \mbo
 \doxysubsubsection{\texorpdfstring{forge()}{forge()}}
 {\footnotesize\ttfamily void Node\+::forge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-This is where new blocks are initiated for this forger. \begin{DoxyRefDesc}{Todo}
+This is where new blocks are initiated for this forger. Return the new block forger based on the proof of work algorithm.
+
+if there are more than 100 transactions in the transaction pool assume we are having connection problems with the current staker\textquotesingle{}s node and remove that staker from the stakers vector.
+
+100 transactions in the transaction pool means thee is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let\textquotesingle{}s get the address of this staker, return the stake back to the staker\textquotesingle{}s wallet and then remove the staker from the list of valid stakers. Then re-\/run the proof of stake lottery to find a new staker and proceed with forging the new block.
+
+At 500 transactions in the pool, we know it\textquotesingle{}s time to clean up. There should never be this many transactions in the transaction pool. This can only happen if the node was identified as a staker but wasn\textquotesingle{}t able to \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge()}} new blocks, perhaps due to network connectivity issues or some other reason. Either way, we can safely assume these are dead transactions or they\textquotesingle{}ve been processed already.
+
+Okay now that we\textquotesingle{}ve removed the broken staker, let\textquotesingle{}s try to pick a new staker.
+
+\begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000003}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
 \mbox{\Hypertarget{class_node_ab3291bce63c6c99090e49abcbb4c29b5}\label{class_node_ab3291bce63c6c99090e49abcbb4c29b5}} 
 \index{Node@{Node}!getConsoleLog@{getConsoleLog}}
