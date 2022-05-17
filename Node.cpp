@@ -398,11 +398,11 @@ void Node::forge() {
      */
     std::string forger = blockchain->nextForger();
 
-    /*! if there are more than 100 transactions in the transaction pool
+    /*! if there are more than 50 transactions in the transaction pool
      * assume we are having connection problems with the current staker's node
      * and remove that staker from the stakers vector.
      */
-    if (transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
+    if (transactionPool.transactions.size() > 50 && forger != proofOfStake->genesisNodeStake) {
 
         /*!
          * 100 transactions in the transaction pool means thee is a clog in the system,
@@ -424,7 +424,7 @@ void Node::forge() {
          * or some other reason. Either way, we can safely assume these are dead
          * transactions or they've been processed already.
          */
-        if (transactionPool.transactions.size() > 500) {
+        if (transactionPool.transactions.size() > 100) {
             if (proofOfStake->stakers.count(forger) == 0)
                 transactionPool.transactions.clear();
         }
