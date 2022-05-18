@@ -221,7 +221,6 @@ Public Attributes</h2></td></tr>
 <p >100 transactions in the transaction pool means thee is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let's get the address of this staker, return the stake back to the staker's wallet and then remove the staker from the list of valid stakers. Then re-run the proof of stake lottery to find a new staker and proceed with forging the new block.</p>
 <p >At 500 transactions in the pool, we know it's time to clean up. There should never be this many transactions in the transaction pool. This can only happen if the node was identified as a staker but wasn't able to <a class="el" href="class_node.html#ac08fe080956d22ded0226fd3b47a4fdc">forge()</a> new blocks, perhaps due to network connectivity issues or some other reason. Either way, we can safely assume these are dead transactions or they've been processed already.</p>
 <p >Okay now that we've removed the broken staker, let's try to pick a new staker.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>write the new block to our mongodb instance </dd></dl>
 
 </div>
 </div>
@@ -330,7 +329,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write the new block to our mongodb instance </dd></dl>
 
 </div>
 </div>
@@ -356,7 +354,6 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <p>This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>write the new block to our mongodb instance </dd></dl>
 
 </div>
 </div>

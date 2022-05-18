@@ -2,8 +2,6 @@
 * ~~Set up test google test library~~
 * ~~Write tests~~
 * ~~keep the blockchain stored locally using a json file.~~
-* Set up the option to use mongodb for local 
-blockchain backups.
 * Find all instances of json::parse() and put them 
 in a try/catch block. Anytime these fail, it kills the running node.
 * Add front end for users to create wallets

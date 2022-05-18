@@ -224,10 +224,6 @@ void Node::handleBlock (Block &block, bool broadcast) {
                                                                 blockHasTransactions) {
         blockchain->addBlock(block);
         transactionPool.removeFromPool(block.transactions);
-        
-        /*! 
-        \todo write the new block to our mongodb instance
-        */
 
         if (broadcast) {
             std::string msgType = "block";
@@ -365,9 +361,6 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
             }
             b.transactions = transactions;
             localBlockchainCopy.push_back(b);
-            /*! 
-            \todo write the new block to our mongodb instance
-            */
         }
         blockchain->blocks = localBlockchainCopy;
     }
@@ -455,10 +448,6 @@ void Node::forge() {
             std::cerr << "creaate block exception: " << e.what() << std::endl;
         }
         transactionPool.removeFromPool(block.transactions);
-        
-        /*! 
-        \todo write the new block to our mongodb instance
-        */
 
         std::string msgType = "BLOCK";
         std::string msgBody = block.toJson();

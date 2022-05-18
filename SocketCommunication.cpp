@@ -112,10 +112,6 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
 
     // serverStakerMap.insert(std::pair<std::string, std::string>(id, node->nodeWallet->walletPublicKey));
 
-    /*!
-    \todo open db and if it has no data, write the genesis block to our mongodb instance
-    */
-
     // Server initialization
     int serverSocket = p2putils::createSocket();
     if (!p2putils::Bind(serverSocket, address, PORT))

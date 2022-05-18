@@ -109,11 +109,7 @@ if there are more than 100 transactions in the transaction pool assume we are ha
 
 At 500 transactions in the pool, we know it\textquotesingle{}s time to clean up. There should never be this many transactions in the transaction pool. This can only happen if the node was identified as a staker but wasn\textquotesingle{}t able to \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge()}} new blocks, perhaps due to network connectivity issues or some other reason. Either way, we can safely assume these are dead transactions or they\textquotesingle{}ve been processed already.
 
-Okay now that we\textquotesingle{}ve removed the broken staker, let\textquotesingle{}s try to pick a new staker.
-
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
-\mbox{\Hypertarget{class_node_ab3291bce63c6c99090e49abcbb4c29b5}\label{class_node_ab3291bce63c6c99090e49abcbb4c29b5}} 
+Okay now that we\textquotesingle{}ve removed the broken staker, let\textquotesingle{}s try to pick a new staker.\mbox{\Hypertarget{class_node_ab3291bce63c6c99090e49abcbb4c29b5}\label{class_node_ab3291bce63c6c99090e49abcbb4c29b5}} 
 \index{Node@{Node}!getConsoleLog@{getConsoleLog}}
 \index{getConsoleLog@{getConsoleLog}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{getConsoleLog()}{getConsoleLog()}}
@@ -153,8 +149,6 @@ Return the current time as a string. \mbox{\Hypertarget{class_node_a3431dcfd8525
 {\em broadcast} & Do check to make sure the block is valid before adding it to the chain. Broadcast if necessary. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
 \mbox{\Hypertarget{class_node_afca81a037e9e4fe4cbacf0a0637b7ce2}\label{class_node_afca81a037e9e4fe4cbacf0a0637b7ce2}} 
 \index{Node@{Node}!handleBlockchain@{handleBlockchain}}
 \index{handleBlockchain@{handleBlockchain}!Node@{Node}}
@@ -166,9 +160,7 @@ Return the current time as a string. \mbox{\Hypertarget{class_node_a3431dcfd8525
 {\em blockchain\+String} & \\
 \hline
 \end{DoxyParams}
-This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]write the new block to our mongodb instance \end{DoxyRefDesc}
-\mbox{\Hypertarget{class_node_af25a469a96f939eb8a2bde8de080a2cb}\label{class_node_af25a469a96f939eb8a2bde8de080a2cb}} 
+This is where we read and rebuild the blockchain or partial blockchain after requesting blocks from the master server. How many blocks we ad is based on how many we requested. \mbox{\Hypertarget{class_node_af25a469a96f939eb8a2bde8de080a2cb}\label{class_node_af25a469a96f939eb8a2bde8de080a2cb}} 
 \index{Node@{Node}!handleBlockchainRequest@{handleBlockchainRequest}}
 \index{handleBlockchainRequest@{handleBlockchainRequest}!Node@{Node}}
 \doxysubsubsection{\texorpdfstring{handleBlockchainRequest()}{handleBlockchainRequest()}}
