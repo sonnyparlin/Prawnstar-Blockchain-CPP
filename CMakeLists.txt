@@ -22,7 +22,7 @@ TransactionPool.cpp
 p2putils.cpp)
 
 if(UNIX)
-    include_directories(include /usr/local/include /usr/local/opt/openssl@3/include)
+    include_directories(include /usr/local/include /usr/local/Cellar/boost/1.78.0_1/include  /usr/local/opt/openssl@3/include)
     set (OPENSSL_ROOT_DIR /usr/local/opt/openssl@3)
     find_package(OpenSSL REQUIRED)
     find_package(Boost REQUIRED)

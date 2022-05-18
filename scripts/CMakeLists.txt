@@ -5,19 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set (OPENSSL_ROOT_DIR /usr/local/opt/openssl@3)
 find_package(OpenSSL REQUIRED)
 
-include_directories(/usr/local/include/mongocxx/v_noabi
-        /usr/local/include/libmongoc-1.0
-        /usr/local/include/bsoncxx/v_noabi
-        /usr/local/include/libbson-1.0
-        /usr/local/include/bsoncxx/third_party/mnmlstc/
-        /usr/local/opt/openssl@3/include
-        ../include)
-
-link_directories(/usr/local/lib)
-add_executable(mongotest mongotest.cpp)
-target_link_libraries(mongotest mongocxx bsoncxx)
-
-
 include_directories(/usr/local/include
         /usr/local/opt/openssl@3/include
         ../include)
