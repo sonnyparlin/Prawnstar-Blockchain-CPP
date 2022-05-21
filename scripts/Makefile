@@ -30,7 +30,7 @@ maptest.o: maptest.cpp
 	/usr/bin/g++ maptest.cpp -std=c++17 -c
 	/usr/bin/g++ maptest.o -std=c++17 -lcryptopp -o maptest
 
-template.o: template.cpp
+template.o: classes.cpp
 	/usr/bin/g++ -Wall -std=c++17 template.cpp -c
 	/usr/bin/g++ -Wall -std=c++17 template.o -o template
 

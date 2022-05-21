@@ -218,6 +218,8 @@ utils::Signature Wallet::sign(const std::string &str) const
     size_t strlen;
     OPENSSL_buf2hexstr_ex(st, 256, &strlen,
                            sig, siglen, '\0');
+
+    OPENSSL_free(sig);
     
     /* assign the result to signature structure */
     mysig.hexsig = st;
@@ -275,7 +277,7 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
  * determined by the prof of stake algorithm. Called from Blockchain::createBlock()
  * inside of Node.cpp.
  */
-Block Wallet::createBlock(vector<Transaction> transactions,
+Block Wallet::createBlock(std::vector<Transaction> transactions,
                           std::string lastHash,
                           long blockCount) const {
     Block block(std::move(transactions), std::move(lastHash), blockCount);

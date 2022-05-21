@@ -19,7 +19,7 @@ public:
 
     void addTransaction(const Transaction &);
     bool transactionExists(const Transaction&);
-    void removeFromPool(const vector<Transaction>&);
+    void removeFromPool(const std::vector<Transaction>&);
     std::string getPoolTransactionsJsonString();
     bool forgerRequired();
 

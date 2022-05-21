@@ -22,7 +22,13 @@ add_executable(maptest maptest.cpp)
 
 add_executable(sundeep_test sundeep_test.cpp)
 target_link_libraries(sundeep_test OpenSSL::Crypto)
-add_executable(template template.cpp)
 add_executable(vector vector.cpp)
 add_executable(vectormap vectormap.cpp)
 
+# C++ primer
+add_executable(anatomy.cpp anatomy.cpp)
+add_executable(datatypes types.cpp)
+add_executable(functions functions.cpp)
+add_executable(pointers pointers.cpp)
+add_executable(classes classes.cpp)
+add_executable(overloading overloading.cpp)

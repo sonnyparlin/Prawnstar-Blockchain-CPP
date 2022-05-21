@@ -2,8 +2,8 @@
 #include <iostream>
 
 int main() {
-  std::vector<int> vi{'a','b','c','d','e','f','g'};
-  for(char i : vi) 
-    std::cout << "i = " << i << std::endl;
+  std::vector<int> chars{'a','b','c','d','e','f','g'};
+  for(auto const &character : chars)
+    std::cout << "char = " << character << std::endl;
   return 0;
 }

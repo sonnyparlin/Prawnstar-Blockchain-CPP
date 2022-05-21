@@ -13,19 +13,20 @@
  *
  * Transaction constructor
  */
-Transaction::Transaction(string senderAddress, 
-                         string receiverAddress, 
-                         double amount, 
-                         string type)
-    : senderAddress(std::move(senderAddress)),
-      receiverAddress(std::move(receiverAddress)),
-      amount(amount), 
-      type(std::move(type))  {
+Transaction::Transaction(std::string senderAddress, std::string receiverAddress, double amount, std::string type)
+: senderAddress(std::move(senderAddress)), receiverAddress(std::move(receiverAddress)), amount(amount), type(std::move(type))  {
     id = utils::get_uuid();
     timestamp = utils::timeSinceEpoch();
 }
 
+/*!
+ * Default transaction constructor
+ */
 Transaction::Transaction()=default;
+
+/*!
+ * Transaction destructor
+ */
 Transaction::~Transaction()=default;
 
 /*!

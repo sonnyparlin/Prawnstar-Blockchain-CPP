@@ -126,7 +126,7 @@ std::string getLastLines( std::string const& filename, int lineCount )
 void Node::log(std::string const& msg)
 {
     std::lock_guard<std::mutex> guard(logMutex);
-    ofstream myfile;
+    std::ofstream myfile;
     myfile.open ("console.log", std::ios_base::app);
     myfile << msg << std::endl;
     myfile.close();
@@ -284,7 +284,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
               << " blocks.\n"
               << std::endl;
 
-    vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
+    std::vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     std::string msgType = "BLOCKCHAIN";
     std::string msgBody = Blockchain::toJsonString(subvector);
     Message message(msgType, msgBody);
@@ -313,7 +313,7 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
     nlohmann::json j;
     try {
         j = nlohmann::json::parse(blockchainString);
-    } catch(exception &e) {
+    } catch(std::exception &e) {
         std::cout << "handleBlockchain() " << blockchainString << std::endl;
         std::cerr << e.what() << std::endl;
     }

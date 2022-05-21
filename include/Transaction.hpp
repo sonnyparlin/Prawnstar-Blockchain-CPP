@@ -3,36 +3,39 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
-using namespace std;
-
 /*!
  * Our transaction class.
  */
 class Transaction {
 public:
-    string toJson();
-    string payload();
+    // class methods
+    std::string toJson();
+    std::string payload();
     void sign(std::string sig);
+
+    // operator overload
     friend bool operator==(const Transaction &lhs, const Transaction &rhs);
 
-    // ctor
-    Transaction(string senderAddress, 
-                string receiverAddress, 
-                double amount, 
-                string type);
-     
-    Transaction(); // ctor
-    ~Transaction(); // dtor
+    // constructors
+    Transaction(std::string senderAddress,
+                std::string receiverAddress,
+                double amount,
+                std::string type);
+    Transaction();
 
-    string senderAddress {}; /*!< sending address */
-    string senderPublicKey {}; /*!< sender's public key */
-    string receiverAddress {}; /*!< receiver's address */
-    string receiverPublicKey {}; /*!< receiver's public key */
+    // destructor
+    ~Transaction();
+
+    // class data members
+    std::string senderAddress {}; /*!< sending address */
+    std::string senderPublicKey {}; /*!< sender's public key */
+    std::string receiverAddress {}; /*!< receiver's address */
+    std::string receiverPublicKey {}; /*!< receiver's public key */
     double amount{}; /*!< transaction amount */
-    string type {}; /*!< type (EXCHANGE, TRANSFER, STAKE, REWARD) */
-    string id {}; /*!< Transaction id */
+    std::string type {}; /*!< type (EXCHANGE, TRANSFER, STAKE, REWARD) */
+    std::string id {}; /*!< Transaction id */
     time_t timestamp{}; /*!< Transaction timestamp */
-    string signature {}; /*!< Transaction's signature. */
+    std::string signature {}; /*!< Transaction's signature. */
     size_t signatureLength {}; /*!< Signature length */
 };
 

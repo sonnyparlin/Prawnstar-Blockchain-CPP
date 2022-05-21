@@ -32,7 +32,7 @@ public:
     bool transactionExists(const Transaction&);
     bool forgerValid(const Block&);
     bool transactionValid(const std::vector<Transaction>&);
-    static vector<nlohmann::json> blockList(vector<Block>&);
+    static std::vector<nlohmann::json> blockList(std::vector<Block>&);
     std::string nextForger();
     bool blockHasTransactions(const Block&);
     std::string toJsonWebView();

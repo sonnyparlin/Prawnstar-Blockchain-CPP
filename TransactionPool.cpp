@@ -38,9 +38,9 @@ bool TransactionPool::transactionExists(const Transaction &transaction) {
  *
  * Remove the list of given transactions from the transaction pool.
  */
-void TransactionPool::removeFromPool(const vector<Transaction> &txs) {
+void TransactionPool::removeFromPool(const std::vector<Transaction> &txs) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
-    vector<Transaction> newPoolTransactions;
+    std::vector<Transaction> newPoolTransactions;
     for (auto const &poolTransaction : this->transactions) {
         bool insert = true;
         for (auto const &transaction : txs) {

@@ -38,7 +38,7 @@ int SocketCommunication::processArgs(int argc, char **argv) {
         std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
     }
 
-    auto arg = stoi(argv[2]);
+    auto arg = std::stoi(argv[2]);
 
     if (arg < INT_MIN || arg > INT_MAX) {
         std::cout << "Invalid port" << std::endl;
@@ -79,7 +79,7 @@ void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
  */
 void SocketCommunication::startP2POperations( int argc, char **argv ) {
     sc.ip = argv[1];
-    sc.port = stoi(argv[2]);
+    sc.port = std::stoi(argv[2]);
 
     std::thread serverThread (&SocketCommunication::startP2PServer, this, argc, argv);
     serverThread.detach();
@@ -103,7 +103,7 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
  */
 void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
-    auto PORT = stoi(argv[2]);
+    auto PORT = std::stoi(argv[2]);
     id = utils::get_uuid();
     struct sockaddr_in address{};
     int address_length = sizeof(address);
@@ -339,7 +339,7 @@ void SocketCommunication::receive_node_message(int sock) {
         return;
     }
 
-    msgLength = stoi (msgLengthBuffer);
+    msgLength = std::stoi (msgLengthBuffer);
     // std::cout << "Message Length => " << msgLength << std::endl;
     if (msgLength <= 0) {
         std::cout << "Message length is not valid, errno: " << errno << std::endl;
@@ -363,7 +363,7 @@ void SocketCommunication::receive_node_message(int sock) {
     
     try {
         j = nlohmann::json::parse(buffer);
-    } catch(exception &e) {
+    } catch(std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
     std::string messageType = j["Message"]["Type"];
@@ -394,7 +394,7 @@ void SocketCommunication::receive_node_message(int sock) {
 
         try {
             jx = nlohmann::json::parse(jsonBlock);
-        } catch(exception &e) {
+        } catch(std::exception &e) {
             std::cerr << e.what() << std::endl;
         }
         

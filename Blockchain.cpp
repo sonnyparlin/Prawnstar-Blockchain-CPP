@@ -26,7 +26,7 @@ Blockchain::~Blockchain()=default;
  * Create the genesis block for the blockchain.
  */
 Block Blockchain::genesis() {
-    vector<Transaction> zeroTransactions;
+    std::vector<Transaction> zeroTransactions;
     std::string lastHash = "***no***last***hash***";
     Block genesisBlock(zeroTransactions, lastHash, 0);
     genesisBlock.timestamp = 0;
@@ -151,7 +151,7 @@ bool Blockchain::transactionCovered(const Transaction &transaction) {
  * Get covered transactions from list of transactions.
  */
 std::vector<Transaction> Blockchain::getCoveredTransactionSet(
-        const vector<Transaction> &transactions
+        const std::vector<Transaction> &transactions
 ) {
     std::vector<Transaction> coveredTransactions;
     std::for_each(transactions.begin(), transactions.end(), [this, &coveredTransactions]
@@ -351,9 +351,9 @@ bool Blockchain::transactionValid(const std::vector<Transaction> &transactions) 
  *
  * Return a json representation for a list of given blocks.
  */
-vector<nlohmann::json> Blockchain::blockList(vector<Block> &blocks) {
+std::vector<nlohmann::json> Blockchain::blockList(std::vector<Block> &blocks) {
     nlohmann::json j;
-    vector<nlohmann::json> blks;
+    std::vector<nlohmann::json> blks;
 
     for (auto &block: blocks) {
         blks.push_back(block.jsonView());

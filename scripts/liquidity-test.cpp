@@ -53,7 +53,7 @@ int main() {
     }
     time(&end);
 
-    double time_taken = double(end - start);
+    auto time_taken = double(end - start);
     cout << "Execution time : " << fixed
          << setprecision(5) << time_taken;
     cout << " sec \n" << endl;    
@@ -66,7 +66,7 @@ int main() {
     else
         cout << "The current price of our coin is $" << std::fixed << std::setprecision(2) << TOKEN_PRICE << endl;
     
-    double average = accumulate(sales.begin(), sales.end(), 0) / static_cast<double>(sales.size());
+    auto average = accumulate(sales.begin(), sales.end(), 0.0) / static_cast<double>(sales.size());
     cout << "Average purchase USD: $" << std::fixed << std::setprecision(2) << average << endl;
     
     double high = *max_element(sales.begin(), sales.end());

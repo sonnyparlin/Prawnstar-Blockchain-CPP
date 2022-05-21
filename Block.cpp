@@ -60,9 +60,9 @@ void Block::sign(std::string _signature) {
  *
  * Create a json representation for a list of given transactions
  */
-vector<nlohmann::json> Block::transactionList(vector <Transaction> &transactions) {
+std::vector<nlohmann::json> Block::transactionList(std::vector<Transaction> &transactions) {
     nlohmann::json j;
-    vector<nlohmann::json> txs;
+    std::vector<nlohmann::json> txs;
 
     for (auto const &itx: transactions) {
         j["senderAddress"] = itx.senderAddress;
