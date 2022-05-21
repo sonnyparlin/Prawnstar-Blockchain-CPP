@@ -211,7 +211,7 @@ utils::Signature Wallet::sign(const std::string &str) const
 
     utils::Signature mysig;
     /* the easy way to translate your signature to a hex string */
-    // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+    // mysig.hex = OPENSSL_buf2hexstr(sig, siglen);
 
     /* the not so easy way */
     char st[256];
@@ -222,9 +222,9 @@ utils::Signature Wallet::sign(const std::string &str) const
     OPENSSL_free(sig);
     
     /* assign the result to signature structure */
-    mysig.hexsig = st;
-    mysig._size = siglen;
-    // std::cout << mysig.hexsig << "\n" << std::endl;
+    mysig.hex = st;
+    mysig.len = siglen;
+    // std::cout << mysig.hex << "\n" << std::endl;
 
     /* free memory */
     EVP_PKEY_free(pkey);
@@ -255,10 +255,10 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
 
     try {
         utils::Signature signature = sign(transaction.payload());
-        // std::cout << "sig size: " << signature._size << std::endl;
+        // std::cout << "sig size: " << signature.len << std::endl;
         transaction.senderPublicKey = walletPublicKey;
-        transaction.signatureLength = signature._size;
-        transaction.sign(signature.hexsig);
+        transaction.signatureLength = signature.len;
+        transaction.sign(signature.hex);
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;
     }
@@ -286,8 +286,8 @@ Block Wallet::createBlock(std::vector<Transaction> transactions,
     block.forgerAddress = address;
     try {
         utils::Signature signature = sign(block.payload());
-        block.signatureLength = signature._size;
-        std::string fullSig = signature.hexsig;
+        block.signatureLength = signature.len;
+        std::string fullSig = signature.hex;
         block.sign(fullSig);
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;

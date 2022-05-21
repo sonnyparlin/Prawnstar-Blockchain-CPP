@@ -140,7 +140,7 @@ struct Signature Wallet::sign(std::string str) {
 
     Signature mysig;
     /* the easy way to translate your signature to a hex string */
-    // mysig.hexsig = OPENSSL_buf2hexstr(sig, siglen);
+    // mysig.hex = OPENSSL_buf2hexstr(sig, siglen);
 
     /* the not so easy way */
     char st[256];
@@ -166,7 +166,7 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
 
     /* the easy way to translate your hex string back into your buffer */
     // long len;
-    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
+    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hex, &len);
 
     /* the not so easy way */
     unsigned char buf[256];

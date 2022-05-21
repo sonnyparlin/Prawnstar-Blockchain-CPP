@@ -24,8 +24,8 @@ namespace utils {
      * size_t signatureLength, std::string hexStringSignature
      */
     struct Signature {
-        size_t _size {}; /*!< signature length */
-        std::string hexsig {}; /*!< hexSignature */
+        size_t len {}; /*!< signature length */
+        std::string hex {}; /*!< hexSignature */
     };
 
     std::vector<std::string> get_ip_and_port_from_config();

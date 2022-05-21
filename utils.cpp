@@ -61,7 +61,7 @@ int utils::verifySignature(const std::string &message,
                     const std::string &publicKeyString) {
     /* the easy way to translate your hex string back into your buffer */
     // long len;
-    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hexsig, &len);
+    // unsigned char *sig = OPENSSL_hexstr2buf(signature.hex, &len);
 
     /* the not so easy way */
     unsigned char buf[256];
