@@ -75,25 +75,17 @@ double ProofOfStake::getStake(const std::string &publicKeyString) {
  * for each staker corresponds to the amount of tokens they are staking.
  */
 inline std::vector<std::string> ProofOfStake::validatorLots(const std::string& seed) {
-    std::vector<std::string> lots;
+    std::vector<std::string> lottery_tickets;
 
-    for ( const auto &validator : stakers ) {
-        /*!
-         * Note, it doesn't do you any good to stake
-         * more than upperLimit tokens. (limit is for performance).
-         */
+    std::for_each(stakers.begin(), stakers.end(), [&lottery_tickets](const std::pair<std::string, double>& key_value)
+    {
         int upperLimit = 500; // how many loops do you want to allow?
-        auto stake = static_cast<int>(validator.second);
-
-        // Without this guard our network would get overloaded.
-        if (stake > upperLimit)
-            stake = upperLimit;
-
-        for (int i = 0; i < stake; i++) {
-            lots.push_back(validator.first);
-        }
-    }
-    return lots;
+        auto stake = static_cast<int>(key_value.second);
+        if (stake > upperLimit) stake = upperLimit;
+        std::vector<std::string> tmp(stake, key_value.first);
+        lottery_tickets.insert(lottery_tickets.end(), tmp.begin(), tmp.end());
+    });
+    return lottery_tickets;
 }
 
 /*!
