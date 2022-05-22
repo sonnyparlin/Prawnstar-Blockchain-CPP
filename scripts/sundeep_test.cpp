@@ -34,8 +34,8 @@ Wallet::~Wallet(){}
 
 /* temporary storage for our signature */
 struct Signature {
-    size_t _size;
-    std::string hexsig;
+    size_t len;
+    std::string hex;
 };
 
 /* high level sha256 method for the SHA256() openssl method */
@@ -149,10 +149,10 @@ struct Signature Wallet::sign(std::string str) {
                            sig, siglen, '\0');
     
     /* assign the result to signature structure */
-    mysig.hexsig = st;
-    mysig._size = siglen;
+    mysig.hex = st;
+    mysig.len = siglen;
     std::cout << "Signature converted to hex: " << std::endl;
-    std::cout << mysig.hexsig << "\n" << std::endl;
+    std::cout << mysig.hex << "\n" << std::endl;
 
     /* free memory */
     EVP_PKEY_free(pkey);
@@ -170,7 +170,7 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
 
     /* the not so easy way */
     unsigned char buf[256];
-    const char *st = signature.hexsig.c_str();
+    const char *st = signature.hex.c_str();
     size_t buflen;
     OPENSSL_hexstr2buf_ex(buf, 256, &buflen, st, '\0');
 
@@ -200,7 +200,7 @@ int Wallet::verify(std::string str, Signature signature, std::string publicKeySt
     /* Perform operation */
     unsigned char *md = (unsigned char *)str.c_str();
     size_t mdlen = 32;
-    size_t siglen = signature._size;
+    size_t siglen = signature.len;
     int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
 
     /* free memory and return the result */
