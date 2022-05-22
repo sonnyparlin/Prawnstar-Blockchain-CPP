@@ -74,8 +74,8 @@ double ProofOfStake::getStake(const std::string &publicKeyString) {
  * to decide who the next forger is. The number of lottery tickets
  * for each staker corresponds to the amount of tokens they are staking.
  */
-inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
-    std::vector<Lot> lots;
+inline std::vector<std::string> ProofOfStake::validatorLots(const std::string& seed) {
+    std::vector<std::string> lots;
 
     for ( const auto &validator : stakers ) {
         /*!
@@ -90,8 +90,7 @@ inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
             stake = upperLimit;
 
         for (int i = 0; i < stake; i++) {
-            Lot l(validator.first);
-            lots.push_back(l);
+            lots.push_back(validator.first);
         }
     }
     return lots;
@@ -104,7 +103,7 @@ inline std::vector<Lot> ProofOfStake::validatorLots(const std::string& seed) {
  *
  * Hashing function that is platform independant.
  */
-inline uint32_t ProofOfStake::fnv1a(const std::string& text) {
+inline uint32_t ProofOfStake::fnv1a_hash(const std::string& text) {
      // 32 bit params
      uint32_t constexpr fnv_prime = 16777619U;
      uint32_t constexpr fnv_offset_basis = 2166136261U;
@@ -143,13 +142,13 @@ inline uint32_t ProofOfStake::lcg_rand(uint32_t *state)
  *
  * @param lots
  * @param seed
- * @return Lot
+ * @return std::string
  *
  * Chooses a winner for the forger lottery based on the random selection of
  * Lots.
  */
-inline Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::string &seed) {
-    auto hashed = fnv1a(seed);
+inline std::string ProofOfStake::winnerLot(const std::vector<std::string> &lots, const std::string &seed) {
+    auto hashed = fnv1a_hash(seed);
     const auto &winnerLot = lots.at(lcg_rand(&hashed) % lots.size());
     return winnerLot;
 }
@@ -164,7 +163,6 @@ inline Lot ProofOfStake::winnerLot(const std::vector<Lot> &lots, const std::stri
  * the amount of tokens that are staked by a staker/validator.
  */
 std::string ProofOfStake::forger(const std::string &lastBlockHash) {
-    std::vector<Lot> lots = validatorLots(lastBlockHash);
-    auto winner = winnerLot(lots, lastBlockHash);
-    return winner.publicKeyString;
+    std::vector<std::string> lots = validatorLots(lastBlockHash);
+    return winnerLot(lots, lastBlockHash);
 }

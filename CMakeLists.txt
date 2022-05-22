@@ -16,8 +16,7 @@ SocketConnector.cpp
 Blockchain.cpp
 NodeApi.cpp
 Transaction.cpp
-Lot.cpp
-ProofOfStake.cpp
+        ProofOfStake.cpp
 TransactionPool.cpp
 p2putils.cpp)
 
