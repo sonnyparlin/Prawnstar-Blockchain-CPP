@@ -152,7 +152,7 @@ std::string Node::getConsoleLog() {
  */
 bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     bool transactionCovered = false;
-    bool signatureValid = utils::verifySignature(transaction.payload(),
+    bool signatureValid = utils::verifySignature(utils::hash(transaction.payload()),
                                                  transaction.signature,
                                                  transaction.signatureLength,
                                                  transaction.senderPublicKey);
@@ -214,7 +214,7 @@ void Node::handleBlock (Block &block, bool broadcast) {
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
     bool transactionValid = blockchain->transactionValid(block.transactions);
-    bool signatureValid = utils::verifySignature(block.payload(),
+    bool signatureValid = utils::verifySignature(utils::hash(block.payload()),
                                                  block.signature,
                                                  block.signatureLength,
                                                  forger.walletPublicKey);
