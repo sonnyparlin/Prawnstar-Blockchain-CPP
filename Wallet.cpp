@@ -193,7 +193,7 @@ utils::Signature Wallet::sign(const std::string &str) const
         std::cerr << "error setting signature md" << std::endl;
 
     /* Determine buffer length */
-    size_t mdlen = 32;
+    size_t mdlen = 32; // SHA256_DIGEST_LENGTH
     size_t siglen {0};
     if (EVP_PKEY_sign(ctx, nullptr, &siglen, md, mdlen) <= 0)
         std::cerr << "error determining buffer length" << std::endl;

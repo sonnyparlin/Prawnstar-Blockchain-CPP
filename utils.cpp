@@ -99,12 +99,12 @@ int utils::verifySignature(const std::string &message,
     size_t mdlen = 32;
     auto siglen = (size_t)signatureSize;
     // std::cout << "v sig size: " << siglen << std::endl;
-    int ret = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
+    auto answer = EVP_PKEY_verify(ctx, buf, siglen, md, mdlen);
 
     /* free memory and return the result */
     EVP_PKEY_free(pkey);
     EVP_PKEY_CTX_free(ctx);
-    return ret;
+    return answer;
 }
 
 /*!
