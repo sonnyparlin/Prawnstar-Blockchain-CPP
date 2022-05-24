@@ -88,6 +88,7 @@ std::string Transaction::payload() {
  *
  * Add signature to the transaction.
  */
-void Transaction::sign(std::string _signature) {
-    signature = std::move(_signature);
+void Transaction::sign(utils::Signature sig) {
+    signature = std::move(sig.hex);
+    signatureLength = sig.len;
 }

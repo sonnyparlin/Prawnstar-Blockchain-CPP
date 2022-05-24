@@ -257,8 +257,7 @@ Transaction Wallet::createTransaction(std::string receiverAddress, double amount
         auto signature = sign(utils::hash(transaction.payload()));
         // std::cout << "sig size: " << signature.len << std::endl;
         transaction.senderPublicKey = walletPublicKey;
-        transaction.signatureLength = signature.len;
-        transaction.sign(signature.hex);
+        transaction.sign(signature);
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;
     }
@@ -286,9 +285,7 @@ Block Wallet::createBlock(std::vector<Transaction> transactions,
     block.forgerAddress = address;
     try {
         auto signature = sign(utils::hash(block.payload()));
-        block.signatureLength = signature.len;
-        std::string fullSig = signature.hex;
-        block.sign(fullSig);
+        block.sign(signature);
     } catch(std::exception& e) {
         std::cerr << "Error signing transaction: " << e.what() << std::endl;
     }

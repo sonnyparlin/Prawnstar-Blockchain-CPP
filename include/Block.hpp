@@ -26,7 +26,7 @@ public:
 
     std::string toJson();
     std::string payload();
-    void sign(std::string);
+    void sign(utils::Signature);
     static std::vector<nlohmann::json> transactionList(std::vector <Transaction> &transactions);
     nlohmann::json jsonView();
 

@@ -2,6 +2,7 @@
 #define _TRANSACTION_H_
 #include <nlohmann/json.hpp>
 #include <string>
+#include "utils.hpp"
 
 /*!
  * Our transaction class.
@@ -11,7 +12,7 @@ public:
     // class methods
     std::string toJson();
     std::string payload();
-    void sign(std::string sig);
+    void sign(utils::Signature sig);
 
     // operator overload
     friend bool operator==(const Transaction &lhs, const Transaction &rhs);

@@ -49,8 +49,9 @@ Block::~Block()=default;
  *
  * Add the generated signature to the new block.
  */
-void Block::sign(std::string _signature) {
-    signature = std::move(_signature);
+void Block::sign(utils::Signature sig) {
+    signature = std::move(sig.hex);
+    signatureLength = sig.len;
 }
 
 /*!
