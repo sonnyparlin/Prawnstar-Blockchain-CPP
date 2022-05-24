@@ -79,7 +79,7 @@ std::string Transaction::payload() {
     j["timestamp"] = timestamp;
     j["signature"] = "";
     
-    return to_string(j);
+    return j.dump();
 }
 
 /*!
