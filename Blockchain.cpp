@@ -356,7 +356,7 @@ std::vector<nlohmann::json> Blockchain::blockList(std::vector<Block> &blocks) {
     std::vector<nlohmann::json> blks;
 
     for (auto &block: blocks) {
-        blks.push_back(block.jsonView());
+        blks.push_back(block.toPureJson());
     }
     return blks;
 }

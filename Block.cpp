@@ -130,7 +130,7 @@ std::string Block::payload() {
  *
  * Create a json representation of the block.
  */
-nlohmann::json Block::jsonView() {
+nlohmann::json Block::toPureJson() {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);

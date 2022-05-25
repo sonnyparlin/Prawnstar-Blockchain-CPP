@@ -28,7 +28,7 @@ public:
     std::string payload();
     void sign(utils::Signature);
     static std::vector<nlohmann::json> transactionList(std::vector <Transaction> &transactions);
-    nlohmann::json jsonView();
+    nlohmann::json toPureJson();
 
     std::vector <Transaction> transactions {}; /*!< list of block transactions */
     std::string lastHash {}; /*!< block last hash */
