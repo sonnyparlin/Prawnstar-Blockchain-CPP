@@ -15,14 +15,14 @@ class Block {
 public:
     // Constructors
     Block();
-    Block(std::vector <Transaction>,
-          std::string,
-          std::string,
-          long blockCount);
-    Block(std::vector <Transaction>,
-          std::string,
-          long blockCount);
     ~Block();
+    Block(std::vector <Transaction>,
+          std::string,
+          std::string,
+          long blockCount);
+    Block(std::vector <Transaction>,
+          std::string,
+          long blockCount);
 
     std::string toJson();
     std::string payload();

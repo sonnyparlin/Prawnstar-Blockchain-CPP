@@ -47,7 +47,7 @@ bool operator==(const Transaction &lhs, const Transaction &rhs) {
  *
  * Stringified json representation of a transaction.
  */
-std::string Transaction::toJson() {
+std::string Transaction::toJson() const {
     nlohmann::json j;
     
     j["senderAddress"] = senderAddress;

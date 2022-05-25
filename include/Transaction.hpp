@@ -10,7 +10,7 @@
 class Transaction {
 public:
     // class methods
-    std::string toJson();
+    std::string toJson() const;
     std::string payload();
     void sign(utils::Signature sig);
 

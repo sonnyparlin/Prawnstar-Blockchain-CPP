@@ -14,9 +14,6 @@
  */
 class TransactionPool {
 public:
-    TransactionPool();           // Constructor
-    ~TransactionPool();          // Destructor
-
     void addTransaction(const Transaction &);
     bool transactionExists(const Transaction&);
     void removeFromPool(const std::vector<Transaction>&);

@@ -1,8 +1,5 @@
 #include "TransactionPool.hpp"
 
-TransactionPool::TransactionPool()=default;
-TransactionPool::~TransactionPool()=default;
-
 /*!
  *
  * @param transaction
@@ -23,11 +20,8 @@ void TransactionPool::addTransaction(const Transaction &transaction) {
  */
 bool TransactionPool::transactionExists(const Transaction &transaction) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
-    return std::any_of(transactions.begin(), transactions.end(),
-                                                        [&transaction](const Transaction& tx) {
-        if (transaction == tx)
-            return true;
-        return false;
+    return std::any_of(transactions.begin(), transactions.end(), [&transaction](auto const& tx) {
+        return (transaction == tx);
     });
 }
 
@@ -40,15 +34,12 @@ bool TransactionPool::transactionExists(const Transaction &transaction) {
 void TransactionPool::removeFromPool(const std::vector<Transaction> &txs) {
     std::lock_guard<std::mutex> guard(tpoolMutex);
     std::vector<Transaction> newPoolTransactions;
-    std::for_each(transactions.begin(), transactions.end(),
-                  [&txs, &newPoolTransactions](const Transaction& poolTransaction){
+    std::for_each(transactions.begin(), transactions.end(), [&txs, &newPoolTransactions](auto const& poolTransaction){
         bool insert = true;
-        std::for_each(txs.begin(), txs.end(), [&insert, &poolTransaction](auto const &transaction){
-            if (poolTransaction == transaction)
-                insert = false;
+        std::for_each(txs.begin(), txs.end(), [&insert, &poolTransaction](auto const& transaction){
+            if (poolTransaction == transaction) insert = false;
         });
-        if (insert)
-            newPoolTransactions.push_back(poolTransaction);
+        if (insert) newPoolTransactions.push_back(poolTransaction);
     });
     transactions = newPoolTransactions;
 }
@@ -64,13 +55,12 @@ std::string TransactionPool::getPoolTransactionsJsonString() {
     nlohmann::json j;
     nlohmann::json jContainer;
 
-    std::for_each (transactions.begin(), transactions.end(), [&jContainer, &j](auto &transaction){
+    std::for_each (transactions.begin(), transactions.end(), [&jContainer, &j](auto const& transaction){
         j = nlohmann::json::parse(transaction.toJson());
         jContainer.push_back(j);
     });
 
-    std::string jsonDump = jContainer.dump();    
-    return jsonDump;
+    return jContainer.dump();
 }
 
 /*!

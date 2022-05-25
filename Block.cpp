@@ -3,7 +3,15 @@
 #include "TransactionPool.hpp"
 #include <nlohmann/json.hpp>
 
+/*!
+ * Block default contructor
+ */
 Block::Block()=default;
+
+/*!
+ * Block destructor
+ */
+Block::~Block()=default;
 
 /*!
  *
@@ -39,13 +47,8 @@ Block::Block(std::vector <Transaction> transactions,
       blockCount(blockCount) {}
 
 /*!
- * Block destructor
- */
-Block::~Block()=default;
-
-/*!
  *
- * @param _signature
+ * @param utils::Signature
  *
  * Add the generated signature to the new block.
  */
@@ -65,7 +68,7 @@ std::vector<nlohmann::json> Block::transactionList(std::vector<Transaction> &tra
     nlohmann::json j;
     std::vector<nlohmann::json> txs;
 
-    for (auto const &itx: transactions) {
+    std::for_each(transactions.begin(), transactions.end(), [&j, &txs](auto const &itx){
         j["senderAddress"] = itx.senderAddress;
         j["receiverAddress"] = itx.receiverAddress;
         j["amount"] = itx.amount;
@@ -74,7 +77,7 @@ std::vector<nlohmann::json> Block::transactionList(std::vector<Transaction> &tra
         j["timestamp"] = itx.timestamp;
         j["signature"] = itx.signature;
         txs.push_back(j);
-    }
+    });
     return txs;
 }
 
@@ -97,7 +100,7 @@ std::string Block::toJson() {
     j["signature"] = signature;
     j["_id"] = _id;
 
-    return to_string(j);
+    return j.dump();
 }
 
 /*!
@@ -118,7 +121,7 @@ std::string Block::payload() {
     j["signature"] = "";
     j["_id"] = _id;
 
-    return to_string(j);
+    return j.dump();
 }
 
 /*!
