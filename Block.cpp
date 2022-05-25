@@ -3,14 +3,7 @@
 #include "TransactionPool.hpp"
 #include <nlohmann/json.hpp>
 
-/*!
- * Block default contructor
- */
 Block::Block()=default;
-
-/*!
- * Block destructor
- */
 Block::~Block()=default;
 
 /*!
