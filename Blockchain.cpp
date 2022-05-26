@@ -3,6 +3,8 @@
 #include "Blockchain.hpp"
 #include "utils.hpp"
 
+Blockchain::Blockchain()=default;
+
 /*!
  *
  * @param node

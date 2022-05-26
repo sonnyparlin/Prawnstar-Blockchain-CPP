@@ -17,6 +17,7 @@ private:
     Node *node = nullptr;
 
 public:
+    Blockchain();
     explicit Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor
     
