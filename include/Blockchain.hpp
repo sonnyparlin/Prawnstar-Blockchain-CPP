@@ -20,7 +20,7 @@ public:
     explicit Blockchain(Node *node);           // Constructor
     ~Blockchain();          // Destructor
     
-    bool addBlock(const Block &block);
+    void addBlock(const Block &block);
     static Block genesis();
     bool blockCountValid(const Block&);
     bool lastBlockHashValid(const Block&);
@@ -35,12 +35,12 @@ public:
     static std::vector<nlohmann::json> blockList(std::vector<Block>&);
     std::string nextForger();
     bool blockHasTransactions(const Block&);
-    std::string toJsonWebView();
     std::vector<Transaction> calculateForgerReward(std::vector<Transaction>&);
     std::vector<nlohmann::json> txsByAddress(const std::string&);
     std::string getTransaction(const std::string&);
-    nlohmann::json toJson();
-    static std::string toJsonString(std::vector<Block>);
+    nlohmann::json toPureJson();
+    std::string toJson();
+    static std::string toJson(std::vector<Block> blocks);
 
     std::vector<Block> blocks {}; /*!< list of blocks */
     std::mutex blockchainMutex {}; /*!< mutex for accessing shared blockchain data */

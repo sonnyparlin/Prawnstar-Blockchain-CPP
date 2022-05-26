@@ -45,7 +45,7 @@ void NodeApi::start(std::string &_port) {
     });
 
     CROW_ROUTE(app, "/blockchain")([&](){
-        return node->blockchain->toJsonWebView();
+        return node->blockchain->toJson();
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){

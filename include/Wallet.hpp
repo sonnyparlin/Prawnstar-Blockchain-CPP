@@ -16,6 +16,7 @@ class Node;
 class Wallet {
 
 public:
+    Wallet();
     Wallet(Node *node, const char *filename);
     explicit Wallet(Node *node);
     Wallet(const char *address, Node *node);

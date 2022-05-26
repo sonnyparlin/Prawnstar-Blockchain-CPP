@@ -26,13 +26,13 @@ Blockchain::~Blockchain()=default;
  * Create the genesis block for the blockchain.
  */
 Block Blockchain::genesis() {
-    std::vector<Transaction> zeroTransactions;
+    std::vector<Transaction> zeroTransactions{};
     std::string lastHash = "***no***last***hash***";
     Block genesisBlock(zeroTransactions, lastHash, 0);
     genesisBlock.timestamp = 0;
     genesisBlock.hash = "***genesis***hash***";
-    genesisBlock._id = genesisBlock.hash;
-    
+    genesisBlock.signature = "***Genesis***Signature***";
+    genesisBlock.forgerAddress = "***Forged***By***Developer***";
     return genesisBlock;
 }
 
@@ -43,12 +43,10 @@ Block Blockchain::genesis() {
  *
  * Add a new block to the blockchain.
  */
-bool Blockchain::addBlock(const Block &block) {
+void Blockchain::addBlock(const Block &block) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     executeTransactions(block.transactions);
     blocks.push_back(block);
-    // blocks.shrink_to_fit();
-    return true;
 }
 
 /*!
@@ -66,7 +64,7 @@ std::vector<Transaction> Blockchain::calculateForgerReward(
     std::vector<Transaction> resultTransactions;
     double reward {};
 
-    std::for_each(transactions.begin(), transactions.end(), [this, &resultTransactions, &reward](Transaction &itx){
+    std::for_each(transactions.begin(), transactions.end(), [this, &resultTransactions, &reward](auto &itx){
         if (itx.type == "STAKE") {
             resultTransactions.push_back(itx);
 
@@ -269,18 +267,17 @@ bool Blockchain::transactionExists(const Transaction &transaction) {
 std::string Blockchain::getTransaction(const std::string &txid) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::string jsonString {};
-    auto result = std::any_of(blocks.begin(), blocks.end(),
-                                                [&txid, &jsonString](const Block &block){
-        for(Transaction transaction : block.transactions) {
+    auto result = std::any_of(blocks.begin(), blocks.end(), [&txid, &jsonString](const Block &block){
+        return std::any_of(block.transactions.begin(), block.transactions.end(),
+                           [&txid, &jsonString](auto const& transaction){
             if (transaction.id == txid) {
                 jsonString = transaction.toJson();
                 return true;
             }
-        }
-        return false;
+            return false;
+        });
     });
-    if (result) return jsonString;
-    return "";
+    return (result) ? jsonString : "";
 }
 
 /*!
@@ -295,16 +292,15 @@ std::vector<nlohmann::json> Blockchain::txsByAddress(const std::string &address)
     std::lock_guard<std::mutex> guard(blockchainMutex);
     std::vector<nlohmann::json> txids {};
 
-    for(const auto &block : blocks) {
-        for(auto &itx : block.transactions) {
-            if (itx.senderAddress == address || itx.receiverAddress == address) {
+    std::for_each(blocks.begin(), blocks.end(), [&txids, &address](const auto &block){
+        std::for_each(block.transactions.begin(), block.transactions.end(), [&txids, &address](auto const &t){
+            if (t.senderAddress == address || t.receiverAddress == address) {
                 nlohmann::json j;
-                j["id"] = itx.id;
+                j["id"] = t.id;
                 txids.push_back(j);
             }
-        }
-    }
-    // std::cout << "txids: " << txids.size() << std::endl;
+        });
+    });
     return txids;
 }
 
@@ -346,23 +342,6 @@ bool Blockchain::transactionValid(const std::vector<Transaction> &transactions) 
 
 /*!
  *
- * @param blocks
- * @return vector<nlohmann::json>
- *
- * Return a json representation for a list of given blocks.
- */
-std::vector<nlohmann::json> Blockchain::blockList(std::vector<Block> &blocks) {
-    nlohmann::json j;
-    std::vector<nlohmann::json> blks;
-
-    for (auto &block: blocks) {
-        blks.push_back(block.toPureJson());
-    }
-    return blks;
-}
-
-/*!
- *
  * @return std::string
  *
  * Run the proof of work algorithm to get the next forger.
@@ -379,15 +358,34 @@ std::string Blockchain::nextForger() {
 
 /*!
  *
- * @return nlohmann::json
+ * @param blocks
+ * @return vector<nlohmann::json>
  *
- * Return json representation of the entire blockchain.
+ * Return a json representation for a list of given blocks.
  */
-nlohmann::json Blockchain::toJson() {
+std::vector<nlohmann::json> Blockchain::blockList(std::vector<Block> &blocks) {
+    nlohmann::json j;
+    std::vector<nlohmann::json> blks;
+
+    std::for_each(blocks.begin(), blocks.end(), [&blks](auto const& block){
+        blks.push_back(block.toPureJson());
+    });
+    return blks;
+}
+
+/*!
+ *
+ * @return std::string
+ *
+ * Return a stringified json representation of all blocks.
+ */
+std::string Blockchain::toJson() {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);
-    return j;
+
+    int indent = 4;
+    return j.dump(indent);
 }
 
 /*!
@@ -397,22 +395,24 @@ nlohmann::json Blockchain::toJson() {
  *
  * Given a list of blocks, return a stringified json representation.
  */
-std::string Blockchain::toJsonString(std::vector<Block> blocks) {
+std::string Blockchain::toJson(std::vector<Block> blocks) {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);
-    return j.dump();
+
+    int indent = 4;
+    return j.dump(indent);
 }
 
 /*!
  *
- * @return std::string
+ * @return nlohmann::json
  *
- * Return a stringified json representation of all blocks.
+ * Return json representation of the entire blockchain.
  */
-std::string Blockchain::toJsonWebView() {
+nlohmann::json Blockchain::toPureJson() {
     nlohmann::json j;
 
     j["blocks"] = blockList(blocks);
-    return j.dump();
+    return j;
 }

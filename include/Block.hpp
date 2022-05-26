@@ -27,8 +27,8 @@ public:
     std::string toJson();
     std::string payload();
     void sign(utils::Signature);
-    static std::vector<nlohmann::json> transactionList(std::vector <Transaction> &transactions);
-    nlohmann::json toPureJson();
+    static std::vector<nlohmann::json> transactionList(const std::vector <Transaction>&);
+    nlohmann::json toPureJson() const;
 
     std::vector <Transaction> transactions {}; /*!< list of block transactions */
     std::string lastHash {}; /*!< block last hash */
@@ -37,7 +37,7 @@ public:
     time_t timestamp = utils::timeSinceEpoch(); /*!< timestamp of block */
     long blockCount {}; /*!< block count */
     std::string signature {}; /*!< block signature */
-    std::string _id {}; /*!< _id for use with mongodb if functionality is added */
+    // std::string _id {}; /*!< _id for use with mongodb if functionality is added */
     size_t signatureLength {}; /*!< signature length */
 };
 

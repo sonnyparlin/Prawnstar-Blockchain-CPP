@@ -413,12 +413,10 @@ void SocketCommunication::receive_node_message(int sock) {
         }
         block.lastHash = jx["lastHash"];
         block.hash = jx["hash"];
-        block._id = block.hash;
         block.forgerAddress = jx["forgerAddress"];
         block.timestamp = jx["timestamp"];
         block.blockCount = jx["blockCount"];
         block.signature = jx["signature"];
-        // std::cout << "block signature: " << block.signature << std::endl;
 
         node->handleBlock(block, false);
     } else if (messageType == "BLOCKCHAINREQUEST") {
@@ -452,7 +450,7 @@ void SocketCommunication::receive_node_message(int sock) {
 [[noreturn]] void SocketCommunication::blockForger() {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
-        sleep(300); // 300 seconds between blocks
+        sleep(30); // 300 seconds between blocks
         if (!node->transactionPool.transactions.empty()) {
             std::cout << node->transactionPool.transactions.size() << " transactions" << std::endl;
             std::cout << "Forging new block..." << std::endl;

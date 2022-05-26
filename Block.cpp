@@ -57,7 +57,7 @@ void Block::sign(utils::Signature sig) {
  *
  * Create a json representation for a list of given transactions
  */
-std::vector<nlohmann::json> Block::transactionList(std::vector<Transaction> &transactions) {
+std::vector<nlohmann::json> Block::transactionList(const std::vector<Transaction>& transactions) {
     nlohmann::json j;
     std::vector<nlohmann::json> txs;
 
@@ -91,7 +91,6 @@ std::string Block::toJson() {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = signature;
-    j["_id"] = _id;
 
     return j.dump();
 }
@@ -112,7 +111,6 @@ std::string Block::payload() {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = "";
-    j["_id"] = _id;
 
     return j.dump();
 }
@@ -123,7 +121,7 @@ std::string Block::payload() {
  *
  * Create a json representation of the block.
  */
-nlohmann::json Block::toPureJson() {
+nlohmann::json Block::toPureJson() const {
     nlohmann::json j;
 
     j["transactions"] = transactionList(transactions);
@@ -133,7 +131,6 @@ nlohmann::json Block::toPureJson() {
     j["timestamp"] = timestamp;
     j["blockCount"] = blockCount;
     j["signature"] = signature;
-    j["_id"] = _id;
-    
+
     return j;
 }

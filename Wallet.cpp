@@ -39,6 +39,7 @@ Wallet::Wallet(Node *node) {
     node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
 }
 
+Wallet::Wallet()=default;
 Wallet::~Wallet()=default;
 
 /*!
@@ -281,7 +282,6 @@ Block Wallet::createBlock(std::vector<Transaction> transactions,
                           long blockCount) const {
     Block block(std::move(transactions), std::move(lastHash), blockCount);
     block.hash = utils::hash(block.payload());
-    block._id = block.hash;
     block.forgerAddress = address;
     try {
         auto signature = sign(utils::hash(block.payload()));

@@ -179,7 +179,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     transactionPool.addTransaction(transaction);
 
     if (broadcast) {
-        // std::cout << "broadcasting tx: " << transaction.toJson() << std::endl;
+        // std::cout << "broadcasting tx: " << transaction.toPureJson() << std::endl;
         std::string msgType = "TRANSACTION";
         std::string msgBody = transaction.toJson();
         Message message(msgType, msgBody);
@@ -286,7 +286,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
 
     std::vector<Block> subvector = {blockchain->blocks.begin() + blockNumber, blockchain->blocks.end()};
     std::string msgType = "BLOCKCHAIN";
-    std::string msgBody = Blockchain::toJsonString(subvector);
+    std::string msgBody = Blockchain::toJson(subvector);
     Message message(msgType, msgBody);
     std::string msgJson = message.toJson();
 
@@ -334,7 +334,6 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
             b.blockCount = element["blockCount"];
             b.forgerAddress = element["forgerAddress"];
             b.hash = element["hash"];
-            b._id = element["_id"];
             b.lastHash = element["lastHash"];
             b.signature = element["signature"];
             b.timestamp = element["timestamp"];
