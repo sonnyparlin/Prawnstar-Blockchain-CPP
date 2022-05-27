@@ -33,7 +33,6 @@ Block Blockchain::genesis() {
     Block genesisBlock(zeroTransactions, lastHash, 0);
     genesisBlock.timestamp = 0;
     genesisBlock.hash = "***genesis***hash***";
-    genesisBlock.signature = "***Genesis***Signature***";
     genesisBlock.forgerAddress = "***Forged***By***Developer***";
     return genesisBlock;
 }
