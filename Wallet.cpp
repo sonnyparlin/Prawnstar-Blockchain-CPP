@@ -152,7 +152,7 @@ std::string Wallet::generateAddress(const std::string &str) {
     // The public crypto address is a SHA1
     // hex encoded string of the walletPublicKey.
 
-    unsigned char hash[20];
+    unsigned char hash[SHA_DIGEST_LENGTH];
     SHA1((unsigned char *)str.c_str(), str.length(), hash);
     std::stringstream ss;
     for(unsigned char i : hash) {ss << std::hex << (int)i;}

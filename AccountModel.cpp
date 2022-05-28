@@ -60,7 +60,9 @@ void AccountModel::addAccount(const std::string &walletAddress, const std::strin
  */
 double AccountModel::getBalance(const std::string &walletAddress) {
     std::lock_guard<std::mutex> guard(acMutex);
-    return balances[walletAddress];
+    if (accountExists(walletAddress))
+        return balances[walletAddress];
+    return 0;
 }
 
 /*!
@@ -72,5 +74,6 @@ double AccountModel::getBalance(const std::string &walletAddress) {
  */
 void AccountModel::updateBalance(const std::string &walletAddress, double amount) {
     std::lock_guard<std::mutex> guard(acMutex);
-    balances[walletAddress] += amount;
+    if (accountExists(walletAddress))
+        balances[walletAddress] += amount;
 }
