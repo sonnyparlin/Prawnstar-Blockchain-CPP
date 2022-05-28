@@ -15,7 +15,7 @@ ProofOfStake::ProofOfStake(Node *passedInNode)
 
     Wallet genesisNodeWallet(node);
     genesisNodeWallet.fromKey("genesisNode.pem");
-    node->accountModel->addAccount(genesisNodeWallet.address, 
+    node->blockchain->accountModel.addAccount(genesisNodeWallet.address,
                                 genesisNodeWallet.walletPublicKey);
     setGenesisNodeStake(genesisNodeWallet.walletPublicKey);
 }

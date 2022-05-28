@@ -55,8 +55,8 @@ namespace MasterTestSpace {
         EXPECT_EQ(tx.receiverAddress, "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7");
         EXPECT_TRUE(node->handleTransaction(tx));
         EXPECT_EQ(node->blockchain->blocks.size(), 2);
-        EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
-        EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->nodeWallet->address), (20000 * 0.005));
     }
 
     TEST_F(BlockchainTests, PoolTransactionAlreadyExists) {
@@ -95,8 +95,8 @@ namespace MasterTestSpace {
         EXPECT_EQ(tx.receiverAddress, "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7");
         EXPECT_TRUE(node->handleTransaction(tx));
         EXPECT_EQ(node->blockchain->blocks.size(), 2);
-        EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
-        EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->nodeWallet->address), (20000 * 0.005));
 
         Transaction txi = node->aliceWallet->createTransaction(
                 "pv17ca8886e573b6749aeeb7b87387b8e01fcd5f42",
@@ -121,9 +121,9 @@ namespace MasterTestSpace {
         EXPECT_EQ(tx.receiverAddress, "pv137a7ea711dd4a12c97e4391ad4bade5b353b1d7");
         EXPECT_TRUE(node->handleTransaction(tx));
         EXPECT_EQ(node->blockchain->blocks.size(), 2);
-        EXPECT_EQ(node->accountModel->getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->aliceWallet->address), 20000 - (20000 * 0.005));
         rewardBalance += 20000 * 0.005;
-        EXPECT_EQ(node->accountModel->getBalance(node->nodeWallet->address), (20000 * 0.005));
+        EXPECT_EQ(node->blockchain->accountModel.getBalance(node->nodeWallet->address), (20000 * 0.005));
 
         GTEST_COUT << "Executing 1000 transactions, please wait..." << std::endl;
         for (int i = 0; i < 1000; i++) {
@@ -136,11 +136,11 @@ namespace MasterTestSpace {
 
         rewardBalance += (1000 * 0.005);
         double expected = 18905;
-        auto result = node->accountModel->getBalance(node->aliceWallet->address);
+        auto result = node->blockchain->accountModel.getBalance(node->aliceWallet->address);
         result = roundf((float)result * 100) / 100;
         EXPECT_DOUBLE_EQ(expected, result);
-        double node1WalletAmount = node->accountModel->getBalance(node->nodeWallet->address);
-        double node2WalletAmount = node->accountModel->getBalance(node->node2Wallet->address);
+        double node1WalletAmount = node->blockchain->accountModel.getBalance(node->nodeWallet->address);
+        double node2WalletAmount = node->blockchain->accountModel.getBalance(node->node2Wallet->address);
         EXPECT_DOUBLE_EQ(roundf(node1WalletAmount + node2WalletAmount), roundf(rewardBalance));
     }
 

@@ -9,7 +9,7 @@
  */
 Wallet::Wallet(Node *node, const char *filename) {
     fromKey(filename);
-    node->accountModel->addAccount(
+    node->blockchain->accountModel.addAccount(
             address,
             walletPublicKey,
             walletPrivateKey);
@@ -24,8 +24,8 @@ Wallet::Wallet(Node *node, const char *filename) {
  */
 Wallet::Wallet(const char *_address, Node *node) {
     address = _address;
-    walletPublicKey = node->accountModel->addressToPublicKey[address];
-    walletPrivateKey = node->accountModel->addressToPrivateKey[address];
+    walletPublicKey = node->blockchain->accountModel.addressToPublicKey[address];
+    walletPrivateKey = node->blockchain->accountModel.addressToPrivateKey[address];
 }
 
 /*!
@@ -36,7 +36,7 @@ Wallet::Wallet(const char *_address, Node *node) {
  */
 Wallet::Wallet(Node *node) {
     genKeyPair();
-    node->accountModel->addAccount(address, walletPublicKey, walletPrivateKey);
+    node->blockchain->accountModel.addAccount(address, walletPublicKey, walletPrivateKey);
 }
 
 Wallet::Wallet()=default;

@@ -138,7 +138,7 @@ bool Blockchain::lastBlockHashValid(const Block &block) {
 bool Blockchain::transactionCovered(const Transaction &transaction) {
     if (transaction.type == "EXCHANGE" || transaction.type == "REWARD")
         return true;
-    double senderBalance = node->accountModel->getBalance(transaction.senderAddress);
+    double senderBalance = accountModel.getBalance(transaction.senderAddress);
     return senderBalance >= transaction.amount;
 }
 
@@ -200,18 +200,14 @@ void Blockchain::executeTransaction(const Transaction& transaction) {
 
     if (transaction.type == "STAKE") {
         if (transaction.senderAddress == transaction.receiverAddress) {
-            node->proofOfStake->
-                    update(transaction.senderPublicKey, transaction.amount);
-            node->accountModel->
-                    updateBalance(transaction.senderAddress, -transaction.amount);
+            node->proofOfStake->update(transaction.senderPublicKey, transaction.amount);
+            accountModel.updateBalance(transaction.senderAddress, -transaction.amount);
         }
     }
 
     if (transaction.type != "STAKE") {
-        node->accountModel->
-                    updateBalance(transaction.senderAddress, -transaction.amount);
-        node->accountModel->
-                    updateBalance(transaction.receiverAddress, transaction.amount);
+        accountModel.updateBalance(transaction.senderAddress, -transaction.amount);
+        accountModel.updateBalance(transaction.receiverAddress, transaction.amount);
     }
 }
 

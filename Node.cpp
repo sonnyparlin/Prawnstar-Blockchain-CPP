@@ -8,7 +8,6 @@ Node* Node::node=nullptr;
 
 Node::Node(char **argv) {
     p2p = new SocketCommunication(this);
-    accountModel = new AccountModel();
     blockchain = new Blockchain(this);
 
     int port = utils::getPort(argv[2]);
@@ -31,7 +30,6 @@ Node::~Node() {
     delete blockchain;
     delete nodeWallet;
     delete proofOfStake;
-    delete accountModel;
     delete exchangeWallet;
     delete node2Wallet;
     delete aliceWallet;
@@ -168,7 +166,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
         return false;
     
     if (transaction.type != "EXCHANGE") {
-        if (accountModel->getBalance(transaction.senderAddress) >= transaction.amount)
+        if (blockchain->accountModel.getBalance(transaction.senderAddress) >= transaction.amount)
             transactionCovered = true;
     } else
         transactionCovered = true;
@@ -344,18 +342,18 @@ void Node::handleBlockchain(const std::string &blockchainString) const {
                 t.amount = itx["amount"];
                 t.receiverAddress = itx["receiverAddress"];
                 t.senderAddress = itx["senderAddress"];
-                t.senderPublicKey = accountModel->addressToPublicKey[t.senderAddress];
+                t.senderPublicKey = blockchain->accountModel.addressToPublicKey[t.senderAddress];
                 t.signature = itx["signature"];
                 t.timestamp = itx["timestamp"];
                 t.type = itx["type"];
                 transactions.push_back(t);
 
                 if (t.type == "STAKE") {
-                    accountModel->updateBalance(t.senderAddress, -t.amount);
+                    blockchain->accountModel.updateBalance(t.senderAddress, -t.amount);
                     proofOfStake->update(t.senderPublicKey, t.amount);
                 } else {
-                    accountModel->updateBalance(t.senderAddress, -t.amount);
-                    accountModel->updateBalance(t.receiverAddress, t.amount);
+                    blockchain->accountModel.updateBalance(t.senderAddress, -t.amount);
+                    blockchain->accountModel.updateBalance(t.receiverAddress, t.amount);
                 }
             }
             b.transactions = transactions;
@@ -405,7 +403,7 @@ void Node::forge() {
          * with forging the new block.
          */
         std::string addr = "pv1" + utils::generateAddress(forger);
-        accountModel->updateBalance(addr, proofOfStake->stakers[forger]);
+        blockchain->accountModel.updateBalance(addr, proofOfStake->stakers[forger]);
         proofOfStake->stakers.erase(forger);
 
         /*!
@@ -457,6 +455,6 @@ void Node::forge() {
         log(timeStr);
         log("i am not the next forger");
         std::string address = utils::generateAddress(forger);
-        accountModel->addAccount(address, forger);
+        blockchain->accountModel.addAccount(address, forger);
     }
 }

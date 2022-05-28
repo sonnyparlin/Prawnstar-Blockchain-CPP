@@ -60,14 +60,14 @@ void NodeApi::start(std::string &_port) {
     });
 
     CROW_ROUTE(app, "/wallet/<string>")([&](const std::string &address){
-        double returnValue = node->accountModel->getBalance(address);
+        double returnValue = node->blockchain->accountModel.getBalance(address);
         nlohmann::json j;
         j["amount"] = std::to_string(returnValue);
         return crow::response(200, j.dump());
     });
 
     CROW_ROUTE(app, "/nodewallet")([&](){
-        double returnValue = node->accountModel->getBalance(node->nodeWallet->address);
+        double returnValue = node->blockchain->accountModel.getBalance(node->nodeWallet->address);
         nlohmann::json j;
         j["amount"] = std::to_string(returnValue);
         j["address"] = node->nodeWallet->address;
@@ -108,7 +108,7 @@ void NodeApi::start(std::string &_port) {
 
         double amount = x["transaction"]["amount"].d();
 
-        if (node->accountModel->accountExists(sender)) {
+        if (node->blockchain->accountModel.accountExists(sender)) {
             Wallet senderWallet(sender.c_str(), node);
             Transaction tx = senderWallet.createTransaction(receiver, amount, type);
             bool success = node->handleTransaction(tx);

@@ -43,6 +43,7 @@ public:
     std::string toJson();
     static std::string toJson(std::vector<Block> blocks);
 
+    AccountModel accountModel;
     std::vector<Block> blocks {}; /*!< list of blocks */
     std::mutex blockchainMutex {}; /*!< mutex for accessing shared blockchain data */
 };
