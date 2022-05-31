@@ -451,8 +451,8 @@ void SocketCommunication::receive_node_message(int sock) {
     for(;;) {
         std::cout << "Forger Polling... " << std::endl;
         sleep(30); // 300 seconds between blocks
-        if (!node->transactionPool.transactions.empty()) {
-            std::cout << node->transactionPool.transactions.size() << " transactions" << std::endl;
+        if (!node->blockchain->transactionPool.transactions.empty()) {
+            std::cout << node->blockchain->transactionPool.transactions.size() << " transactions" << std::endl;
             std::cout << "Forging new block..." << std::endl;
             node->forge();
         }

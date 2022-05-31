@@ -26,13 +26,11 @@ public:
     bool blockCountValid(const Block&);
     bool lastBlockHashValid(const Block&);
     bool transactionCovered(const Transaction&);
-    std::vector<Transaction> getCoveredTransactionSet(const std::vector<Transaction>&);
     void executeTransaction(const Transaction&);
     void executeTransactions(const std::vector<Transaction>&);
     Block createBlock(const std::vector<Transaction>&, const std::string&);
     bool transactionExists(const Transaction&);
     bool forgerValid(const Block&);
-    bool transactionValid(const std::vector<Transaction>&);
     static std::vector<nlohmann::json> blockList(std::vector<Block>&);
     std::string nextForger();
     bool blockHasTransactions(const Block&);
@@ -44,6 +42,7 @@ public:
     static std::string toJson(std::vector<Block> blocks);
 
     AccountModel accountModel;
+    TransactionPool transactionPool;
     std::vector<Block> blocks {}; /*!< list of blocks */
     std::mutex blockchainMutex {}; /*!< mutex for accessing shared blockchain data */
 };

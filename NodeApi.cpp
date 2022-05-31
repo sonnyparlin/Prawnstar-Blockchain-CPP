@@ -49,7 +49,7 @@ void NodeApi::start(std::string &_port) {
     });
 
     CROW_ROUTE(app, "/transaction-pool")([&](){
-        std::string returnValue = node->transactionPool.getPoolTransactionsJsonString();
+        std::string returnValue = node->blockchain->transactionPool.getPoolTransactionsJsonString();
         return crow::response(200, returnValue);
     });
 

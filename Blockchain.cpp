@@ -144,30 +144,6 @@ bool Blockchain::transactionCovered(const Transaction &transaction) {
 
 /*!
  *
- *
- * @return std::vector<Transaction>
- *
- * Get covered transactions from list of transactions.
- */
-std::vector<Transaction> Blockchain::getCoveredTransactionSet(
-        const std::vector<Transaction> &transactions
-) {
-    std::vector<Transaction> coveredTransactions;
-    std::for_each(transactions.begin(), transactions.end(), [this, &coveredTransactions]
-                                                                        (const Transaction& transaction) {
-        if (transactionCovered(transaction))
-            coveredTransactions.push_back(transaction);
-        else {
-            std::cout << "Transaction is not covered by the sender" << std::endl;
-            std::vector<Transaction> transactionsToRemove {transaction};
-            node->transactionPool.removeFromPool(transactionsToRemove);
-        }
-    });
-    return coveredTransactions;
-}
-
-/*!
- *
  * @param block
  * @return bool
  *
@@ -222,14 +198,14 @@ void Blockchain::executeTransaction(const Transaction& transaction) {
 Block Blockchain::createBlock(const std::vector<Transaction> &transactionsFromPool,
                               const std::string &forgerAddress) {
     std::lock_guard<std::mutex> guard(blockchainMutex);
-    std::vector<Transaction> coveredTransactions = getCoveredTransactionSet(
-        transactionsFromPool
-    );
+//    std::vector<Transaction> coveredTransactions = getCoveredTransactionSet(
+//        transactionsFromPool
+//    );
 
     std::string lastHash = blocks[blocks.size()-1].hash;
     Wallet forgerWallet(forgerAddress.c_str(), node);
-    executeTransactions(coveredTransactions);
-    Block newBlock = forgerWallet.createBlock(coveredTransactions, 
+    executeTransactions(transactionsFromPool);
+    Block newBlock = forgerWallet.createBlock(transactionsFromPool,
                                               lastHash,
                                               static_cast<long>(blocks.size()));
     blocks.push_back(newBlock);
@@ -320,21 +296,6 @@ bool Blockchain::forgerValid(const Block &block) {
         std::cout << "actualForger  : " << forgerPublicKey << std::endl;
     }
     return forgerPublicKey == proposedForger.walletPublicKey;
-}
-
-/*!
- *
- * @param transactions
- * @return bool
- *
- * Run getCoveredTransactionSet() on the list of transactions and compare the resulting vector size
- * with the original vector size for validity.
- */
-bool Blockchain::transactionValid(const std::vector<Transaction> &transactions) {
-    std::lock_guard<std::mutex> guard(blockchainMutex);
-    std::vector<Transaction> coveredTransactions = this->node->blockchain->
-                                                getCoveredTransactionSet(transactions);
-    return coveredTransactions.size() == transactions.size();
 }
 
 /*!

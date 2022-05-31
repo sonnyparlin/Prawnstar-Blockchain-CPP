@@ -54,13 +54,13 @@ public:
     void log(std::string const& msg);
 
     // class members
-    TransactionPool transactionPool {}; /*!< Node transaction pool */
     Wallet *nodeWallet {}; /*!< This node's wallet. */
     Wallet *exchangeWallet {}; /*!< Exchange wallet */
     Wallet *bobWallet {}; /*!< test wallet */
     Wallet *aliceWallet {}; /*!< test wallet */
     Wallet *node2Wallet {}; /*!< test wallet */
     Blockchain *blockchain {}; /*!< Node's blockchain */
+    AccountModel *accountModel {}; /*!< Node's accountModel */
     SocketCommunication *p2p {}; /*!< Node's SocketCommunication */
     ProofOfStake *proofOfStake {}; /*!< Node's proofOfStake */
     std::mutex logMutex {}; /*!< mutex for accessing shared log file */

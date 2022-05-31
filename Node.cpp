@@ -157,7 +157,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     if (!signatureValid)
         return false;
 
-    bool transactionExists = transactionPool.transactionExists(transaction);
+    bool transactionExists = blockchain->transactionPool.transactionExists(transaction);
     if (transactionExists)
         return false;
 
@@ -166,7 +166,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
         return false;
     
     if (transaction.type != "EXCHANGE") {
-        if (blockchain->accountModel.getBalance(transaction.senderAddress) >= transaction.amount)
+        if (blockchain->transactionCovered(transaction))
             transactionCovered = true;
     } else
         transactionCovered = true;
@@ -174,7 +174,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
     if (!transactionCovered)
         return false;
 
-    transactionPool.addTransaction(transaction);
+    blockchain->transactionPool.addTransaction(transaction);
 
     if (broadcast) {
         // std::cout << "broadcasting tx: " << transaction.toPureJson() << std::endl;
@@ -185,7 +185,7 @@ bool Node::handleTransaction (Transaction &transaction, bool broadcast ) {
         p2p->broadcast(msgJson.c_str());
     }
 
-    bool forgingRequired = transactionPool.forgerRequired();
+    bool forgingRequired = blockchain->transactionPool.forgerRequired();
     if (forgingRequired) forge();
 
     return true;
@@ -211,17 +211,16 @@ void Node::handleBlock (Block &block, bool broadcast) {
 
     bool lastBlockHashValid = blockchain->lastBlockHashValid(block);
     bool forgerValid = blockchain->forgerValid(block);
-    bool transactionValid = blockchain->transactionValid(block.transactions);
     bool signatureValid = utils::verifySignature(utils::hash(block.payload()),
                                                  block.signature,
                                                  block.signatureLength,
                                                  forger.walletPublicKey);
     bool blockHasTransactions = blockchain->blockHasTransactions(block);
 
-    if (lastBlockHashValid && forgerValid && transactionValid && signatureValid &&
+    if (lastBlockHashValid && forgerValid && signatureValid &&
                                                                 blockHasTransactions) {
         blockchain->addBlock(block);
-        transactionPool.removeFromPool(block.transactions);
+        blockchain->transactionPool.removeFromPool(block.transactions);
 
         if (broadcast) {
             std::string msgType = "block";
@@ -234,7 +233,6 @@ void Node::handleBlock (Block &block, bool broadcast) {
         std::cerr << "Block verification failed" << std::endl;
         std::cerr << "lastBlockHashValid: " << std::boolalpha << lastBlockHashValid << std::endl;
         std::cerr << "forgerValid: " << std::boolalpha << forgerValid << std::endl;
-        std::cerr << "transactionValid: " << std::boolalpha << transactionValid << std::endl;
         std::cerr << "signatureValid: " << std::boolalpha << signatureValid << std::endl;
         std::cerr << "blockHasTransactions: " << std::boolalpha << blockHasTransactions << std::endl;
     }
@@ -392,10 +390,10 @@ void Node::forge() {
      * assume we are having connection problems with the current staker's node
      * and remove that staker from the stakers vector.
      */
-    if (transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
+    if (blockchain->transactionPool.transactions.size() > 100 && forger != proofOfStake->genesisNodeStake) {
 
         /*!
-         * 100 transactions in the transaction pool means thee is a clog in the system,
+         * 100 transactions in the transaction pool means there is a clog in the system,
          * such a clog will be in the form of a node that has staked prawn but the node is unreachable
          * and so transactions are piling up in the transaction pool. So let's get the address of this
          * staker, return the stake back to the staker's wallet and then remove the staker from the
@@ -414,9 +412,9 @@ void Node::forge() {
          * or some other reason. Either way, we can safely assume these are dead
          * transactions or they've been processed already.
          */
-        if (transactionPool.transactions.size() > 500) {
+        if (blockchain->transactionPool.transactions.size() > 500) {
             if (proofOfStake->stakers.count(forger) == 0)
-                transactionPool.transactions.clear();
+                blockchain->transactionPool.transactions.clear();
         }
 
         /*!
@@ -434,7 +432,7 @@ void Node::forge() {
         std::vector<Transaction> rewardedTransactions;
         
         try {
-            rewardedTransactions = blockchain->calculateForgerReward(transactionPool.transactions);
+            rewardedTransactions = blockchain->calculateForgerReward(blockchain->transactionPool.transactions);
         } catch (std::exception &e) {
             std::cerr << "reward transaction exception: " << e.what() << std::endl;
         }
@@ -444,7 +442,7 @@ void Node::forge() {
         } catch (std::exception &e) {
             std::cerr << "creaate block exception: " << e.what() << std::endl;
         }
-        transactionPool.removeFromPool(block.transactions);
+        blockchain->transactionPool.removeFromPool(block.transactions);
 
         std::string msgType = "BLOCK";
         std::string msgBody = block.toJson();
