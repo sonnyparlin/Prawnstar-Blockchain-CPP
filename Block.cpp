@@ -41,7 +41,7 @@ Block::Block(std::vector <Transaction> transactions,
 
 /*!
  *
- * @param utils::Signature
+ * @param sig
  *
  * Add the generated signature to the new block.
  */

@@ -84,7 +84,7 @@ std::string Transaction::payload() {
 
 /*!
  *
- * @param _signature
+ * @param sig
  *
  * Add signature to the transaction.
  */

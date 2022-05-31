@@ -1,23 +1,6 @@
 var searchData=
 [
-  ['sc_0',['sc',['../class_message.html#aa76d00df50848996367063767ea470cf',1,'Message::sc()'],['../class_socket_communication.html#a30f06d9bb957d12517468379feb5530a',1,'SocketCommunication::sc()']]],
-  ['send_5fnode_5fmessage_1',['send_node_message',['../class_socket_communication.html#a1bb5ebcc2231b67d0128280dd02ddb3d',1,'SocketCommunication']]],
-  ['senderaddress_2',['senderAddress',['../class_transaction.html#ac0e72f4339c637961607896f591d0eb2',1,'Transaction']]],
-  ['senderpublickey_3',['senderPublicKey',['../class_transaction.html#a6a477bb1b0ddc439155aee18705c8bb5',1,'Transaction']]],
-  ['setgenesisnodestake_4',['setGenesisNodeStake',['../class_proof_of_stake.html#aa1c30dfae8c37a570cb912e36c0d54da',1,'ProofOfStake']]],
-  ['setoutgoingnodeconnection_5',['setOutgoingNodeConnection',['../namespacep2putils.html#aa7452a5aadefeadca18d426cfa964ef3',1,'p2putils']]],
-  ['sign_6',['sign',['../class_block.html#a7e1496b05fa44208e34a220649dd57a4',1,'Block::sign()'],['../class_transaction.html#a8fc44a24bfca6202ca05113e31e7f1b5',1,'Transaction::sign()'],['../class_wallet.html#a4ee4ef7c5ec46c1ac9e1398af957d8f9',1,'Wallet::sign()']]],
-  ['signature_7',['signature',['../class_block.html#aecdc5380b6dd3833840ea28a504ea3aa',1,'Block::signature()'],['../class_transaction.html#a66d7bde825c74dc38a3de06545b8775e',1,'Transaction::signature()']]],
-  ['signature_8',['Signature',['../structutils_1_1_signature.html',1,'utils']]],
-  ['signaturelength_9',['signatureLength',['../class_block.html#a85544ce2b95f47fe32283fef37869e64',1,'Block::signatureLength()'],['../class_transaction.html#a9a6940e85f9cba6c8f331e1ce6e4d65c',1,'Transaction::signatureLength()']]],
-  ['socketcommunication_10',['SocketCommunication',['../class_socket_communication.html',1,'SocketCommunication'],['../class_socket_communication.html#aa40ba4027fb0197430a3bb3c8721cb91',1,'SocketCommunication::SocketCommunication()']]],
-  ['socketconnector_11',['SocketConnector',['../class_socket_connector.html',1,'SocketConnector'],['../class_socket_connector.html#a03065d04a1d48af4f790316b7b3ca57e',1,'SocketConnector::SocketConnector()']]],
-  ['split_12',['split',['../namespaceutils.html#a74081e5f7593ba99957955c6c7ea3608',1,'utils']]],
-  ['stakers_13',['stakers',['../class_proof_of_stake.html#a3d8e09fd4ecaa0bbf68602fe57e5a567',1,'ProofOfStake']]],
-  ['start_14',['start',['../class_node_api.html#a19fdf7a6016abcdfc3b64552adcd8c8a',1,'NodeApi']]],
-  ['startp2poperations_15',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_16',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
-  ['startservers_17',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]],
-  ['startsocketcommunication_18',['startSocketCommunication',['../class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393',1,'SocketCommunication']]],
-  ['startutils_19',['startUtils',['../namespaceutils.html#a4896f4b0408bd63b0c4d4f70f091b1e7',1,'utils']]]
+  ['update_0',['update',['../class_proof_of_stake.html#a7450b27f25066f7d58ed1457a28c5882',1,'ProofOfStake']]],
+  ['updatebalance_1',['updateBalance',['../class_account_model.html#a2d1f5efc7d66615e5ec51e0f8ee788c1',1,'AccountModel']]],
+  ['utils_2',['utils',['../namespaceutils.html',1,'']]]
 ];

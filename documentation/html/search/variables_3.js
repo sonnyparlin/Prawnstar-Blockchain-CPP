@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_0',['data',['../class_message.html#a300ea496aacd30a8de1d03a0174f5f19',1,'Message']]]
+  ['exchangewallet_0',['exchangeWallet',['../class_node.html#a3c262e455d6332260f25a42b529b5906',1,'Node']]]
 ];

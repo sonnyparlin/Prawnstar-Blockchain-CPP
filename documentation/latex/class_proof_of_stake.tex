@@ -13,7 +13,7 @@ void \mbox{\hyperlink{class_proof_of_stake_a7450b27f25066f7d58ed1457a28c5882}{up
 \item 
 double \mbox{\hyperlink{class_proof_of_stake_aaae5f1b8f8fca2a4715d26797a9d54af}{get\+Stake}} (const std\+::string \&)
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \mbox{\hyperlink{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}{validator\+Lots}} (const std\+::string \&seed)
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_proof_of_stake_a815abc192e1e2c96d8bb15d1077b0c50}{validator\+Lots}} (const std\+::string \&seed)
 \item 
 std\+::string \mbox{\hyperlink{class_proof_of_stake_ab26da4a7bdcd9a1cd41a8f712f0bfcaf}{forger}} (const std\+::string \&)
 \item 
@@ -22,9 +22,9 @@ void \mbox{\hyperlink{class_proof_of_stake_aa1c30dfae8c37a570cb912e36c0d54da}{se
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{class_lot}{Lot}} \mbox{\hyperlink{class_proof_of_stake_ac16b760356071b95f058ade60600520d}{winner\+Lot}} (const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&, const std\+::string \&)
+static std\+::string \mbox{\hyperlink{class_proof_of_stake_ac28a709d9a7542fe321097065eb0d8f0}{winner\+Lot}} (const std\+::vector$<$ std\+::string $>$ \&, const std\+::string \&)
 \item 
-static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}{fnv1a}} (const std\+::string \&text)
+static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_aaf95d8f79f295d248ddb87a7c81aa07f}{fnv1a\+\_\+hash}} (const std\+::string \&text)
 \item 
 static uint32\+\_\+t \mbox{\hyperlink{class_proof_of_stake_a3ea36e15943830944d455cb700d4106c}{lcg\+\_\+rand}} (uint32\+\_\+t $\ast$state)
 \end{DoxyCompactItemize}
@@ -57,11 +57,11 @@ Proof of Stake, our blockchain\textquotesingle{}s consensus algorithm.
 Constructor for the \mbox{\hyperlink{class_proof_of_stake}{Proof\+Of\+Stake}} class, starts genesis node sets up this node\textquotesingle{}s wallet as a staker so the system will run. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}\label{class_proof_of_stake_a7c085fef5384a0389935a6eed49979e4}} 
-\index{ProofOfStake@{ProofOfStake}!fnv1a@{fnv1a}}
-\index{fnv1a@{fnv1a}!ProofOfStake@{ProofOfStake}}
-\doxysubsubsection{\texorpdfstring{fnv1a()}{fnv1a()}}
-{\footnotesize\ttfamily uint32\+\_\+t Proof\+Of\+Stake\+::fnv1a_hash (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+\mbox{\Hypertarget{class_proof_of_stake_aaf95d8f79f295d248ddb87a7c81aa07f}\label{class_proof_of_stake_aaf95d8f79f295d248ddb87a7c81aa07f}} 
+\index{ProofOfStake@{ProofOfStake}!fnv1a\_hash@{fnv1a\_hash}}
+\index{fnv1a\_hash@{fnv1a\_hash}!ProofOfStake@{ProofOfStake}}
+\doxysubsubsection{\texorpdfstring{fnv1a\_hash()}{fnv1a\_hash()}}
+{\footnotesize\ttfamily uint32\+\_\+t Proof\+Of\+Stake\+::fnv1a\+\_\+hash (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -137,11 +137,11 @@ Set up the genesis node stake so the system will run before real stakers show up
 {\em stake} & \\
 \hline
 \end{DoxyParams}
-Update the stake of the user with public\+Key\+String to the new amount specified in stake. \mbox{\Hypertarget{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}\label{class_proof_of_stake_ab40dabdee4512c01652a90fa0286c536}} 
+Update the stake of the user with public\+Key\+String to the new amount specified in stake. \mbox{\Hypertarget{class_proof_of_stake_a815abc192e1e2c96d8bb15d1077b0c50}\label{class_proof_of_stake_a815abc192e1e2c96d8bb15d1077b0c50}} 
 \index{ProofOfStake@{ProofOfStake}!validatorLots@{validatorLots}}
 \index{validatorLots@{validatorLots}!ProofOfStake@{ProofOfStake}}
 \doxysubsubsection{\texorpdfstring{validatorLots()}{validatorLots()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ Proof\+Of\+Stake\+::validator\+Lots (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Proof\+Of\+Stake\+::validator\+Lots (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -151,11 +151,11 @@ Update the stake of the user with public\+Key\+String to the new amount specifie
 \begin{DoxyReturn}{Returns}
 std\+::vector$<$\+Lot$>$
 \end{DoxyReturn}
-Create lottery tickets for the stakers to be chosen at random to decide who the next forger is. The number of lottery tickets for each staker corresponds to the amount of tokens they are staking. Note, it doesn\textquotesingle{}t do you any good to stake more than upper\+Limit tokens. (limit is for performance).\mbox{\Hypertarget{class_proof_of_stake_ac16b760356071b95f058ade60600520d}\label{class_proof_of_stake_ac16b760356071b95f058ade60600520d}} 
+Create lottery tickets for the stakers to be chosen at random to decide who the next forger is. The number of lottery tickets for each staker corresponds to the amount of tokens they are staking. \mbox{\Hypertarget{class_proof_of_stake_ac28a709d9a7542fe321097065eb0d8f0}\label{class_proof_of_stake_ac28a709d9a7542fe321097065eb0d8f0}} 
 \index{ProofOfStake@{ProofOfStake}!winnerLot@{winnerLot}}
 \index{winnerLot@{winnerLot}!ProofOfStake@{ProofOfStake}}
 \doxysubsubsection{\texorpdfstring{winnerLot()}{winnerLot()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_lot}{Lot}} Proof\+Of\+Stake\+::winner\+Lot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_lot}{Lot}} $>$ \&}]{lots,  }\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily std\+::string Proof\+Of\+Stake\+::winner\+Lot (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{lots,  }\item[{const std\+::string \&}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -165,7 +165,7 @@ Create lottery tickets for the stakers to be chosen at random to decide who the 
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{class_lot}{Lot}}
+std\+::string
 \end{DoxyReturn}
 Chooses a winner for the forger lottery based on the random selection of Lots. 
 

@@ -87,9 +87,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4ee4ef7c5ec46c1ac9e1398af957d8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47962a946675e2b56d02a7968919a24d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transaction.html">Transaction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a47962a946675e2b56d02a7968919a24d">createTransaction</a> (std::string receiverAddress, double amount, std::string type) const</td></tr>
 <tr class="separator:a47962a946675e2b56d02a7968919a24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be5e7a99366da5ed7d704fc650ccba1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a8be5e7a99366da5ed7d704fc650ccba1">createBlock</a> (vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions, std::string lastHash, long blockCount) const</td></tr>
-<tr class="separator:a8be5e7a99366da5ed7d704fc650ccba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a369255d696afbc1ea9d2b1fdfae07ad4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a369255d696afbc1ea9d2b1fdfae07ad4">toPureJson</a> ()</td></tr>
+<tr class="memitem:a7a67aa1947e49abefd743df874f51e58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a7a67aa1947e49abefd743df874f51e58">createBlock</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; transactions, std::string lastHash, long blockCount) const</td></tr>
+<tr class="separator:a7a67aa1947e49abefd743df874f51e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a369255d696afbc1ea9d2b1fdfae07ad4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a369255d696afbc1ea9d2b1fdfae07ad4">toJson</a> ()</td></tr>
 <tr class="separator:a369255d696afbc1ea9d2b1fdfae07ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dda508363e6daecd31e2df25bfb4ade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wallet.html#a0dda508363e6daecd31e2df25bfb4ade">fromKey</a> (const char *file)</td></tr>
 <tr class="separator:a0dda508363e6daecd31e2df25bfb4ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,8 +215,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8be5e7a99366da5ed7d704fc650ccba1" name="a8be5e7a99366da5ed7d704fc650ccba1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8be5e7a99366da5ed7d704fc650ccba1">&#9670;&nbsp;</a></span>createBlock()</h2>
+<a id="a7a67aa1947e49abefd743df874f51e58" name="a7a67aa1947e49abefd743df874f51e58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a67aa1947e49abefd743df874f51e58">&#9670;&nbsp;</a></span>createBlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +224,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="class_block.html">Block</a> Wallet::createBlock </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td>
           <td class="paramname"><em>transactions</em>, </td>
         </tr>
         <tr>
@@ -407,13 +407,13 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a369255d696afbc1ea9d2b1fdfae07ad4" name="a369255d696afbc1ea9d2b1fdfae07ad4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a369255d696afbc1ea9d2b1fdfae07ad4">&#9670;&nbsp;</a></span>toPureJson()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a369255d696afbc1ea9d2b1fdfae07ad4">&#9670;&nbsp;</a></span>toJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Wallet::toPureJson </td>
+          <td class="memname">std::string Wallet::toJson </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['forgeraddress_0',['forgerAddress',['../class_block.html#a663b3e363c8a2c4f35da197029cc2db2',1,'Block']]]
+  ['genesisnodestake_0',['genesisNodeStake',['../class_proof_of_stake.html#a0fb0c3275d9069c1989e528f1926b92f',1,'ProofOfStake']]]
 ];

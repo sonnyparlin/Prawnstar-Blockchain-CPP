@@ -30,9 +30,9 @@
 
 \begin{DoxyItemize}
 \item Edit {\ttfamily config.\+json} and add your master ip address and port.
-\item \mbox{\hyperlink{class_node}{Node}} 1 (master node)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10001 8001
-\item \mbox{\hyperlink{class_node}{Node}} 2\+: ./\+Prawnstar 127.\+0.\+0.\+1 10002 127.\+0.\+0.\+1 8002
-\item \mbox{\hyperlink{class_node}{Node}} 3\+: ./\+Prawnstar 127.\+0.\+0.\+1 10003 127.\+0.\+0.\+1 8003
+\item \mbox{\hyperlink{class_node}{Node}} 1 ( master node )\+: ./\+Prawnstar 127.\+0.\+0.\+1 10001 8001
+\item \mbox{\hyperlink{class_node}{Node}} 2\+: (client node 1)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10002 8002 node
+\item \mbox{\hyperlink{class_node}{Node}} 3\+: (client node 2)\+: ./\+Prawnstar 127.\+0.\+0.\+1 10003 8003 node
 \end{DoxyItemize}
 
 The format for the master node\+:
@@ -41,7 +41,7 @@ The format for the master node\+:
 
 The format of all client nodes\+:
 
-./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node ip\+\_\+of\+\_\+master\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing}\label{md__r_e_a_d_m_e_autotoc_md5}
+./\+Prawnstar ip\+\_\+of\+\_\+this\+\_\+node p2p\+\_\+port\+\_\+of\+\_\+this\+\_\+node api\+\_\+port\+\_\+of\+\_\+this\+\_\+node node\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Testing}\label{md__r_e_a_d_m_e_autotoc_md5}
 
 \begin{DoxyEnumerate}
 \item {\ttfamily python Api\+Test.\+py \texorpdfstring{$<$}{<}number\+\_\+of\+\_\+transactions\texorpdfstring{$>$}{>}}

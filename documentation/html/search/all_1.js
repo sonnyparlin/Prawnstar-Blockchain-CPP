@@ -1,14 +1,18 @@
 var searchData=
 [
-  ['accountexists_0',['accountExists',['../class_account_model.html#a08b066221ebe83d70f35b0e5ae890937',1,'AccountModel']]],
-  ['accountmodel_1',['AccountModel',['../class_account_model.html',1,'']]],
-  ['accountmodel_2',['accountModel',['../class_node.html#ab9865ce71e40837c33c554aa3bb5260f',1,'Node']]],
-  ['addaccount_3',['addAccount',['../class_account_model.html#a87e1ed72c7378037c03e1022d4431df8',1,'AccountModel::addAccount(const std::string &amp;walletAddress, const std::string &amp;pubKey, const std::string &amp;privKey)'],['../class_account_model.html#a4357ffffdd574f7023b5dcaf86e22752',1,'AccountModel::addAccount(const std::string &amp;walletAddress, const std::string &amp;pubKey)']]],
-  ['addblock_4',['addBlock',['../class_blockchain.html#a89948907068998a0d48ef911a4cc9e40',1,'Blockchain']]],
-  ['address_5',['address',['../class_wallet.html#acb84b316931574393a098f16bf79a19d',1,'Wallet']]],
-  ['addresstoprivatekey_6',['addressToPrivateKey',['../class_account_model.html#a2589dcd424d7a700886527bc078a734b',1,'AccountModel']]],
-  ['addresstopublickey_7',['addressToPublicKey',['../class_account_model.html#adaed9f334c1e1f6c7c54194071e090f9',1,'AccountModel']]],
-  ['addtransaction_8',['addTransaction',['../class_transaction_pool.html#aee7cf6e6e62fceb74114eecca82588b9',1,'TransactionPool']]],
-  ['alicewallet_9',['aliceWallet',['../class_node.html#a15d9b97d824afee953bad4d38489afc5',1,'Node']]],
-  ['amount_10',['amount',['../class_transaction.html#a79d18292be964d9196985f20474abe64',1,'Transaction']]]
+  ['balances_0',['balances',['../class_account_model.html#a853ab908a4f877cf4c2cd0d8fb3f575a',1,'AccountModel']]],
+  ['bind_1',['Bind',['../namespacep2putils.html#ae9e1daac4ed670a03f68296383ae3880',1,'p2putils']]],
+  ['block_2',['Block',['../class_block.html',1,'Block'],['../class_block.html#ad6559d71520043bfaa31b6f9bc47ec98',1,'Block::Block(std::vector&lt; Transaction &gt;, std::string, std::string, long blockCount)'],['../class_block.html#a06c11b8431d35709df47a1150315828f',1,'Block::Block(std::vector&lt; Transaction &gt;, std::string, long blockCount)']]],
+  ['blockchain_3',['Blockchain',['../class_blockchain.html',1,'Blockchain'],['../class_blockchain.html#a8b2d507929548019ed2c73b1956317b1',1,'Blockchain::Blockchain()']]],
+  ['blockchain_4',['blockchain',['../class_node.html#adf4848690854c7c8470804626a57cf78',1,'Node']]],
+  ['blockchainmutex_5',['blockchainMutex',['../class_blockchain.html#a4797856382c3260becf198bd29693513',1,'Blockchain']]],
+  ['blockcount_6',['blockCount',['../class_block.html#affd8bb7f05f0985ab78bc21c04eb6f29',1,'Block']]],
+  ['blockcountvalid_7',['blockCountValid',['../class_blockchain.html#afcd7f1987327abfc8880d132e26d0744',1,'Blockchain']]],
+  ['blockforger_8',['blockForger',['../class_socket_communication.html#aa3617c8c0be10e00130852719ec5fc00',1,'SocketCommunication']]],
+  ['blockhastransactions_9',['blockHasTransactions',['../class_blockchain.html#a56d993d8f29c4aa68476ed115a263d8c',1,'Blockchain']]],
+  ['blocklist_10',['blockList',['../class_blockchain.html#ae5d05c16d4a4f21d178b43aca51b6945',1,'Blockchain']]],
+  ['blocks_11',['blocks',['../class_blockchain.html#a10f51613cc18f007f4b7178788dd9a74',1,'Blockchain']]],
+  ['bobwallet_12',['bobWallet',['../class_node.html#a14a9758819bd22fe4a32478a08b88bf5',1,'Node']]],
+  ['broadcast_13',['broadcast',['../class_socket_communication.html#a4f319adf1c03deb69716a320e10e3727',1,'SocketCommunication']]],
+  ['broadcastpeerdiscovery_14',['broadcastPeerDiscovery',['../class_socket_communication.html#a556f923e6a6346454f8055400668ef27',1,'SocketCommunication']]]
 ];

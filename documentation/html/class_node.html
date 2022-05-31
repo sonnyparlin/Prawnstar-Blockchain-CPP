@@ -107,8 +107,6 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8a04184423202651a3b807c6a2d0a508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transaction_pool.html">TransactionPool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a8a04184423202651a3b807c6a2d0a508">transactionPool</a> {}</td></tr>
-<tr class="separator:a8a04184423202651a3b807c6a2d0a508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eb8eec73c312bdf2509e30e3e059424"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_wallet.html">Wallet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4eb8eec73c312bdf2509e30e3e059424">nodeWallet</a> {}</td></tr>
 <tr class="separator:a4eb8eec73c312bdf2509e30e3e059424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c262e455d6332260f25a42b529b5906"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_wallet.html">Wallet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a3c262e455d6332260f25a42b529b5906">exchangeWallet</a> {}</td></tr>
@@ -218,7 +216,7 @@ Public Attributes</h2></td></tr>
 <p >This is where new blocks are initiated for this forger. </p>
 <p >Return the new block forger based on the proof of work algorithm.</p>
 <p >if there are more than 100 transactions in the transaction pool assume we are having connection problems with the current staker's node and remove that staker from the stakers vector.</p>
-<p >100 transactions in the transaction pool means thee is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let's get the address of this staker, return the stake back to the staker's wallet and then remove the staker from the list of valid stakers. Then re-run the proof of stake lottery to find a new staker and proceed with forging the new block.</p>
+<p >100 transactions in the transaction pool means there is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let's get the address of this staker, return the stake back to the staker's wallet and then remove the staker from the list of valid stakers. Then re-run the proof of stake lottery to find a new staker and proceed with forging the new block.</p>
 <p >At 500 transactions in the pool, we know it's time to clean up. There should never be this many transactions in the transaction pool. This can only happen if the node was identified as a staker but wasn't able to <a class="el" href="class_node.html#ac08fe080956d22ded0226fd3b47a4fdc">forge()</a> new blocks, perhaps due to network connectivity issues or some other reason. Either way, we can safely assume these are dead transactions or they've been processed already.</p>
 <p >Okay now that we've removed the broken staker, let's try to pick a new staker.</p>
 
@@ -646,21 +644,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p ><a class="el" href="class_node.html">Node</a>'s proofOfStake </p>
-
-</div>
-</div>
-<a id="a8a04184423202651a3b807c6a2d0a508" name="a8a04184423202651a3b807c6a2d0a508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a04184423202651a3b807c6a2d0a508">&#9670;&nbsp;</a></span>transactionPool</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_transaction_pool.html">TransactionPool</a> Node::transactionPool {}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p ><a class="el" href="class_node.html">Node</a> transaction pool </p>
 
 </div>
 </div>

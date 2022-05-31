@@ -39,8 +39,6 @@ static std\+::string \mbox{\hyperlink{class_node_ab3291bce63c6c99090e49abcbb4c29
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_transaction_pool}{Transaction\+Pool}} \mbox{\hyperlink{class_node_a8a04184423202651a3b807c6a2d0a508}{transaction\+Pool}} \{\}
-\item 
 \mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ \mbox{\hyperlink{class_node_a4eb8eec73c312bdf2509e30e3e059424}{node\+Wallet}} \{\}
 \item 
 \mbox{\hyperlink{class_wallet}{Wallet}} $\ast$ \mbox{\hyperlink{class_node_a3c262e455d6332260f25a42b529b5906}{exchange\+Wallet}} \{\}
@@ -105,7 +103,7 @@ This is where new blocks are initiated for this forger. Return the new block for
 
 if there are more than 100 transactions in the transaction pool assume we are having connection problems with the current staker\textquotesingle{}s node and remove that staker from the stakers vector.
 
-100 transactions in the transaction pool means thee is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let\textquotesingle{}s get the address of this staker, return the stake back to the staker\textquotesingle{}s wallet and then remove the staker from the list of valid stakers. Then re-\/run the proof of stake lottery to find a new staker and proceed with forging the new block.
+100 transactions in the transaction pool means there is a clog in the system, such a clog will be in the form of a node that has staked prawn but the node is unreachable and so transactions are piling up in the transaction pool. So let\textquotesingle{}s get the address of this staker, return the stake back to the staker\textquotesingle{}s wallet and then remove the staker from the list of valid stakers. Then re-\/run the proof of stake lottery to find a new staker and proceed with forging the new block.
 
 At 500 transactions in the pool, we know it\textquotesingle{}s time to clean up. There should never be this many transactions in the transaction pool. This can only happen if the node was identified as a staker but wasn\textquotesingle{}t able to \mbox{\hyperlink{class_node_ac08fe080956d22ded0226fd3b47a4fdc}{forge()}} new blocks, perhaps due to network connectivity issues or some other reason. Either way, we can safely assume these are dead transactions or they\textquotesingle{}ve been processed already.
 
@@ -280,13 +278,7 @@ This node\textquotesingle{}s wallet. \mbox{\Hypertarget{class_node_a7094f5ca84e7
 \doxysubsubsection{\texorpdfstring{proofOfStake}{proofOfStake}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_proof_of_stake}{Proof\+Of\+Stake}}$\ast$ Node\+::proof\+Of\+Stake \{\}}
 
-\mbox{\hyperlink{class_node}{Node}}\textquotesingle{}s proof\+Of\+Stake \mbox{\Hypertarget{class_node_a8a04184423202651a3b807c6a2d0a508}\label{class_node_a8a04184423202651a3b807c6a2d0a508}} 
-\index{Node@{Node}!transactionPool@{transactionPool}}
-\index{transactionPool@{transactionPool}!Node@{Node}}
-\doxysubsubsection{\texorpdfstring{transactionPool}{transactionPool}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_transaction_pool}{Transaction\+Pool}} Node\+::transaction\+Pool \{\}}
-
-\mbox{\hyperlink{class_node}{Node}} transaction pool 
+\mbox{\hyperlink{class_node}{Node}}\textquotesingle{}s proof\+Of\+Stake 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

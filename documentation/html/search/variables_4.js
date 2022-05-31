@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exchangewallet_0',['exchangeWallet',['../class_node.html#a3c262e455d6332260f25a42b529b5906',1,'Node']]]
+  ['forgeraddress_0',['forgerAddress',['../class_block.html#a663b3e363c8a2c4f35da197029cc2db2',1,'Block']]]
 ];

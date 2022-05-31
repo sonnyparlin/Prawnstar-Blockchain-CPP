@@ -1,10 +1,20 @@
 var searchData=
 [
-  ['fnv1a_0',['fnv1a',['../class_proof_of_stake.html#a7c085fef5384a0389935a6eed49979e4',1,'ProofOfStake']]],
-  ['forge_1',['forge',['../class_node.html#ac08fe080956d22ded0226fd3b47a4fdc',1,'Node']]],
-  ['forger_2',['forger',['../class_proof_of_stake.html#ab26da4a7bdcd9a1cd41a8f712f0bfcaf',1,'ProofOfStake']]],
-  ['forgeraddress_3',['forgerAddress',['../class_block.html#a663b3e363c8a2c4f35da197029cc2db2',1,'Block']]],
-  ['forgerrequired_4',['forgerRequired',['../class_transaction_pool.html#ae130e06b22129b1608d0f691b516a2a7',1,'TransactionPool']]],
-  ['forgervalid_5',['forgerValid',['../class_blockchain.html#a3839678f351a8973eb5f75a04beb1f0f',1,'Blockchain']]],
-  ['fromkey_6',['fromKey',['../class_wallet.html#a0dda508363e6daecd31e2df25bfb4ade',1,'Wallet']]]
+  ['gen_5frandom_5fstr_0',['gen_random_str',['../namespaceutils.html#a62e18f2badb6ce39474c62320bd7fa8b',1,'utils']]],
+  ['generateaddress_1',['generateAddress',['../class_wallet.html#aa6354c03cad74cc7d325a4a9dd55a2f1',1,'Wallet::generateAddress()'],['../namespaceutils.html#a669a63854d14ad6cac29d90eb13de1dc',1,'utils::generateAddress()']]],
+  ['genesis_2',['genesis',['../class_blockchain.html#af95ef0f76e085ca5b4aa20fbacdd68d4',1,'Blockchain']]],
+  ['genesisnodestake_3',['genesisNodeStake',['../class_proof_of_stake.html#a0fb0c3275d9069c1989e528f1926b92f',1,'ProofOfStake']]],
+  ['genkeypair_4',['genKeyPair',['../class_wallet.html#ab783113deae4bb8f811050f316623509',1,'Wallet']]],
+  ['get_5fip_5fand_5fport_5ffrom_5fconfig_5',['get_ip_and_port_from_config',['../namespaceutils.html#ae0e7c1a01a455773aae690dfb871566f',1,'utils']]],
+  ['get_5fmaster_5fnode_5fip_6',['get_master_node_ip',['../namespaceutils.html#a37796cd7c559a004914f5e1073cfc725',1,'utils']]],
+  ['get_5fmaster_5fnode_5fport_7',['get_master_node_port',['../namespaceutils.html#a46c2725f78ada7ce603dc64f68352b4a',1,'utils']]],
+  ['get_5fuuid_8',['get_uuid',['../namespaceutils.html#aaa6b075e5e79b666a2c04271d86545dc',1,'utils']]],
+  ['getbalance_9',['getBalance',['../class_account_model.html#a1b461e5d30dfc42b628efed78a6c7748',1,'AccountModel']]],
+  ['getconsolelog_10',['getConsoleLog',['../class_node.html#ab3291bce63c6c99090e49abcbb4c29b5',1,'Node']]],
+  ['getnodeid_11',['getNodeID',['../class_node.html#a85f2a46bd337dea9c67d907430a45edc',1,'Node']]],
+  ['getpooltransactionsjsonstring_12',['getPoolTransactionsJsonString',['../class_transaction_pool.html#a75d388012cc9b8ac636f4314bef8ab2f',1,'TransactionPool']]],
+  ['getport_13',['getPort',['../namespaceutils.html#aa362c0052e677799768436cbd640e906',1,'utils']]],
+  ['getstake_14',['getStake',['../class_proof_of_stake.html#aaae5f1b8f8fca2a4715d26797a9d54af',1,'ProofOfStake']]],
+  ['gettimestr_15',['getTimeStr',['../class_node.html#a204be29a96288955c69ce5ee3942954e',1,'Node']]],
+  ['gettransaction_16',['getTransaction',['../class_blockchain.html#af1235ef58b69abb44d002454c97e91d6',1,'Blockchain']]]
 ];

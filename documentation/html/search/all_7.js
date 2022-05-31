@@ -1,21 +1,11 @@
 var searchData=
 [
-  ['gen_5frandom_5fstr_0',['gen_random_str',['../namespaceutils.html#a62e18f2badb6ce39474c62320bd7fa8b',1,'utils']]],
-  ['generateaddress_1',['generateAddress',['../class_wallet.html#aa6354c03cad74cc7d325a4a9dd55a2f1',1,'Wallet::generateAddress()'],['../namespaceutils.html#a669a63854d14ad6cac29d90eb13de1dc',1,'utils::generateAddress()']]],
-  ['genesis_2',['genesis',['../class_blockchain.html#af95ef0f76e085ca5b4aa20fbacdd68d4',1,'Blockchain']]],
-  ['genesisnodestake_3',['genesisNodeStake',['../class_proof_of_stake.html#a0fb0c3275d9069c1989e528f1926b92f',1,'ProofOfStake']]],
-  ['genkeypair_4',['genKeyPair',['../class_wallet.html#ab783113deae4bb8f811050f316623509',1,'Wallet']]],
-  ['get_5fip_5fand_5fport_5ffrom_5fconfig_5',['get_ip_and_port_from_config',['../namespaceutils.html#ae0e7c1a01a455773aae690dfb871566f',1,'utils']]],
-  ['get_5fmaster_5fnode_5fip_6',['get_master_node_ip',['../namespaceutils.html#a37796cd7c559a004914f5e1073cfc725',1,'utils']]],
-  ['get_5fmaster_5fnode_5fport_7',['get_master_node_port',['../namespaceutils.html#a46c2725f78ada7ce603dc64f68352b4a',1,'utils']]],
-  ['get_5fuuid_8',['get_uuid',['../namespaceutils.html#aaa6b075e5e79b666a2c04271d86545dc',1,'utils']]],
-  ['getbalance_9',['getBalance',['../class_account_model.html#a1b461e5d30dfc42b628efed78a6c7748',1,'AccountModel']]],
-  ['getconsolelog_10',['getConsoleLog',['../class_node.html#ab3291bce63c6c99090e49abcbb4c29b5',1,'Node']]],
-  ['getcoveredtransactionset_11',['getCoveredTransactionSet',['../class_blockchain.html#aa4e6bb083bde20f6ad2a60f80fbd4655',1,'Blockchain']]],
-  ['getnodeid_12',['getNodeID',['../class_node.html#a85f2a46bd337dea9c67d907430a45edc',1,'Node']]],
-  ['getpooltransactionsjsonstring_13',['getPoolTransactionsJsonString',['../class_transaction_pool.html#a75d388012cc9b8ac636f4314bef8ab2f',1,'TransactionPool']]],
-  ['getport_14',['getPort',['../namespaceutils.html#aa362c0052e677799768436cbd640e906',1,'utils']]],
-  ['getstake_15',['getStake',['../class_proof_of_stake.html#aaae5f1b8f8fca2a4715d26797a9d54af',1,'ProofOfStake']]],
-  ['gettimestr_16',['getTimeStr',['../class_node.html#a204be29a96288955c69ce5ee3942954e',1,'Node']]],
-  ['gettransaction_17',['getTransaction',['../class_blockchain.html#af1235ef58b69abb44d002454c97e91d6',1,'Blockchain']]]
+  ['handleblock_0',['handleBlock',['../class_node.html#a3431dcfd8525b2eb4bc74262363d0465',1,'Node']]],
+  ['handleblockchain_1',['handleBlockchain',['../class_node.html#afca81a037e9e4fe4cbacf0a0637b7ce2',1,'Node']]],
+  ['handleblockchainrequest_2',['handleBlockchainRequest',['../class_node.html#af25a469a96f939eb8a2bde8de080a2cb',1,'Node']]],
+  ['handletransaction_3',['handleTransaction',['../class_node.html#a308b10eb07ee09df6bef85ecd67d4e85',1,'Node']]],
+  ['handshake_4',['handshake',['../class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b',1,'SocketCommunication']]],
+  ['handshakemessage_5',['handshakeMessage',['../class_socket_communication.html#abeeeace94685bcea0f46de641c953d2a',1,'SocketCommunication']]],
+  ['hash_6',['hash',['../class_block.html#ad81167700ff115ff348eba6b22d97fb1',1,'Block::hash()'],['../namespaceutils.html#a32ab6c1e274f5560f73b881c0eeafe1f',1,'utils::hash()']]],
+  ['hex_7',['hex',['../structutils_1_1_signature.html#a02da62be365808de839db5550d8880ec',1,'utils::Signature']]]
 ];

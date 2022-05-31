@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lasthash_0',['lastHash',['../class_block.html#aaca2fd6381f0460c3b8a5b7afe55e0d4',1,'Block']]],
-  ['logmutex_1',['logMutex',['../class_node.html#a527b390d6611ed21675b9930618916ec',1,'Node']]]
+  ['messagelength_0',['MESSAGELENGTH',['../class_socket_communication.html#add89471d518b7d3b06241e3ca73be47d',1,'SocketCommunication']]],
+  ['messagetype_1',['messageType',['../class_message.html#aba32dfd100c81d92f10eb24d74594aaf',1,'Message']]]
 ];

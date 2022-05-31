@@ -7,34 +7,38 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{class_transaction_a6a57b62f03c662b094b27ab7245666a6}{to\+Json}} ()
+std\+::string \mbox{\hyperlink{class_transaction_ae63e90857aacc0129c4f264d40d27042}{to\+Json}} () const
 \item 
-string \mbox{\hyperlink{class_transaction_a2711b335f673a115279100dcd759bf20}{payload}} ()
+std\+::string \mbox{\hyperlink{class_transaction_a2711b335f673a115279100dcd759bf20}{payload}} ()
 \item 
-void \mbox{\hyperlink{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}{sign}} (std\+::string sig)
+void \mbox{\hyperlink{class_transaction_a5a6de3edc2000113b36deb3d2bf73582}{sign}} (\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}} sig)
 \item 
-\mbox{\hyperlink{class_transaction_aa79b30343f7bd6ef94981e4437116f22}{Transaction}} (string \mbox{\hyperlink{class_transaction_ac0e72f4339c637961607896f591d0eb2}{sender\+Address}}, string \mbox{\hyperlink{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}{receiver\+Address}}, double \mbox{\hyperlink{class_transaction_a79d18292be964d9196985f20474abe64}{amount}}, string \mbox{\hyperlink{class_transaction_af295af302feb2c12bd88c1af30c358b3}{type}})
+\mbox{\hyperlink{class_transaction_ab69cd25d48727c65a135fb805ffff0d1}{Transaction}} (std\+::string \mbox{\hyperlink{class_transaction_ac1eb615dd0b08de0e6563ef45f9d136d}{sender\+Address}}, std\+::string \mbox{\hyperlink{class_transaction_a6e78db175c1c07b21564de1ef10e647a}{receiver\+Address}}, double \mbox{\hyperlink{class_transaction_a79d18292be964d9196985f20474abe64}{amount}}, std\+::string \mbox{\hyperlink{class_transaction_a0c0b931f105f8e7d2fe9865f75a4be9c}{type}})
+\item 
+\mbox{\hyperlink{class_transaction_ab47005b855d38bc324bb79fd023baa13}{Transaction}} ()
+\item 
+\mbox{\hyperlink{class_transaction_a362b0d2524d0c799165190517192dca9}{$\sim$\+Transaction}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{class_transaction_ac0e72f4339c637961607896f591d0eb2}{sender\+Address}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_ac1eb615dd0b08de0e6563ef45f9d136d}{sender\+Address}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_a6a477bb1b0ddc439155aee18705c8bb5}{sender\+Public\+Key}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a2a93cf2e7c5540ea5535b08f3ac7f3e1}{sender\+Public\+Key}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}{receiver\+Address}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a6e78db175c1c07b21564de1ef10e647a}{receiver\+Address}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_aee8367335bc186afce178e3f813711ad}{receiver\+Public\+Key}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a2b4dfd876c9ba8cc893b30278376b52c}{receiver\+Public\+Key}} \{\}
 \item 
 double \mbox{\hyperlink{class_transaction_a79d18292be964d9196985f20474abe64}{amount}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_af295af302feb2c12bd88c1af30c358b3}{type}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a0c0b931f105f8e7d2fe9865f75a4be9c}{type}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_a44b7c4fe4086933c4f948d91912314db}{id}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a735fa147c122d6f2d8695f1ba38be632}{id}} \{\}
 \item 
 time\+\_\+t \mbox{\hyperlink{class_transaction_ae23f8b9f7264a97cd5abaaeb103c2a85}{timestamp}} \{\}
 \item 
-string \mbox{\hyperlink{class_transaction_a66d7bde825c74dc38a3de06545b8775e}{signature}} \{\}
+std\+::string \mbox{\hyperlink{class_transaction_a58da9af89bc8111ede077f29938520f3}{signature}} \{\}
 \item 
 size\+\_\+t \mbox{\hyperlink{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}{signature\+Length}} \{\}
 \end{DoxyCompactItemize}
@@ -49,11 +53,11 @@ bool \mbox{\hyperlink{class_transaction_a7d309437514ff230646f8dbcd9a2fa06}{opera
 Our transaction class. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_transaction_aa79b30343f7bd6ef94981e4437116f22}\label{class_transaction_aa79b30343f7bd6ef94981e4437116f22}} 
+\mbox{\Hypertarget{class_transaction_ab69cd25d48727c65a135fb805ffff0d1}\label{class_transaction_ab69cd25d48727c65a135fb805ffff0d1}} 
 \index{Transaction@{Transaction}!Transaction@{Transaction}}
 \index{Transaction@{Transaction}!Transaction@{Transaction}}
-\doxysubsubsection{\texorpdfstring{Transaction()}{Transaction()}}
-{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}\item[{string}]{sender\+Address,  }\item[{string}]{receiver\+Address,  }\item[{double}]{amount,  }\item[{string}]{type }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{Transaction()}{Transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}\item[{std\+::string}]{sender\+Address,  }\item[{std\+::string}]{receiver\+Address,  }\item[{double}]{amount,  }\item[{std\+::string}]{type }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -66,7 +70,19 @@ Our transaction class.
 {\em type} & \\
 \hline
 \end{DoxyParams}
-\mbox{\hyperlink{class_transaction}{Transaction}} constructor 
+\mbox{\hyperlink{class_transaction}{Transaction}} constructor \mbox{\Hypertarget{class_transaction_ab47005b855d38bc324bb79fd023baa13}\label{class_transaction_ab47005b855d38bc324bb79fd023baa13}} 
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\doxysubsubsection{\texorpdfstring{Transaction()}{Transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Default transaction constructor \mbox{\Hypertarget{class_transaction_a362b0d2524d0c799165190517192dca9}\label{class_transaction_a362b0d2524d0c799165190517192dca9}} 
+\index{Transaction@{Transaction}!````~Transaction@{$\sim$Transaction}}
+\index{````~Transaction@{$\sim$Transaction}!Transaction@{Transaction}}
+\doxysubsubsection{\texorpdfstring{$\sim$Transaction()}{~Transaction()}}
+{\footnotesize\ttfamily Transaction\+::$\sim$\+Transaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\hyperlink{class_transaction}{Transaction}} destructor 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_transaction_a2711b335f673a115279100dcd759bf20}\label{class_transaction_a2711b335f673a115279100dcd759bf20}} 
@@ -78,22 +94,22 @@ Our transaction class.
 \begin{DoxyReturn}{Returns}
 std\+::string
 \end{DoxyReturn}
-stringified json repsentation of the transaction\textquotesingle{}s payload, used for signing. \mbox{\Hypertarget{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}\label{class_transaction_a8fc44a24bfca6202ca05113e31e7f1b5}} 
+stringified json repsentation of the transaction\textquotesingle{}s payload, used for signing. \mbox{\Hypertarget{class_transaction_a5a6de3edc2000113b36deb3d2bf73582}\label{class_transaction_a5a6de3edc2000113b36deb3d2bf73582}} 
 \index{Transaction@{Transaction}!sign@{sign}}
 \index{sign@{sign}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{sign()}{sign()}}
-{\footnotesize\ttfamily void Transaction\+::sign (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+signature }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Transaction\+::sign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structutils_1_1_signature}{utils\+::\+Signature}}}]{sig }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+signature} & \\
+{\em sig} & \\
 \hline
 \end{DoxyParams}
-Add signature to the transaction. \mbox{\Hypertarget{class_transaction_a6a57b62f03c662b094b27ab7245666a6}\label{class_transaction_a6a57b62f03c662b094b27ab7245666a6}} 
+Add signature to the transaction. \mbox{\Hypertarget{class_transaction_ae63e90857aacc0129c4f264d40d27042}\label{class_transaction_ae63e90857aacc0129c4f264d40d27042}} 
 \index{Transaction@{Transaction}!toJson@{toJson}}
 \index{toJson@{toJson}!Transaction@{Transaction}}
-\doxysubsubsection{\texorpdfstring{toJson()}{toPureJson()}}
-{\footnotesize\ttfamily std\+::string Transaction\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
+{\footnotesize\ttfamily std\+::string Transaction\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 std\+::string
@@ -126,41 +142,41 @@ Overloaded == operator for comparing transactions using their id.
 \doxysubsubsection{\texorpdfstring{amount}{amount}}
 {\footnotesize\ttfamily double Transaction\+::amount \{\}}
 
-transaction amount \mbox{\Hypertarget{class_transaction_a44b7c4fe4086933c4f948d91912314db}\label{class_transaction_a44b7c4fe4086933c4f948d91912314db}} 
+transaction amount \mbox{\Hypertarget{class_transaction_a735fa147c122d6f2d8695f1ba38be632}\label{class_transaction_a735fa147c122d6f2d8695f1ba38be632}} 
 \index{Transaction@{Transaction}!id@{id}}
 \index{id@{id}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{id}{id}}
-{\footnotesize\ttfamily string Transaction\+::id \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::id \{\}}
 
-\mbox{\hyperlink{class_transaction}{Transaction}} id \mbox{\Hypertarget{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}\label{class_transaction_a5bb3521aa76bee56850f203bec06cb8c}} 
+\mbox{\hyperlink{class_transaction}{Transaction}} id \mbox{\Hypertarget{class_transaction_a6e78db175c1c07b21564de1ef10e647a}\label{class_transaction_a6e78db175c1c07b21564de1ef10e647a}} 
 \index{Transaction@{Transaction}!receiverAddress@{receiverAddress}}
 \index{receiverAddress@{receiverAddress}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{receiverAddress}{receiverAddress}}
-{\footnotesize\ttfamily string Transaction\+::receiver\+Address \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::receiver\+Address \{\}}
 
-receiver\textquotesingle{}s address \mbox{\Hypertarget{class_transaction_aee8367335bc186afce178e3f813711ad}\label{class_transaction_aee8367335bc186afce178e3f813711ad}} 
+receiver\textquotesingle{}s address \mbox{\Hypertarget{class_transaction_a2b4dfd876c9ba8cc893b30278376b52c}\label{class_transaction_a2b4dfd876c9ba8cc893b30278376b52c}} 
 \index{Transaction@{Transaction}!receiverPublicKey@{receiverPublicKey}}
 \index{receiverPublicKey@{receiverPublicKey}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{receiverPublicKey}{receiverPublicKey}}
-{\footnotesize\ttfamily string Transaction\+::receiver\+Public\+Key \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::receiver\+Public\+Key \{\}}
 
-receiver\textquotesingle{}s public key \mbox{\Hypertarget{class_transaction_ac0e72f4339c637961607896f591d0eb2}\label{class_transaction_ac0e72f4339c637961607896f591d0eb2}} 
+receiver\textquotesingle{}s public key \mbox{\Hypertarget{class_transaction_ac1eb615dd0b08de0e6563ef45f9d136d}\label{class_transaction_ac1eb615dd0b08de0e6563ef45f9d136d}} 
 \index{Transaction@{Transaction}!senderAddress@{senderAddress}}
 \index{senderAddress@{senderAddress}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{senderAddress}{senderAddress}}
-{\footnotesize\ttfamily string Transaction\+::sender\+Address \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::sender\+Address \{\}}
 
-sending address \mbox{\Hypertarget{class_transaction_a6a477bb1b0ddc439155aee18705c8bb5}\label{class_transaction_a6a477bb1b0ddc439155aee18705c8bb5}} 
+sending address \mbox{\Hypertarget{class_transaction_a2a93cf2e7c5540ea5535b08f3ac7f3e1}\label{class_transaction_a2a93cf2e7c5540ea5535b08f3ac7f3e1}} 
 \index{Transaction@{Transaction}!senderPublicKey@{senderPublicKey}}
 \index{senderPublicKey@{senderPublicKey}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{senderPublicKey}{senderPublicKey}}
-{\footnotesize\ttfamily string Transaction\+::sender\+Public\+Key \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::sender\+Public\+Key \{\}}
 
-sender\textquotesingle{}s public key \mbox{\Hypertarget{class_transaction_a66d7bde825c74dc38a3de06545b8775e}\label{class_transaction_a66d7bde825c74dc38a3de06545b8775e}} 
+sender\textquotesingle{}s public key \mbox{\Hypertarget{class_transaction_a58da9af89bc8111ede077f29938520f3}\label{class_transaction_a58da9af89bc8111ede077f29938520f3}} 
 \index{Transaction@{Transaction}!signature@{signature}}
 \index{signature@{signature}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{signature}{signature}}
-{\footnotesize\ttfamily string Transaction\+::signature \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::signature \{\}}
 
 \mbox{\hyperlink{class_transaction}{Transaction}}\textquotesingle{}s signature. \mbox{\Hypertarget{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}\label{class_transaction_a9a6940e85f9cba6c8f331e1ce6e4d65c}} 
 \index{Transaction@{Transaction}!signatureLength@{signatureLength}}
@@ -174,11 +190,11 @@ Signature length \mbox{\Hypertarget{class_transaction_ae23f8b9f7264a97cd5abaaeb1
 \doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
 {\footnotesize\ttfamily time\+\_\+t Transaction\+::timestamp \{\}}
 
-\mbox{\hyperlink{class_transaction}{Transaction}} timestamp \mbox{\Hypertarget{class_transaction_af295af302feb2c12bd88c1af30c358b3}\label{class_transaction_af295af302feb2c12bd88c1af30c358b3}} 
+\mbox{\hyperlink{class_transaction}{Transaction}} timestamp \mbox{\Hypertarget{class_transaction_a0c0b931f105f8e7d2fe9865f75a4be9c}\label{class_transaction_a0c0b931f105f8e7d2fe9865f75a4be9c}} 
 \index{Transaction@{Transaction}!type@{type}}
 \index{type@{type}!Transaction@{Transaction}}
 \doxysubsubsection{\texorpdfstring{type}{type}}
-{\footnotesize\ttfamily string Transaction\+::type \{\}}
+{\footnotesize\ttfamily std\+::string Transaction\+::type \{\}}
 
 type (EXCHANGE, TRANSFER, STAKE, REWARD) 
 

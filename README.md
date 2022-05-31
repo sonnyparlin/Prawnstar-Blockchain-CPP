@@ -28,9 +28,9 @@
 
 ### Running the app
 * Edit `config.json` and add your master ip address and port.
-* Node 1 (master node): ./Prawnstar 127.0.0.1 10001 8001
-* Node 2: ./Prawnstar 127.0.0.1 10002 127.0.0.1 8002
-* Node 3: ./Prawnstar 127.0.0.1 10003 127.0.0.1 8003
+* Node 1  ( master node ): ./Prawnstar 127.0.0.1 10001 8001
+* Node 2: (client node 1): ./Prawnstar 127.0.0.1 10002 8002 node
+* Node 3: (client node 2): ./Prawnstar 127.0.0.1 10003 8003 node
 
 The format for the master node:
 
@@ -38,7 +38,7 @@ The format for the master node:
 
 The format of all client nodes:
 
-./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node
+./Prawnstar ip_of_this_node p2p_port_of_this_node api_port_of_this_node node
 
 ### Testing
 1. `python ApiTest.py <number_of_transactions>`

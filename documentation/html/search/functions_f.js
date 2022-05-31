@@ -1,16 +1,11 @@
 var searchData=
 [
-  ['send_5fnode_5fmessage_0',['send_node_message',['../class_socket_communication.html#a1bb5ebcc2231b67d0128280dd02ddb3d',1,'SocketCommunication']]],
-  ['setgenesisnodestake_1',['setGenesisNodeStake',['../class_proof_of_stake.html#aa1c30dfae8c37a570cb912e36c0d54da',1,'ProofOfStake']]],
-  ['setoutgoingnodeconnection_2',['setOutgoingNodeConnection',['../namespacep2putils.html#aa7452a5aadefeadca18d426cfa964ef3',1,'p2putils']]],
-  ['sign_3',['sign',['../class_block.html#a7e1496b05fa44208e34a220649dd57a4',1,'Block::sign()'],['../class_transaction.html#a8fc44a24bfca6202ca05113e31e7f1b5',1,'Transaction::sign()'],['../class_wallet.html#a4ee4ef7c5ec46c1ac9e1398af957d8f9',1,'Wallet::sign()']]],
-  ['socketcommunication_4',['SocketCommunication',['../class_socket_communication.html#aa40ba4027fb0197430a3bb3c8721cb91',1,'SocketCommunication']]],
-  ['socketconnector_5',['SocketConnector',['../class_socket_connector.html#a03065d04a1d48af4f790316b7b3ca57e',1,'SocketConnector']]],
-  ['split_6',['split',['../namespaceutils.html#a74081e5f7593ba99957955c6c7ea3608',1,'utils']]],
-  ['start_7',['start',['../class_node_api.html#a19fdf7a6016abcdfc3b64552adcd8c8a',1,'NodeApi']]],
-  ['startp2poperations_8',['startP2POperations',['../class_socket_communication.html#a5d83e3c33eb5a109d2d3ddbd1e7b2813',1,'SocketCommunication']]],
-  ['startp2pserver_9',['startP2PServer',['../class_socket_communication.html#ac76c9fff0528a7f72726072a49a7109f',1,'SocketCommunication']]],
-  ['startservers_10',['startServers',['../class_node.html#a92ae2118238f692dee64f2dcb0406ec9',1,'Node']]],
-  ['startsocketcommunication_11',['startSocketCommunication',['../class_socket_communication.html#ada488d9ffe321ae2275c12e9b4656393',1,'SocketCommunication']]],
-  ['startutils_12',['startUtils',['../namespaceutils.html#a4896f4b0408bd63b0c4d4f70f091b1e7',1,'utils']]]
+  ['timesinceepoch_0',['timeSinceEpoch',['../namespaceutils.html#a27e7fca1e1cb512f83e24736311679e0',1,'utils']]],
+  ['tojson_1',['toJson',['../class_block.html#a0b652be63a2ee5c05c520a28907bd6d0',1,'Block::toJson()'],['../class_blockchain.html#a71aacced2f2493e8a6e2729c685ac782',1,'Blockchain::toJson()'],['../class_blockchain.html#acb1f0e15d50e7b07986c0c48085d1e08',1,'Blockchain::toJson(std::vector&lt; Block &gt; blocks)'],['../class_message.html#a11439e2268c1fefb5ffa20512a9222f4',1,'Message::toJson()'],['../class_transaction.html#ae63e90857aacc0129c4f264d40d27042',1,'Transaction::toJson()'],['../class_wallet.html#a369255d696afbc1ea9d2b1fdfae07ad4',1,'Wallet::toJson()']]],
+  ['topurejson_2',['toPureJson',['../class_block.html#a7e847a6fceb1604119b44cdd288cea7c',1,'Block::toPureJson()'],['../class_blockchain.html#a974983d3b0630ca85075d326d254d2e2',1,'Blockchain::toPureJson()']]],
+  ['transaction_3',['Transaction',['../class_transaction.html#ab69cd25d48727c65a135fb805ffff0d1',1,'Transaction::Transaction(std::string senderAddress, std::string receiverAddress, double amount, std::string type)'],['../class_transaction.html#ab47005b855d38bc324bb79fd023baa13',1,'Transaction::Transaction()']]],
+  ['transactioncovered_4',['transactionCovered',['../class_blockchain.html#a313ff824d102d675c08e902ac72468ae',1,'Blockchain']]],
+  ['transactionexists_5',['transactionExists',['../class_blockchain.html#a0dcd65d602435ffe46498dabd901648d',1,'Blockchain::transactionExists()'],['../class_transaction_pool.html#ad8dcb46849bb911dabe965b9e1ad92a5',1,'TransactionPool::transactionExists()']]],
+  ['transactionlist_6',['transactionList',['../class_block.html#ae71a0777fde53e03f8c74bfeeb1ad10a',1,'Block']]],
+  ['txsbyaddress_7',['txsByAddress',['../class_blockchain.html#a1fc23150b5e1cedf6942aade929ec775',1,'Blockchain']]]
 ];

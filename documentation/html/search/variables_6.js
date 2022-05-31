@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['genesisnodestake_0',['genesisNodeStake',['../class_proof_of_stake.html#a0fb0c3275d9069c1989e528f1926b92f',1,'ProofOfStake']]]
+  ['hash_0',['hash',['../class_block.html#ad81167700ff115ff348eba6b22d97fb1',1,'Block']]],
+  ['hex_1',['hex',['../structutils_1_1_signature.html#a02da62be365808de839db5550d8880ec',1,'utils::Signature']]]
 ];

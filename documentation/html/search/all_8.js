@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['handleblock_0',['handleBlock',['../class_node.html#a3431dcfd8525b2eb4bc74262363d0465',1,'Node']]],
-  ['handleblockchain_1',['handleBlockchain',['../class_node.html#afca81a037e9e4fe4cbacf0a0637b7ce2',1,'Node']]],
-  ['handleblockchainrequest_2',['handleBlockchainRequest',['../class_node.html#af25a469a96f939eb8a2bde8de080a2cb',1,'Node']]],
-  ['handletransaction_3',['handleTransaction',['../class_node.html#a308b10eb07ee09df6bef85ecd67d4e85',1,'Node']]],
-  ['handshake_4',['handshake',['../class_socket_communication.html#a92bd91aac8ca628001433ac06f90919b',1,'SocketCommunication']]],
-  ['handshakemessage_5',['handshakeMessage',['../class_socket_communication.html#abeeeace94685bcea0f46de641c953d2a',1,'SocketCommunication']]],
-  ['hash_6',['hash',['../class_block.html#ad81167700ff115ff348eba6b22d97fb1',1,'Block::hash()'],['../namespaceutils.html#a32ab6c1e274f5560f73b881c0eeafe1f',1,'utils::hash()']]],
-  ['hexsig_7',['hexsig',['../structutils_1_1_signature.html#abce67c20e86329abbb15696cd19d482d',1,'utils::Signature']]]
+  ['id_0',['id',['../class_socket_communication.html#aed0bf268dcd36dd61540f319f6c1ee30',1,'SocketCommunication::id()'],['../class_transaction.html#a735fa147c122d6f2d8695f1ba38be632',1,'Transaction::id()']]],
+  ['inactivepeers_1',['inactivePeers',['../class_socket_communication.html#a6d21cc6c159cfa512e7a9fe3141903b3',1,'SocketCommunication']]],
+  ['inbound_5fnode_5fconnected_2',['inbound_node_connected',['../class_socket_communication.html#a0db5173cd70769ce6aa318cb4c389211',1,'SocketCommunication']]],
+  ['ip_3',['ip',['../class_socket_connector.html#a977ee9db7bd3f610fe6a2a5b47938e8e',1,'SocketConnector']]],
+  ['isvalidipaddress_4',['isValidIpAddress',['../namespacep2putils.html#af9b54d0bb4a68b8ba407d99e909f6302',1,'p2putils']]]
 ];

@@ -99,14 +99,14 @@ Building on Windows using mingw64</h2>
 Running the app</h2>
 <ul>
 <li>Edit <code>config.json</code> and add your master ip address and port.</li>
-<li><a class="el" href="class_node.html">Node</a> 1 (master node): ./Prawnstar 127.0.0.1 10001 8001</li>
-<li><a class="el" href="class_node.html">Node</a> 2: ./Prawnstar 127.0.0.1 10002 127.0.0.1 8002</li>
-<li><a class="el" href="class_node.html">Node</a> 3: ./Prawnstar 127.0.0.1 10003 127.0.0.1 8003</li>
+<li><a class="el" href="class_node.html">Node</a> 1 ( master node ): ./Prawnstar 127.0.0.1 10001 8001</li>
+<li><a class="el" href="class_node.html">Node</a> 2: (client node 1): ./Prawnstar 127.0.0.1 10002 8002 node</li>
+<li><a class="el" href="class_node.html">Node</a> 3: (client node 2): ./Prawnstar 127.0.0.1 10003 8003 node</li>
 </ul>
 <p >The format for the master node:</p>
 <p >./Prawnstar ip_of_this_node p2p_port_of_this_node api_port_of_this_node</p>
 <p >The format of all client nodes:</p>
-<p >./Prawnstar ip_of_this_node p2p_port_of_this_node ip_of_master_node api_port_of_this_node</p>
+<p >./Prawnstar ip_of_this_node p2p_port_of_this_node api_port_of_this_node node</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Testing</h2>
 <ol type="1">

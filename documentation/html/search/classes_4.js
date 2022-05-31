@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['node_0',['Node',['../class_node.html',1,'']]],
-  ['nodeapi_1',['NodeApi',['../class_node_api.html',1,'']]]
+  ['proofofstake_0',['ProofOfStake',['../class_proof_of_stake.html',1,'']]]
 ];

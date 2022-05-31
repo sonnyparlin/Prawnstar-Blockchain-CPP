@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['lastblockhashvalid_0',['lastBlockHashValid',['../class_blockchain.html#aff4479e0d60e2178e5990791003b7d2f',1,'Blockchain']]],
-  ['lasthash_1',['lastHash',['../class_block.html#aaca2fd6381f0460c3b8a5b7afe55e0d4',1,'Block']]],
-  ['lcg_5frand_2',['lcg_rand',['../class_proof_of_stake.html#a3ea36e15943830944d455cb700d4106c',1,'ProofOfStake::lcg_rand()'],['../namespaceutils.html#a1dd5415d2114d1d0b9f8b78baebf626b',1,'utils::lcg_rand()']]],
-  ['log_3',['log',['../class_node.html#af77a45d7a2a00d69259dd54a8dee2671',1,'Node']]],
-  ['logmutex_4',['logMutex',['../class_node.html#a527b390d6611ed21675b9930618916ec',1,'Node']]],
-  ['lot_5',['Lot',['../class_lot.html',1,'Lot'],['../class_lot.html#a45ebd154fab683ac46309d0f08bd843a',1,'Lot::Lot()']]]
+  ['nextforger_0',['nextForger',['../class_blockchain.html#a846fbcfc5132f7bbd9bd6a6ec79e4d22',1,'Blockchain']]],
+  ['node_1',['Node',['../class_node.html',1,'Node'],['../class_node.html#a1e1fb2f1f7689f7aa4b19787093fcb76',1,'Node::Node(char **argv)']]],
+  ['node2wallet_2',['node2Wallet',['../class_node.html#aa241ae759578553f9167bfa9dc8ec901',1,'Node']]],
+  ['nodeapi_3',['NodeApi',['../class_node_api.html',1,'NodeApi'],['../class_node_api.html#a8f8ca55afbdbd5f3a3e087e722dad0dd',1,'NodeApi::NodeApi()']]],
+  ['nodewallet_4',['nodeWallet',['../class_node.html#a4eb8eec73c312bdf2509e30e3e059424',1,'Node']]]
 ];

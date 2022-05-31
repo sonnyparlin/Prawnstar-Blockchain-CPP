@@ -40,7 +40,6 @@ Block Blockchain::genesis() {
 /*!
  *
  * @param block
- * @return bool
  *
  * Add a new block to the blockchain.
  */

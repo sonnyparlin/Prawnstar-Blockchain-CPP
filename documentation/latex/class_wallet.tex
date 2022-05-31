@@ -19,7 +19,7 @@ void \mbox{\hyperlink{class_wallet_ab783113deae4bb8f811050f316623509}{gen\+Key\+
 \item 
 \mbox{\hyperlink{class_transaction}{Transaction}} \mbox{\hyperlink{class_wallet_a47962a946675e2b56d02a7968919a24d}{create\+Transaction}} (std\+::string receiver\+Address, double amount, std\+::string type) const
 \item 
-\mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}{create\+Block}} (vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, std\+::string last\+Hash, long block\+Count) const
+\mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_wallet_a7a67aa1947e49abefd743df874f51e58}{create\+Block}} (std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$ transactions, std\+::string last\+Hash, long block\+Count) const
 \item 
 std\+::string \mbox{\hyperlink{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}{to\+Json}} ()
 \item 
@@ -83,11 +83,11 @@ Generate a new wallet (elliptical curve key pair) \mbox{\Hypertarget{class_walle
 \mbox{\hyperlink{class_wallet}{Wallet}} constructor that finds wallet by address. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}\label{class_wallet_a8be5e7a99366da5ed7d704fc650ccba1}} 
+\mbox{\Hypertarget{class_wallet_a7a67aa1947e49abefd743df874f51e58}\label{class_wallet_a7a67aa1947e49abefd743df874f51e58}} 
 \index{Wallet@{Wallet}!createBlock@{createBlock}}
 \index{createBlock@{createBlock}!Wallet@{Wallet}}
 \doxysubsubsection{\texorpdfstring{createBlock()}{createBlock()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Wallet\+::create\+Block (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{long}]{block\+Count }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_block}{Block}} Wallet\+::create\+Block (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_transaction}{Transaction}} $>$}]{transactions,  }\item[{std\+::string}]{last\+Hash,  }\item[{long}]{block\+Count }\end{DoxyParamCaption}) const}
 
 
 \begin{DoxyParams}{Parameters}
@@ -167,7 +167,7 @@ Method for generating an elliptic curve key pair using openssl. \mbox{\Hypertarg
 Creates a signature by signing the passed in data (str). \mbox{\Hypertarget{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}\label{class_wallet_a369255d696afbc1ea9d2b1fdfae07ad4}} 
 \index{Wallet@{Wallet}!toJson@{toJson}}
 \index{toJson@{toJson}!Wallet@{Wallet}}
-\doxysubsubsection{\texorpdfstring{toJson()}{toPureJson()}}
+\doxysubsubsection{\texorpdfstring{toJson()}{toJson()}}
 {\footnotesize\ttfamily std\+::string Wallet\+::to\+Json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}

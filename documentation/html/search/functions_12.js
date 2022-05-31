@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['validatorlots_0',['validatorLots',['../class_proof_of_stake.html#ab40dabdee4512c01652a90fa0286c536',1,'ProofOfStake']]],
-  ['verifysignature_1',['verifySignature',['../namespaceutils.html#ac2805766215e1930869f060c9c24fdc5',1,'utils']]]
+  ['wallet_0',['Wallet',['../class_wallet.html#ae21d07774a6003a7409023ca4b9e9b2b',1,'Wallet::Wallet(Node *node, const char *filename)'],['../class_wallet.html#aa51123d3d825f9c1f8738aa588c17ac9',1,'Wallet::Wallet(Node *node)'],['../class_wallet.html#a14d634927aef94cd6cc78fe6ace8f4e1',1,'Wallet::Wallet(const char *address, Node *node)']]],
+  ['winnerlot_1',['winnerLot',['../class_proof_of_stake.html#ac28a709d9a7542fe321097065eb0d8f0',1,'ProofOfStake']]]
 ];

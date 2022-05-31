@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['accountmodel_0',['accountModel',['../class_node.html#ab9865ce71e40837c33c554aa3bb5260f',1,'Node']]],
-  ['address_1',['address',['../class_wallet.html#acb84b316931574393a098f16bf79a19d',1,'Wallet']]],
-  ['addresstoprivatekey_2',['addressToPrivateKey',['../class_account_model.html#a2589dcd424d7a700886527bc078a734b',1,'AccountModel']]],
-  ['addresstopublickey_3',['addressToPublicKey',['../class_account_model.html#adaed9f334c1e1f6c7c54194071e090f9',1,'AccountModel']]],
-  ['alicewallet_4',['aliceWallet',['../class_node.html#a15d9b97d824afee953bad4d38489afc5',1,'Node']]],
-  ['amount_5',['amount',['../class_transaction.html#a79d18292be964d9196985f20474abe64',1,'Transaction']]]
+  ['balances_0',['balances',['../class_account_model.html#a853ab908a4f877cf4c2cd0d8fb3f575a',1,'AccountModel']]],
+  ['blockchain_1',['blockchain',['../class_node.html#adf4848690854c7c8470804626a57cf78',1,'Node']]],
+  ['blockchainmutex_2',['blockchainMutex',['../class_blockchain.html#a4797856382c3260becf198bd29693513',1,'Blockchain']]],
+  ['blockcount_3',['blockCount',['../class_block.html#affd8bb7f05f0985ab78bc21c04eb6f29',1,'Block']]],
+  ['blocks_4',['blocks',['../class_blockchain.html#a10f51613cc18f007f4b7178788dd9a74',1,'Blockchain']]],
+  ['bobwallet_5',['bobWallet',['../class_node.html#a14a9758819bd22fe4a32478a08b88bf5',1,'Node']]]
 ];

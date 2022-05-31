@@ -79,16 +79,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8b2d507929548019ed2c73b1956317b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47010faf89dca81aa50b1054a3ad6ad5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a47010faf89dca81aa50b1054a3ad6ad5">~Blockchain</a> ()</td></tr>
 <tr class="separator:a47010faf89dca81aa50b1054a3ad6ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89948907068998a0d48ef911a4cc9e40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a89948907068998a0d48ef911a4cc9e40">addBlock</a> (const <a class="el" href="class_block.html">Block</a> &amp;block)</td></tr>
-<tr class="separator:a89948907068998a0d48ef911a4cc9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1304d426c090b308173aa8308c9cda25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a1304d426c090b308173aa8308c9cda25">addBlock</a> (const <a class="el" href="class_block.html">Block</a> &amp;block)</td></tr>
+<tr class="separator:a1304d426c090b308173aa8308c9cda25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcd7f1987327abfc8880d132e26d0744"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#afcd7f1987327abfc8880d132e26d0744">blockCountValid</a> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
 <tr class="separator:afcd7f1987327abfc8880d132e26d0744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff4479e0d60e2178e5990791003b7d2f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#aff4479e0d60e2178e5990791003b7d2f">lastBlockHashValid</a> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
 <tr class="separator:aff4479e0d60e2178e5990791003b7d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a313ff824d102d675c08e902ac72468ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a313ff824d102d675c08e902ac72468ae">transactionCovered</a> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
 <tr class="separator:a313ff824d102d675c08e902ac72468ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4e6bb083bde20f6ad2a60f80fbd4655"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#aa4e6bb083bde20f6ad2a60f80fbd4655">getCoveredTransactionSet</a> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
-<tr class="separator:aa4e6bb083bde20f6ad2a60f80fbd4655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fa58c56900a828b0840063c2f9691ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a8fa58c56900a828b0840063c2f9691ac">executeTransaction</a> (const <a class="el" href="class_transaction.html">Transaction</a> &amp;)</td></tr>
 <tr class="separator:a8fa58c56900a828b0840063c2f9691ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4850cf82e32a776715eb205ee9a08e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a4850cf82e32a776715eb205ee9a08e75">executeTransactions</a> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
@@ -99,34 +97,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0dcd65d602435ffe46498dabd901648d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3839678f351a8973eb5f75a04beb1f0f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a3839678f351a8973eb5f75a04beb1f0f">forgerValid</a> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
 <tr class="separator:a3839678f351a8973eb5f75a04beb1f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87c06155afda5057358a20a6cf95bb4d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a87c06155afda5057358a20a6cf95bb4d">transactionValid</a> (const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
-<tr class="separator:a87c06155afda5057358a20a6cf95bb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a846fbcfc5132f7bbd9bd6a6ec79e4d22"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a846fbcfc5132f7bbd9bd6a6ec79e4d22">nextForger</a> ()</td></tr>
 <tr class="separator:a846fbcfc5132f7bbd9bd6a6ec79e4d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56d993d8f29c4aa68476ed115a263d8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a56d993d8f29c4aa68476ed115a263d8c">blockHasTransactions</a> (const <a class="el" href="class_block.html">Block</a> &amp;)</td></tr>
 <tr class="separator:a56d993d8f29c4aa68476ed115a263d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a829f0552d41c8078f336c63c768e8bbb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a829f0552d41c8078f336c63c768e8bbb">toJsonWebView</a> ()</td></tr>
-<tr class="separator:a829f0552d41c8078f336c63c768e8bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a694b5f2cfe6f327ecfeeb6985e000f7d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a694b5f2cfe6f327ecfeeb6985e000f7d">calculateForgerReward</a> (std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;)</td></tr>
 <tr class="separator:a694b5f2cfe6f327ecfeeb6985e000f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fc23150b5e1cedf6942aade929ec775"><td class="memItemLeft" align="right" valign="top">std::vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a1fc23150b5e1cedf6942aade929ec775">txsByAddress</a> (const std::string &amp;)</td></tr>
 <tr class="separator:a1fc23150b5e1cedf6942aade929ec775"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1235ef58b69abb44d002454c97e91d6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#af1235ef58b69abb44d002454c97e91d6">getTransaction</a> (const std::string &amp;)</td></tr>
 <tr class="separator:af1235ef58b69abb44d002454c97e91d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e11301b46481d5a4d2e0bf517bf6989"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a5e11301b46481d5a4d2e0bf517bf6989">toPureJson</a> ()</td></tr>
-<tr class="separator:a5e11301b46481d5a4d2e0bf517bf6989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974983d3b0630ca85075d326d254d2e2"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a974983d3b0630ca85075d326d254d2e2">toPureJson</a> ()</td></tr>
+<tr class="separator:a974983d3b0630ca85075d326d254d2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71aacced2f2493e8a6e2729c685ac782"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a71aacced2f2493e8a6e2729c685ac782">toJson</a> ()</td></tr>
+<tr class="separator:a71aacced2f2493e8a6e2729c685ac782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_block.html">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#af95ef0f76e085ca5b4aa20fbacdd68d4">genesis</a> ()</td></tr>
 <tr class="separator:af95ef0f76e085ca5b4aa20fbacdd68d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c654d2336b7691abe31fb31ec2bf7ec"><td class="memItemLeft" align="right" valign="top">static vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a1c654d2336b7691abe31fb31ec2bf7ec">blockList</a> (vector&lt; <a class="el" href="class_block.html">Block</a> &gt; &amp;)</td></tr>
-<tr class="separator:a1c654d2336b7691abe31fb31ec2bf7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8956b2548c67d722a0d1194a2213a89c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a8956b2548c67d722a0d1194a2213a89c">toJson</a> (std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt;)</td></tr>
-<tr class="separator:a8956b2548c67d722a0d1194a2213a89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5d05c16d4a4f21d178b43aca51b6945"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; nlohmann::json &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#ae5d05c16d4a4f21d178b43aca51b6945">blockList</a> (std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt; &amp;)</td></tr>
+<tr class="separator:ae5d05c16d4a4f21d178b43aca51b6945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb1f0e15d50e7b07986c0c48085d1e08"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#acb1f0e15d50e7b07986c0c48085d1e08">toJson</a> (std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt; <a class="el" href="class_blockchain.html#a10f51613cc18f007f4b7178788dd9a74">blocks</a>)</td></tr>
+<tr class="separator:acb1f0e15d50e7b07986c0c48085d1e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:ae1f5f8b5cdb0a93b744bb7c95778a35c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_account_model.html">AccountModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#ae1f5f8b5cdb0a93b744bb7c95778a35c">accountModel</a></td></tr>
+<tr class="separator:ae1f5f8b5cdb0a93b744bb7c95778a35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc161b99b9e69386aa8fc4126f954bbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transaction_pool.html">TransactionPool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#abc161b99b9e69386aa8fc4126f954bbe">transactionPool</a></td></tr>
+<tr class="separator:abc161b99b9e69386aa8fc4126f954bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10f51613cc18f007f4b7178788dd9a74"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a10f51613cc18f007f4b7178788dd9a74">blocks</a> {}</td></tr>
 <tr class="separator:a10f51613cc18f007f4b7178788dd9a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4797856382c3260becf198bd29693513"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blockchain.html#a4797856382c3260becf198bd29693513">blockchainMutex</a> {}</td></tr>
@@ -195,14 +195,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a89948907068998a0d48ef911a4cc9e40" name="a89948907068998a0d48ef911a4cc9e40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89948907068998a0d48ef911a4cc9e40">&#9670;&nbsp;</a></span>addBlock()</h2>
+<a id="a1304d426c090b308173aa8308c9cda25" name="a1304d426c090b308173aa8308c9cda25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1304d426c090b308173aa8308c9cda25">&#9670;&nbsp;</a></span>addBlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Blockchain::addBlock </td>
+          <td class="memname">void Blockchain::addBlock </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_block.html">Block</a> &amp;&#160;</td>
           <td class="paramname"><em>block</em></td><td>)</td>
@@ -216,7 +216,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
 <p>Add a new block to the blockchain. </p>
 
 </div>
@@ -273,8 +272,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c654d2336b7691abe31fb31ec2bf7ec" name="a1c654d2336b7691abe31fb31ec2bf7ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c654d2336b7691abe31fb31ec2bf7ec">&#9670;&nbsp;</a></span>blockList()</h2>
+<a id="ae5d05c16d4a4f21d178b43aca51b6945" name="ae5d05c16d4a4f21d178b43aca51b6945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5d05c16d4a4f21d178b43aca51b6945">&#9670;&nbsp;</a></span>blockList()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,9 +282,9 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; nlohmann::json &gt; Blockchain::blockList </td>
+          <td class="memname">std::vector&lt; nlohmann::json &gt; Blockchain::blockList </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_block.html">Block</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_block.html">Block</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>blocks</em></td><td>)</td>
           <td></td>
         </tr>
@@ -474,26 +473,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa4e6bb083bde20f6ad2a60f80fbd4655" name="aa4e6bb083bde20f6ad2a60f80fbd4655"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4e6bb083bde20f6ad2a60f80fbd4655">&#9670;&nbsp;</a></span>getCoveredTransactionSet()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; Blockchain::getCoveredTransactionSet </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Transaction&gt;</dd></dl>
-<p>Get covered transactions from list of transactions. </p>
-
-</div>
-</div>
 <a id="af1235ef58b69abb44d002454c97e91d6" name="af1235ef58b69abb44d002454c97e91d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1235ef58b69abb44d002454c97e91d6">&#9670;&nbsp;</a></span>getTransaction()</h2>
 
@@ -565,27 +544,27 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5e11301b46481d5a4d2e0bf517bf6989" name="a5e11301b46481d5a4d2e0bf517bf6989"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e11301b46481d5a4d2e0bf517bf6989">&#9670;&nbsp;</a></span>toPureJson()</h2>
+<a id="a71aacced2f2493e8a6e2729c685ac782" name="a71aacced2f2493e8a6e2729c685ac782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71aacced2f2493e8a6e2729c685ac782">&#9670;&nbsp;</a></span>toJson() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">nlohmann::json Blockchain::toPureJson </td>
+          <td class="memname">std::string Blockchain::toJson </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>nlohmann::json</dd></dl>
-<p>Return json representation of the entire blockchain. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
+<p>Return a stringified json representation of all blocks. </p>
 
 </div>
 </div>
-<a id="a8956b2548c67d722a0d1194a2213a89c" name="a8956b2548c67d722a0d1194a2213a89c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8956b2548c67d722a0d1194a2213a89c">&#9670;&nbsp;</a></span>toJson()</h2>
+<a id="acb1f0e15d50e7b07986c0c48085d1e08" name="acb1f0e15d50e7b07986c0c48085d1e08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb1f0e15d50e7b07986c0c48085d1e08">&#9670;&nbsp;</a></span>toJson() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -618,22 +597,22 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a829f0552d41c8078f336c63c768e8bbb" name="a829f0552d41c8078f336c63c768e8bbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a829f0552d41c8078f336c63c768e8bbb">&#9670;&nbsp;</a></span>toJsonWebView()</h2>
+<a id="a974983d3b0630ca85075d326d254d2e2" name="a974983d3b0630ca85075d326d254d2e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974983d3b0630ca85075d326d254d2e2">&#9670;&nbsp;</a></span>toPureJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Blockchain::toJsonWebView </td>
+          <td class="memname">nlohmann::json Blockchain::toPureJson </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>std::string</dd></dl>
-<p>Return a stringified json representation of all blocks. </p>
+<dl class="section return"><dt>Returns</dt><dd>nlohmann::json</dd></dl>
+<p>Return json representation of the entire blockchain. </p>
 
 </div>
 </div>
@@ -689,32 +668,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a87c06155afda5057358a20a6cf95bb4d" name="a87c06155afda5057358a20a6cf95bb4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87c06155afda5057358a20a6cf95bb4d">&#9670;&nbsp;</a></span>transactionValid()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Blockchain::transactionValid </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>transactions</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">transactions</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
-<p>Run <a class="el" href="class_blockchain.html#aa4e6bb083bde20f6ad2a60f80fbd4655">getCoveredTransactionSet()</a> on the list of transactions and compare the resulting vector size with the original vector size for validity. </p>
-
-</div>
-</div>
 <a id="a1fc23150b5e1cedf6942aade929ec775" name="a1fc23150b5e1cedf6942aade929ec775"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1fc23150b5e1cedf6942aade929ec775">&#9670;&nbsp;</a></span>txsByAddress()</h2>
 
@@ -742,6 +695,21 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae1f5f8b5cdb0a93b744bb7c95778a35c" name="ae1f5f8b5cdb0a93b744bb7c95778a35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1f5f8b5cdb0a93b744bb7c95778a35c">&#9670;&nbsp;</a></span>accountModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_account_model.html">AccountModel</a> Blockchain::accountModel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >accountModel data member </p>
+
+</div>
+</div>
 <a id="a4797856382c3260becf198bd29693513" name="a4797856382c3260becf198bd29693513"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4797856382c3260becf198bd29693513">&#9670;&nbsp;</a></span>blockchainMutex</h2>
 
@@ -769,6 +737,21 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p >list of blocks </p>
+
+</div>
+</div>
+<a id="abc161b99b9e69386aa8fc4126f954bbe" name="abc161b99b9e69386aa8fc4126f954bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc161b99b9e69386aa8fc4126f954bbe">&#9670;&nbsp;</a></span>transactionPool</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_transaction_pool.html">TransactionPool</a> Blockchain::transactionPool</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >transactionPool data member </p>
 
 </div>
 </div>

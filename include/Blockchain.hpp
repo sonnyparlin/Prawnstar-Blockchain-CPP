@@ -41,8 +41,8 @@ public:
     std::string toJson();
     static std::string toJson(std::vector<Block> blocks);
 
-    AccountModel accountModel;
-    TransactionPool transactionPool;
+    AccountModel accountModel; /*!< accountModel data member */
+    TransactionPool transactionPool; /*!< transactionPool data member */
     std::vector<Block> blocks {}; /*!< list of blocks */
     std::mutex blockchainMutex {}; /*!< mutex for accessing shared blockchain data */
 };

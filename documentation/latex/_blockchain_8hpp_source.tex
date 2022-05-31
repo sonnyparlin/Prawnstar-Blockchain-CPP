@@ -18,35 +18,36 @@
 \DoxyCodeLine{17     \mbox{\hyperlink{class_node}{Node}} *node = \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{18 }
 \DoxyCodeLine{19 \textcolor{keyword}{public}:}
-\DoxyCodeLine{20     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_blockchain_a8b2d507929548019ed2c73b1956317b1}{Blockchain}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
-\DoxyCodeLine{21     \mbox{\hyperlink{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}{\string~Blockchain}}();          \textcolor{comment}{// Destructor}}
-\DoxyCodeLine{22     }
-\DoxyCodeLine{23     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a89948907068998a0d48ef911a4cc9e40}{addBlock}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}} \&block);}
-\DoxyCodeLine{24     \textcolor{keyword}{static} \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}{genesis}}();}
-\DoxyCodeLine{25     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_afcd7f1987327abfc8880d132e26d0744}{blockCountValid}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
-\DoxyCodeLine{26     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}{lastBlockHashValid}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
-\DoxyCodeLine{27     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a313ff824d102d675c08e902ac72468ae}{transactionCovered}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
-\DoxyCodeLine{28     std::vector<Transaction> \mbox{\hyperlink{class_blockchain_aa4e6bb083bde20f6ad2a60f80fbd4655}{getCoveredTransactionSet}}(\textcolor{keyword}{const} std::vector<Transaction>\&);}
+\DoxyCodeLine{20     \mbox{\hyperlink{class_blockchain}{Blockchain}}();}
+\DoxyCodeLine{21     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_blockchain}{Blockchain}}(\mbox{\hyperlink{class_node}{Node}} *node);           \textcolor{comment}{// Constructor}}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_blockchain_a47010faf89dca81aa50b1054a3ad6ad5}{\string~Blockchain}}();          \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{23     }
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_blockchain_a1304d426c090b308173aa8308c9cda25}{addBlock}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}} \&block);}
+\DoxyCodeLine{25     \textcolor{keyword}{static} \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_blockchain_af95ef0f76e085ca5b4aa20fbacdd68d4}{genesis}}();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_afcd7f1987327abfc8880d132e26d0744}{blockCountValid}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_aff4479e0d60e2178e5990791003b7d2f}{lastBlockHashValid}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a313ff824d102d675c08e902ac72468ae}{transactionCovered}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
 \DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_blockchain_a8fa58c56900a828b0840063c2f9691ac}{executeTransaction}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
 \DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_blockchain_a4850cf82e32a776715eb205ee9a08e75}{executeTransactions}}(\textcolor{keyword}{const} std::vector<Transaction>\&);}
 \DoxyCodeLine{31     \mbox{\hyperlink{class_block}{Block}} \mbox{\hyperlink{class_blockchain_a6ebf8475a14fcb7b943e5dbcf6134ec8}{createBlock}}(\textcolor{keyword}{const} std::vector<Transaction>\&, \textcolor{keyword}{const} std::string\&);}
 \DoxyCodeLine{32     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a0dcd65d602435ffe46498dabd901648d}{transactionExists}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_transaction}{Transaction}}\&);}
 \DoxyCodeLine{33     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a3839678f351a8973eb5f75a04beb1f0f}{forgerValid}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
-\DoxyCodeLine{34     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a87c06155afda5057358a20a6cf95bb4d}{transactionValid}}(\textcolor{keyword}{const} std::vector<Transaction>\&);}
-\DoxyCodeLine{35     \textcolor{keyword}{static} vector<nlohmann::json> \mbox{\hyperlink{class_blockchain_a1c654d2336b7691abe31fb31ec2bf7ec}{blockList}}(vector<Block>\&);}
-\DoxyCodeLine{36     std::string \mbox{\hyperlink{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}{nextForger}}();}
-\DoxyCodeLine{37     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}{blockHasTransactions}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
-\DoxyCodeLine{38     std::string \mbox{\hyperlink{class_blockchain_a829f0552d41c8078f336c63c768e8bbb}{toJsonWebView}}();}
-\DoxyCodeLine{39     std::vector<Transaction> \mbox{\hyperlink{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}{calculateForgerReward}}(std::vector<Transaction>\&);}
-\DoxyCodeLine{40     std::vector<nlohmann::json> \mbox{\hyperlink{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}{txsByAddress}}(\textcolor{keyword}{const} std::string\&);}
-\DoxyCodeLine{41     std::string \mbox{\hyperlink{class_blockchain_af1235ef58b69abb44d002454c97e91d6}{getTransaction}}(\textcolor{keyword}{const} std::string\&);}
-\DoxyCodeLine{42     nlohmann::json \mbox{\hyperlink{class_blockchain_a5e11301b46481d5a4d2e0bf517bf6989}{toPureJson}}();}
-\DoxyCodeLine{43     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_blockchain_a8956b2548c67d722a0d1194a2213a89c}{toJson}}(std::vector<Block>);}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45     std::vector<Block> \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}} \{\}; }
-\DoxyCodeLine{46     std::mutex \mbox{\hyperlink{class_blockchain_a4797856382c3260becf198bd29693513}{blockchainMutex}} \{\}; }
-\DoxyCodeLine{47 \};}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCKCHAIN\_H\_}}
+\DoxyCodeLine{34     \textcolor{keyword}{static} std::vector<nlohmann::json> \mbox{\hyperlink{class_blockchain_ae5d05c16d4a4f21d178b43aca51b6945}{blockList}}(std::vector<Block>\&);}
+\DoxyCodeLine{35     std::string \mbox{\hyperlink{class_blockchain_a846fbcfc5132f7bbd9bd6a6ec79e4d22}{nextForger}}();}
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_blockchain_a56d993d8f29c4aa68476ed115a263d8c}{blockHasTransactions}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_block}{Block}}\&);}
+\DoxyCodeLine{37     std::vector<Transaction> \mbox{\hyperlink{class_blockchain_a694b5f2cfe6f327ecfeeb6985e000f7d}{calculateForgerReward}}(std::vector<Transaction>\&);}
+\DoxyCodeLine{38     std::vector<nlohmann::json> \mbox{\hyperlink{class_blockchain_a1fc23150b5e1cedf6942aade929ec775}{txsByAddress}}(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{39     std::string \mbox{\hyperlink{class_blockchain_af1235ef58b69abb44d002454c97e91d6}{getTransaction}}(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{40     nlohmann::json \mbox{\hyperlink{class_blockchain_a974983d3b0630ca85075d326d254d2e2}{toPureJson}}();}
+\DoxyCodeLine{41     std::string \mbox{\hyperlink{class_blockchain_a71aacced2f2493e8a6e2729c685ac782}{toJson}}();}
+\DoxyCodeLine{42     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_blockchain_a71aacced2f2493e8a6e2729c685ac782}{toJson}}(std::vector<Block> \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \mbox{\hyperlink{class_account_model}{AccountModel}} \mbox{\hyperlink{class_blockchain_ae1f5f8b5cdb0a93b744bb7c95778a35c}{accountModel}}; }
+\DoxyCodeLine{45     \mbox{\hyperlink{class_transaction_pool}{TransactionPool}} \mbox{\hyperlink{class_blockchain_abc161b99b9e69386aa8fc4126f954bbe}{transactionPool}}; }
+\DoxyCodeLine{46     std::vector<Block> \mbox{\hyperlink{class_blockchain_a10f51613cc18f007f4b7178788dd9a74}{blocks}} \{\}; }
+\DoxyCodeLine{47     std::mutex \mbox{\hyperlink{class_blockchain_a4797856382c3260becf198bd29693513}{blockchainMutex}} \{\}; }
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_BLOCKCHAIN\_H\_}}
 
 \end{DoxyCode}

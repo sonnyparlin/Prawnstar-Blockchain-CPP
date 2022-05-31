@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['update_0',['update',['../class_proof_of_stake.html#a7450b27f25066f7d58ed1457a28c5882',1,'ProofOfStake']]],
-  ['updatebalance_1',['updateBalance',['../class_account_model.html#a2d1f5efc7d66615e5ec51e0f8ee788c1',1,'AccountModel']]]
+  ['validatorlots_0',['validatorLots',['../class_proof_of_stake.html#a815abc192e1e2c96d8bb15d1077b0c50',1,'ProofOfStake']]],
+  ['verifysignature_1',['verifySignature',['../namespaceutils.html#ac2805766215e1930869f060c9c24fdc5',1,'utils']]]
 ];
