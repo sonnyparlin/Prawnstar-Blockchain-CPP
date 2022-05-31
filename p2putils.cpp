@@ -1,6 +1,5 @@
 #include "p2putils.hpp"
 
-namespace p2putils {
 
 /*!
  *
@@ -10,7 +9,7 @@ namespace p2putils {
  * Checks to make sure passed in ip address is valid using
  * inet_pton()
  */
-bool isValidIpAddress(const std::string &ipAddress)
+bool p2putils::isValidIpAddress(const std::string &ipAddress)
 {
     struct sockaddr_in sa{};
     int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
@@ -23,7 +22,7 @@ bool isValidIpAddress(const std::string &ipAddress)
  *
  * Method to create a new socket.
  */
-int createSocket() {
+int p2putils::createSocket() {
     int opted=1;
     int obj_server;
     if (( obj_server = socket ( AF_INET, SOCK_STREAM, 0)) == 0)
@@ -56,7 +55,7 @@ int createSocket() {
  *
  * Method for binding the server to the address and port.
  */
-bool Bind(int server, struct sockaddr_in address, int PORT) {
+bool p2putils::Bind(int server, struct sockaddr_in address, int PORT) {
     address.sin_port = htons( PORT );
 
     if (bind(server, ( struct sockaddr * )&address,
@@ -90,7 +89,7 @@ bool Bind(int server, struct sockaddr_in address, int PORT) {
  *
  * Set up outgoing connection.
  */
-int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
+int p2putils::setOutgoingNodeConnection(const std::string &ipaddress, int port) {
     int outgoingSocket;
 
     if (!p2putils::isValidIpAddress(ipaddress)) {
@@ -136,5 +135,3 @@ int setOutgoingNodeConnection(const std::string &ipaddress, int port) {
     
     return outgoingSocket;
 }
-
-} // namespace

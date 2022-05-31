@@ -1,10 +1,7 @@
 #ifndef _P2PUTILS_H_
 #define _P2PUTILS_H_
-
 #include <cstdio>
-
 #include <unistd.h>
-
 #ifndef _WIN32
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -13,9 +10,7 @@
 #include <Ws2tcpip.h>
 #include <Winsock2.h>
 #endif
-
 #include <pthread.h>
-
 #include <string>
 #include <cstdlib>
 #include <cerrno>

@@ -34,7 +34,7 @@ int SocketCommunication::processArgs(int argc, char **argv) {
     }
 
     if (argc < 4) {
-        std::cout << "Node usage for peers: ./server <ip> <port> <masternode> <api_port>" << std::endl;
+        std::cout << "Node usage for peers: ./server <ip> <port> <api_port> <masternode>" << std::endl;
         std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
     }
 
@@ -110,8 +110,6 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
 
-    // serverStakerMap.insert(std::pair<std::string, std::string>(id, node->nodeWallet->walletPublicKey));
-
     // Server initialization
     int serverSocket = p2putils::createSocket();
     if (!p2putils::Bind(serverSocket, address, PORT))
@@ -141,7 +139,7 @@ void SocketCommunication::startP2PServer ( int argc, char **argv )
         // Master node handshake
         //=========================================================
         if (i == 0 && argc == 5) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(argv[3], utils::get_master_node_port());
+            outgoingSocket = p2putils::setOutgoingNodeConnection(utils::get_master_node_ip(), utils::get_master_node_port());
             std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
             peerThread.join();
         }

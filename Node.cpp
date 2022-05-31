@@ -60,15 +60,18 @@ Node *Node::createNode(char **argv) {
  */
 void Node::startServers(int argc, char **argv) {
     p2p->startSocketCommunication(argc, argv);
-    
-    NodeApi api(this);
-    if (argc == 4) {
-        std::string po = std::string(argv[3]);
-        api.start(po);
-    } else if (argc == 5) {
-        std::string po = std::string(argv[4]);
-        api.start(po);
+
+    if (argc == 5) {
+        std::string fourthArg = argv[4];
+        if (fourthArg != "node") {
+            std::cerr << "\n\tError: the last argument for a client server must be 'node'\n" << std::endl;
+            exit(1);
+        }
     }
+
+    NodeApi api(this);
+    std::string po = std::string(argv[3]);
+    api.start(po);
 }
 
 /*!
