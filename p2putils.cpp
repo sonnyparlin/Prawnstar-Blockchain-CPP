@@ -26,23 +26,12 @@ int p2putils::createSocket() {
     int opted=1;
     int obj_server;
     if (( obj_server = socket ( AF_INET, SOCK_STREAM, 0)) == 0)
-    {
-        #ifndef _WIN32
-        std::cerr << "socket() error: " << errno << std::endl;
-        #else
-        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
-        #endif
-    }
+        handleError("socket() error: ");
     
     if ( setsockopt(obj_server, SOL_SOCKET, SO_REUSEADDR,
     (char *)&opted, sizeof ( opted )))
-    {
-        #ifndef _WIN32
-        std::cerr << "setsockopt() error: " << errno << std::endl;
-        #else
-        std::cout << "\nsetsockopt() error: " << WSAGetLastError() << std::endl;
-        #endif
-    }
+        handleError("setsockopt() error: ");
+
     return obj_server;
 }
 
@@ -61,21 +50,13 @@ bool p2putils::Bind(int server, struct sockaddr_in address, int PORT) {
     if (bind(server, ( struct sockaddr * )&address,
     sizeof(address))<0)
     {
-        #ifndef _WIN32
-        std::cerr << "bind() error: " << errno << std::endl;
-        #else
-        std::cout << "\nbind() error: " << WSAGetLastError() << std::endl;
-        #endif
+        handleError("bind() error: ");
         return false;
     }
     
     if (listen ( server, 3) < 0)
     {
-        #ifndef _WIN32
-        std::cerr << "listen() error: " << errno << std::endl;
-        #else
-        std::cout << "\nlisten() error: " << WSAGetLastError() << std::endl;
-        #endif
+        handleError("listen() error: ");
         return false;
     }
     return true;
@@ -103,11 +84,7 @@ int p2putils::setOutgoingNodeConnection(const std::string &ipaddress, int port) 
 
     if (( outgoingSocket = socket (AF_INET, SOCK_STREAM, 0 )) < 0)
     {
-        #ifndef _WIN32
-        std::cout << "socket() error " << errno << std::endl;
-        #else
-        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
-        #endif
+        handleError("socket() error ");
         return -1;
     }
 
@@ -115,21 +92,13 @@ int p2putils::setOutgoingNodeConnection(const std::string &ipaddress, int port) 
     // Converting IPv4 and IPv6 addresses from text to binary form
     if(inet_pton ( AF_INET, ipaddress.c_str(), &cli_addr.sin_addr)<=0)
     {
-        #ifndef _WIN32
-        std::cout << "inet_pton() error " << errno << std::endl;
-        #else
-        std::cout << "\nsocket() error: " << WSAGetLastError() << std::endl;
-        #endif
+        handleError("inet_pton() error ");
         return -1;
     }
     
     if ( connect( outgoingSocket, (struct sockaddr *)&cli_addr, sizeof(cli_addr )) < 0)
     {
-        #ifndef _WIN32
-        std::cout << "connect() error: " << errno << std::endl;
-        #else
-        std::cout << "\nconnect() error: " << WSAGetLastError() << std::endl;
-        #endif
+        handleError("connect() error: ");
         return -1;
     }
     
