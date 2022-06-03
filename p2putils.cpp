@@ -157,10 +157,10 @@ bool p2putils::Close(int sock) {
 }
 
 int p2putils::Accept(p2putils::p2pServer server) {
-    int incomingSocket{};
-    if ((incomingSocket = static_cast<int>(accept(server.socket,
+    int incomingSocket = static_cast<int>(accept(server.socket,
                                                   (struct sockaddr *)&server.address,
-                                                  (socklen_t*)&server.address_length))) < 0) {
+                                                  (socklen_t*)&server.address_length));
+    if (incomingSocket < 0) {
         p2putils::handleError("accept() error ");
         exit(0);
     }
