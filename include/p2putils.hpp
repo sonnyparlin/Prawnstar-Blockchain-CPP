@@ -31,6 +31,20 @@ namespace p2putils {
     int createSocket();
     bool Bind(int server, struct sockaddr_in address, int PORT);
     int setOutgoingNodeConnection(const std::string &ipaddress, int port);
+    const int MESSAGELENGTH = 20; /*!< Our predetermined message length for discovery messages */
+    void handleError(const std::string&);
+    bool Close(int);
+    const char* Recv(int);
+    struct p2pServer setupP2PServerIPAndPort(const char* portStr);
+    int Accept(p2putils::p2pServer);
+
+    struct p2pServer {
+        struct sockaddr_in address{};
+        int port{};
+        int address_length{};
+        std::string id{};
+        int socket{};
+    };
 }
 
 #endif // _P2PUTILS_H_

@@ -19,38 +19,6 @@ SocketCommunication::SocketCommunication(Node *node) {
 
 SocketCommunication::~SocketCommunication()=default;
 
-/*!
- *
- * @param argc
- * @param argv
- * @return int
- *
- * Process command line arguments
- */
-int SocketCommunication::processArgs(int argc, char **argv) {
-    if (argc < 3) {
-        std::cout << "Usage for the first node: ./server <ip> <port>" << std::endl;
-        return 1;
-    }
-
-    if (argc < 4) {
-        std::cout << "Node usage for peers: ./server <ip> <port> <api_port> <masternode>" << std::endl;
-        std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
-    }
-
-    auto arg = std::stoi(argv[2]);
-
-    if (arg < INT_MIN || arg > INT_MAX) {
-        std::cout << "Invalid port" << std::endl;
-        return 1;
-    }
-
-    if (!p2putils::isValidIpAddress(argv[1])) {
-        std::cout << "Invalid ip address in process args" << std::endl;
-        return 1;
-    }
-    return 0;
-}
 
 /*!
  *
@@ -61,8 +29,8 @@ int SocketCommunication::processArgs(int argc, char **argv) {
  */
 void SocketCommunication::startSocketCommunication(int argc, char *argv[]) {
     
-    if (processArgs(argc, argv) != 0)
-        exit (1);
+    if (utils::processArgs(argc, argv) != 0)
+        exit(1);
 
     startP2POperations(argc, argv);
 }
@@ -101,344 +69,35 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
  *
  * Starts the peer to peer server.
  */
-void SocketCommunication::startP2PServer ( int argc, char **argv )
+[[noreturn]] void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
-    auto PORT = std::stoi(argv[2]);
-    id = utils::get_uuid();
-    struct sockaddr_in address{};
-    int address_length = sizeof(address);
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-
-    // Server initialization
-    int serverSocket = p2putils::createSocket();
-    if (!p2putils::Bind(serverSocket, address, PORT))
-        exit (1);
-
+    p2putils::p2pServer server = p2putils::setupP2PServerIPAndPort(argv[2]);
+    std::cout << "Server created with id: " << server.id << std::endl;
     int i=0;
-    std::cout << "Server created with id: " << id << std::endl;
 
     for (;;) {
         int outgoingSocket;
         int incomingSocket;
 
         if ((argc == 5 && i !=0) || argc == 4) {
-            if ((incomingSocket = static_cast<int>(accept(serverSocket,
-                                         (struct sockaddr *)&address,
-                                         (socklen_t*)&address_length))) < 0) {
-                #ifndef _WIN32
-                std::cout << "accept() error " << errno << std::endl;
-                #else
-                std::cout << "\naccept() error: " << WSAGetLastError() << std::endl;
-                #endif
-                exit(0);
-            }
+            incomingSocket = Accept(server);
         }
 
-        //=========================================================
         // Master node handshake
-        //=========================================================
         if (i == 0 && argc == 5) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(utils::get_master_node_ip(), utils::get_master_node_port());
-            std::thread peerThread (&SocketCommunication::outbound_node_connected, this, outgoingSocket);
+            outgoingSocket = p2putils::setOutgoingNodeConnection(utils::get_master_node_ip(),
+                                                                 utils::get_master_node_port());
+            std::thread peerThread (&SocketCommunication::handshake, this, outgoingSocket);
             peerThread.join();
         }
 
-        //================================================================
         // Server operations
-        //================================================================
-        if (argc == 5 && i > 0) {
-            std::thread peerThread (&SocketCommunication::inbound_node_connected, this, incomingSocket);
-            peerThread.join();
-        } else if (argc == 4) {
-            std::thread peerThread (&SocketCommunication::inbound_node_connected,this, incomingSocket);
+        if ((argc == 5 && i > 0) || argc == 4) {
+            std::thread peerThread (&SocketCommunication::receive_node_message, this, incomingSocket);
             peerThread.join();
         }
         i++;
     }
-}
-
-/*!
- *
- * @param message
- *
- * Peer dscovery thread for discovering other nodes on the network.
- */
-void SocketCommunication::broadcastPeerDiscovery(const char *message) {
-    //std::cout << "broadcast " << std::endl;
-    auto j = nlohmann::json::parse(message + MESSAGELENGTH);
-    if (j["Message"]["Peers"] != nullptr) {
-
-        //std::cout << " Checking list of peers to broadcast to " << std::endl;
-        std::vector<std::string> dest;
-        dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
-
-        std::vector<std::string> peersPeerList {dest};
-        for(auto &ipPortStr : peersPeerList) {
-            char *token = strtok((char *)ipPortStr.c_str(), ":");
-
-            std::vector<std::string> ipPortStrV;
-            while (token != nullptr)
-            {
-                ipPortStrV.emplace_back(token);
-                token = strtok(nullptr, ":");
-            }
-
-            auto num = (int)stol(ipPortStrV.at(1));
-            //std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
-
-            int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
-            if (outgoingSocket == -1) {
-                // ======================================
-                // Socket connection to peer failed,
-                // remove peer from peers list.
-                // ======================================
-                std::string elementToRemove = ipPortStrV.at(0) + ":" + std::to_string(num);
-                std::string masterNode = utils::get_master_node_ip();
-                std::string masterNode2 = ":" + std::to_string(utils::get_master_node_port());
-                masterNode += masterNode2;
-
-                if (elementToRemove != masterNode) {
-                    peers.erase(std::remove(peers.begin(), peers.end(), elementToRemove), peers.end());
-                    inactivePeers.push_back(elementToRemove);
-                }
-                return;
-            }
-
-            SocketCommunication::outbound_node_connected(outgoingSocket);
-            // peerThread.join();
-            #ifndef _WIN32
-            int returnVal = close(outgoingSocket);
-            #else
-            int returnVal = closesocket(outgoingSocket);
-            #endif
-
-            if (returnVal != 0) {
-                #ifndef _WIN32
-                std::cout << "close() error " << errno << std::endl;
-                #else
-                std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
-                #endif
-            }
-        }
-    }
-}
-
-/*!
- *
- * @param message
- *
- * Broadcast a message to all known peers
- */
-void SocketCommunication::broadcast(const char *message) const {
-    if (peers.empty()) {return;}
-    auto fullJsonString = nlohmann::json::parse(message + MESSAGELENGTH);
-
-    // std::cout << "Broadcasting to the network..." << std::endl;
-
-    std::vector<std::string> tempPeers = peers;
-    for(auto &ipPortStr : tempPeers) {
-        char *token = strtok((char *)ipPortStr.c_str(), ":");
-
-        std::vector<std::string> ipPortStrV;
-        while (token != nullptr)
-        {
-            ipPortStrV.emplace_back(token);
-            token = strtok(nullptr, ":");
-        }
-
-        auto num = (int)stol(ipPortStrV.at(1));
-        //std::cout << ipPortStrV.at(0) << ":" << num << std::endl;
-
-        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
-        if (outgoingSocket == -1) {
-            return;
-        }
-
-        send_node_message(outgoingSocket, message);
-        #ifndef _WIN32
-        int returnVal = close(outgoingSocket);
-        #else
-        int returnVal = closesocket(outgoingSocket);
-        #endif
-
-        if (returnVal != 0) {
-            #ifndef _WIN32
-            std::cout << "close() error " << errno << std::endl;
-            #else
-            std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
-            #endif
-        }
-    }
-}
-
-/*!
- *
- * @param sock
- *
- * When an incoming message arrives we call receive_node_message()
- * with the passed in socket.
- */
-void SocketCommunication::inbound_node_connected(int sock) {
-    receive_node_message(sock);
-}
-
-/*!
- *
- * @param sock
- *
- * When an outbound connection is made, outbound_node_connected() is
- * called, which in turn calls handshake() with the passed in socket.
- * This is only used by the peer discovery system to hansshake with new
- * nodes found on the network.
- */
-void SocketCommunication::outbound_node_connected(int sock) const {
-    handshake(sock);
-}
-
-/*!
- *
- * @param sock
- * @param message
- *
- * Used for sending a specific node (connected via our socket) a message.
- */
-void SocketCommunication::send_node_message(int sock, const char *message) {
-    auto result = send(sock, message, static_cast<int>(strlen(message)), 0);
-    if (result < 0) {
-        #ifndef _WIN32
-        std::cout << "send() error " << errno << std::endl;
-        #else
-        std::cout << "\nsend() error: " << WSAGetLastError() << std::endl;
-        #endif
-        return;
-    }
-}
-
-/*!
- *
- * @param sock
- *
- * Recieves a message sent from the node connected to our socket. We make two calls to recv(),
- * the first call gets the message length, the second call gets the message.
- */
-void SocketCommunication::receive_node_message(int sock) {
-    // read message body length
-    unsigned long long msgLength;
-    char msgLengthBuffer[MESSAGELENGTH];
-    
-    auto reader = recv (sock, msgLengthBuffer, MESSAGELENGTH, MSG_WAITALL);
-    if (reader < 0) {
-        #ifndef _WIN32
-        std::cout << "recv() error " << errno << std::endl;
-        #else
-        std::cout << "\nrecv() error: " << WSAGetLastError() << std::endl;
-        #endif
-        return;
-    }
-
-    msgLength = std::stoi (msgLengthBuffer);
-    // std::cout << "Message Length => " << msgLength << std::endl;
-    if (msgLength <= 0) {
-        std::cout << "Message length is not valid, errno: " << errno << std::endl;
-        return;
-    }
-
-    // allocate memory with message's length
-    char* buffer = new char[msgLength + 1]();
-
-    // read socket data to the allocated buffer
-    reader = recv (sock, buffer, static_cast<int>(msgLength), MSG_WAITALL);
-    // std::cout << "reader => " << reader << std::endl;
-    if (reader <= 0) {
-        if (close(sock) == -1) {
-            std::cout << "Close problems, errno: " << errno << std::endl;
-        }
-    }
-    
-    // std::cout << "buffer: " << buffer << std::endl;
-    nlohmann::json j;
-    
-    try {
-        j = nlohmann::json::parse(buffer);
-    } catch(std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
-    std::string messageType = j["Message"]["Type"];
-
-    // std::cout << "Message type: " << messageType << std::endl;
-
-    if (messageType == "DISCOVERY") {
-        peerDiscoveryHandleMessage(buffer);
-    } else if (messageType == "TRANSACTION") {
-        std::string transactionString = j["Message"]["data"];
-        auto jx = nlohmann::json::parse(transactionString);
-        
-        Transaction itx;
-        itx.id = jx["id"];
-        itx.amount = jx["amount"];
-        itx.senderAddress = jx["senderAddress"];
-        itx.senderPublicKey = jx["senderPublicKey"];
-        itx.receiverAddress = jx["receiverAddress"];
-        itx.signature = jx["signature"];
-        itx.timestamp = jx["timestamp"];
-        itx.type = jx["type"];
-
-        node->handleTransaction(itx, false);
-    } else if (messageType == "BLOCK") {
-        Block block;
-        std::string jsonBlock = j["Message"]["data"];
-        nlohmann::json jx;
-
-        try {
-            jx = nlohmann::json::parse(jsonBlock);
-        } catch(std::exception &e) {
-            std::cerr << e.what() << std::endl;
-        }
-        
-        for (const auto& itx : jx["transactions"]) {
-            Transaction tr;
-            tr.id = itx["id"];
-            tr.amount = itx["amount"];
-            tr.senderAddress = itx["senderAddress"];
-            Wallet senderWallet(tr.senderAddress.c_str(), this->node);
-            tr.senderPublicKey = senderWallet.walletPublicKey;
-            tr.receiverAddress = itx["receiverAddress"];
-            tr.signature = itx["signature"];
-            tr.timestamp = itx["timestamp"];
-            tr.type = itx["type"];
-            block.transactions.push_back(tr);
-        }
-        block.lastHash = jx["lastHash"];
-        block.hash = jx["hash"];
-        block.forgerAddress = jx["forgerAddress"];
-        block.timestamp = jx["timestamp"];
-        block.blockCount = jx["blockCount"];
-        block.signature = jx["signature"];
-
-        node->handleBlock(block, false);
-    } else if (messageType == "BLOCKCHAINREQUEST") {
-        std::string requestingNode = j["Message"]["data"];
-        node->handleBlockchainRequest(requestingNode);
-    } else if (messageType == "BLOCKCHAIN") {
-        std::string messageData = j["Message"]["data"];
-        node->handleBlockchain(messageData);
-    }
-
-    // delete allocated memory
-    #ifndef _WIN32
-    int returnVal = close(sock);
-    #else
-    int returnVal = closesocket(sock);
-    #endif
-    if (returnVal != 0) {
-        #ifndef _WIN32
-        std::cout << "close() error " << errno << std::endl;
-        #else
-        std::cout << "\nclose() error: " << WSAGetLastError() << std::endl;
-        #endif
-    }
-    delete[] buffer;
 }
 
 /*!
@@ -470,7 +129,7 @@ void SocketCommunication::receive_node_message(int sock) {
             }
         } else
             std::cout << "No peers connected" << std::endl;
-            
+
         sleep(10);
     }
 }
@@ -484,6 +143,98 @@ void SocketCommunication::receive_node_message(int sock) {
         broadcastPeerDiscovery(message.c_str());
         sleep(10);
     }
+}
+
+/*!
+ *
+ * @param message
+ *
+ * Peer dscovery thread for discovering other nodes on the network.
+ */
+void SocketCommunication::broadcastPeerDiscovery(const char *message) {
+    nlohmann::json j;
+    try {j = nlohmann::json::parse(message + MESSAGELENGTH);
+    } catch (std::exception &e) { std::cerr << e.what() << std::endl; }
+    if (j["Message"]["Peers"] == nullptr) return;
+
+    std::vector<std::string> dest {};
+    dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
+
+    std::vector<std::string> peersPeerList {dest};
+    std::for_each(peersPeerList.begin(), peersPeerList.end(), [this](auto &ipPortStr){
+        std::vector<std::string> ipPortStrV = utils::split(ipPortStr, ":");
+        auto num = (int)stol(ipPortStrV.at(1));
+        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+        if (outgoingSocket == -1) {
+
+            // Socket connection to peer failed, remove peer from peers list.
+            std::string elementToRemove = ipPortStrV.at(0) + ":" + std::to_string(num);
+            std::string masterNode = utils::get_master_node_ip();
+            std::string masterNode2 = ":" + std::to_string(utils::get_master_node_port());
+            masterNode += masterNode2;
+
+            if (elementToRemove != masterNode) {
+                peers.erase(std::remove(peers.begin(), peers.end(), elementToRemove), peers.end());
+                inactivePeers.push_back(elementToRemove);
+            }
+            return;
+        }
+
+        SocketCommunication::handshake(outgoingSocket);
+        p2putils::Close(outgoingSocket);
+    });
+}
+
+/*!
+ *
+ * @param message
+ *
+ * Broadcast a message to all known peers
+ */
+void SocketCommunication::broadcast(const char *message) const {
+    if (peers.empty()) {return;}
+    auto fullJsonString = nlohmann::json::parse(message + MESSAGELENGTH);
+
+    std::vector<std::string> tempPeers = peers;
+    std::for_each(tempPeers.begin(), tempPeers.end(), [&message](auto &ipPortStr){
+
+        std::vector<std::string> ipPortStrV = utils::split(ipPortStr, ":");
+        auto num = (int)stol(ipPortStrV.at(1));
+        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+        if (outgoingSocket == -1)
+            return;
+        send_node_message(outgoingSocket, message);
+        p2putils::Close(outgoingSocket);
+    });
+}
+
+/*!
+ *
+ * @param sock
+ * @param message
+ *
+ * Used for sending a specific node (connected via our socket) a message.
+ */
+void SocketCommunication::send_node_message(int sock, const char *message) {
+    auto result = send(sock, message, static_cast<int>(strlen(message)), 0);
+    if (result < 0) {
+        p2putils::handleError("send() error ");
+        return;
+    }
+}
+
+/*!
+ *
+ * @param sock
+ *
+ * Recieves a message sent from the node connected to our socket. We make two calls to recv(),
+ * the first call gets the message length, the second call gets the message.
+ */
+void SocketCommunication::receive_node_message(int sock) {
+    const char* buffer = p2putils::Recv(sock);
+    handleNodeMessage(buffer);
+    p2putils::Close(sock);
+    delete[] buffer;
 }
 
 /*!
@@ -518,86 +269,128 @@ std::string SocketCommunication::handshakeMessage() const {
  *
  * Handle the incoming peer discovery message.
  */
-void SocketCommunication::peerDiscoveryHandleMessage(const char *message) {
-
-    if (!message)
-        return;
-
-    auto j = nlohmann::json::parse(message);
-    // write this method.
+void SocketCommunication::peerDiscoveryHandleMessage(nlohmann::json &j) {
     SocketConnector peersSenderConnector(
-        j["Message"]["SocketConnector"]["ip"], 
+        j["Message"]["SocketConnector"]["ip"],
         int(j["Message"]["SocketConnector"]["port"])
     );
- 
-    bool newPeer = true;
+
+    bool newPeerFlag = true;
     if (!peers.empty()) {
-        for (auto const &v : peers) {
-            if (v == peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port)) {
-                newPeer = false;
-            } 
-        }
+        std::for_each(peers.begin(), peers.end(),
+                                    [&peersSenderConnector, &newPeerFlag](auto const &alreadyConnectedPeer) {
+            std::string newPeer = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
+            if (newPeer == alreadyConnectedPeer)
+                newPeerFlag = false;
+        });
     }
 
-    if (newPeer) {
+    if (newPeerFlag) {
         std::string newPeerToAdd;
-        std::cout << "Adding peer via peer discovery: " 
-                  << peersSenderConnector.ip 
-                  << ":" 
+        std::cout << "Adding peer via peer discovery: " << peersSenderConnector.ip << ":"
                   << peersSenderConnector.port << std::endl;
         newPeerToAdd = peersSenderConnector.ip + ":" + std::to_string(peersSenderConnector.port);
         peers.push_back(newPeerToAdd);
-
-        // I commented out the two lines below because I can't think of
-        // a valid reason to request the chain of a newly joined node.
         std::cout << "Requesting blockchain from network" << std::endl;
         node->requestChain();
     }
 
-    if (j["Message"]["Peers"] != nullptr) {
-        
-        //std::cout << " Checking list of peers for new peer to add " << std::endl;
-        std::vector<std::string> dest;
-        dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
- 
-        std::vector<std::string> peersPeerList {dest};
+    if (j["Message"]["Peers"] == nullptr)
+        return;
 
-        for (auto const &peersPeer : peersPeerList) {
-            bool peerKnown = false;
-            for (auto const &p : peers) {
-                if (peersPeer == p) {
-                    peerKnown = true;
-                }
-            }
+    std::vector<std::string> dest;
+    dest.assign(std::begin(j["Message"]["Peers"]), std::end(j["Message"]["Peers"]));
+    std::vector<std::string> peersPeerList {dest};
+    std::for_each(peersPeerList.begin(), peersPeerList.end(), [this](auto &peersPeer) {
+        bool peerKnown = false;
+        std::for_each (peers.begin(), peers.end(), [&peersPeer, &peerKnown](auto const &p){
+            if (peersPeer == p)
+                peerKnown = true;
+        });
 
-            if (!peerKnown && peersPeer != sc.ip + ":" + std::to_string(sc.port)) {
-                char *token = strtok((char *)peersPeer.c_str(), ":");
+        std::string thisNode = sc.ip + ":" + std::to_string(sc.port);
+        if (!peerKnown && peersPeer != thisNode) {
+            std::vector<std::string> tcpPair = utils::split(peersPeer, ":");
+            auto num = (int)stol(tcpPair.at(1));
+            std::string peerToCheck = tcpPair.at(0) + ":" + std::to_string(num);
 
-                std::vector<std::string> tcpPair;
-                while (token != nullptr)
-                {
-                    tcpPair.emplace_back(token);
-                    token = strtok(nullptr, ":");
-                }
-                
-                auto num = (int)stol(tcpPair.at(1));
-
-                std::string peerToCheck = tcpPair.at(0) + ":" + std::to_string(num);
-
-                // make sure new peer isn't an inactive peer before adding
-                if (std::find(inactivePeers.begin(), 
-                                inactivePeers.end(), peerToCheck) == inactivePeers.end())
-                {    
-                    std::cout << "Adding peer via peer discovery: " 
+            // make sure new peer isn't an inactive peer before adding
+            if (std::find(inactivePeers.begin(),
+                          inactivePeers.end(), peerToCheck) == inactivePeers.end()) {
+                std::cout << "Adding peer via peer discovery: "
                           << tcpPair.at(0)
                           << ":"
-                          << std::to_string(num) 
+                          << std::to_string(num)
                           << std::endl;
-                    std::string newPeerToAdd = tcpPair.at(0) + ":" + std::to_string(num);
-                    peers.push_back(newPeerToAdd);
-                    inactivePeers.clear();
-                }
+                std::string newPeerToAdd = tcpPair.at(0) + ":" + std::to_string(num);
+                peers.push_back(newPeerToAdd);
+                inactivePeers.clear();
             }
         }
-    } 
+    });
+}
+
+void SocketCommunication::transactionHandler(const std::string& transactionString) {
+    nlohmann::json jx;
+    try { jx = nlohmann::json::parse(transactionString);
+    } catch(std::exception &e) { std::cout << e.what() << std::endl; }
+
+    Transaction itx;
+    itx.id = jx["id"];
+    itx.amount = jx["amount"];
+    itx.senderAddress = jx["senderAddress"];
+    itx.senderPublicKey = jx["senderPublicKey"];
+    itx.receiverAddress = jx["receiverAddress"];
+    itx.signature = jx["signature"];
+    itx.timestamp = jx["timestamp"];
+    itx.type = jx["type"];
+
+    node->handleTransaction(itx, false);
+}
+
+void SocketCommunication::blockHandler(const std::string& data) {
+    Block block;
+    nlohmann::json jx;
+    try { jx = nlohmann::json::parse(data);
+    } catch(std::exception &e) { std::cerr << e.what() << std::endl; }
+
+    std::for_each(jx["transactions"].begin(), jx["transactions"].end(), [this, &block](const auto& itx){
+        Transaction tr;
+        tr.id = itx["id"];
+        tr.amount = itx["amount"];
+        tr.senderAddress = itx["senderAddress"];
+        Wallet senderWallet(tr.senderAddress.c_str(), this->node);
+        tr.senderPublicKey = senderWallet.walletPublicKey;
+        tr.receiverAddress = itx["receiverAddress"];
+        tr.signature = itx["signature"];
+        tr.timestamp = itx["timestamp"];
+        tr.type = itx["type"];
+        block.transactions.push_back(tr);
+    });
+    block.lastHash = jx["lastHash"];
+    block.hash = jx["hash"];
+    block.forgerAddress = jx["forgerAddress"];
+    block.timestamp = jx["timestamp"];
+    block.blockCount = jx["blockCount"];
+    block.signature = jx["signature"];
+
+    node->handleBlock(block, false);
+}
+
+void SocketCommunication::handleNodeMessage(const char* buffer) {
+    nlohmann::json j;
+    try { j = nlohmann::json::parse(buffer);
+    } catch(std::exception &e) { std::cerr << e.what() << std::endl; }
+    std::string messageType = j["Message"]["Type"];
+
+    if (messageType == "DISCOVERY")
+        peerDiscoveryHandleMessage(j);
+    else if (messageType == "TRANSACTION")
+        transactionHandler(j["Message"]["data"]);
+    else if (messageType == "BLOCK")
+        blockHandler(j["Message"]["data"]);
+    else if (messageType == "BLOCKCHAINREQUEST")
+        node->handleBlockchainRequest(j["Message"]["data"]);
+    else if (messageType == "BLOCKCHAIN")
+        node->handleBlockchain(j["Message"]["data"]);
 }

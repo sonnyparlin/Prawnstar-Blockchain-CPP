@@ -44,6 +44,7 @@ namespace utils {
     inline uint32_t lcg_rand(uint32_t *state);
     std::string gen_random_str(int len);
     time_t timeSinceEpoch();
+    int processArgs(int, char**);
 
     static std::vector<std::string> ip_port_vec {};
 }

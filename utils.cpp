@@ -1,4 +1,5 @@
 #include "utils.hpp"
+#include "p2putils.hpp"
 
 using namespace utils;
 
@@ -279,4 +280,37 @@ time_t utils::timeSinceEpoch()
 {
     auto now = std::chrono::system_clock::now();
     return std::chrono::system_clock::to_time_t( now );
+}
+
+/*!
+ *
+ * @param argc
+ * @param argv
+ * @return int
+ *
+ * Process command line arguments
+ */
+int utils::processArgs(int argc, char **argv) {
+    if (argc < 3) {
+        std::cout << "Usage for the first node: ./server <ip> <port>" << std::endl;
+        return 1;
+    }
+
+    if (argc < 4) {
+        std::cout << "Node usage for peers: ./server <ip> <port> <api_port> <masternode>" << std::endl;
+        std::cout << "If this is not the master node, restart with 3rd parameter" << std::endl;
+    }
+
+    auto arg = std::stoi(argv[2]);
+
+    if (arg < INT_MIN || arg > INT_MAX) {
+        std::cout << "Invalid port" << std::endl;
+        return 1;
+    }
+
+    if (!p2putils::isValidIpAddress(argv[1])) {
+        std::cout << "Invalid ip address in process args" << std::endl;
+        return 1;
+    }
+    return 0;
 }
