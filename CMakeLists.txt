@@ -18,7 +18,7 @@ NodeApi.cpp
 Transaction.cpp
         ProofOfStake.cpp
 TransactionPool.cpp
-p2putils.cpp)
+        P2PServer.cpp)
 
 if(UNIX)
     include_directories(include /usr/local/include /usr/local/Cellar/boost/1.78.0_1/include  /usr/local/opt/openssl@3/include)

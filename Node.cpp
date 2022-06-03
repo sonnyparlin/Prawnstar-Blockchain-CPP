@@ -290,7 +290,7 @@ void Node::handleBlockchainRequest(std::string requestingNode) const {
     std::string msgJson = message.toJson();
 
     auto num = static_cast<int>(stol(receivingNode.at(1)));
-    int outgoingSocket = p2putils::setOutgoingNodeConnection(receivingNode.at(0), num);
+    int outgoingSocket = P2P::setOutgoingNodeConnection(receivingNode.at(0), num);
     if (outgoingSocket == -1) {
         return;
     }

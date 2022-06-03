@@ -1,4 +1,4 @@
-#include "p2putils.hpp"
+#include "P2PServer.hpp"
 #include "utils.hpp"
 
 /*!
@@ -9,7 +9,7 @@
  * Checks to make sure passed in ip address is valid using
  * inet_pton()
  */
-bool p2putils::isValidIpAddress(const std::string &ipAddress)
+bool P2P::isValidIpAddress(const std::string &ipAddress)
 {
     struct sockaddr_in sa{};
     int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
@@ -22,7 +22,7 @@ bool p2putils::isValidIpAddress(const std::string &ipAddress)
  *
  * Method to create a new socket.
  */
-int p2putils::createSocket() {
+int P2P::createSocket() {
     int opted=1;
     int obj_server;
     if (( obj_server = socket ( AF_INET, SOCK_STREAM, 0)) == 0)
@@ -44,7 +44,7 @@ int p2putils::createSocket() {
  *
  * Method for binding the server to the address and port.
  */
-bool p2putils::bindAndListen(int server, struct sockaddr_in address, int PORT) {
+bool P2P::bindAndListen(int server, struct sockaddr_in address, int PORT) {
     address.sin_port = htons( PORT );
 
     if (bind(server, ( struct sockaddr * )&address,
@@ -70,10 +70,10 @@ bool p2putils::bindAndListen(int server, struct sockaddr_in address, int PORT) {
  *
  * Set up outgoing connection.
  */
-int p2putils::setOutgoingNodeConnection(const std::string &ipaddress, int port) {
+int P2P::setOutgoingNodeConnection(const std::string &ipaddress, int port) {
     int outgoingSocket;
 
-    if (!p2putils::isValidIpAddress(ipaddress)) {
+    if (!P2P::isValidIpAddress(ipaddress)) {
         std::cout << "Invalid master ip address in set outgoing connection" << std::endl;
         return -1;
     }
@@ -105,7 +105,7 @@ int p2putils::setOutgoingNodeConnection(const std::string &ipaddress, int port) 
     return outgoingSocket;
 }
 
-const char* p2putils::Recv(int sock) {
+const char* P2P::Recv(int sock) {
     // read message body length
     unsigned long long msgLength;
     char msgLengthBuffer[MESSAGELENGTH];
@@ -134,7 +134,7 @@ const char* p2putils::Recv(int sock) {
     return buffer;
 }
 
-void p2putils::handleError(const std::string &message) {
+void P2P::handleError(const std::string &message) {
     #ifndef _WIN32
     std::cout << message << errno << std::endl;
     #else
@@ -142,7 +142,7 @@ void p2putils::handleError(const std::string &message) {
     #endif
 }
 
-bool p2putils::Close(int sock) {
+bool P2P::Close(int sock) {
     #ifndef _WIN32
     int returnVal = close(sock);
     #else
@@ -156,23 +156,23 @@ bool p2putils::Close(int sock) {
     return true;
 }
 
-int p2putils::Accept(p2putils::p2pServer server) {
+int P2P::Accept(P2P::Server server) {
     int incomingSocket = static_cast<int>(accept(server.socket,
                                                   (struct sockaddr *)&server.address,
                                                   (socklen_t*)&server.address_length));
     if (incomingSocket < 0) {
-        p2putils::handleError("accept() error ");
+        P2P::handleError("accept() error ");
         exit(0);
     }
     return incomingSocket;
 }
 
-p2putils::p2pServer p2putils::setupP2PServerIPAndPort(const char* portStr) {
+P2P::Server P2P::startOnPort(const char* portStr) {
     auto PORT = std::stoi(portStr);
     std::string id = utils::get_uuid();
-    int serverSocket = p2putils::createSocket();
+    int serverSocket = P2P::createSocket();
 
-    p2pServer s{};
+    Server s{};
     s.address.sin_family = AF_INET;
     s.address.sin_addr.s_addr = INADDR_ANY;
     s.port = PORT;
@@ -180,7 +180,7 @@ p2putils::p2pServer p2putils::setupP2PServerIPAndPort(const char* portStr) {
     s.id = id;
     s.socket = serverSocket;
 
-    if (!p2putils::bindAndListen(s.socket, s.address, s.port))
+    if (!P2P::bindAndListen(s.socket, s.address, s.port))
         exit (1);
     return s;
 }

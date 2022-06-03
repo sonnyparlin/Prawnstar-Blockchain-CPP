@@ -71,7 +71,7 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
  */
 [[noreturn]] void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
-    p2putils::p2pServer server = p2putils::setupP2PServerIPAndPort(argv[2]);
+    P2P::Server server = P2P::startOnPort(argv[2]);
     std::cout << "Server created with id: " << server.id << std::endl;
     int i=0;
 
@@ -85,8 +85,8 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
 
         // Master node handshake
         if (i == 0 && argc == 5) {
-            outgoingSocket = p2putils::setOutgoingNodeConnection(utils::get_master_node_ip(),
-                                                                 utils::get_master_node_port());
+            outgoingSocket = P2P::setOutgoingNodeConnection(utils::get_master_node_ip(),
+                                                            utils::get_master_node_port());
             std::thread peerThread (&SocketCommunication::handshake, this, outgoingSocket);
             peerThread.join();
         }
@@ -164,7 +164,7 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
     std::for_each(peersPeerList.begin(), peersPeerList.end(), [this](auto &ipPortStr){
         std::vector<std::string> ipPortStrV = utils::split(ipPortStr, ":");
         auto num = (int)stol(ipPortStrV.at(1));
-        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+        int outgoingSocket = P2P::setOutgoingNodeConnection(ipPortStrV.at(0), num);
         if (outgoingSocket == -1) {
 
             // Socket connection to peer failed, remove peer from peers list.
@@ -181,7 +181,7 @@ void SocketCommunication::broadcastPeerDiscovery(const char *message) {
         }
 
         SocketCommunication::handshake(outgoingSocket);
-        p2putils::Close(outgoingSocket);
+        P2P::Close(outgoingSocket);
     });
 }
 
@@ -200,11 +200,11 @@ void SocketCommunication::broadcast(const char *message) const {
 
         std::vector<std::string> ipPortStrV = utils::split(ipPortStr, ":");
         auto num = (int)stol(ipPortStrV.at(1));
-        int outgoingSocket = p2putils::setOutgoingNodeConnection(ipPortStrV.at(0), num);
+        int outgoingSocket = P2P::setOutgoingNodeConnection(ipPortStrV.at(0), num);
         if (outgoingSocket == -1)
             return;
         send_node_message(outgoingSocket, message);
-        p2putils::Close(outgoingSocket);
+        P2P::Close(outgoingSocket);
     });
 }
 
@@ -218,7 +218,7 @@ void SocketCommunication::broadcast(const char *message) const {
 void SocketCommunication::send_node_message(int sock, const char *message) {
     auto result = send(sock, message, static_cast<int>(strlen(message)), 0);
     if (result < 0) {
-        p2putils::handleError("send() error ");
+        P2P::handleError("send() error ");
         return;
     }
 }
@@ -231,9 +231,9 @@ void SocketCommunication::send_node_message(int sock, const char *message) {
  * the first call gets the message length, the second call gets the message.
  */
 void SocketCommunication::receive_node_message(int sock) {
-    const char* buffer = p2putils::Recv(sock);
+    const char* buffer = P2P::Recv(sock);
     handleNodeMessage(buffer);
-    p2putils::Close(sock);
+    P2P::Close(sock);
     delete[] buffer;
 }
 

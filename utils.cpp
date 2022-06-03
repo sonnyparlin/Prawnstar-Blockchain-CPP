@@ -1,5 +1,5 @@
 #include "utils.hpp"
-#include "p2putils.hpp"
+#include "P2PServer.hpp"
 
 using namespace utils;
 
@@ -308,7 +308,7 @@ int utils::processArgs(int argc, char **argv) {
         return 1;
     }
 
-    if (!p2putils::isValidIpAddress(argv[1])) {
+    if (!P2P::isValidIpAddress(argv[1])) {
         std::cout << "Invalid ip address in process args" << std::endl;
         return 1;
     }

@@ -4,7 +4,7 @@
 #include <string>
 #include "utils.hpp"
 #include "Node.hpp"
-#include "p2putils.hpp"
+#include "P2PServer.hpp"
 #include "SocketConnector.hpp"
 
 //class Node;

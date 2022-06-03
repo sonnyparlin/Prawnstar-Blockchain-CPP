@@ -24,9 +24,9 @@
 #include <nlohmann/json.hpp>
 
 /*!
- * p2putils for random functions related to the peer to peer network.
+ * P2P for random functions related to the peer to peer network.
  */
-namespace p2putils {
+namespace P2P {
     bool isValidIpAddress(const std::string&);
     int createSocket();
     bool bindAndListen(int server, struct sockaddr_in address, int PORT);
@@ -35,10 +35,10 @@ namespace p2putils {
     void handleError(const std::string&);
     bool Close(int);
     const char* Recv(int);
-    struct p2pServer setupP2PServerIPAndPort(const char* portStr);
-    int Accept(p2putils::p2pServer);
+    struct Server startOnPort(const char* portStr);
+    int Accept(P2P::Server);
 
-    struct p2pServer {
+    struct Server {
         struct sockaddr_in address{};
         int port{};
         int address_length{};
