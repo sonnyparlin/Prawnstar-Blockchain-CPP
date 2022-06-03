@@ -167,7 +167,7 @@ int P2P::Accept(P2P::Server server) {
     return incomingSocket;
 }
 
-P2P::Server P2P::startOnPort(const char* portStr) {
+P2P::Server P2P::createP2PServer(const char* portStr) {
     auto PORT = std::stoi(portStr);
     std::string id = utils::get_uuid();
     int serverSocket = P2P::createSocket();

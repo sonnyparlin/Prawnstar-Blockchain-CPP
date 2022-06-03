@@ -35,7 +35,7 @@ namespace P2P {
     void handleError(const std::string&);
     bool Close(int);
     const char* Recv(int);
-    struct Server startOnPort(const char* portStr);
+    struct Server createP2PServer(const char* portStr);
     int Accept(P2P::Server);
 
     struct Server {

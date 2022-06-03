@@ -71,7 +71,7 @@ void SocketCommunication::startP2POperations( int argc, char **argv ) {
  */
 [[noreturn]] void SocketCommunication::startP2PServer ( int argc, char **argv )
 {
-    P2P::Server server = P2P::startOnPort(argv[2]);
+    P2P::Server server = P2P::createP2PServer(argv[2]);
     std::cout << "Server created with id: " << server.id << std::endl;
     int i=0;
 
