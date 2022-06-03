@@ -29,7 +29,7 @@
 namespace p2putils {
     bool isValidIpAddress(const std::string&);
     int createSocket();
-    bool Bind(int server, struct sockaddr_in address, int PORT);
+    bool bindAndListen(int server, struct sockaddr_in address, int PORT);
     int setOutgoingNodeConnection(const std::string &ipaddress, int port);
     const int MESSAGELENGTH = 20; /*!< Our predetermined message length for discovery messages */
     void handleError(const std::string&);

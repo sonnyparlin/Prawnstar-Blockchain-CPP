@@ -44,7 +44,7 @@ int p2putils::createSocket() {
  *
  * Method for binding the server to the address and port.
  */
-bool p2putils::Bind(int server, struct sockaddr_in address, int PORT) {
+bool p2putils::bindAndListen(int server, struct sockaddr_in address, int PORT) {
     address.sin_port = htons( PORT );
 
     if (bind(server, ( struct sockaddr * )&address,
@@ -180,7 +180,7 @@ p2putils::p2pServer p2putils::setupP2PServerIPAndPort(const char* portStr) {
     s.id = id;
     s.socket = serverSocket;
 
-    if (!p2putils::Bind(s.socket, s.address, s.port))
+    if (!p2putils::bindAndListen(s.socket, s.address, s.port))
         exit (1);
     return s;
 }
